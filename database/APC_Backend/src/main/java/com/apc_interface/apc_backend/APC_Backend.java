@@ -1,35 +1,58 @@
 package com.apc_interface.apc_backend;
 
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoDatabase;
-import com.sun.net.httpserver.Headers;
 import java.net.InetSocketAddress;
 import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import org.bson.Document;
 
 /**
  *
- * @author aidan
+ * The Main class for the APC Project backend server. This server accepts
+ * both GET and POST HTTP requests containing either JSON or requests for
+ * JSON, processes them and either updates a MongoDB database or returns
+ * JSON.
+ * 
+ * This class creates an <code>HttpServer</code> from host <code>HOST</code>
+ * and port <code>Port</code>.
+ * 
+ * @author Aidan Schmitt
+ * @see com.sun.net.httpserver.HttpServer
+ * 
  */
 public class APC_Backend {
     
+    /**
+     * The host name of the server.
+     */
     private static final String HOSTNAME = "localhost";
+    
+    /**
+     * The port number to connect to.
+     */
     private static final int PORT = 8080;
+    
+    /**
+     * The backlog of requests allowed to the server. Set to 1, and it shouldn't
+     * need to be higher?
+     */
     private static final int BACKLOG = 1;
-
     
+    /**
+     * The directory path to navigate to in order to access this server.
+     * With host localhost and port 8080, the path would be localhost:8080/CONTEXT_PATH
+     */
+    private static final String CONTEXT_PATH = "/test";
     
-    public static void main(String[] args) throws Exception{
+    /**
+     * Creates, initializes and starts the <code>HttpServer</code> at the location
+     * <code>HOSTNAME:PORT/test</code>
+     * 
+     * @param args command-line arguments
+     * @throws IOException if the address at <code>HOSTNAME,PORT</code> is invalid
+     * or cannot be connected to
+     */
+    public static void main(String[] args) throws IOException{
         HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
-        server.createContext("/test", new ApcHandler());
+        server.createContext(CONTEXT_PATH, new ApcHandler());
         server.setExecutor(null);
         server.start();
     }   
