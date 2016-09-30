@@ -1,0 +1,4 @@
+Backend Info:
+
+-I am writing the backend in NetBeans, so as soon as I figure out how to make an executable JAR that actually works you guys will be able to run the server as well. Sorry for that...
+-I have only gotten around to implementing one method, but the others won't be that diffcult (I just need some free time for once.....). Check what the methods are/do (if you want) and if you can think of any other necessary ones, feel free to add/let me know.
