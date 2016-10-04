@@ -1,16 +1,22 @@
 package com.apc_interface.apc_backend;
 
 import com.mongodb.Block;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import org.bson.Document;
 
 /**
@@ -31,6 +37,13 @@ public class ApcHandler implements HttpHandler{
      * The name of the database stored in the MongoDB server.
      */
     private static final String DB_NAME = "apcdata";
+    
+    /**
+     * String finals for the names of the different collections in the database.
+     */
+    private static final String COLLECTION_COURSES = "courses";
+    private static final String COLLECTION_USERS = "users";
+    private static final String COLLECTION_PROPOSALS = "proposals";
     
     /**
      * An object representation of the MongoDB database.
@@ -58,6 +71,7 @@ public class ApcHandler implements HttpHandler{
      *  (GET, POST, and OPTIONS are only valid options)
      */
     private static final int STATUS_OK = 200;
+    private static final int STATUS_NOT_FOUND = 404;
     private static final int STATUS_METHOD_NOT_ALLOWED = 405;
     
     /**
@@ -87,8 +101,14 @@ public class ApcHandler implements HttpHandler{
      * each method differently. If an invalid method is used, it sends a 405
      * error and tells the client which methods are available.
      * <p>
-     * TODO Currently, only GET is implemented, and only one of the GET related
-     * methods is being implemented. More functionality to come!
+     * GET request format: 
+     *      apc.url.luther.edu/{@link ApcBackend.CONTEXT_PATH}?q=query
+     *      query can be: courses (get all courses)
+     *                    proposals (get all proposals)
+     *                    recent (get recently viewed)
+     * 
+     * POST request format (in body of http request):
+     *      q=query&[extra querys &]d=json
      * 
      * @param t the {@link HttpExchange} being handled
      * @throws IOException if sending either response headers or message body
@@ -101,15 +121,85 @@ public class ApcHandler implements HttpHandler{
             final String requestMethod = t.getRequestMethod().toUpperCase();
             switch(requestMethod){
                 case METHOD_GET:
-                    //TODO Implement rest of the HTTP GET requests
-                    String response = this.getAllCourses();
-                    t.sendResponseHeaders(STATUS_OK, response.length());
+                    Map<String, String> params = parseQuery(t.getRequestURI().getQuery());
+                    
+                    String response = "";
+                    int status = -1;
+                    
+                    switch(params.get("q")){
+                        case "courses":
+                            response = this.getAllCourses();
+                            status = STATUS_OK;
+                            break;
+                        case "proposals":
+                            response = this.getAllProposals();
+                            status = STATUS_OK;
+                            break;
+                        case "recent":
+                            response = "NOT IMPLEMENTED YET";
+                            status = STATUS_NOT_FOUND;
+                            //add array to db for recently viewed things
+                            //get ids from user collection
+                            break;
+                        default:
+                            status = STATUS_NOT_FOUND;
+                            response = "Not Found";
+                            break;
+                    }
+                    
+                    t.sendResponseHeaders(status, response.length());
                     OutputStream os = t.getResponseBody();
                     os.write(response.getBytes());
                     os.close();
                     break;
                 case METHOD_POST:
-                    // TODO implement HTTP POST requests
+                    InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
+                    BufferedReader br = new BufferedReader(isr);
+                    
+                    int b;
+                    StringBuilder buf = new StringBuilder(512);
+                    while((b = br.read()) != -1){
+                        buf.append((char) b);
+                    }
+                    
+                    br.close();
+                    isr.close();
+                    
+                    params = parseQuery(buf.toString());
+                    
+                    response = "";
+                    status = -1;
+                    
+                    switch(params.get("q")){
+                        case "create":
+                            Document doc = Document.parse(params.get("d"));
+                            db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
+                            response = "{status: success}";
+                            status = STATUS_OK;
+                            break;
+                        case "edituser":
+                            status = STATUS_NOT_FOUND;
+                            response = "Not Implemented Yet";
+                            break;
+                        case "save":
+                            status = STATUS_NOT_FOUND;
+                            response = "Not Implemented Yet";
+                            break;
+                        case "delete":
+                            status = STATUS_NOT_FOUND;
+                            response = "Not Implemented Yet";
+                            break;
+                        default:
+                            status = STATUS_NOT_FOUND;
+                            response = "Not Found";
+                            break;
+                    }
+                    
+                    t.sendResponseHeaders(status, response.length());
+                    os = t.getResponseBody();
+                    os.write(response.getBytes());
+                    os.close();
+                    
                     break;
                 case METHOD_OPTIONS:
                     headers.set(HEADER_ALLOW, ALLOWED_METHODS);
@@ -124,13 +214,6 @@ public class ApcHandler implements HttpHandler{
             t.close();
         }
     }
-    
-    /**
-     * Handle HTTP GET request for all proposals.
-     */
-    private void getAllProposals(){
-        //TODO implement functionality
-    }
 
     /**
      * Handle HTTP GET request for recently viewed proposals or courses.
@@ -140,13 +223,16 @@ public class ApcHandler implements HttpHandler{
     }
 
     /**
-     * Handle HTTP GET request for all courses.
+     * Handle HTTP GET request for all documents in a given collection. 
+     * Initiates a database query that returns all <code>Document</code>s in a
+     * given collection, and parses them into JSON text.
      * 
+     * @param collection the collection to retrieve documents from
      * @return a <code>JSON</code> representation of all courses in the database
      */
-    private String getAllCourses(){
+    private String getAll(String collection){
         final StringBuilder json = new StringBuilder();
-        FindIterable iterable = db.getCollection("courses").find();
+        FindIterable iterable = db.getCollection(collection).find();
 
         iterable.forEach(new Block<Document>() {
             @Override
@@ -156,6 +242,24 @@ public class ApcHandler implements HttpHandler{
         });
 
         return json.toString();
+    }
+    
+    /**
+     * Helper function to get all courses.
+     * 
+     * @return a JSON representation of all courses
+     */
+    private String getAllCourses(){
+        return getAll(COLLECTION_COURSES);
+    }
+    
+    /**
+     * Helper function to get all proposals.
+     * 
+     * @return a JSON representation of all proposals
+     */
+    private String getAllProposals(){
+        return getAll(COLLECTION_PROPOSALS);
     }
 
     /**
@@ -184,5 +288,24 @@ public class ApcHandler implements HttpHandler{
      */
     private void postDeleteProposal(){
         //TODO implement functionality
+    }
+    
+    /**
+     * Parses an HTTP GET query into a map (dictionary) of params:values.
+     * 
+     * @param query a string containing the GET query
+     * @return a map of key-value pairings of parameters and values
+     */
+    public Map<String, String> parseQuery(String query){
+        Map<String, String> result = new HashMap();
+        for (String param : query.split("&")){
+            String[] pair = param.split("=");
+            if (pair.length>1){
+                result.put(pair[0], pair[1]);
+            } else {
+                result.put(pair[0], "");
+            }
+        }
+        return result;
     }
 }

@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 public class ApcBackend {
     
-    /**
+    /*
      * The host name of the server.
      */
     private static final String HOSTNAME = "localhost";
