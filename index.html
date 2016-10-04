@@ -3,13 +3,42 @@
 <script src="./angular.min.js"></script>
 <script src = "./js/app.js"></script>
 <script src = "./js/dashboardModule.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <head>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
 </head>
 
-<body ng-app="CourseProposalApp" ng-controller="dashboardCtrl">
-    <div class="header" ng-hide='shouldHide'>hello<div>
-</body>
+
+<div ng-app="CourseProposalApp" ng-controller="dashboardCtrl">
+    <dash-header></dash-header>
+        
+    <body>
+
+        <div class="dashboard">
+            <div class="leftDash">
+                <div class="myProposals">
+                    <div class="sectionBar">
+                        <h4 class="sectionTitle">My Proposals</h4>
+                        <button type="button" class="newPropButton btn">New</button>
+                    </div>
+                </div>
+
+                <div class="recentViewed">
+                    <div class="sectionBar">
+                        <h4 class="sectionTitle">Most Recently Viewed</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="allProposals">
+                <div class="sectionBar">
+                    <h4 class="sectionTitle">All Existing Proposals</h4>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</div>
 
 </html>

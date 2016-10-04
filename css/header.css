@@ -1,4 +1,65 @@
+body {
+    margin: 0;
+}
+
 .header {
-  height: 100px;
-  background-color: lightblue;
+    background-color: lightblue;
+    height: 60px;
+}
+
+.title {
+    float: left;
+    text-decoration: none;
+    color: black;
+    margin: 0 0 0 10px;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+/* dashboard css */
+.dashboard {
+    margin: 25px 3.5% 25px 3.5%;
+    text-align: center;
+}
+
+.leftDash {
+    margin-right: 4%;
+    width: 48%;
+    float: left;
+}
+
+.myProposals,.recentViewed {
+    height: 400px;
+    background-color: lightgray;
+}
+
+.myProposals {
+    margin-bottom: 25px;
+}
+
+.newPropButton {
+    background-color: lightgreen;
+    float: right;
+    margin-right: 2px;
+}
+
+.allProposals {
+    float: left;
+    background-color: lightgray;
+    width: 48%;
+    height: 825px;
+}
+
+.sectionBar {
+    background-color: gray;
+    padding: 2px 0 2px 0;
+    height: 40px;
+}
+
+.sectionTitle {
+    line-height: 38px;
+    vertical-align: middle;
+    width: 50%;
+    margin: 0 0 0 25%;
+    float: left;
 }
