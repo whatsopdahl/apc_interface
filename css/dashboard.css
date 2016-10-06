@@ -2,6 +2,19 @@ body {
     margin: 0;
 }
 
+.col-md-6 {
+    height: 100%;
+}
+
+.container-fluid {
+    height: 49%;
+    margin-bottom: 2%;
+}
+
+.jumbotron {
+    padding: 0;
+}
+
 .header {
     background-color: lightblue;
     height: 60px;
@@ -20,12 +33,6 @@ body {
 .dashboard {
     margin: 25px 3.5% 25px 3.5%;
     text-align: center;
-}
-
-.leftDash {
-    margin-right: 4%;
-    width: 48%;
-    float: left;
 }
 
 .myProposals,.recentViewed {

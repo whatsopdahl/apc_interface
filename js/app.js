@@ -17,6 +17,7 @@ app.directive("dashboard", function() {
 app.directive("courseList", function() {
     return {
         restrict: "E",
-        templateUrl: "../html/course-list.html"
+        templateUrl: "../html/course-list.html",
+        scope: {data: '='}
     };
 });

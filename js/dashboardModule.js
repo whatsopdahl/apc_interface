@@ -1,2 +1,3 @@
-app.controller('dashboardCtrl', function($scope) {
-});
+app.controller('dashboardCtrl', ['$scope', function($scope) {
+    $scope.myProposals = {title: "My Proposals"}
+}]);
