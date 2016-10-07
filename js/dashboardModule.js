@@ -1,3 +1,4 @@
-app.controller('dashboardCtrl', function($scope) {
-    $scope.shouldHide = false;
-});
+var app = angular.module("CourseProposalApp");
+app.controller('dashboardCtrl', ['$scope', function($scope) {
+    $scope.myProposals = {title: "My Proposals"}
+}]);
