@@ -37,6 +37,7 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv"];
 function mainCtrl($rootScope, $scope, $log, $location, authSrv) {
 	$scope.logout = authSrv.logout;
+	$scope.user = null;
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
