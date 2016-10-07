@@ -3,21 +3,14 @@ body {
 }
 
 .col-md-6 {
+    min-height:100%;
     height: 100%;
-}
-
-.container-fluid {
-    height: 49%;
-    margin-bottom: 2%;
+    padding: 0px 5px 0px 5px;
 }
 
 .jumbotron {
-    padding: 0;
-}
-
-.header {
-    background-color: lightblue;
-    height: 60px;
+    padding: 5px 5px 5px 5px !important;
+    margin: 5px 0px 5px 0px;
 }
 
 .title {
@@ -31,42 +24,29 @@ body {
 
 /* dashboard css */
 .dashboard {
-    margin: 25px 3.5% 25px 3.5%;
+    margin: 10px 10px 10px 10px;
     text-align: center;
+    height:100%;
 }
 
-.myProposals,.recentViewed {
-    height: 400px;
-    background-color: lightgray;
-}
-
-.myProposals {
-    margin-bottom: 25px;
-}
-
-.newPropButton {
-    background-color: lightgreen;
-    float: right;
-    margin-right: 2px;
-}
-
-.allProposals {
-    float: left;
-    background-color: lightgray;
-    width: 48%;
-    height: 825px;
-}
-
-.sectionBar {
-    background-color: gray;
+.section-bar {
+    background-color: #337ab7;
     padding: 2px 0 2px 0;
     height: 40px;
+    border-radius: 15px 5px;
 }
 
-.sectionTitle {
+.section-title {
     line-height: 38px;
     vertical-align: middle;
     width: 50%;
     margin: 0 0 0 25%;
     float: left;
+}
+
+.logo {
+    margin: 0px 10px 0px 10px;
+    max-height: 50px; 
+    width:auto;
+    display: inline !important;
 }
