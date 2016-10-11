@@ -64,7 +64,12 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS",  funct
 
 		$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 
-		$location.path("/").replace();
+		//if we have a requested url, redirect to it. otherwise go to the dash
+		if ($rootScope.next){
+			$location.path($rootScope.next).replace();
+		} else {
+			$location.path("/").replace();
+		}
 		$rootScope.$digest();
 	}
 
