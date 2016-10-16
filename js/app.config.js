@@ -11,12 +11,6 @@ app.config(function($routeProvider){
 		templateUrl : "templates/dashboard.html",
 		controller : "dashboardCtrl"
 	})
-	.when("/:course", {
-		templateUrl : "templates/welcome.html"
-	})
-	.when("/:course/edit", {
-		templateUrl : "templates/welcome.html"
-	})
 	.when("/newproposal", {
 		templateUrl : "templates/welcome.html"
 	})
@@ -27,6 +21,12 @@ app.config(function($routeProvider){
 		templateUrl : "templates/welcome.html"
 	})
 	.when("/dashboard/recentlyviewed", {
+		templateUrl : "templates/welcome.html"
+	})
+	.when("/:course", {
+		templateUrl : "templates/welcome.html"
+	})
+	.when("/:course/edit", {
 		templateUrl : "templates/welcome.html"
 	})
 	.when("/", {
