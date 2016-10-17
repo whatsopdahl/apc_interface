@@ -27,12 +27,12 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
         	nextPath = next.split('#')[1];
         	if (!( nextPath == '/login')) {
 	        	$rootScope.next = $location.url();
-			}    
+			}
         	$location.url('/login');
         }
 
 	});
-}]); 
+}]);
 
 mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv"];
 function mainCtrl($rootScope, $scope, $log, $location, authSrv) {
@@ -57,5 +57,12 @@ app.directive("courseList", function() {
         restrict: "E",
         templateUrl: "templates/course-list.html",
         scope: {data: '='}
+    };
+});
+
+app.directive("course", function() {
+    return {
+        restrict: "E",
+        templateUrl: "templates/course.html",
     };
 });

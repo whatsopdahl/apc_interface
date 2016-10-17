@@ -11,14 +11,9 @@ app.config(function($routeProvider){
 		templateUrl : "templates/dashboard.html",
 		controller : "dashboardCtrl"
 	})
-	.when("/:course", {
-		templateUrl : "templates/welcome.html"
-	})
-	.when("/:course/edit", {
-		templateUrl : "templates/welcome.html"
-	})
 	.when("/newproposal", {
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/new-proposal.html",
+		conroller : "proposalCtrl"
 	})
 	.when("/dashboard/mychanges",{
 		templateUrl : "templates/welcome.html"
@@ -31,6 +26,12 @@ app.config(function($routeProvider){
 	})
 	.when("/", {
 		redirectTo : "/dashboard"
+	})
+	.when("/:course", {
+		templateUrl : "templates/welcome.html"
+	})
+	.when("/:course/edit", {
+		templateUrl : "templates/welcome.html"
 	})
 	.otherwise({ redirectTo : "/"});
 

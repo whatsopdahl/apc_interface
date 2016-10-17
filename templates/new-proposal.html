@@ -1,0 +1,95 @@
+<form class="propForm" name="ProposalForm">
+    <div class="form-group">
+        <label>Course Name</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" placeholder="i.e. Paideia" required>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Department</label>
+        <label style="color: red;">*</label>
+        <select class="form-control" required>
+            <div ng-repeat="">
+                <option>blah</option>
+                <option>blah</option>
+                <option>blah</option>
+            </div>
+        </select>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Course Number</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" placeholder="i.e. 150" required>
+    </div>
+    <div class="form-group">
+        <label>Instructor(s)</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" required>
+        <small class="form-text text-muted">Separate multiple professors with commas.</small>
+    </div>
+    <div class="form-group smallFormField">
+        <label>General Requirements Satisfied</label>
+        <select multiple class="form-control">
+            <div ng-repeat="">
+                <option>blah</option>
+                <option>blah</option>
+                <option>blah</option>
+                <option>blah</option>
+                <option>blah</option>
+            </div>
+        </select>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Credit Hours</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" required>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Estimated Enrollment</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" required>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Max Capacity</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" required>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Terms Offered</label>
+        <label style="color: red;">*</label>
+        <select multiple class="form-control" required>
+            <option>Fall</option>
+            <option>J-Term</option>
+            <option>Spring</option>
+            <option>Summer 1</option>
+            <option>Summer 2</option>
+        </select>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Prerequisite Courses</label>
+        <select multiple class="form-control">
+            <div ng-repeat="">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </div>
+        </select>
+    </div>
+    <div class="form-group smallFormField">
+        <label>Fees</label>
+        <label style="color: red;">*</label>
+        <input class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Catalog Description</label>
+        <label style="color: red;">*</label>
+        <textarea class="form-control" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+        <label>Rationale</label>
+        <label style="color: red;">*</label>
+        <textarea class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
