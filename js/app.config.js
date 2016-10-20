@@ -24,6 +24,12 @@ app.config(function($routeProvider){
 	.when("/dashboard/recentlyviewed", {
 		templateUrl : "templates/welcome.html"
 	})
+	.when("/:course", {
+		templateUrl : "templates/welcome.html"
+	})
+	.when("/:course/edit", {
+		templateUrl : "templates/welcome.html"
+	})
 	.when("/", {
 		redirectTo : "/dashboard"
 	})
