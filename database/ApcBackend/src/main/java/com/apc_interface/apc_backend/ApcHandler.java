@@ -1,11 +1,10 @@
 package com.apc_interface.apc_backend;
 
 import com.mongodb.Block;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
+import static com.mongodb.client.model.Filters.eq;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -15,9 +14,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  * Handles all HTTP requests. When HTTP requests are made, they are sent by
@@ -27,6 +28,8 @@ import org.bson.Document;
  * which is responsible for maintaining and serving all required data.
  * 
  * @author Aidan Schmitt
+ * @version 1.0_1
+ * @since 1.0_1
  * @see HttpHandler
  * @see MongoDatabase
  * @see MongoClient
@@ -66,11 +69,20 @@ public class ApcHandler implements HttpHandler{
     /**
      * HTTP status codes.
      * <p>
-     * STATUS_OKAY (200) everything normal.
+     * STATUS_OKAY (200) GET method successful.
+     * STATUS_CREATED (201) POST method successful in creating resources
+     * STATUS_NO_CONTENT (204) method successful, but not returning any content
+     * STATUS_BAD_REQUEST (400) request formatted incorrectly and is unable to
+     *  be processed
+     * STATUS_NOT_FOUND (404) resource request formatted correctly, but resource
+     *  not found
      * STATUS_METHOD_NOT_ALLOWED (405) requested an invalid method
      *  (GET, POST, and OPTIONS are only valid options)
      */
     private static final int STATUS_OK = 200;
+    private static final int STATUS_CREATED = 201;
+    private static final int STATUS_NO_CONTENT = 204;
+    private static final int STATUS_BAD_REQUEST = 400;
     private static final int STATUS_NOT_FOUND = 404;
     private static final int STATUS_METHOD_NOT_ALLOWED = 405;
     
@@ -102,13 +114,30 @@ public class ApcHandler implements HttpHandler{
      * error and tells the client which methods are available.
      * <p>
      * GET request format: 
-     *      apc.url.luther.edu/{@link ApcBackend.CONTEXT_PATH}?q=query
+     *      apc.url.luther.edu/{@link ApcBackend.CONTEXT_PATH}?q=query[&u=user]
      *      query can be: courses (get all courses)
      *                    proposals (get all proposals)
+     *                    users (get all users, or get a specific user with u=)
      *                    recent (get recently viewed)
+     *      user should be username
      * 
      * POST request format (in body of http request):
      *      q=query&[extra querys &]d=json
+     *      
+     *      query can be: create (create a proposal)
+     *                    edituser (edit a user)
+     *                    save (edit a proposal)
+     *                    delete (delete a proposal)
+     * 
+     * Note: more methods can be easily added to either GET or POST
+     * 
+     * Each time a request is handled it is surrounded in a 
+     * <code>try/catch</code> block, in order to ensure the server's continued
+     * execution no matter if a bad request is processed. In this event, the
+     * server simply responds with an HTTP error code and continues serving new
+     * requests.
+     * 
+     * TODO implement HTTP PUT method as an alternative for POSTing some things
      * 
      * @param t the {@link HttpExchange} being handled
      * @throws IOException if sending either response headers or message body
@@ -123,27 +152,53 @@ public class ApcHandler implements HttpHandler{
                 case METHOD_GET:
                     Map<String, String> params = parseQuery(t.getRequestURI().getQuery());
                     
-                    String response = "";
-                    int status = -1;
+                    String response;
+                    int status;
                     
                     switch(params.get("q")){
                         case "courses":
-                            response = this.getAllCourses();
-                            status = STATUS_OK;
+                            try{
+                                response = this.getAll(COLLECTION_COURSES);
+                                status = STATUS_OK;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         case "proposals":
-                            response = this.getAllProposals();
-                            status = STATUS_OK;
+                            try{
+                                response = this.getAll(COLLECTION_PROPOSALS);
+                                status = STATUS_OK;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "users":
+                            try{
+                                if (params.containsKey("u")){
+                                    response = this.getUser(params.get("u"));
+                                } else {
+                                    response = this.getAll(COLLECTION_USERS);
+                                }
+                                status = STATUS_OK;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         case "recent":
-                            response = "NOT IMPLEMENTED YET";
-                            status = STATUS_NOT_FOUND;
-                            //add array to db for recently viewed things
-                            //get ids from user collection
+                            try{
+                                response = this.getRecentlyViewed(params.get("u"));
+                                status = STATUS_OK;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         default:
-                            status = STATUS_NOT_FOUND;
-                            response = "Not Found";
+                            status = STATUS_BAD_REQUEST;
+                            response = "";
                             break;
                     }
                     
@@ -167,31 +222,58 @@ public class ApcHandler implements HttpHandler{
                     
                     params = parseQuery(buf.toString());
                     
-                    response = "";
-                    status = -1;
+                    Document doc = Document.parse(params.get("d"));
                     
                     switch(params.get("q")){
                         case "create":
-                            Document doc = Document.parse(params.get("d"));
-                            db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
-                            response = "{status: success}";
-                            status = STATUS_OK;
+                            try{
+                                db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
+                                response = "{status: success, method: create}";
+                                status = STATUS_CREATED;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         case "edituser":
-                            status = STATUS_NOT_FOUND;
-                            response = "Not Implemented Yet";
+                            try{
+                                String user = params.get("u");
+                                db.getCollection(COLLECTION_USERS).updateOne(eq("name", user), new Document("$set", doc));
+                                status = STATUS_CREATED;
+                                response = "{status: success, method: edituser}";
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         case "save":
-                            status = STATUS_NOT_FOUND;
-                            response = "Not Implemented Yet";
+                            try{
+                                System.out.println("Saving Proposal");
+                                Document idDoc = (Document)doc.get("_id");
+                                String id = idDoc.getString("");
+                                doc.remove("_id");
+                                db.getCollection(COLLECTION_PROPOSALS).updateOne(eq("_id", new ObjectId(id)), new Document("$set", doc));
+                                status = STATUS_CREATED;
+                                response = "{status: success, method: save}";
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         case "delete":
-                            status = STATUS_NOT_FOUND;
-                            response = "Not Implemented Yet";
+                            //doc could be entire document, or just part of one I think
+                            try{
+                                db.getCollection(COLLECTION_PROPOSALS).deleteOne(doc);
+                                status = STATUS_CREATED;
+                                response = "{status: success, method: delete}";
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                             break;
                         default:
-                            status = STATUS_NOT_FOUND;
-                            response = "Not Found";
+                            status = STATUS_BAD_REQUEST;
+                            response = "{status: not found}";
                             break;
                     }
                     
@@ -218,8 +300,42 @@ public class ApcHandler implements HttpHandler{
     /**
      * Handle HTTP GET request for recently viewed proposals or courses.
      */
-    private void getRecentlyViewed(){
-        //TODO implement functionality
+    private String getRecentlyViewed(String user){
+        
+        final StringBuilder json = new StringBuilder();
+        json.append("{");
+       
+        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("name", user));
+        
+        iterable.forEach(new Block<Document>(){
+            @Override
+            public void apply(final Document document){
+                ArrayList<String> list = null;
+                list = document.get("recent", ArrayList.class);
+                
+                for (int i = 0; i < list.size(); i++){
+                    FindIterable iter = db.getCollection(COLLECTION_PROPOSALS).find(eq("_id", new ObjectId(list.get(i))));
+                    iter.forEach(new Block<Document>(){
+                        @Override
+                        public void apply(final Document doc){
+                            json.append(doc.toJson());
+                        }
+                    });
+                    
+                    iter = db.getCollection(COLLECTION_COURSES).find(eq("_id", new ObjectId(list.get(i))));
+                    iter.forEach(new Block<Document>(){
+                        @Override
+                        public void apply(final Document doc){
+                            json.append(doc.toJson());
+                        }
+                    });
+                }
+            }
+        });
+        
+        json.append("}");
+                
+        return json.toString();
     }
 
     /**
@@ -245,49 +361,25 @@ public class ApcHandler implements HttpHandler{
     }
     
     /**
-     * Helper function to get all courses.
+     * Handle HTTP GET request for a specific user. Note that this will return
+     * all users with the same username, so care should be taken to avoid 
+     * duplicate usernames.
      * 
-     * @return a JSON representation of all courses
+     * @param user the username of the intended user
+     * @return a JSON formatted string of the user's data
      */
-    private String getAllCourses(){
-        return getAll(COLLECTION_COURSES);
-    }
-    
-    /**
-     * Helper function to get all proposals.
-     * 
-     * @return a JSON representation of all proposals
-     */
-    private String getAllProposals(){
-        return getAll(COLLECTION_PROPOSALS);
-    }
-
-    /**
-     * Handle HTTP POST request to create a proposal.
-     */
-    private void postCreateProposal(){
-        //TODO implement functionality
-    }
-
-    /**
-     * Handle HTTP POST request to edit a user profile entry.
-     */
-    private void postEditUser(){
-        //TODO implement functionality
-    }
-
-    /**
-     * Handle HTTP POST request to save a proposal.
-     */
-    private void postSaveProposal(){
-        //TODO implement functionality
-    }
-
-    /**
-     * Handle HTTP POST request to delete a proposal from the database.
-     */
-    private void postDeleteProposal(){
-        //TODO implement functionality
+    private String getUser(String user){
+        final StringBuilder json = new StringBuilder();
+        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("name", user));
+        
+        iterable.forEach(new Block<Document>() {
+           @Override
+           public void apply(final Document document){
+               json.append(document.toJson());
+           }
+        });
+        
+        return json.toString();
     }
     
     /**
