@@ -24,15 +24,15 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 	$rootScope.$on('$locationChangeStart', function(event, next){
 		//if login required (i.e. is not login page) and you're logged out, capture the current path
         if (!$rootScope.user) {
-        	$log.debug(next);
-        	if (!next.isLogin) {
+        	nextPath = next.split('#')[1];
+        	if (!( nextPath == '/login')) {
 	        	$rootScope.next = $location.url();
-	        	$log.debug($rootScope.next);
-			}    
+			}
         	$location.url('/login');
         }
+
 	});
-}]); 
+}]);
 
 mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv"];
 function mainCtrl($rootScope, $scope, $log, $location, authSrv) {
@@ -41,6 +41,7 @@ function mainCtrl($rootScope, $scope, $log, $location, authSrv) {
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
+		$scope.page = $location.path();
 	});
 };
 
@@ -56,5 +57,12 @@ app.directive("courseList", function() {
         restrict: "E",
         templateUrl: "templates/course-list.html",
         scope: {data: '='}
+    };
+});
+
+app.directive("course", function() {
+    return {
+        restrict: "E",
+        templateUrl: "templates/course.html",
     };
 });

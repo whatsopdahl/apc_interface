@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Course Proposal Database Guide</title>
+
+	<style> 
+	.field { width:10%; }
+	.type { width:5%; }
+	.desc { width:83%; }
+	.odd { background-color: lightgrey; }
+	</style>
+</head>
+<body style="padding:1%;">
+	<h1>Luther Course Proposal Database Guide</h1>
+	<p> This document details the design of the database, giving the fields in the collections, the type of the field, and a brief description of what each field contains.</p>
+	<h2>Collections</h2>
+	<a href="#users">Users (users)</a>
+	<br>
+	<a href="#courses">Courses (proposals)</a>
+	<br>
+	<a href="#proposals">Proposals (proposals)</a>
+	<br>
+	<a href="#depts">Departments (depts)</a>
+	<br style="width:100%; border: 2px solid grey;">
+	<h3 id="users">Users</h3>
+	<table>
+		<tr>
+			<th class="field">Field</th>
+			<th class="type">Type</th>
+			<th class="desc">Description</th>
+		</tr>
+		<tr class="odd">
+			<td class="field">name</td>
+			<td class="type">str</td>
+			<td class="desc">The first and last name of the user. This is automatically retrieved through login. </td>
+		</tr>
+		<tr>
+			<td class="field">email</td>
+			<td class="type">str</td>
+			<td class="desc">The '@luther.edu' email address of the user.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">dept</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of departments of which the user is a member. These are stored as the abbrevieations detailed in the <a href="#depts">depts</a> collection. This field can be modified by a user and is requested upon first login. </td>
+		</tr>
+		<tr>
+			<td class="field">division</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of divisions that the user belongs. Most often, this will be a single division. This field is inferred from the <a href="#depts">depts</a> collection.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">chairs</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of the depts/ organizations of which the user is a chair of. This may be empty for most people. To become chair of a dept, an administrator must make the change. </td>
+		</tr>
+		<tr>
+			<td class="field">recently_viewed</td>
+			<td class="type">list(obejct_ids)</td>
+			<td class="desc">A list contianing the object IDs of the last 10 courses or proposals a user has viewed.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">my_changes</td>
+			<td class="type">list(obejct_ids)</td>
+			<td class="desc">A list of obejct IDs of all the proposals the user created.</td>
+		</tr>
+	</table>
+	<a href="#top">Top</a>
+	<br>
+	<h3 id="courses">Courses</h3>
+	<table>
+		<tr>
+			<th class="field">Field</th>
+			<th class="type">Type</th>
+			<th class="desc">Description</th>
+		</tr>
+		<tr class="odd">
+			<td class="field">title</td>
+			<td class="type">str</td>
+			<td class="desc">The title of the course.</td>
+		</tr>
+		<tr>
+			<td class="field">name</td>
+			<td class="type">str</td>
+			<td class="desc">The name of the course in the format of &lt dept &gt - &lt number &gt. For example: CS-150 </td>
+		</tr>
+		<tr class="odd">
+			<td class="field">credit_hrs</td>
+			<td class="type">int</td>
+			<td class="desc">The credit hours for a given course. This correlates the minimum credit hours the registrar keeps track of.</td>
+		</tr>
+		<tr>
+			<td class="field">capacity</td>
+			<td class="type">int</td>
+			<td class="desc">Maximum number of students per-class.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">gen_ed</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of all college requirements that the course can fufill. The complete list is as follows: 
+			<p> ["BL", "SKL", "WEL", "REL", "NWL", "NWNL", "HB", "HBSSM", "HE", "HEPT", "INTCL", "HIST", "QUANT"] </p>
+			</td>
+		</tr>
+		<tr>
+			<td class="field">desc</td>
+			<td class="type">str</td>
+			<td class="desc">The description of the course. This is taken initally from information from the registrar.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">dept</td>
+			<td class="type">str</td>
+			<td class="desc">The department the class is under. This corresponds to the subject field in the information from the registrar and should match the dept in the course name.</td>
+		</tr>		
+		<tr>
+			<td class="field">division</td>
+			<td class="type">str</td>
+			<td class="desc">Inferred from dept. This is the division the class falls under.</td>
+		</tr>
+		<tr>
+			<td class="field">terms</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of terms in which the course is/ will be offered. The complete list is as follows: 
+			<p>[FALL, SPRING, J_TERM, SUMMER SESSION I, SUMMER SESSION II]</p>
+			</td>
+		</tr>
+	</table>
+	<a href="#top">Top</a>
+	<br>
+	<h3 id="proposals">Proposals</h3>
+	<table>
+		<tr>
+			<th> class="field">Field</th>
+			<th class="type">Type</th>
+			<th class="desc">Description</th>
+		</tr>
+		<tr class="odd">
+			<td class="field">owner</td>
+			<td class="type">str</td>
+			<td class="desc">The name of the user who created the proposal.</td>
+		</tr>
+		<tr>
+			<td class="field">Stage</td>
+			<td class="type">int</td>
+			<td class="desc">A numeric value representing the stage of the proposal. 
+				<table style="float:right;">
+					<tr style="background-color: pink;">
+						<td>0</td>
+						<td>Just created. Has not gone under any review</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Under division review.</td>
+					</tr>
+					<tr style="background-color: pink;">
+						<td>2</td>
+						<td>Passed division review, up for review by APC.</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Passed APC review, up for full faculty review.</td>
+					</tr>
+					<tr style="background-color: pink;">
+						<td>4</td>
+						<td>Passed full faculty review, sent to registrar to be updated.</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">staffing</td>
+			<td class="type">str</td>
+			<td class="desc">A description of any staffing implications of the course. May contain who can teach the course?</td>
+		</tr>
+		<tr>
+			<td class="field">rationale</td>
+			<td class="type">str</td>
+			<td class="desc">Reasoning for changed proposed. This is a required explanantion for changing any course attributes.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">impact</td>
+			<td class="type">str</td>
+			<td class="desc">The impact on faculty, major programs, students or other factors.
+			</td>
+		</tr>
+		<tr>
+			<td class="field">date</td>
+			<td class="type">datetime</td>
+			<td class="desc">The date the proposal was last revised.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">old_course</td>
+			<td class="type">object_id</td>
+			<td class="desc">The object id of the course that the user is changing. If the proposal fails, we leave this record untouched so we can revert back to the original.</td>
+		</tr>		
+		<tr>
+			<td class="field">new_course</td>
+			<td class="type">object_id</td>
+			<td class="desc">The object_id of the new course to replace the old course. This will be similar to the old_course, but with changes reflecting the proposed changes. If a proposal fails, we remove the record associated with the id in this field. If a propsal is approved, we replace the old_course with the new_course in the courses collection and place the old_course in the appropriate <a href="#archive">archive</a> record.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">fees</td>
+			<td class="type">str</td>
+			<td class="desc">A list of fees and accompanying explanations. These are updated with each section, so we do not include them in the course definitions. These are only for consideration by the APC committee.</td>
+		</tr>	
+		<tr>
+			<td class="field">est_enrollement</td>
+			<td class="type">object_id</td>
+			<td class="desc">This is the estimated enrollement for the class. This will often be the capacity of a class, but in some cases is used for section info, or number of students per section instead of class enrollement.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">instructors</td>
+			<td class="type">list(str)</td>
+			<td class="desc">A list of instructors qualified to teach this course.</td>
+		</tr>
+	</table>
+	<a href="#top">Top</a>
+	<br>
+	<h3 id="depts">Departments</h3>
+	<p>This is a static table listing all the departments and their abbreviations, name and division. These are also known as subjects. </p>
+	<table>
+		<tr>
+			<th class="field">Field</th>
+			<th class="type">Type</th>
+			<th class="desc">Description</th>
+		</tr>
+		<tr class="odd">
+			<td class="field">name</td>
+			<td class="type">str</td>
+			<td class="desc">The full name of the department.</td>
+		</tr>
+		<tr>
+			<td class="field">abbrev</td>
+			<td class="type">str</td>
+			<td class="desc">The 3-5 character abbreviation for the department.</td>
+		</tr>
+		<tr class="odd">
+			<td class="field">division</td>
+			<td class="type">str</td>
+			<td class="desc">The division under which the department falls. Can be either 'Science', 'Humanities', or 'Fine Arts'.</td>
+		</tr>
+	</table>
+	<h3 id="depts">Archive</h3>
+	<p>This collection is currently not supported. Coming Spring semester.</p>
+	<table>
+	</table>
+	<br>
+	<footer>
+		<p>**If you update the database, please make sure this document is updated as well.</p>
+		<a href="#top">Top</a>
+	</footer>
+</body>
