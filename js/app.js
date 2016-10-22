@@ -9,6 +9,9 @@ app.constant("auth_config", {
     scope: 'profile email'
 });
 
+app.constant("GEN_ED", {
+    
+});
 
 app.controller("mainCtrl", mainCtrl);
 

@@ -2,14 +2,13 @@ var app = angular.module("CourseProposalApp");
 
 app.constant("DATA_URL", "/data");
 
-app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
+app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
 		getUser : getUser,
 		getUsers : getusers,
 		getCourses : getCourses,
 		getProposals : getPropsals,
 		getRecentlyViewed : getRecentlyViewed,
-
 	}
 
 	/**
@@ -22,10 +21,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "courses"
 				}
 		}).then(function success(response) {
-			
-		}, function error(){
-
-		});
+			$log.info("Retrieved Courses");
+			return response.data;
+		}, handleError(response) );
 	}
 	
 	/**
@@ -38,10 +36,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "proposals"
 				}
 		}).then(function success(response) {
-			
-		}, function error(){
-
-		});
+			$log.info("Retrieved Proposals");
+			return response.data;
+		}, handleError(response) );
 	}
 	
 	/**
@@ -55,10 +52,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					u : user.email.split("@")[0]
 				}
 		}).then(function success(response) {
-			
-		}, function error(){
-
-		});
+			$log.info("Retieved user data");
+			return response.data;
+		}, handleError(response) );
 	}
 	
 	/**
@@ -71,10 +67,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "users"
 				}
 		}).then(function success(response) {
-			
-		}, function error(){
-
-		});
+			$log.info("Retrieved all user data");
+			return response.data;
+		}, handleError(response) );
 	}
 	
 	/**
@@ -88,10 +83,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					u : user.email.split("@")[0]
 				}
 		}).then(function success(response) {
-			
-		}, function error(){
-
-		});
+			$log.info("Retieved recently viewed");
+			return response.data;
+		}, handleError(response) );
 	}
 
 
@@ -104,12 +98,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-
-		}, function fail(){ 
-
-		});
+			$log.info("Proposal successfully created");
+		},handleError(response) );
 	}
-}]);
 
 /**
 	 * 
@@ -121,12 +112,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-
-		}, function fail(){ 
-
-		});
+			$log.info("User profile updated");
+		}, handleError(response) );
 	}
-}]);
 
 /**
 	 * 
@@ -137,12 +125,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-
-		}, function fail(){ 
-
-		});
+			$log.info("Propsal saved");
+		}, handleError(response) );
 	}
-}]);
 
 /**
 	 * 
@@ -153,9 +138,14 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
+			$log.info("Proposal deleted");
+		}, handleError(response) );
+	}
 
-		}, function fail(){ 
-
-		});
+	function handleError(response){
+		$log.error("ERROR :"+response.data);
+		return null
 	}
 }]);
+
+

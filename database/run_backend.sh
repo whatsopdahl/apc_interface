@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-#	Start the MongoDB service
-#sudo service mongod start
+# Start the MongoDB service
+# sudo service mongod start
 
 #	Load data included in mock_data.js into table apcdata
 mongo apcdata mock_data.js
