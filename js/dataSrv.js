@@ -12,7 +12,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	function getCourses() {
 		return $http({ method : "GET",
@@ -25,9 +25,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			return response.data;
 		}, handleError(response) );
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	function getProposals() {
 		return $http({ method : "GET",
@@ -40,9 +40,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			return response.data;
 		}, handleError(response) );
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	function getUser(user) {
 		return $http({ method : "GET",
@@ -56,9 +56,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			return response.data;
 		}, handleError(response) );
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	function getUsers() {
 		return $http({ method : "GET",
@@ -71,9 +71,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			return response.data;
 		}, handleError(response) );
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	function getRecent(user) {
 		return $http({ method : "GET",
@@ -90,7 +90,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 
 
 	/**
-	 * 
+	 *
 	 */
 	function createProposal(data) {
 		data["q"] = "create";
@@ -103,7 +103,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	}
 
 /**
-	 * 
+	 *
 	 */
 	function editUser(data, user) {
 		data["q"] = "edit";
@@ -117,7 +117,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	}
 
 /**
-	 * 
+	 *
 	 */
 	function saveProposal(data) {
 		data["q"] = "save";
@@ -130,7 +130,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	}
 
 /**
-	 * 
+	 *
 	 */
 	function deleteProposal(data) {
 		data["q"] = "delete";
