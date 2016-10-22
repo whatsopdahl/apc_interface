@@ -1,14 +1,15 @@
 var app = angular.module("CourseProposalApp");
 
-app.constant("DATA_URL", "/data");
+app.constant("DATA_URL", "http://localhost:27017/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
 		getUser : getUser,
-		getUsers : getusers,
+		getUsers : getUsers,
 		getCourses : getCourses,
-		getProposals : getPropsals,
-		getRecentlyViewed : getRecentlyViewed,
+		getProposals : getProposals,
+		getRecentlyViewed : getRecent,
+		addComment : addComment
 	}
 
 	/**
@@ -49,7 +50,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				url : DATA_URL,
 				params : {
 					q : "users",
-					u : user.email.split("@")[0]
+					u : user.name
 				}
 		}).then(function success(response) {
 			$log.info("Retieved user data");

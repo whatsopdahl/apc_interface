@@ -29,7 +29,8 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$locatio
 	    });
 }]);
 
-app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS",  function($log, $rootScope, $location, AUTH_EVENTS){
+app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv", 
+			 function($log, $rootScope, $location, AUTH_EVENTS, dataSrv){
 	return {
 		signinChanged : signinChanged,
 		userChanged : userChanged,
@@ -57,7 +58,8 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS",  funct
 		user["name"] = profile.getName();
 		user["email"] = profile.getEmail();
 
-		//get rest of user info
+		//userData = dataSrv.getUser(user);
+		//$log.debug(userData);
 
 		$rootScope.user = user;
 		$log.info("logged in as " + $rootScope.user.name);
