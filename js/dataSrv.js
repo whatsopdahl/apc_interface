@@ -1,15 +1,15 @@
 var app = angular.module("CourseProposalApp");
 
-app.constant("DATA_URL", "/data");
+app.constant("DATA_URL", "http://localhost:27017/data");
 
-app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
+app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
 		getUser : getUser,
-		getUsers : getusers,
+		getUsers : getUsers,
 		getCourses : getCourses,
-		getProposals : getPropsals,
-		getRecentlyViewed : getRecentlyViewed,
-
+		getProposals : getProposals,
+		getRecentlyViewed : getRecent,
+		addComment : addComment
 	}
 
 	/**
@@ -22,10 +22,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "courses"
 				}
 		}).then(function success(response) {
-			return response
-		}, function error(){
-			console.log("There was an error with the request")
-		});
+			$log.info("Retrieved Courses");
+			return response.data;
+		}, handleError(response) );
 	}
 
 	/**
@@ -38,10 +37,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "proposals"
 				}
 		}).then(function success(response) {
-			return response
-		}, function error(){
-			console.log("There was an error with the request")
-		});
+			$log.info("Retrieved Proposals");
+			return response.data;
+		}, handleError(response) );
 	}
 
 	/**
@@ -52,13 +50,12 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				params : {
 					q : "users",
-					u : user.email.split("@")[0]
+					u : user.name
 				}
 		}).then(function success(response) {
-			return response
-		}, function error(){
-			console.log("There was an error with the request")
-		});
+			$log.info("Retieved user data");
+			return response.data;
+		}, handleError(response) );
 	}
 
 	/**
@@ -71,10 +68,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					q : "users"
 				}
 		}).then(function success(response) {
-			return response
-		}, function error(){
-			console.log("There was an error with the request")
-		});
+			$log.info("Retrieved all user data");
+			return response.data;
+		}, handleError(response) );
 	}
 
 	/**
@@ -88,10 +84,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 					u : user.email.split("@")[0]
 				}
 		}).then(function success(response) {
-			return response
-		}, function error(){
-			console.log("There was an error with the request")
-		});
+			$log.info("Retieved recently viewed");
+			return response.data;
+		}, handleError(response) );
 	}
 
 
@@ -104,12 +99,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			console.log('Successful.')
-		}, function fail(){
-			console.log("It failed.")
-		});
+			$log.info("Proposal successfully created");
+		},handleError(response) );
 	}
-}]);
 
 /**
 	 *
@@ -121,12 +113,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			console.log('Successful.')
-		}, function fail(){
-			console.log("It failed.")
-		});
+			$log.info("User profile updated");
+		}, handleError(response) );
 	}
-}]);
 
 /**
 	 *
@@ -137,12 +126,9 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			console.log('Successful')
-		}, function fail(){
-			console.log('It failed.')
-		});
+			$log.info("Propsal saved");
+		}, handleError(response) );
 	}
-}]);
 
 /**
 	 *
@@ -153,9 +139,14 @@ app.factory("dataSrv", ["$http", "DATA_URL", function($http, DATA_URL){
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			console.log('Successful')
-		}, function fail(){
-			console.log('It failed.')
-		});
+			$log.info("Proposal deleted");
+		}, handleError(response) );
+	}
+
+	function handleError(response){
+		$log.error("ERROR :"+response.data);
+		return null
 	}
 }]);
+
+
