@@ -28,7 +28,7 @@ import org.bson.types.ObjectId;
  * which is responsible for maintaining and serving all required data.
  *
  * @author Aidan Schmitt
- * @version 1.0_2
+ * @version 1.0_3
  * @since 1.0_1
  * @see HttpHandler
  * @see MongoDatabase
@@ -119,7 +119,7 @@ public class ApcHandler implements HttpHandler{
      *                    proposals (get all proposals)
      *                    users (get all users, or get a specific user with u=)
      *                    recent (get recently viewed)
-     *      user should be username
+     *      user should be user email
      *
      * POST request format (in body of http request):
      *      q=query&[extra querys &]d=json
@@ -203,10 +203,11 @@ public class ApcHandler implements HttpHandler{
                             response = "";
                             break;
                     }
-
-                    t.sendResponseHeaders(status, response.length());
+                    
+                    byte[] responseBytes = response.getBytes();
+                    t.sendResponseHeaders(status, responseBytes.length);
                     OutputStream os = t.getResponseBody();
-                    os.write(response.getBytes());
+                    os.write(responseBytes);
                     os.close();
                     break;
                 case METHOD_POST:
@@ -240,7 +241,7 @@ public class ApcHandler implements HttpHandler{
                         case "edituser":
                             try{
                                 String user = params.get("u");
-                                db.getCollection(COLLECTION_USERS).updateOne(eq("name", user), new Document("$set", doc));
+                                db.getCollection(COLLECTION_USERS).updateOne(eq("email", user), new Document("$set", doc));
                                 status = STATUS_CREATED;
                                 response = "{status: success, method: edituser}";
                             } catch (Exception ex){
@@ -307,7 +308,7 @@ public class ApcHandler implements HttpHandler{
         final StringBuilder json = new StringBuilder();
         json.append("{");
 
-        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("name", user));
+        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("email", user));
 
         iterable.forEach(new Block<Document>(){
             @Override
@@ -364,15 +365,15 @@ public class ApcHandler implements HttpHandler{
 
     /**
      * Handle HTTP GET request for a specific user. Note that this will return
-     * all users with the same username, so care should be taken to avoid
-     * duplicate usernames.
+     * all users with the same email address, so care should be taken to avoid
+     * duplicate emails.
      *
-     * @param user the username of the intended user
+     * @param email the email of the intended user
      * @return a JSON formatted string of the user's data
      */
-    private String getUser(String user){
+    private String getUser(String email){
         final StringBuilder json = new StringBuilder();
-        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("name", user));
+        FindIterable iterable = db.getCollection(COLLECTION_USERS).find(eq("email", email));
 
         iterable.forEach(new Block<Document>() {
            @Override

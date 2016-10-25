@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.apc_interface</groupId>
     <artifactId>ApcBackend</artifactId>
-    <version>1.0_2</version>
+    <version>1.0_3</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
