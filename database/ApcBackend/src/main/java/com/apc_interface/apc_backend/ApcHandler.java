@@ -28,7 +28,7 @@ import org.bson.types.ObjectId;
  * which is responsible for maintaining and serving all required data.
  *
  * @author Aidan Schmitt
- * @version 1.0_1
+ * @version 1.0_2
  * @since 1.0_1
  * @see HttpHandler
  * @see MongoDatabase
@@ -147,8 +147,8 @@ public class ApcHandler implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
         try{
             final Headers headers = t.getResponseHeaders();
-            headers.put('Access-Control-Allow-Origin', 'http://localhost:8000');
-            headers.put('Access-Control-Allow-Credentials', 'true');
+            headers.add("Access-Control-Allow-Origin", "http://localhost:8000");
+            headers.add("Access-Control-Allow-Credentials", "true");
             final String requestMethod = t.getRequestMethod().toUpperCase();
             switch(requestMethod){
                 case METHOD_GET:
