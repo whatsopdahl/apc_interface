@@ -48,9 +48,6 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	function getUser(user) {
 		return $http({ method : "GET",
 				url : DATA_URL,
-				headers : {
-					'Access-Control-Allow-Origin': 'http://localhost:8000'
-				},
 				params : {
 					q : "users",
 					u : user.email
