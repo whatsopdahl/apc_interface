@@ -84,9 +84,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				url : DATA_URL,
 				params : {
 					q : "recent",
-					u : user.email.split("@")[0]
+					u : user.email
 				}
-		}).then(function success(response) {
+		}).then(function(response) {
 			$log.info("Retieved recently viewed");
 			return response.data;
 		}, handleError(response) );
@@ -111,11 +111,11 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	 */
 	function editUser(data, user) {
 		data["q"] = "edit";
-		data["u"] = user.email.split("@")[0]
+		data["u"] = user.email
 		return $http({ method: "POST",
 				url : DATA_URL,
 				data : data
-		}).then(function success() {
+		}).then(function success(response) {
 			$log.info("User profile updated");
 		}, handleError(response) );
 	}

@@ -147,7 +147,7 @@ public class ApcHandler implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
         try{
             final Headers headers = t.getResponseHeaders();
-            headers.add("Access-Control-Allow-Origin", "http://localhost:8000");
+            headers.add("Access-Control-Allow-Origin", "*");
             headers.add("Access-Control-Allow-Credentials", "true");
             final String requestMethod = t.getRequestMethod().toUpperCase();
             switch(requestMethod){

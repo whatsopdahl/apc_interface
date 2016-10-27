@@ -59,6 +59,7 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		user["email"] = profile.getEmail();
 
 		userData = dataSrv.getUser(user);
+		$log.debug("userData");
 		$log.debug(userData);
 
 		$rootScope.user = user;
