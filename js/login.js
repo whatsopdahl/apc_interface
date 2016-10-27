@@ -12,11 +12,11 @@ app.constant('AUTH_EVENTS', {
   userChanged : 'auth-user-changed'
 });
 
-app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$location", "AUTH_EVENTS", 
+app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$location", "AUTH_EVENTS",
 	function($scope, $rootScope, $log, authSrv, $location, AUTH_EVENTS) {
 		$scope.loginfailure = false;
 
-		$scope.login = authSrv.login; 
+		$scope.login = authSrv.login;
 
 	    $scope.loginFailed = authSrv.loginFailed;
 
@@ -29,7 +29,7 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$locatio
 	    });
 }]);
 
-app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv", 
+app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",
 			 function($log, $rootScope, $location, AUTH_EVENTS, dataSrv){
 	return {
 		signinChanged : signinChanged,
@@ -58,8 +58,8 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		user["name"] = profile.getName();
 		user["email"] = profile.getEmail();
 
-		//userData = dataSrv.getUser(user);
-		//$log.debug(userData);
+		userData = dataSrv.getUser(user);
+		$log.debug(userData);
 
 		$rootScope.user = user;
 		$log.info("logged in as " + $rootScope.user.name);

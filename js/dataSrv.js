@@ -1,6 +1,6 @@
 var app = angular.module("CourseProposalApp");
 
-app.constant("DATA_URL", "http://localhost:27017/data");
+app.constant("DATA_URL", "http://localhost:8080/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
@@ -9,7 +9,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		getCourses : getCourses,
 		getProposals : getProposals,
 		getRecentlyViewed : getRecent,
-		addComment : addComment
+		// addComment : addComment
 	}
 
 	/**
@@ -48,14 +48,17 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	function getUser(user) {
 		return $http({ method : "GET",
 				url : DATA_URL,
+				headers : {
+					'Access-Control-Allow-Origin': 'http://localhost:8000'
+				},
 				params : {
 					q : "users",
-					u : user.name
+					u : user.email
 				}
 		}).then(function success(response) {
 			$log.info("Retieved user data");
 			return response.data;
-		}, handleError(response) );
+		});
 	}
 
 	/**
@@ -148,5 +151,3 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		return null
 	}
 }]);
-
-
