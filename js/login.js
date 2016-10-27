@@ -58,8 +58,9 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		user["name"] = profile.getName();
 		user["email"] = profile.getEmail();
 
-		//userData = dataSrv.getUser(user);
-		//$log.debug(userData);
+		userData = dataSrv.getUser(user);
+		$log.debug("userData");
+		$log.debug(userData);
 
 		$rootScope.user = user;
 		$log.info("logged in as " + $rootScope.user.name);

@@ -15,6 +15,18 @@ db.archive.drop();
  * Recreate all collections
  */
 users = [ 
+			{ name : "Aidan Schmitt",
+			  email : "schmai01@luther.edu",
+			  division : ["CS"]
+			},
+			{ name : "Kyle McNeese",
+			  email : "mcnecky01@luther.edu",
+			  division : ["CS"]
+			},
+			{ name : "Jonathan Opdahl",
+		      email : "opdajo01@luther.edu",
+		  	  division : ["CS"]
+		  	},
 			{ name : "Brad Miller", 
 			  email : "bmiller@luther.edu",
 			  division : "Science",
