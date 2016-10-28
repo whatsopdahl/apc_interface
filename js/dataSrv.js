@@ -41,11 +41,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved Proposals");
 			return response.data;
-<<<<<<< HEAD
-=======
 		}, function(response){
 			handleError(response);
->>>>>>> master
 		});
 	}
 
