@@ -24,7 +24,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved Courses");
 			return response.data;
-		}, handleError(response) );
+		});
 	}
 
 	/**
@@ -39,7 +39,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved Proposals");
 			return response.data;
-		}, handleError(response) );
+		});
 	}
 
 	/**

@@ -10,6 +10,7 @@ app.config(function($routeProvider){
 	.when("/dashboard", {
 		templateUrl : "templates/dashboard.html",
 		controller : "dashboardCtrl"
+		// scope : {'courses': "="}
 	})
 	.when("/newproposal", {
 		templateUrl : "templates/new-proposal.html",
@@ -24,11 +25,9 @@ app.config(function($routeProvider){
 	.when("/dashboard/recentlyviewed", {
 		templateUrl : "templates/welcome.html"
 	})
-	.when("/courseinfo", {
-		templateUrl : "templates/course-info.html"
-	})
-	.when("/:course", {
-		templateUrl : "templates/welcome.html"
+	.when("/:courseName", {
+		templateUrl : "templates/course-info.html",
+		resolve: {'courseName': courseParams}
 	})
 	.when("/:course/edit", {
 		templateUrl : "templates/welcome.html"
@@ -36,12 +35,11 @@ app.config(function($routeProvider){
 	.when("/", {
 		redirectTo : "/dashboard"
 	})
-	.when("/:course", {
-		templateUrl : "templates/welcome.html"
-	})
-	.when("/:course/edit", {
-		templateUrl : "templates/welcome.html"
-	})
 	.otherwise({ redirectTo : "/"});
+
+	courseParams.$inject = ['$routeParams'];
+	function courseParams($routeParams) {
+		return $routeParams['courseName']
+	}
 
 });
