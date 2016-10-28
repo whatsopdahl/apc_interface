@@ -24,6 +24,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved Courses");
 			return response.data;
+		}, function(response){
+			handleError(response);
 		});
 	}
 
@@ -39,6 +41,11 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved Proposals");
 			return response.data;
+<<<<<<< HEAD
+=======
+		}, function(response){
+			handleError(response);
+>>>>>>> master
 		});
 	}
 
@@ -55,6 +62,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retieved user data");
 			return response.data;
+		}, function(response){
+			handleError(response);
 		});
 	}
 
@@ -70,7 +79,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success(response) {
 			$log.info("Retrieved all user data");
 			return response.data;
-		}, handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 	/**
@@ -86,7 +97,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function(response) {
 			$log.info("Retieved recently viewed");
 			return response.data;
-		}, handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 
@@ -100,7 +113,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				data : data
 		}).then(function success() {
 			$log.info("Proposal successfully created");
-		},handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 /**
@@ -114,7 +129,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				data : data
 		}).then(function success(response) {
 			$log.info("User profile updated");
-		}, handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 /**
@@ -127,7 +144,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				data : data
 		}).then(function success() {
 			$log.info("Propsal saved");
-		}, handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 /**
@@ -140,7 +159,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				data : data
 		}).then(function success() {
 			$log.info("Proposal deleted");
-		}, handleError(response) );
+		}, function(response){
+			handleError(response);
+		});
 	}
 
 	function handleError(response){
