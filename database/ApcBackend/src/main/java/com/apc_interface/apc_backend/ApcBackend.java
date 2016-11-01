@@ -42,7 +42,12 @@ public class ApcBackend {
      * With host localhost and port 8080, the path would be 
      * localhost:8080/CONTEXT_PATH
      */
-    private static final String CONTEXT_PATH = "/data";
+    private static final String DATA_CONTEXT_PATH = "/data";
+    
+    /**
+     * The context path for retrieving source files, such as HTML files.
+     */
+    private static final String SRC_CONTEXT_PATH = "/src";
     
     /**
      * Creates, initializes and starts the <code>HttpServer</code> at the 
@@ -55,7 +60,8 @@ public class ApcBackend {
      */
     public static void main(String[] args) throws IOException{
         HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
-        server.createContext(CONTEXT_PATH, new ApcHandler());
+        server.createContext(DATA_CONTEXT_PATH, new ApcHandler());
+        server.createContext(SRC_CONTEXT_PATH, new ApcSrcHandler());
         server.setExecutor(null);
         server.start();
     }   

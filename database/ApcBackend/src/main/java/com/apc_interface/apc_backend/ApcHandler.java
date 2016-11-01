@@ -352,7 +352,7 @@ public class ApcHandler implements HttpHandler{
     private String getAll(String collection){
         final StringBuilder json = new StringBuilder();
         FindIterable iterable = db.getCollection(collection).find();
-
+        
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document){
