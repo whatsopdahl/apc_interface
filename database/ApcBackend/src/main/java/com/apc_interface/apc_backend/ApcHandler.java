@@ -313,7 +313,7 @@ public class ApcHandler implements HttpHandler{
         iterable.forEach(new Block<Document>(){
             @Override
             public void apply(final Document document){
-                ArrayList<String> list = null;
+                ArrayList<String> list;
                 list = document.get("recent", ArrayList.class);
 
                 for (int i = 0; i < list.size(); i++){
@@ -352,13 +352,22 @@ public class ApcHandler implements HttpHandler{
     private String getAll(String collection){
         final StringBuilder json = new StringBuilder();
         FindIterable iterable = db.getCollection(collection).find();
+
+        json.append("[");
         
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document){
                 json.append(document.toJson());
+                json.append(",");
             }
         });
+        
+        //delete last "," in string
+        if (json.length() > 1) json.deleteCharAt(json.length()-1);
+        json.append("]");
+        
+        System.out.print(json.toString());
 
         return json.toString();
     }

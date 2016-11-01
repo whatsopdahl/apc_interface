@@ -35,6 +35,8 @@
 </head>
 
 <body ng-app="CourseProposalApp" ng-controller="mainCtrl">
+    <!-- This element does not display, only for google's API -->
+    <div id="g-signin2" style="display: none;"></div>
 	<navbar></navbar>
 	<!-- Using ng-route, our application will load whatever we need depending on our routing definitions in app.config -->
     <div style="margin-top:60px;" ng-view></div>

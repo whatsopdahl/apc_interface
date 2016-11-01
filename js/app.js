@@ -37,10 +37,19 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv"];
-function mainCtrl($rootScope, $scope, $log, $location, authSrv) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv", "dataSrv"];
+function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
+    $scope.test = "hello";
+    $scope.courses = dataSrv.getCourses().then(function(data) {
+            $log.debug(data);
+            return data;
+    });
+    $scope.proposals = dataSrv.getProposals().then(function(data){
+        $log.debug(data);
+        return data;
+    });
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
