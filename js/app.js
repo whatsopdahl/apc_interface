@@ -17,10 +17,7 @@ app.controller("mainCtrl", mainCtrl);
 
 //initialization funciton
 app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log", "dataSrv",
-			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log, dataSrv){
-
-	$rootScope.courses = dataSrv.getCourses()
-	console.log($rootScope.courses)
+			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log, dataSrv) {
 
 	var postLogInRoute;
 
@@ -47,11 +44,12 @@ function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv) {
 	$scope.user = null;
     $scope.test = "hello";
     $scope.courses = dataSrv.getCourses().then(function(data) {
-            $log.debug(data);
-            return data;
+        // $log.debug(data);
+        return data;
     });
-    $scope.proposals = dataSrv.getProposals().then(function(data){
-        $log.debug(data);
+
+	$scope.proposals = dataSrv.getProposals().then(function(data){
+        // $log.debug(data);
         return data;
     });
 
@@ -72,7 +70,9 @@ app.directive("courseList", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course-list.html",
-        scope: {data: '='}
+		controller: ['$scope', function($scope) {
+
+		}]
     };
 });
 
@@ -80,6 +80,8 @@ app.directive("course", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course.html",
-		controller: "dashboardCtrl"
+		controller: ['$scope', function($scope) {
+			
+		}]
     };
 });

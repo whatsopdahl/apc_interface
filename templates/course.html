@@ -1,21 +1,23 @@
-<div class="course">
-    <!-- green asterisk represents new course -->
-    <a href="#/{{courseName}}"><h5 class="courseTitle"><strong>Course Name </strong><small style="color: green;">[New]</small></h5></a>
-    <h6 class="courseOwner">Owner</h6>
-    <button class="btn" style="float:left; width: 10%">Edit</button>
+<a ng-href="#/{{course.name}}" class="courseLink">
+    <div>
+        <h5 class="courseTitle"><strong>{{course.title}} </strong><small style="color: green;">[New]</small></h5>
 
-    <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 1
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 2
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 3
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 4
+        <h6 class="courseOwner">Owner</h6>
+        <button class="btn" style="float:left; width: 10%">Edit</button>
+
+        <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Division
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                APC
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Full Faculty
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Registrar
+            </div>
         </div>
     </div>
-</div>
+</a>

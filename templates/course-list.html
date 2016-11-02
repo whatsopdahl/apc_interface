@@ -1,9 +1,14 @@
 <div class="course-list">
     <div class="section-bar container-fluid">
         <h4 class="section-title"></h4>
-        <button ng-if="data.title == 'My Proposals'" type="button" class="btn btn-success pull-right" style="margin-right: 10px;"><a href="#/newproposal">New Proposal</a></button>
+        <button type="button" class="btn btn-success pull-right" style="margin-right: 10px;">
+            <a ng-href="#/newproposal" class="newPropLink">New Proposal</a>
+        </button>
     </div>
-    <div class="container-fluid">
-        <course></course>
+    <div ng-show="!retrievingData">
+        <div class="container-fluid course" ng-repeat="course in allCourses">
+            <course></course>
+        </div>
     </div>
+    <div ng-show="retrievingData">Loading...</div>
 </div>
