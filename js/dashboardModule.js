@@ -7,7 +7,6 @@ app.controller('dashboardCtrl', ['$rootScope', '$scope', '$log', '$q', '$filter'
     $scope.retrievingData = true;
 	$q.all([dataSrv.getCourses()]).then((data) => {
 		$scope.allCourses = data[0];
-        // console.log($scope.allCourses);
 		$scope.retrievingData = false;
 	});
 }]);
