@@ -99,20 +99,26 @@ public class ApcSrcHandler implements HttpHandler{
     public void handle(HttpExchange t) throws IOException {
         try{
             final Headers headers = t.getResponseHeaders();
-            //headers.set("Access-Control-Allow-Origin", "http://localhost:8000");
-            //headers.set("Access-Control-Allow-Credentials", "true");
+            headers.set("Access-Control-Allow-Origin", "http://localhost:8000");
+            headers.set("Access-Control-Allow-Credentials", "true");
+            headers.set("Connection", "keep-alive");
             final String requestMethod = t.getRequestMethod().toUpperCase();
             switch(requestMethod){
                 case METHOD_GET:
                     String request = t.getRequestURI().getPath().substring(5);
 
                     String response;
-                    byte[] responseBytes;
-                    int status;
+                    byte[] responseBytes = null;
+                    int status = 0;
                     
                     if (request.endsWith("home")) {
                         status = STATUS_OK;
                         response = loadFile("../../index.html");
+                        headers.set(HEADER_CONTENT_TYPE, "text/html");
+                        responseBytes = response.getBytes();
+                    } else if (request.endsWith(".html")) {
+                        status = STATUS_OK;
+                        response = loadFile("../../" + request);
                         headers.set(HEADER_CONTENT_TYPE, "text/html");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".css")){ 
@@ -123,13 +129,18 @@ public class ApcSrcHandler implements HttpHandler{
                     } else if (request.endsWith(".js")) {
                         status = STATUS_OK;
                         response = loadFile("../../" + request);
-                        headers.set(HEADER_CONTENT_TYPE, "text/javascript");
+                        headers.set(HEADER_CONTENT_TYPE, "application/javascript");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".png")){
                         status = STATUS_OK;
                         headers.set(HEADER_CONTENT_TYPE, "image/png");
                         responseBytes = loadImage("../../" + request);
-                    } else {
+                    } else if (request.endsWith(".map")) {
+                        status = STATUS_OK;
+                        headers.set(HEADER_CONTENT_TYPE, "application/octet-stream");
+                        response = loadFile("../../" + request);
+                        responseBytes = response.getBytes();//what is going on with this?
+                    }else {
                         status = STATUS_BAD_REQUEST;
                         response = "";
                         responseBytes = response.getBytes();
