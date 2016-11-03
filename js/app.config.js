@@ -9,8 +9,8 @@ app.config(function($routeProvider){
 	})
 	.when("/dashboard", {
 		templateUrl : "templates/dashboard.html",
-		controller : "dashboardCtrl"
-		// scope : {'courses': "="}
+		controller : "dashboardCtrl",
+		scope : {'allCourses': "="}
 	})
 	.when("/newproposal", {
 		templateUrl : "templates/new-proposal.html",

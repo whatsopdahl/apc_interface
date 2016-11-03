@@ -38,20 +38,28 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv", "dataSrv"];
-function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv", "dataSrv", "$q"];
+function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv, $q) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
-    $scope.test = "hello";
-    $scope.courses = dataSrv.getCourses().then(function(data) {
-        // $log.debug(data);
-        return data;
-    });
 
-	$scope.proposals = dataSrv.getProposals().then(function(data){
-        // $log.debug(data);
-        return data;
-    });
+	// $scope.courses = dataSrv.getCourses().then(function(data) {
+    //     // $log.debug(data);
+    //     return data;
+    // });
+	//
+	// $scope.proposals = dataSrv.getProposals().then(function(data){
+    //     // $log.debug(data);
+    //     return data;
+    // });
+
+
+	$scope.retrievingData = true;
+	$q.all([dataSrv.getCourses()]).then((data) => {
+		$scope.allCourses = data[0];
+		$scope.retrievingData = false;
+	});
+
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
@@ -81,7 +89,7 @@ app.directive("course", function() {
         restrict: "E",
         templateUrl: "templates/course.html",
 		controller: ['$scope', function($scope) {
-			
+
 		}]
     };
 });
