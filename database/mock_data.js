@@ -7,6 +7,7 @@
  * Drop all existing collections
  */
 db.users.drop();
+db.depts.drop();
 db.courses.drop();
 db.proposals.drop();
 db.archive.drop();
