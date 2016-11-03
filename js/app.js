@@ -43,20 +43,12 @@ function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv, $q) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
 
-	// $scope.courses = dataSrv.getCourses().then(function(data) {
-    //     // $log.debug(data);
-    //     return data;
-    // });
-	//
-	// $scope.proposals = dataSrv.getProposals().then(function(data){
-    //     // $log.debug(data);
-    //     return data;
-    // });
 
 
 	$scope.retrievingData = true;
-	$q.all([dataSrv.getCourses()]).then((data) => {
+	$q.all([dataSrv.getCourses(), dataSrv.getProposals()]).then((data) => {
 		$scope.allCourses = data[0];
+        $scope.allProposals = data[1];
 		$scope.retrievingData = false;
 	});
 
@@ -78,18 +70,15 @@ app.directive("courseList", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course-list.html",
-		controller: ['$scope', function($scope) {
-
-		}]
+        scope : {
+            data : "="
+        }
     };
 });
 
 app.directive("course", function() {
     return {
         restrict: "E",
-        templateUrl: "templates/course.html",
-		controller: ['$scope', function($scope) {
-
-		}]
+        templateUrl: "templates/course.html"
     };
 });
