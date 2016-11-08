@@ -79,6 +79,19 @@ app.directive("courseList", function() {
 app.directive("course", function() {
     return {
         restrict: "E",
-        templateUrl: "templates/course.html"
+        templateUrl: "templates/course.html",
+		controller: ['$scope', function MyTabsController($scope) {
+			$scope.getClass = function(courseStage, progressBarStage) {
+		        if (courseStage == progressBarStage) {
+		            return 'progress-bar-warning';
+		        }
+		        else if (courseStage > progressBarStage) {
+		            return 'progress-bar-success';
+		        }
+		        else {
+		            return 'progress-bar-danger';
+		        }
+		    }
+		}]
     };
 });

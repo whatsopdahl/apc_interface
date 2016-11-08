@@ -2,20 +2,20 @@
     <div>
         <h5 class="courseTitle"><strong>{{course.title}} </strong><small style="color: green;">[New]</small></h5>
 
-        <h6 class="courseOwner">Owner</h6>
+        <h6 class="courseOwner">{{course.owner}}</h6>
         <button class="btn" style="float:left; width: 10%">Edit</button>
 
         <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 1)" class="progress-bar-danger" role="progressbar" style="width:25%">
                 Division
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 2)" role="progressbar" style="width:25%">
                 APC
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 3)" role="progressbar" style="width:25%">
                 Full Faculty
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 4)" role="progressbar" style="width:25%">
                 Registrar
             </div>
         </div>

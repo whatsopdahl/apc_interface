@@ -10,10 +10,12 @@ app.config(function($routeProvider){
 	.when("/dashboard", {
 		templateUrl : "templates/dashboard.html",
 		controller : "dashboardCtrl",
-		scope : {'allCourses': "=",
-				 'allProposals' : "=",
-				 'retrievingData' : "="
-				}
+		scope : {
+			'allCourses': "=",
+	    	'allProposals' : "=",
+			'retrievingData' : "=",
+			'user' : "="
+		}
 	})
 	.when("/newproposal", {
 		templateUrl : "templates/new-proposal.html",
@@ -30,7 +32,7 @@ app.config(function($routeProvider){
 	})
 	.when("/:courseName", {
 		templateUrl : "templates/course-info.html",
-		resolve: {'courseName': courseParams}
+		resolve: {'courseName': courseParams},
 	})
 	.when("/:course/edit", {
 		templateUrl : "templates/welcome.html"
