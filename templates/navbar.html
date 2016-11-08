@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navCtrl">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -11,13 +11,15 @@
 	      <ul class="nav nav-pills navbar-left">
 	        <li ng-class="{active: page == '/dashboard'}"><a href="#/">Dashboard</a></li>
 	        <li ng-class="{active: page == '/dashboard/mychanges'}"><a href="#/dashboard/mychanges">My Changes</a></li>
-	        <li ng-class="{active: page == '/dashboard/allchanges'}"><a href="#/dashboard/allchanges">All Changes</a></li>
+	        <li ng-class="{active: page == '/dashboard/allchanges'}"><a href="#/dashboard/allchanges">All Proposals</a></li>
 	    	</ul>
 	    	<ul class="nav nav-pills navbar-right">
 	        <li>
 		      	<form class="nav nav-pills navbar-form">
 		        	<div class="form-group">
-		          	<input type="text" class="form-control" placeholder="Search">
+		        	<!-- <span class="glyphicon glyphicon-search"></span> -->
+			          		<input type="text" ng-model="courseQuery.query" class="form-control" placeholder="Search"/>
+			          		<!-- <span class="input-group-addon" ng-click="clearSearch()">&times;</span> -->
 		        	</div>
 		      	</form>
 	      	</li>
@@ -25,6 +27,7 @@
 	          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 	          	<span class="glyphicon glyphicon-user"></span>User<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
+	          	<li><p class="navbar-text">Welcome {{user.name}}!</p></li>
 	            <li><a href="#/">View Profile</a></li>
 	            <li><a href="#/">Request Permissions</a></li>
 	            <li role="separator" class="divider"></li>
@@ -33,5 +36,12 @@
 	        </li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
+	    <div id="search-results-container" ng-show="courseQuery.query!=''">
+	    	<ul style="list-style: None;">
+	    		<li class="col-xs-4" ng-repeat="course in courses | searchFilter:courseQuery.query" style="display:inline;">
+	    			<a href="#/{{course.name}}" ng-click="clearSearch()"> {{course.name}}- {{course.title}} </a>
+	    		</li>
+	    	</ul>
+	    </div>
 	</div>
 </nav>

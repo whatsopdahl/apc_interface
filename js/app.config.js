@@ -1,10 +1,15 @@
 var app = angular.module('CourseProposalApp');
 
-app.config(function($routeProvider){
+app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 	.when("/login", {
 		templateUrl : "templates/login.html",
 		controller : "authCtrl",
+		resolve : {
+			depts : ['dataSrv', function(dataSrv) {
+				return dataSrv.getDepts();
+			}]
+		},
 		isLogin : true
 	})
 	.when("/dashboard", {
@@ -24,21 +29,15 @@ app.config(function($routeProvider){
 	.when("/dashboard/recentlyviewed", {
 		templateUrl : "templates/welcome.html"
 	})
-	.when("/:course", {
-		templateUrl : "templates/welcome.html"
-	})
-	.when("/:course/edit", {
-		templateUrl : "templates/welcome.html"
-	})
 	.when("/", {
 		redirectTo : "/dashboard"
 	})
 	.when("/:course", {
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/courseInfo.html",
+		controller : "courseCtrl"
 	})
 	.when("/:course/edit", {
 		templateUrl : "templates/welcome.html"
 	})
 	.otherwise({ redirectTo : "/"});
-
-});
+}]);

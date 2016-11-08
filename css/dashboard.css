@@ -105,3 +105,35 @@ body {
     padding: 5px;
     border-radius: 5px;
 }
+
+.btn-removable {
+    color:black;
+    background-color: #fff;
+    padding: 1px 5px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px; 
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 0 0 5px;
+}
+
+.btn-removable > div {
+    border-left: 1px;
+    cursor: pointer;
+    cursor: hand;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn-removable > div:hover {
+    background-color: #ccc;
+}
+
+#search-results-container {
+    max-height: 500px;
+    overflow-y: scroll;
+    border-top: 1px solid #ccc;
+}

@@ -1,21 +1,22 @@
-<div class="course">
-    <!-- green asterisk represents new course -->
-    <h5 class="courseTitle"><strong>Course Name </strong><small style="color: green;">[New]</small></h5>
-    <h6 class="courseOwner">Owner</h6>
-    <button class="btn" style="float:left; width: 10%">Edit</button>
+<div ng-if="data.elements.length == 0" class="course">{{data.emptyMsg}}</div>
+    <div ng-if="data.elements.length > 0" class="course" ng-repeat="element in data.elements">
+        <!-- green asterisk represents new course -->
+        <h5 class="courseTitle"><strong>Course Name </strong><small style="color: green;">[New]</small></h5>
+        <h6 class="courseOwner">Owner</h6>
+        <button class="btn" style="float:left; width: 10%">Edit</button>
 
-    <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 1
+        <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Division Review
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                APC Review
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Full Faculty
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                Registrar
+            </div>
         </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 2
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 3
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-            Step 4
-        </div>
-    </div>
 </div>

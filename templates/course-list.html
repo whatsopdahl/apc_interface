@@ -1,9 +1,9 @@
 <div class="course-list">
     <div class="section-bar container-fluid">
-        <h4 class="section-title"></h4>
-        <button ng-if="data.title == 'My Proposals'" type="button" class="btn btn-success pull-right" style="margin-right: 10px;"><a href="#/newproposal">New Proposal</a></button>
+        <h4 class="section-title">{{data.title}}</h4>
+        <button ng-if="data.title == 'My Changes'" type="button" class="btn btn-success pull-right" style="margin-right: 10px;"><a href="#/newproposal">New Proposal</a></button>
     </div>
     <div class="container-fluid">
-        <course></course>
+    	<course></course>
     </div>
 </div>
