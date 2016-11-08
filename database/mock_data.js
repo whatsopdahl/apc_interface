@@ -7,6 +7,7 @@
  * Drop all existing collections
  */
 db.users.drop();
+db.depts.drop();
 db.courses.drop();
 db.proposals.drop();
 db.archive.drop();
@@ -17,15 +18,15 @@ db.archive.drop();
 users = [ 
 			{ name : "Aidan Schmitt",
 			  email : "schmai01@luther.edu",
-			  division : ["CS"]
+			  dept : ["CS"]
 			},
 			{ name : "Kyle McNeese",
 			  email : "mcnecky01@luther.edu",
-			  division : ["CS"]
+			  dept : ["CS"]
 			},
 			{ name : "Jonathan Opdahl",
 		      email : "opdajo01@luther.edu",
-		  	  division : ["CS"]
+		  	  dept : ["CS"]
 		  	},
 			{ name : "Brad Miller", 
 			  email : "bmiller@luther.edu",
@@ -28492,6 +28493,7 @@ courses = [
     "desc": "An examination of the major psychological disorders including depression, schizophrenia, personality disorders, psychosomatic disorders, organic disorders, and the disorders of childhood. Emphasis is placed on the description and classification of psychopathology and on the research relating to etiology and treatment."
   }
 ];
+
 db.users.insert(users);
 db.depts.insert(depts);
 db.courses.insert(courses);
