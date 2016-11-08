@@ -43,15 +43,12 @@ function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv, $q) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
 
-
-
 	$scope.retrievingData = true;
 	$q.all([dataSrv.getCourses(), dataSrv.getProposals()]).then((data) => {
 		$scope.allCourses = data[0];
         $scope.allProposals = data[1];
 		$scope.retrievingData = false;
 	});
-
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
@@ -71,7 +68,7 @@ app.directive("courseList", function() {
         restrict: "E",
         templateUrl: "templates/course-list.html",
         scope : {
-            data : "="
+            data : "=",
         }
     };
 });

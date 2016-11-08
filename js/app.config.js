@@ -14,7 +14,6 @@ app.config(function($routeProvider){
 			'allCourses': "=",
 	    	'allProposals' : "=",
 			'retrievingData' : "=",
-			'user' : "="
 		}
 	})
 	.when("/newproposal", {
