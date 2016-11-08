@@ -17,7 +17,7 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "depts", 
 	function($scope, $rootScope, $log, authSrv, depts, dataSrv, AUTH_EVENTS) {
 		$scope.loginfailure = false;
 
-		$scope.login = authSrv.login; 
+		$scope.login = authSrv.login;
 
 	    $scope.loginFailed = authSrv.loginFailed;
 
@@ -67,7 +67,7 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "depts", 
 	   	}
 }]);
 
-app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv", 
+app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",
 			 function($log, $rootScope, $location, AUTH_EVENTS, dataSrv){
 	return {
 		signinChanged : signinChanged,

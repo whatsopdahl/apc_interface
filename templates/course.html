@@ -1,22 +1,23 @@
-<div ng-if="data.elements.length == 0" class="course">{{data.emptyMsg}}</div>
-    <div ng-if="data.elements.length > 0" class="course" ng-repeat="element in data.elements">
-        <!-- green asterisk represents new course -->
-        <h5 class="courseTitle"><strong>Course Name </strong><small style="color: green;">[New]</small></h5>
-        <h6 class="courseOwner">Owner</h6>
-        <button class="btn" style="float:left; width: 10%">Edit</button>
+<a ng-href="#/{{course.name}}" class="courseLink">
+    <div>
+        <h5 class="courseTitle"><strong>{{course.title}} </strong><small style="color: green;" ng-show="!course.oldCourse">[New]</small></h5>
+
+        <h6 class="courseOwner">{{course.owner}}</h6>
+        <button class="btn" style="float:left; width: 10%" ng-if="user.name == course.owner">Edit</button>
 
         <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-                Division Review
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 1)" class="progress-bar-danger" role="progressbar" style="width:25%">
+                Division
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
-                APC Review
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 2)" role="progressbar" style="width:25%">
+                APC
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 3)" role="progressbar" style="width:25%">
                 Full Faculty
             </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+            <div class="progress-bar" ng-class="getClass({{course.stage}}, 4)" role="progressbar" style="width:25%">
                 Registrar
             </div>
         </div>
-</div>
+    </div>
+</a>

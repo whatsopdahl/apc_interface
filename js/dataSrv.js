@@ -183,5 +183,3 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		$log.error("ERROR :"+response.data);
 	}
 }]);
-
-

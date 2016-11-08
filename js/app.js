@@ -10,14 +10,15 @@ app.constant("auth_config", {
 });
 
 app.constant("GEN_ED", {
-    
+
 });
 
 app.controller("mainCtrl", mainCtrl);
 
 //initialization funciton
-app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log",
-			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log){
+app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log", "dataSrv",
+			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log, dataSrv) {
+
 	var postLogInRoute;
 
 	gapi.load("auth2", function() {
@@ -77,5 +78,18 @@ app.directive("course", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course.html",
+		controller: ['$scope', function MyTabsController($scope) {
+			$scope.getClass = function(courseStage, progressBarStage) {
+		        if (courseStage == progressBarStage) {
+		            return 'progress-bar-warning';
+		        }
+		        else if (courseStage > progressBarStage) {
+		            return 'progress-bar-success';
+		        }
+		        else {
+		            return 'progress-bar-danger';
+		        }
+		    };
+		}]
     };
 });
