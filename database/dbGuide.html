@@ -55,14 +55,9 @@
 			<td class="desc">A list of the depts/ organizations of which the user is a chair of. This may be empty for most people. To become chair of a dept, an administrator must make the change. </td>
 		</tr>
 		<tr>
-			<td class="field">recently_viewed</td>
+			<td class="field">recentlyViewed</td>
 			<td class="type">list(obejct_ids)</td>
 			<td class="desc">A list contianing the object IDs of the last 10 courses or proposals a user has viewed.</td>
-		</tr>
-		<tr class="odd">
-			<td class="field">my_changes</td>
-			<td class="type">list(obejct_ids)</td>
-			<td class="desc">A list of obejct IDs of all the proposals the user created.</td>
 		</tr>
 	</table>
 	<a href="#top">Top</a>
@@ -116,7 +111,7 @@
 			<td class="type">str</td>
 			<td class="desc">Inferred from dept. This is the division the class falls under.</td>
 		</tr>
-		<tr>
+		<tr class="odd">
 			<td class="field">terms</td>
 			<td class="type">list(str)</td>
 			<td class="desc">A list of terms in which the course is/ will be offered. The complete list is as follows: 
@@ -188,14 +183,14 @@
 			<td class="desc">The date the proposal was last revised.</td>
 		</tr>
 		<tr class="odd">
-			<td class="field">old_course</td>
-			<td class="type">object_id</td>
-			<td class="desc">The object id of the course that the user is changing. If the proposal fails, we leave this record untouched so we can revert back to the original.</td>
+			<td class="field">oldCourse</td>
+			<td class="type">object</td>
+			<td class="desc">The course object that the user is changing. If the proposal fails, we leave this record untouched so we can revert back to the original. This will have the form of a <a href="#course">course</a> entry. </td>
 		</tr>		
 		<tr>
-			<td class="field">new_course</td>
-			<td class="type">object_id</td>
-			<td class="desc">The object_id of the new course to replace the old course. This will be similar to the old_course, but with changes reflecting the proposed changes. If a proposal fails, we remove the record associated with the id in this field. If a propsal is approved, we replace the old_course with the new_course in the courses collection and place the old_course in the appropriate <a href="#archive">archive</a> record.</td>
+			<td class="field">newCourse</td>
+			<td class="type">object</td>
+			<td class="desc">The new course object to replace the old course. This will be similar to the old_course, but with changes reflecting the proposed changes. If a proposal fails, we remove the record associated with the id in this field. If a propsal is approved, we replace the old_course with the new_course in the courses collection and place the old_course in the appropriate <a href="#archive">archive</a> record. This will have the form of a <a href="#course">course</a> entry. </td>
 		</tr>
 		<tr class="odd">
 			<td class="field">fees</td>

@@ -7,6 +7,4 @@ app.controller('dashboardCtrl', ['$rootScope', '$scope', '$log', '$q', '$filter'
 	$scope.myChanges = {title:"My Changes",
 							emptyMsg: "You currently do not own any proposals"};
 	$scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
-	
-	$log.debug($scope.myChanges);
 }]);

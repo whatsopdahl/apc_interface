@@ -28491,51 +28491,66 @@ courses = [
     "dept": "PSYC",
     "credit_hrs": 4,
     "desc": "An examination of the major psychological disorders including depression, schizophrenia, personality disorders, psychosomatic disorders, organic disorders, and the disorders of childhood. Emphasis is placed on the description and classification of psychopathology and on the research relating to etiology and treatment."
-  }
+  },
+  //new course for proposal
+  {
+  	"division" : "Science",
+  	"capacity" : 40,
+  	"name" : "CS-1",
+  	"title" : "Fun with computers",
+  	"dept" : "CS",
+  	"credit_hrs" : 1,
+  	"desc" : "Learn how the computer is magic! Learn about the little wizard inside that makes your computer work."
+  },
+  {
+    "division": "Science",
+    "capacity": 25,
+    "name": "CS-150",
+    "title": "Introduction to Being a Nerd",
+    "dept": "CS",
+    "credit_hrs": 4,
+    "gen_ed": [
+      "QUANT"
+    ],
+    "desc": "An introduction to computer science emphasizing problem solving. Problems are selected from a variety of interesting areas such as graphics, image processing, cryptography, data analysis, astronomy, video games, and environmental stimulation. Topics include algorithm design and object oriented programming."
+  },
 ];
+
+db.users.insert(users);
+db.depts.insert(depts);
+db.courses.insert(courses);
+//initialilze archive with courses.
+db.archive.insert(courses);
+
+cs150 = db.courses.findOne({"name" : "CS-150"});
+newcs150 = db.courses.findOne( {"title" : "Introduction to Being a Nerd" });
+cs1 = db.courses.findOne({"name" : "CS-1"});
+
 
 proposals = [
   {
-	"title": "Completely New Proposal",
-	"name": "PROP-130",
-	"credit_hrs": 4,
-	"capacity": 25,
-	"gen_ed": [],
-	"desc": "This is a proposal for a completely new course, rather than a proposal to change an existing course.",
-	"dept": "CS",
-	"division": "",
-	"terms": ["FALL"],
-	"owner": "John Doe",
+	"owner": "Jonathan Opdahl",
 	"stage": 3,
 	"staffing": "Any professor can teach this course.",
 	"rationale": "This will help the developers of the senior project test.",
 	"impact": "Greatest class ever.",
 	"date": null,
-	"old_course": null,
-	"new_course": null,
+	"oldCourse": null,
+	"newCourse": cs1,
 	"fees": "no extra fees",
 	"est_enrollment": 25,
 	"instructors": ["Jon Opdahl"],
 	"comments":  []
   },
   {
-	"title": "Changed Course Proposal",
-	"name": "PROP-150",
-	"credit_hrs": 4,
-	"capacity": 30,
-	"gen_ed": [],
-	"desc": "This is a proposal to change a course that already exists.",
-	"dept": "CS",
-	"division": "",
-	"terms": ["FALL", "Spring"],
 	"owner": "Kyle McNeese",
 	"stage": 1,
 	"staffing": "Any professor can teach this course.",
 	"rationale": "This will help the developers in senior project test their code.",
 	"impact": "Worst class ever.",
 	"date": null,
-	"old_course": null,
-	"new_course": null,
+	"oldCourse": cs150,
+	"newCourse": newcs150,
 	"fees": "none",
 	"est_enrollment": 30,
 	"instructors": ["Jon Opdahl", "Kyle McNeese"],
@@ -28543,11 +28558,5 @@ proposals = [
   }
 ];
 
-db.users.insert(users);
-db.depts.insert(depts);
-db.courses.insert(courses);
 db.proposals.insert(proposals);
-//initialilze archive with courses.
-db.archive.insert(courses);
 
-//add pre-req links for courses
