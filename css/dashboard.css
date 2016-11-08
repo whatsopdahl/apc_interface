@@ -80,11 +80,11 @@ body {
 }
 
 .smallFormField {
-    width: 250px;
+    width: 21%;
 }
 
 .largeFormField {
-    width: 770px;
+    width: 100%;
 }
 
 .courseTitle {
@@ -133,8 +133,8 @@ body {
 }
 
 .courseInfo {
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 2%;
+    margin-left: 2%;
     display: block;
     float: left;
 }
