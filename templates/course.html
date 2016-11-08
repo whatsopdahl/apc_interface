@@ -3,7 +3,7 @@
         <h5 class="courseTitle"><strong>{{course.title}} </strong><small style="color: green;">[New]</small></h5>
 
         <h6 class="courseOwner">{{course.owner}}</h6>
-        <button class="btn" style="float:left; width: 10%">Edit</button>
+        <button class="btn" style="float:left; width: 10%" ng-if="user.name == course.owner">Edit</button>
 
         <div class="progress" style="float: left; width: 100%; margin-top: 10px;">
             <div class="progress-bar" ng-class="getClass({{course.stage}}, 1)" class="progress-bar-danger" role="progressbar" style="width:25%">

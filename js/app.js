@@ -69,6 +69,7 @@ app.directive("courseList", function() {
         templateUrl: "templates/course-list.html",
         scope : {
             data : "=",
+			user : "="
         }
     };
 });
@@ -88,7 +89,7 @@ app.directive("course", function() {
 		        else {
 		            return 'progress-bar-danger';
 		        }
-		    }
+		    };
 		}]
     };
 });
