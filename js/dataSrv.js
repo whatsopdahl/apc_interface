@@ -1,6 +1,6 @@
 var app = angular.module("CourseProposalApp");
 
-app.constant("DATA_URL", "http://localhost:8080/data");
+app.constant("DATA_URL", "http://localhost:8000/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {

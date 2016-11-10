@@ -15,7 +15,7 @@ import java.io.IOException;
  * and port <code>Port</code>.
  * 
  * @author Aidan Schmitt
- * @version 1.0_2
+ * @version 1.1
  * @since 1.0_1
  * @see ApcHandler
  */

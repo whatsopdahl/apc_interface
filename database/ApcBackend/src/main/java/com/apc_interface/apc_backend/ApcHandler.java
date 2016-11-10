@@ -28,7 +28,7 @@ import org.bson.types.ObjectId;
  * which is responsible for maintaining and serving all required data.
  *
  * @author Aidan Schmitt
- * @version 1.0_3
+ * @version 1.1
  * @since 1.0_1
  * @see HttpHandler
  * @see MongoDatabase
@@ -376,8 +376,6 @@ public class ApcHandler implements HttpHandler{
         //delete last "," in string
         if (json.length() > 1) json.deleteCharAt(json.length()-1);
         json.append("]");
-        
-        System.out.print(json.toString());
 
         return json.toString();
     }

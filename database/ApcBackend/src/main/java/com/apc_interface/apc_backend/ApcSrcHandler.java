@@ -30,7 +30,7 @@ import javax.imageio.ImageIO;
  * which is responsible for maintaining and serving all required data.
  *
  * @author Aidan Schmitt
- * @version 1.0_4
+ * @version 1.1
  * @since 1.0_4
  * @see HttpHandler
  */
@@ -90,6 +90,11 @@ public class ApcSrcHandler implements HttpHandler{
 
     /**
      * Handles the HTTP requests for pages.
+     * 
+     * In order to run on NetBeans, uncomment out the lines in the POST case
+     * and comment out the similar lines... The only difference is the different
+     * paths. This problem might eventually be fixed by including all the 
+     * resources in the jar.
      *
      * @param t the {@link HttpExchange} being handled
      * @throws IOException if sending either response headers or message body
@@ -113,30 +118,35 @@ public class ApcSrcHandler implements HttpHandler{
                     
                     if (request.endsWith("home")) {
                         status = STATUS_OK;
-                        response = loadFile("../../index.html");
+                        //response = loadFile("../../index.html");
+                        response = loadFile("index.html");
                         headers.set(HEADER_CONTENT_TYPE, "text/html; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".html")) {
                         status = STATUS_OK;
-                        response = loadFile("../../" + request);
+                        //response = loadFile("../../" + request);
+                        response = loadFile(request);
                         headers.set(HEADER_CONTENT_TYPE, "text/html; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".css")){ 
                         status = STATUS_OK;
-                        response = loadFile("../../" + request);
+                        //response = loadFile("../../" + request);
+                        response = loadFile(request);
                         headers.set(HEADER_CONTENT_TYPE, "text/css; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".js")) {
                         status = STATUS_OK;
-                        response = loadFile("../../" + request);
+                        //response = loadFile("../../" + request);
+                        response = loadFile(request);
                         headers.set(HEADER_CONTENT_TYPE, "application/javascript; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".png")){
                         status = STATUS_OK;
                         headers.set(HEADER_CONTENT_TYPE, "image/png");
-                        responseBytes = loadImage("../../" + request);
+                        //responseBytes = loadImage("../../" + request);
+                        responseBytes = loadImage(request);
                     } else if (request.endsWith(".map")) {
-                        status = 204; //no content
+                        status = STATUS_NO_CONTENT; //no content
                         //headers.set(HEADER_CONTENT_TYPE, "application/octet-stream");
                         //response = loadFile("../../" + request);
                         //responseBytes = response.getBytes();//what is going on with this?
@@ -183,9 +193,8 @@ public class ApcSrcHandler implements HttpHandler{
         ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
         ImageIO.write(img, "png", baos);
         baos.flush();
-        String base64String = Base64.encode(baos.toByteArray());
+        byte[] array = baos.toByteArray();
         baos.close();
-        byte[] array = Base64.decode(base64String);
         return array;
     }
 }
