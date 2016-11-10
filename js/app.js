@@ -43,7 +43,7 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, authSrv, dataSrv) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
     $scope.test = "hello";
-    $scope.allProposals = {title: "All Proposals", 
+    $scope.allProposals = {title: "All Proposals",
                             emptyMsg : "No Current Proposals"};
     $scope.recentlyViewed = {title: "Recently Viewed",
                             emptyMsg: "No recently viewed proposals or courses"};
@@ -67,7 +67,7 @@ app.directive("courseList", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course-list.html",
-        scope: { 
+        scope: {
             data: '=',
             user : '='
         }
@@ -79,6 +79,7 @@ app.directive("course", function() {
         restrict: "E",
         templateUrl: "templates/course.html",
 		controller: ['$scope', function MyTabsController($scope) {
+			// for making the progress bar the correct colors at each stage
 			$scope.getClass = function(courseStage, progressBarStage) {
 		        if (courseStage == progressBarStage) {
 		            return 'progress-bar-warning';

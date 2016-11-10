@@ -10,7 +10,6 @@
                 <small ng-if="element.oldCourse && element.oldCourse.title != element.newCourse.title" class="old-course"><br>{{element.oldCourse.title}}</small>
             </a>
         </div>
-
         <div class="col-xs-2 pull-right" style="padding-right: 0;">
             <a href="#/{{element.newCourse.name}}/edit" class="btn btn-edit pull-right" ng-if="user.name == element.owner"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
