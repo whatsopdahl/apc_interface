@@ -114,32 +114,33 @@ public class ApcSrcHandler implements HttpHandler{
                     if (request.endsWith("home")) {
                         status = STATUS_OK;
                         response = loadFile("../../index.html");
-                        headers.set(HEADER_CONTENT_TYPE, "text/html");
+                        headers.set(HEADER_CONTENT_TYPE, "text/html; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".html")) {
                         status = STATUS_OK;
                         response = loadFile("../../" + request);
-                        headers.set(HEADER_CONTENT_TYPE, "text/html");
+                        headers.set(HEADER_CONTENT_TYPE, "text/html; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".css")){ 
                         status = STATUS_OK;
                         response = loadFile("../../" + request);
-                        headers.set(HEADER_CONTENT_TYPE, "text/css");
+                        headers.set(HEADER_CONTENT_TYPE, "text/css; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".js")) {
                         status = STATUS_OK;
                         response = loadFile("../../" + request);
-                        headers.set(HEADER_CONTENT_TYPE, "application/javascript");
+                        headers.set(HEADER_CONTENT_TYPE, "application/javascript; charset=utf-8");
                         responseBytes = response.getBytes();
                     } else if (request.endsWith(".png")){
                         status = STATUS_OK;
                         headers.set(HEADER_CONTENT_TYPE, "image/png");
                         responseBytes = loadImage("../../" + request);
                     } else if (request.endsWith(".map")) {
-                        status = STATUS_OK;
-                        headers.set(HEADER_CONTENT_TYPE, "application/octet-stream");
-                        response = loadFile("../../" + request);
-                        responseBytes = response.getBytes();//what is going on with this?
+                        status = 204; //no content
+                        //headers.set(HEADER_CONTENT_TYPE, "application/octet-stream");
+                        //response = loadFile("../../" + request);
+                        //responseBytes = response.getBytes();//what is going on with this?
+                        responseBytes = new byte[0];
                     }else {
                         status = STATUS_BAD_REQUEST;
                         response = "";
@@ -170,6 +171,7 @@ public class ApcSrcHandler implements HttpHandler{
         try (Scanner scan = new Scanner(path, "UTF-8")){
             while (scan.hasNextLine()){
                 builder.append(scan.nextLine());
+                builder.append("\n");
             }
         }
         return builder.toString();

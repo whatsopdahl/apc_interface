@@ -47,6 +47,7 @@ public class ApcHandler implements HttpHandler{
     private static final String COLLECTION_COURSES = "courses";
     private static final String COLLECTION_USERS = "users";
     private static final String COLLECTION_PROPOSALS = "proposals";
+    private static final String COLLECTION_DEPARTMENTS = "depts";
 
     /**
      * An object representation of the MongoDB database.
@@ -189,6 +190,14 @@ public class ApcHandler implements HttpHandler{
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
+                        case "departments":
+                            try{
+                                response = this.getAll(COLLECTION_DEPARTMENTS);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
                         case "recent":
                             try{
                                 response = this.getRecentlyViewed(params.get("u"));
