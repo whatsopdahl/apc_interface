@@ -38,5 +38,14 @@ function courseCtrl($scope, $filter, $log, $routeParams) {
 		}
 	}
 
+	$scope.displayListData = function(list) {
+		listStr = "";
+		for (item in list) {
+			listStr += list[item] + ", ";
+		}
+		listStr = listStr.substring(0, listStr.length-2);
+		return listStr;
+	}
+
 	console.log($scope.course);
 }

@@ -28529,6 +28529,7 @@ cs1 = db.courses.findOne({"name" : "CS-1"});
 
 proposals = [
   {
+	"terms": ["Fall", "Spring"],
 	"owner": "Jonathan Opdahl",
 	"stage": 3,
 	"staffing": "Any professor can teach this course.",
@@ -28543,6 +28544,7 @@ proposals = [
 	"comments":  []
   },
   {
+	"terms": ["Fall", "Spring", "J-term"],
 	"owner": "Kyle McNeese",
 	"stage": 1,
 	"staffing": "Any professor can teach this course.",
@@ -28551,7 +28553,7 @@ proposals = [
 	"date": null,
 	"oldCourse": cs150,
 	"newCourse": newcs150,
-	"fees": "none",
+	"fees": null,
 	"est_enrollment": 30,
 	"instructors": ["Jon Opdahl", "Kyle McNeese"],
 	"comments":  []
@@ -28559,4 +28561,3 @@ proposals = [
 ];
 
 db.proposals.insert(proposals);
-

@@ -46,11 +46,11 @@
     </div>
     <div class="panel-group courseInfo smallFormField">
         <div class="panel-heading"><strong>Gen Eds</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.gen_ed != course.newCourse.gen_ed}">
-            <div class="panel-heading">{{course.newCourse.gen_ed}}</div>
+        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)}">
+            <div class="panel-heading">{{displayListData(course.newCourse.gen_ed)}}</div>
         </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.gen_ed != course.newCourse.gen_ed">
-            <div class="panel-heading">{{course.oldCourse.gen_ed}}</div>
+        <div class="panel panel-danger" ng-if="course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)">
+            <div class="panel-heading">{{displayListData(course.oldCourse.gen_ed)}}</div>
         </div>
     </div>
     <div class="panel-group courseInfo smallFormField">
@@ -73,11 +73,8 @@
     </div>
     <div class="panel-group courseInfo smallFormField">
         <div class="panel-heading"><strong>Terms</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.terms != course.newCourse.terms}">
-            <div class="panel-heading">{{course.newCourse.terms}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.terms != course.newCourse.terms">
-            <div class="panel-heading">{{course.oldCourse.terms}}</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{displayListData(course.terms)}}</div>
         </div>
     </div>
     <div class="panel-group courseInfo smallFormField">
@@ -95,7 +92,7 @@
     <div class="panel-group courseInfo smallFormField">
         <div class="panel-heading"><strong>Instructors</strong></div>
         <div class="panel panel-default">
-            <div class="panel-heading">{{course.instructors}}</div>
+            <div class="panel-heading">{{displayListData(course.instructors)}}</div>
         </div>
     </div>
     <div class="panel-group courseInfo smallFormField">
@@ -104,7 +101,7 @@
             <div class="panel-heading">{{course.est_enrollment}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField">
+    <div class="panel-group courseInfo largeFormField" ng-if="course.fees">
         <div class="panel-heading "><strong>Fees</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.fees}}</div>
