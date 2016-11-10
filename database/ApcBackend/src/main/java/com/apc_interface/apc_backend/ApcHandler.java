@@ -190,7 +190,7 @@ public class ApcHandler implements HttpHandler{
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
-                        case "departments":
+                        case "depts":
                             try{
                                 response = this.getAll(COLLECTION_DEPARTMENTS);
                                 status = STATUS_OK;
@@ -198,6 +198,7 @@ public class ApcHandler implements HttpHandler{
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
                             }
+                            break;
                         case "recent":
                             try{
                                 response = this.getRecentlyViewed(params.get("u"));
