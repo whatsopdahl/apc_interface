@@ -28538,7 +28538,7 @@ proposals = [
 	"date": null,
 	"oldCourse": null,
 	"newCourse": cs1,
-	"fees": "no extra fees",
+	"fees": null,
 	"est_enrollment": 25,
 	"instructors": ["Jon Opdahl"],
 	"comments":  []

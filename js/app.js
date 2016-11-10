@@ -79,7 +79,6 @@ app.directive("course", function() {
         restrict: "E",
         templateUrl: "templates/course.html",
 		controller: ['$scope', function MyTabsController($scope) {
-			
 			// for making the progress bar the correct colors at each stage
 			$scope.getClass = function(courseStage, progressBarStage) {
 		        if (courseStage == progressBarStage) {

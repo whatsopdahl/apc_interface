@@ -13,6 +13,7 @@ app.constant('AUTH_EVENTS', {
   userChanged : 'auth-user-changed'
 });
 
+// "depts" needs to get added back in
 app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "AUTH_EVENTS",
 	function($scope, $rootScope, $log, authSrv, dataSrv, AUTH_EVENTS) {
 		$scope.loginfailure = false;
@@ -64,7 +65,7 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv"
 	 //   			$log.error("Unable to update user. Logging out...");
 	 //   			authSrv.logout();
 	 //   		});
-        // 
+        //
 }]);
 
 app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",

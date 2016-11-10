@@ -46,6 +46,4 @@ function courseCtrl($scope, $filter, $log, $routeParams) {
 		listStr = listStr.substring(0, listStr.length-2);
 		return listStr;
 	}
-
-	console.log($scope.course);
 }
