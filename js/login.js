@@ -13,8 +13,8 @@ app.constant('AUTH_EVENTS', {
   userChanged : 'auth-user-changed'
 });
 
-app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "depts", "dataSrv", "AUTH_EVENTS", 
-	function($scope, $rootScope, $log, authSrv, depts, dataSrv, AUTH_EVENTS) {
+app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "AUTH_EVENTS",
+	function($scope, $rootScope, $log, authSrv, dataSrv, AUTH_EVENTS) {
 		$scope.loginfailure = false;
 
 		$scope.login = authSrv.login;
@@ -30,41 +30,41 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "depts", 
 	    });
 
 	    //code for extra department information
-	   	$scope.depts = depts;
-	   	$scope.required = true;
-	   	$scope.selectedDept;
-	   	$scope.memberDepts = [];
-	   	$scope.addDept = function() {
-	   		if ($scope.memberDepts.indexOf($scope.selectedDept) == -1){
-	   			$scope.memberDepts.push($scope.selectedDept);
-	   		}
-	   	}
-	   	$scope.removeDept = function(dept) {
-	   		var index = $scope.memberDepts.indexOf(dept);
-	   		$scope.memberDepts.splice(index,1);
-	   	}
-
-	   	$scope.updateUser = updateUser;
-
-	   	function updateUser() {
-	   		var user = $rootScope.user;
-	   		$log.debug("updating user", $rootScope.user);
-	   		user.dept = [];
-	   		user.division = [];
-	   		user.recentlyViewed = [];
-	   		angular.forEach($scope.memberDepts, function(dept){
-	   			if (user.division.indexOf(dept.division) == -1) {
-	   				user.division.push(dept.division);
-	   			}
-	   			user.dept.push(dept.abbrev);
-	   		});
-	   		dataSrv.editUser(user).then(function(resp){
-	   			authSrv.userInfoFound(user);
-	   		}, function(err) {
-	   			$log.error("Unable to update user. Logging out...");
-	   			authSrv.logout();
-	   		});
-	   	}
+        // ope.depts = depts;
+        // ope.required = true;
+        // ope.selectedDept;
+        // ope.memberDepts = [];
+        // ope.addDept = function() {
+	 //   		if ($scope.memberDepts.indexOf($scope.selectedDept) == -1){
+	 //   			$scope.memberDepts.push($scope.selectedDept);
+	 //   		}
+        //
+        // ope.removeDept = function(dept) {
+	 //   		var index = $scope.memberDepts.indexOf(dept);
+	 //   		$scope.memberDepts.splice(index,1);
+        //
+        //
+        // ope.updateUser = updateUser;
+        //
+        // ction updateUser() {
+	 //   		var user = $rootScope.user;
+	 //   		$log.debug("updating user", $rootScope.user);
+	 //   		user.dept = [];
+	 //   		user.division = [];
+	 //   		user.recentlyViewed = [];
+	 //   		angular.forEach($scope.memberDepts, function(dept){
+	 //   			if (user.division.indexOf(dept.division) == -1) {
+	 //   				user.division.push(dept.division);
+	 //   			}
+	 //   			user.dept.push(dept.abbrev);
+	 //   		});
+	 //   		dataSrv.editUser(user).then(function(resp){
+	 //   			authSrv.userInfoFound(user);
+	 //   		}, function(err) {
+	 //   			$log.error("Unable to update user. Logging out...");
+	 //   			authSrv.logout();
+	 //   		});
+        // 
 }]);
 
 app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",
