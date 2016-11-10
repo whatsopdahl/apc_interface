@@ -9,7 +9,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		getCourses : getCourses,
 		getProposals : getProposals,
 		getRecentlyViewed : getRecent,
-		// addComment : addComment
+		getDepts : getDepts,
+		editUser : editUser
+		//addComment : addComment
 	}
 
 	/**
@@ -81,6 +83,21 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		});
 	}
 
+	function getDepts() {
+		return $http({
+					method : "GET",
+					url : DATA_URL,
+					params : {
+						q : "departments"
+					}
+		}).then(function success(response) {
+			$log.info("Retrieved department data");
+			return response.data;
+		}, function(response) {
+			handleError(response);
+		});
+	}
+
 	/**
 	 *
 	 */
@@ -118,13 +135,14 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 /**
 	 *
 	 */
-	function editUser(data, user) {
-		data["q"] = "edit";
-		data["u"] = user.email
-		return $http({ method: "POST",
-				url : DATA_URL,
-				data : data
-		}).then(function success(response) {
+	function editUser(user) {
+		var data = {};
+		data["d"] = user;
+		data["q"] = "edituser";
+		data["u"] = user.email;
+		var config = { "headers" : { "Content-Type" : "application/json"} };
+		return $http.post(DATA_URL, data, config)
+		.then(function success(response) {
 			$log.info("User profile updated");
 		}, function(response){
 			handleError(response);
@@ -163,6 +181,5 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 
 	function handleError(response){
 		$log.error("ERROR :"+response.data);
-		return null
 	}
 }]);

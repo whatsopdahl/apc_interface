@@ -10,14 +10,15 @@ app.constant("auth_config", {
 });
 
 app.constant("GEN_ED", {
-    
+
 });
 
 app.controller("mainCtrl", mainCtrl);
 
 //initialization funciton
-app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log",
-			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log){
+app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log", "dataSrv",
+			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log, dataSrv) {
+
 	var postLogInRoute;
 
 	gapi.load("auth2", function() {
@@ -37,38 +38,39 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "authSrv", "dataSrv"];
-function mainCtrl($rootScope, $scope, $log, $location, authSrv, dataSrv) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "authSrv", "dataSrv"];
+function mainCtrl($rootScope, $scope, $log, $location, $q, authSrv, dataSrv) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
     $scope.test = "hello";
-    $scope.courses = dataSrv.getCourses().then(function(data) {
-            $log.debug(data);
-            return data;
-    });
-    $scope.proposals = dataSrv.getProposals().then(function(data){
-        $log.debug(data);
-        return data;
+    $scope.allProposals = {title: "All Proposals", 
+                            emptyMsg : "No Current Proposals"};
+    $scope.recentlyViewed = {title: "Recently Viewed",
+                            emptyMsg: "No recently viewed proposals or courses"};
+
+    $scope.retrievingData = true;
+    $q.all([dataSrv.getProposals(), dataSrv.getCourses()]).then(function(data){
+        $scope.allProposals.elements = data[0];
+        $scope.courses = data[1];
+        $scope.retrievingData = false;
     });
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
 		$scope.page = $location.path();
+        $scope.recentlyViewed.elements = [];
+        //$scope.recentlyViewed.elements = $scope.user.recentlyViewed;
 	});
 };
-
-app.directive("navbar", function() {
-    return {
-        restrict: "E",
-        templateUrl: "templates/navbar.html"
-    };
-});
 
 app.directive("courseList", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course-list.html",
-        scope: {data: '='}
+        scope: { 
+            data: '=',
+            user : '='
+        }
     };
 });
 
@@ -76,5 +78,18 @@ app.directive("course", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course.html",
+		controller: ['$scope', function MyTabsController($scope) {
+			$scope.getClass = function(courseStage, progressBarStage) {
+		        if (courseStage == progressBarStage) {
+		            return 'progress-bar-warning';
+		        }
+		        else if (courseStage > progressBarStage) {
+		            return 'progress-bar-success';
+		        }
+		        else {
+		            return 'progress-bar-danger';
+		        }
+		    };
+		}]
     };
 });

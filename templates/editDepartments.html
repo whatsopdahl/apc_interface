@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" id="more-user-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><a href="#\login"><span aria-hidden="true">&times;</span></a></button>
+    			<h4 class="modal-title" id="myModalLabel">Department Data</h4>
+    		</div>
+    		<div class="modal-body">
+    			<form id="user-data-form" ng-submit="updateUser">
+    				<div class="form-group form-inline" title="Select the departments you are a member of.">
+					    <label>Department</label>
+					    <label style="color: red;">*</label>
+					   	<select class="form-control" required ng-model="selectedDept"
+					   			ng-options="dept as dept.name for dept in depts track by dept.abbrev">
+    					</select>
+    					<div class="btn btn-primary" ng-click="addDept()">Add</div>
+						</div>
+						<div class="container-fluid">
+							<ul ng-model="memberDepts">
+								<li ng-repeat="dept in memberDepts">{{dept.name}}</li>
+							</ul>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+    			</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -7,13 +7,14 @@ app.constant('AUTH_EVENTS', {
   loginFailed: 'auth-login-failed',
   logoutSuccess: 'auth-logout-success',
   sessionTimeout: 'auth-session-timeout',
+  userNotFound: 'user-not-found',
   notAuthenticated: 'auth-not-authenticated',
   notAuthorized: 'auth-not-authorized',
   userChanged : 'auth-user-changed'
 });
 
-app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$location", "AUTH_EVENTS",
-	function($scope, $rootScope, $log, authSrv, $location, AUTH_EVENTS) {
+app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "depts", "dataSrv", "AUTH_EVENTS", 
+	function($scope, $rootScope, $log, authSrv, depts, dataSrv, AUTH_EVENTS) {
 		$scope.loginfailure = false;
 
 		$scope.login = authSrv.login;
@@ -27,6 +28,43 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "$locatio
 	    $rootScope.$on(AUTH_EVENTS.loginSuccess, function(){
 	    	$scope.loginfailure = false;
 	    });
+
+	    //code for extra department information
+	   	$scope.depts = depts;
+	   	$scope.required = true;
+	   	$scope.selectedDept;
+	   	$scope.memberDepts = [];
+	   	$scope.addDept = function() {
+	   		if ($scope.memberDepts.indexOf($scope.selectedDept) == -1){
+	   			$scope.memberDepts.push($scope.selectedDept);
+	   		}
+	   	}
+	   	$scope.removeDept = function(dept) {
+	   		var index = $scope.memberDepts.indexOf(dept);
+	   		$scope.memberDepts.splice(index,1);
+	   	}
+
+	   	$scope.updateUser = updateUser;
+
+	   	function updateUser() {
+	   		var user = $rootScope.user;
+	   		$log.debug("updating user", $rootScope.user);
+	   		user.dept = [];
+	   		user.division = [];
+	   		user.recentlyViewed = [];
+	   		angular.forEach($scope.memberDepts, function(dept){
+	   			if (user.division.indexOf(dept.division) == -1) {
+	   				user.division.push(dept.division);
+	   			}
+	   			user.dept.push(dept.abbrev);
+	   		});
+	   		dataSrv.editUser(user).then(function(resp){
+	   			authSrv.userInfoFound(user);
+	   		}, function(err) {
+	   			$log.error("Unable to update user. Logging out...");
+	   			authSrv.logout();
+	   		});
+	   	}
 }]);
 
 app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",
@@ -37,7 +75,8 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		refreshValues : refreshValues,
 		login : login,
 		logout : logout,
-		loginFailed : loginFailed
+		loginFailed : loginFailed,
+		userInfoFound : userInfoFound
 	}
 
 
@@ -58,10 +97,22 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		user["name"] = profile.getName();
 		user["email"] = profile.getEmail();
 
-		userData = dataSrv.getUser(user);
-		$log.debug("userData");
-		$log.debug(userData);
+		$rootScope.user = user;
 
+		dataSrv.getUser(user).then( function(data) {
+			if (data) {
+				$log.debug(data);
+			} else {
+				$log.debug("No User data found");
+				var dialog = angular.element("#more-user-data");
+				dialog.modal('show');
+				return;
+			}
+			userInfoFound(user);
+		});
+	}
+
+	function userInfoFound(user) {
 		$rootScope.user = user;
 		$log.info("logged in as " + $rootScope.user.name);
 
@@ -73,7 +124,6 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		} else {
 			$location.path("/").replace();
 		}
-		$rootScope.$digest();
 	}
 
 	function loginFailed(error) {
