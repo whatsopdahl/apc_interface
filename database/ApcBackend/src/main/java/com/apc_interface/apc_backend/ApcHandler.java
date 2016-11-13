@@ -12,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.StringReader;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import javax.json.*;
 
 /**
  * Handles all HTTP requests. When HTTP requests are made, they are sent by
@@ -47,7 +50,7 @@ public class ApcHandler implements HttpHandler{
     private static final String COLLECTION_COURSES = "courses";
     private static final String COLLECTION_USERS = "users";
     private static final String COLLECTION_PROPOSALS = "proposals";
-    private static final String COLLECTION_DEPARTMENTS = "depts";
+    private static final String COLLECTION_DEPTS = "depts";
 
     /**
      * An object representation of the MongoDB database.
@@ -150,6 +153,7 @@ public class ApcHandler implements HttpHandler{
             final Headers headers = t.getResponseHeaders();
             headers.add("Access-Control-Allow-Origin", "*");
             headers.add("Access-Control-Allow-Credentials", "true");
+            headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             final String requestMethod = t.getRequestMethod().toUpperCase();
             switch(requestMethod){
                 case METHOD_GET:
@@ -164,7 +168,7 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_COURSES);
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "";
+                                response = "{";
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -173,6 +177,7 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_PROPOSALS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
+                                System.err.println(ex.getMessage());
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
                             }
@@ -192,7 +197,7 @@ public class ApcHandler implements HttpHandler{
                             break;
                         case "depts":
                             try{
-                                response = this.getAll(COLLECTION_DEPARTMENTS);
+                                response = this.getAll(COLLECTION_DEPTS);
                                 status = STATUS_OK;
                             } catch (Exception ex) {
                                 response = "";
@@ -202,6 +207,15 @@ public class ApcHandler implements HttpHandler{
                         case "recent":
                             try{
                                 response = this.getRecentlyViewed(params.get("u"));
+                                status = STATUS_OK;
+                            } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "departments":
+                            try {
+                                response = this.getAll(COLLECTION_DEPTS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
                                 response = "";
@@ -221,23 +235,34 @@ public class ApcHandler implements HttpHandler{
                     os.close();
                     break;
                 case METHOD_POST:
-                    InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
-                    BufferedReader br = new BufferedReader(isr);
-
-                    int b;
-                    StringBuilder buf = new StringBuilder(512);
-                    while((b = br.read()) != -1){
-                        buf.append((char) b);
+                    System.out.println("posting....");
+                    JsonObject data = null;
+//                    InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
+//                    BufferedReader in = new BufferedReader(isr);
+                    Map<String, String> config = new HashMap<>();
+                    try {
+                    JsonReaderFactory factory = Json.createReaderFactory(config);
+                    
+                    JsonReader reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
+                    System.out.println("reader built...");
+                    
+                    data = reader.readObject();
+                    System.out.println("DATA: "+data.toString());
+                    reader.close();
+                    } catch (Exception e){
+                        System.err.println(e.getClass().toString() +" : "+e.getMessage());
                     }
 
-                    br.close();
-                    isr.close();
-
-                    params = parseQuery(buf.toString());
-
-                    Document doc = Document.parse(params.get("d"));
-
-                    switch(params.get("q")){
+//                    
+//                    in.close();
+//                    isr.close();
+                    
+                    Document doc = Document.parse(data.get("d").toString());
+                                                            
+                    JsonObjectBuilder successObj = Json.createObjectBuilder();
+                    successObj.add("status", "success");
+                    
+                    switch(data.getString("q")){
                         case "create":
                             try{
                                 db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
@@ -250,10 +275,17 @@ public class ApcHandler implements HttpHandler{
                             break;
                         case "edituser":
                             try{
-                                String user = params.get("u");
-                                db.getCollection(COLLECTION_USERS).updateOne(eq("email", user), new Document("$set", doc));
+                                String user = data.getString("u");
+                                if (getUser(user) == "") {
+                                    db.getCollection(COLLECTION_USERS).insertOne(doc);
+                                } else {
+                                    db.getCollection(COLLECTION_USERS).updateOne(eq("email", user), new Document("$set", doc));
+                                }
                                 status = STATUS_CREATED;
-                                response = "{status: success, method: edituser}";
+                                successObj.add("method", "create");
+                                response = successObj.build().toString();
+                                System.out.println(response);
+                                response = "{status: success, method: edit user}";
                             } catch (Exception ex){
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
@@ -289,7 +321,7 @@ public class ApcHandler implements HttpHandler{
                             response = "{status: not found}";
                             break;
                     }
-
+                    
                     t.sendResponseHeaders(status, response.length());
                     os = t.getResponseBody();
                     os.write(response.getBytes());
@@ -350,7 +382,7 @@ public class ApcHandler implements HttpHandler{
 
         return json.toString();
     }
-
+    
     /**
      * Handle HTTP GET request for all documents in a given collection.
      * Initiates a database query that returns all <code>Document</code>s in a
@@ -398,7 +430,7 @@ public class ApcHandler implements HttpHandler{
                json.append(document.toJson());
            }
         });
-
+       
         return json.toString();
     }
 

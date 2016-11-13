@@ -24,10 +24,10 @@ users = [
 			  email : "mcnecky01@luther.edu",
 			  dept : ["CS"]
 			},
-			{ name : "Jonathan Opdahl",
-		      email : "opdajo01@luther.edu",
-		  	  dept : ["CS"]
-		  	},
+			// { name : "Jonathan Opdahl",
+		 //      email : "opdajo01@luther.edu",
+		 //  	  dept : ["CS"]
+		 //  	},
 			{ name : "Brad Miller",
 			  email : "bmiller@luther.edu",
 			  division : "Science",
@@ -28541,7 +28541,8 @@ proposals = [
 	"fees": null,
 	"est_enrollment": 25,
 	"instructors": ["Jon Opdahl"],
-	"comments":  []
+	"comments":  [],
+	"terms" : []
   },
   {
 	"terms": ["Fall", "Spring", "J-term"],
@@ -28556,7 +28557,8 @@ proposals = [
 	"fees": null,
 	"est_enrollment": 30,
 	"instructors": ["Jon Opdahl", "Kyle McNeese"],
-	"comments":  []
+	"comments":  [],
+	"terms" : []
   }
 ];
 
