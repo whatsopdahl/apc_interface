@@ -92,6 +92,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 					}
 		}).then(function success(response) {
 			$log.info("Retrieved department data");
+			$log.debug(response.data);
 			return response.data;
 		}, function(response) {
 			handleError(response);

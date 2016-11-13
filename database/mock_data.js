@@ -18,16 +18,19 @@ db.archive.drop();
 users = [
 			{ name : "Aidan Schmitt",
 			  email : "schmai01@luther.edu",
-			  dept : ["CS"]
+			  dept : ["CS"],
+			  division : "Science"
 			},
 			{ name : "Kyle McNeese",
-			  email : "mcnecky01@luther.edu",
-			  dept : ["CS"]
+			  email : "mcneky01@luther.edu",
+			  dept : ["CS"],
+			  division : "Science"
 			},
-			// { name : "Jonathan Opdahl",
-		 //      email : "opdajo01@luther.edu",
-		 //  	  dept : ["CS"]
-		 //  	},
+			{ name : "Jonathan Opdahl",
+		      email : "opdajo01@luther.edu",
+		  	  dept : ["CS", "MATH"],
+		  	  division : "Science"
+		  	},
 			{ name : "Brad Miller",
 			  email : "bmiller@luther.edu",
 			  division : "Science",

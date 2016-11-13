@@ -195,15 +195,6 @@ public class ApcHandler implements HttpHandler{
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
-                        case "depts":
-                            try{
-                                response = this.getAll(COLLECTION_DEPTS);
-                                status = STATUS_OK;
-                            } catch (Exception ex) {
-                                response = "";
-                                status = STATUS_BAD_REQUEST;
-                            }
-                            break;
                         case "recent":
                             try{
                                 response = this.getRecentlyViewed(params.get("u"));
@@ -285,7 +276,7 @@ public class ApcHandler implements HttpHandler{
                                 successObj.add("method", "create");
                                 response = successObj.build().toString();
                                 System.out.println(response);
-                                response = "{status: success, method: edit user}";
+                                response = "{\"status\": \"success\", \"method\": \"edit user\"}";
                             } catch (Exception ex){
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
