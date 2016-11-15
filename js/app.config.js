@@ -21,13 +21,31 @@ app.config(['$routeProvider', function($routeProvider){
 		conroller : "proposalCtrl"
 	})
 	.when("/dashboard/mychanges",{
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/changes.html", 
+		controller : "changeCtrl",
+		resolve : {
+			view : function() {
+				return "mychanges";
+			}
+		}
 	})
 	.when("/dashboard/allchanges", {
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/changes.html",
+		controller : "changeCtrl",
+		resolve : {
+			view : function() {
+				return "allchanges";
+			}
+		}
 	})
 	.when("/dashboard/recentlyviewed", {
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/changes.html",
+		controller : "changeCtrl",
+		resolve : {
+			view : function(){
+				return "recent";
+			}
+		}
 	})
 	.when("/", {
 		redirectTo : "/dashboard"

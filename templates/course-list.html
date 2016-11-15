@@ -1,6 +1,6 @@
 <div class="course-list">
     <div class="section-bar container-fluid">
-        <h4 class="section-title">{{data.title}}</h4>
+        <a href="#/dashboard/{{data.link}}"><h4 class="section-title">{{data.title}}</h4><a href="dashboard/{{data.link}}">
         <button type="button" ng-if="data.title == 'My Changes'" class="btn btn-success pull-right" style="margin-right: 10px;">
             <a ng-href="#/newproposal" class="newPropLink">New Proposal</a>
         </button>
@@ -8,7 +8,8 @@
     <div ng-hide="retrievingData">
     	<div ng-if="data.elements.length == 0" class="container-fluid course" style="text-align: center;">{{data.emptyMsg}}</div>
         <div ng-if="data.elements.length > 0" class="container-fluid course" ng-repeat="element in data.elements">
-            <course></course>
+            <course ng-if="!extendedview"></course>
+            <extended-course ng-if="extendedview"></extended-course>
         </div>
     </div>
     <div ng-show="retrievingData">Loading...</div>

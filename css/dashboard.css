@@ -177,3 +177,11 @@ body {
     text-decoration: line-through;
     display: inline;
 }
+
+a > h4 {
+    color:white;
+}
+
+a > h4:hover {
+    text-decoration: underline;
+}

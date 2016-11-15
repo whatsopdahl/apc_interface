@@ -141,8 +141,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		data["d"] = user;
 		data["q"] = "edituser";
 		data["u"] = user.email;
-		var config = { "headers" : { "Content-Type" : "application/json"} };
-		return $http.post(DATA_URL, data, config)
+		return $http.post(DATA_URL, data)
 		.then(function success(response) {
 			$log.info("User profile updated");
 		}, function(response){

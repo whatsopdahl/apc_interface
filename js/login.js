@@ -49,6 +49,8 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv"
         $scope.updateUser = updateUser;
         
         function updateUser() {
+        	var dialog = angular.element("#more-user-data");
+			dialog.modal('hide');
 	   		var user = $rootScope.user;
 	   		$log.debug("updating user", $rootScope.user);
 	   		user.dept = [];
@@ -60,8 +62,6 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv"
 	   			}
 	   			user.dept.push(dept.abbrev);
 	   		});
-	   		var dialog = angular.element("#more-user-data");
-			dialog.modal('hide');
 	   		dataSrv.editUser(user).then(function(resp){
 	   			authSrv.userInfoFound(user);
 	   		}, function(err) {
@@ -113,12 +113,13 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 				dialog.modal('show');
 				return;
 			}
-			userInfoFound(user);
+			userInfoFound(data);
 		});
 	}
 
-	function userInfoFound(user) {
+	function userInfoFound(user) {		
 		$rootScope.user = user;
+		
 		$log.info("logged in as " + $rootScope.user.name);
 
 		$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);

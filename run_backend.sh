@@ -7,4 +7,4 @@
 mongo apcdata database/mock_data.js
 
 #	Start the java backend
-java -jar apcBackend_v1_1_0.jar
+java -jar database/ApcBackend/target/ApcBackend-1.1.0-jar-with-dependencies.jar

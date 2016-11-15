@@ -2,8 +2,8 @@ var app = angular.module("CourseProposalApp");
 
 app.controller("courseCtrl", courseCtrl);
 
-courseCtrl.$inject=["$scope", "$filter", "$log", "$routeParams"];
-function courseCtrl($scope, $filter, $log, $routeParams) {
+courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "dataSrv"];
+function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, dataSrv) {
 	var courseName = $routeParams.course;
 	//the course must exist in the database, so find it first
 	$scope.course = $filter("filter")($scope.courses, {name: courseName}, true)[0];
@@ -23,6 +23,23 @@ function courseCtrl($scope, $filter, $log, $routeParams) {
 	if (proposal) {
 		$scope.course = proposal;
 	}
+
+	//add course to recently viewed courses
+	var courseIdx = $rootScope.user.recentlyViewed.indexOf($scope.course);
+	if (courseIdx == -1){
+		$rootScope.user.recentlyViewed.unshift($scope.course);
+		if ($rootScope.user.recentlyViewed.length > 7) {
+			$rootScope.user.recentlyViewed.pop();
+		}
+	} else {
+		var lastViewed = $rootScope.user.recentlyViewed[0];
+		$rootScope.user.recentlyViewed[0] = $scope.course;
+		$rootScope.user.recentlyViewed[courseIdx] = lastViewed;
+	}
+	dataSrv.editUser($rootScope.user).then(function(data) {
+		$log.info("Saved Recently Viewed");
+	});
+
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
@@ -47,3 +64,43 @@ function courseCtrl($scope, $filter, $log, $routeParams) {
 		return listStr;
 	}
 }
+
+app.directive("courseList", function() {
+    return {
+        restrict: "E",
+        templateUrl: "templates/course-list.html",
+        scope: {
+            data: '=',
+            user : '=',
+            extendedView : "&"
+        }
+    };
+});
+
+app.directive("course", function() {
+    return {
+        restrict: "E",
+        templateUrl: "templates/course.html",
+		controller: ['$scope', function MyTabsController($scope) {
+			// for making the progress bar the correct colors at each stage
+			$scope.getClass = function(courseStage, progressBarStage) {
+		        if (courseStage == progressBarStage) {
+		            return 'progress-bar-warning';
+		        }
+		        else if (courseStage > progressBarStage) {
+		            return 'progress-bar-success';
+		        }
+		        else {
+		            return 'progress-bar-danger';
+		        }
+		    };
+		}]
+    };
+});
+
+app.directive("extended-course", function() {
+	return {
+		restrict :"E",
+		templateUrl : "templates/extended-course.html"
+	}
+});

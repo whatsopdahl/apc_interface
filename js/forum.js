@@ -12,7 +12,9 @@ function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 		$scope.proposal.comments.push( {"user" : user, 
 										"date" : date, 
 										"body" : commentBody});
-		dataSrv.saveProposal($scope.proposal);
+		dataSrv.saveProposal($scope.proposal).then(function(data) {
+			$log.info("Comment Saved");
+		});
 	}
 }
 

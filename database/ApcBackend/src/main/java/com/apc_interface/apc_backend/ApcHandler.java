@@ -22,6 +22,7 @@ import java.util.Map;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import javax.json.*;
+import org.bson.json.JsonParseException;
 
 /**
  * Handles all HTTP requests. When HTTP requests are made, they are sent by
@@ -228,8 +229,6 @@ public class ApcHandler implements HttpHandler{
                 case METHOD_POST:
                     System.out.println("posting....");
                     JsonObject data = null;
-//                    InputStreamReader isr = new InputStreamReader(t.getRequestBody(), "utf-8");
-//                    BufferedReader in = new BufferedReader(isr);
                     Map<String, String> config = new HashMap<>();
                     try {
                     JsonReaderFactory factory = Json.createReaderFactory(config);
@@ -243,13 +242,13 @@ public class ApcHandler implements HttpHandler{
                     } catch (Exception e){
                         System.err.println(e.getClass().toString() +" : "+e.getMessage());
                     }
-
-//                    
-//                    in.close();
-//                    isr.close();
                     
-                    Document doc = Document.parse(data.get("d").toString());
-                                                            
+                    Document doc = null;
+                    if (data != null){
+                        doc = Document.parse(data.get("d").toString());
+                    } else {
+                      throw new JsonParseException("Could not read Data");       
+                    }                                      
                     JsonObjectBuilder successObj = Json.createObjectBuilder();
                     successObj.add("status", "success");
                     
@@ -257,7 +256,8 @@ public class ApcHandler implements HttpHandler{
                         case "create":
                             try{
                                 db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
-                                response = "{status: success, method: create}";
+                                successObj.add("method", "create proposal");
+                                response = successObj.build().toString();
                                 status = STATUS_CREATED;
                             } catch (Exception ex){
                                 response = "";
@@ -267,16 +267,14 @@ public class ApcHandler implements HttpHandler{
                         case "edituser":
                             try{
                                 String user = data.getString("u");
-                                if (getUser(user) == "") {
+                                if (("").equals(getUser(user))) {
                                     db.getCollection(COLLECTION_USERS).insertOne(doc);
                                 } else {
                                     db.getCollection(COLLECTION_USERS).updateOne(eq("email", user), new Document("$set", doc));
                                 }
                                 status = STATUS_CREATED;
-                                successObj.add("method", "create");
+                                successObj.add("method", "edit user");
                                 response = successObj.build().toString();
-                                System.out.println(response);
-                                response = "{\"status\": \"success\", \"method\": \"edit user\"}";
                             } catch (Exception ex){
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
@@ -290,7 +288,8 @@ public class ApcHandler implements HttpHandler{
                                 doc.remove("_id");
                                 db.getCollection(COLLECTION_PROPOSALS).updateOne(eq("_id", new ObjectId(id)), new Document("$set", doc));
                                 status = STATUS_CREATED;
-                                response = "{status: success, method: save}";
+                                successObj.add("method", "save proposal");
+                                response = successObj.build().toString();
                             } catch (Exception ex){
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
@@ -301,7 +300,8 @@ public class ApcHandler implements HttpHandler{
                             try{
                                 db.getCollection(COLLECTION_PROPOSALS).deleteOne(doc);
                                 status = STATUS_CREATED;
-                                response = "{status: success, method: delete}";
+                                successObj.add("method", "delete proposal");
+                                response = successObj.build().toString();
                             } catch (Exception ex){
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
