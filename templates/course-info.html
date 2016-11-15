@@ -35,7 +35,7 @@
             <div class="panel-heading">{{course.oldCourse.capacity}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField">
+    <div class="panel-group courseInfo">
         <div class="panel-heading"><strong>Description</strong></div>
         <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.desc != course.newCourse.desc}">
             <div class="panel-heading">{{course.newCourse.desc}}</div>
@@ -101,28 +101,29 @@
             <div class="panel-heading">{{course.est_enrollment}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField" ng-if="course.fees">
+    <div class="panel-group courseInfo" ng-if="course.fees">
         <div class="panel-heading "><strong>Fees</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.fees}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField">
+    <div class="panel-group courseInfo">
         <div class="panel-heading"><strong>Staffing Implications</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.staffing}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField">
+    <div class="panel-group courseInfo">
         <div class="panel-heading"><strong>Rationale</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.rationale}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo largeFormField">
+    <div class="panel-group courseInfo">
         <div class="panel-heading"><strong>Impact</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.impact}}</div>
         </div>
     </div>
 </div>
+<course-forum class="courseForum"></course-forum>

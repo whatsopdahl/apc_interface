@@ -1,31 +1,49 @@
 var app = angular.module("CourseProposalApp");
 
 app.controller("forumCtrl", forumCtrl);
-app.directive("course-forum", courseForm);
 
 forumCtrl.$inject = ["$scope", "$rootScope", "$log", "$q", "$filter", "dataSrv"];
 function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 	$scope.user = $rootScope.user;
-	$scope.date = new Date();
 	$scope.newComment = "";
 	$scope.addComment = function(user, date, commentBody) {
-		$scope.proposal.comments.push( {"user" : user, 
-										"date" : date, 
+		var date = String(new Date());
+		$scope.course.comments.push( {"user" : user,
+										"date" : date,
 										"body" : commentBody});
-		dataSrv.saveProposal($scope.proposal).then(function(data) {
+		dataSrv.saveProposal($scope.course).then(function(data) {
 			$log.info("Comment Saved");
 		});
 	}
-}
 
-function courseForm() {
-	return {
-		restrict : 'E',
-		templateUrl : "templates/forum.html",
-		controller : "forumCtrl",
-		scope : {
-			comments : "=",
-			proposal : "="
-		}
+	$scope.sortComment = function(comment) {
+		var date = new Date(comment.date);
+		return date
 	}
 }
+
+app.filter("toDate", function() {
+    return function(dateString){
+        return new Date(dateString);
+    }
+});
+
+app.directive("courseForum", function() {
+	return {
+		restrict : 'E',
+		templateUrl : "templates/course-forum.html",
+		controller : "forumCtrl",
+		// scope : {
+		// 	""
+		// }
+	}
+});
+
+// function courseForum() {
+// 	return {
+// 		restrict : 'E',
+// 		templateUrl : "templates/forum.html",
+// 		controller : "forumCtrl",
+// 		scope : false
+// 	}
+// }

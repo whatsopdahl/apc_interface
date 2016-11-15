@@ -10,7 +10,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		getProposals : getProposals,
 		getRecentlyViewed : getRecent,
 		getDepts : getDepts,
-		editUser : editUser
+		editUser : editUser,
+		saveProposal : saveProposal
 		//addComment : addComment
 	}
 
@@ -152,8 +153,10 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 /**
 	 *
 	 */
-	function saveProposal(data) {
+	function saveProposal(proposal) {
+		var data = {};
 		data["q"] = "save";
+		data["d"] = proposal;
 		return $http({ method: "POST",
 				url : DATA_URL,
 				data : data
