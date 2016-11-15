@@ -9,8 +9,8 @@ function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 	$scope.addComment = function(user, date, commentBody) {
 		var date = String(new Date());
 		$scope.course.comments.push( {"user" : user,
-										"date" : date,
-										"body" : commentBody});
+									  "date" : date,
+									  "body" : $scope.newComment});
 		dataSrv.saveProposal($scope.course).then(function(data) {
 			$log.info("Comment Saved");
 		});
