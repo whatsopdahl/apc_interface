@@ -32,18 +32,6 @@ app.directive("courseForum", function() {
 	return {
 		restrict : 'E',
 		templateUrl : "templates/course-forum.html",
-		controller : "forumCtrl",
-		// scope : {
-		// 	""
-		// }
+		controller : "forumCtrl"
 	}
 });
-
-// function courseForum() {
-// 	return {
-// 		restrict : 'E',
-// 		templateUrl : "templates/forum.html",
-// 		controller : "forumCtrl",
-// 		scope : false
-// 	}
-// }

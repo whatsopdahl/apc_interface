@@ -28635,6 +28635,4 @@ proposals = [
   }
 ];
 
-// mm-dd-yyyy-hh-mm-ss
-
 db.proposals.insert(proposals);
