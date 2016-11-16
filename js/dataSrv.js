@@ -10,8 +10,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		getProposals : getProposals,
 		getRecentlyViewed : getRecent,
 		getDepts : getDepts,
-		editUser : editUser
-		//addComment : addComment
+		editUser : editUser,
+		saveProposal : saveProposal,
+		createProposal : createProposal
 	}
 
 	/**
@@ -92,7 +93,6 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 					}
 		}).then(function success(response) {
 			$log.info("Retrieved department data");
-			$log.debug(response.data);
 			return response.data;
 		}, function(response) {
 			handleError(response);
@@ -121,7 +121,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	/**
 	 *
 	 */
-	function createProposal(data) {
+	function createProposal(proposal) {
+		var data = {};
+		data["d"] = proposal;
 		data["q"] = "create";
 		return $http({ method: "POST",
 				url : DATA_URL,
@@ -152,13 +154,15 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 /**
 	 *
 	 */
-	function saveProposal(data) {
+	function saveProposal(proposal) {
+		var data = {};
 		data["q"] = "save";
+		data["d"] = proposal;
 		return $http({ method: "POST",
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			$log.info("Propsal saved");
+			$log.info("Proposal saved");
 		}, function(response){
 			handleError(response);
 		});

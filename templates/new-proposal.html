@@ -1,81 +1,77 @@
-<form class="propForm" name="ProposalForm">
+<form class="propForm" name="ProposalForm" ng-submit="saveProposal()">
     <div class="form-group">
-        <label>Course Name</label>
+        <label>Course Title</label>
         <label style="color: red;">*</label>
-        <input class="form-control" placeholder="i.e. Paideia" required>
+        <input class="form-control" placeholder="Title" required ng-model="proposal.newCourse.title">
     </div>
     <div class="form-group smallFormField" title="Department and Course Number will be joined together (i.e. CS-150)">
         <label>Department</label>
         <label style="color: red;">*</label>
-        <select class="form-control" required>
-            <div ng-repeat="">
-                <option>blah</option>
-                <option>blah</option>
-                <option>blah</option>
-            </div>
+        <select class="form-control" required ng-model="selectedDept" ng-options="dept as dept.name for dept in depts track by dept.abbrev" placeholder="Select Department">
+                <option value="" disabled selected>Select Department</option>
         </select>
     </div>
     <div class="form-group smallFormField" title="Department and Course Number will be joined together (i.e. CS-150)">
         <label>Course Number</label>
         <label style="color: red;">*</label>
-        <input class="form-control" placeholder="i.e. 150" required>
+        <input class="form-control" placeholder="i.e. 150" required ng-model="courseNum">
     </div>
     <div class="form-group" title="Separate multiple professors with commas (i.e. John Doe, Jan Smith).">
         <label>Instructor(s)</label>
         <label style="color: red;">*</label>
-        <input class="form-control" required>
+        <input class="form-control" required ng-model="proposal.instructors">
     </div>
-    <div class="form-group smallFormField">
-        <label>General Requirements Satisfied</label>
-        <select multiple class="form-control">
-            <div ng-repeat="">
-                <option>blah</option>
-                <option>blah</option>
-                <option>blah</option>
-                <option>blah</option>
-                <option>blah</option>
+    <div class="form-group">
+        <div class="input-group">
+            <label>General Requirements Satisfied</label>
+            <select class="form-control" ng-model="chosenGenEd" ng-options="genEd as genEd for genEd in gen_eds" placeholder="Select Gen Ed">
+                <option value="" disabled selected>Select Gen Ed</option>
+            </select>
+            <div class="btn btn-primary" ng-click="addGenEd()">Add</div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-xs-2 btn-removable" ng-repeat="genEd in selectedGenEds">{{genEd}}<div class="pull-right" aria-hidden="true" ng-click="removeGenEd(genEd)">&times;</div>
             </div>
-        </select>
+        </div>
     </div>
     <div class="form-group smallFormField">
         <label>Credit Hours</label>
         <label style="color: red;">*</label>
-        <input class="form-control" required>
+        <input class="form-control" required type="number" ng-model="proposal.newCourse.credit_hrs">
     </div>
     <div class="form-group smallFormField">
         <label>Estimated Enrollment</label>
         <label style="color: red;">*</label>
-        <input class="form-control" required>
+        <input class="form-control" required type="number" ng-model="proposal.est_enrollment">
     </div>
     <div class="form-group smallFormField">
-        <label>Max Capacity</label>
+        <label>Capacity</label>
         <label style="color: red;">*</label>
-        <input class="form-control" required>
+        <input class="form-control" required type="number" ng-model="proposal.newCourse.capacity">
     </div>
     <div class="form-group smallFormField">
         <label>Terms Offered</label>
         <label style="color: red;">*</label>
-        <select multiple class="form-control" required>
-            <option>Fall</option>
-            <option>J-Term</option>
-            <option>Spring</option>
-            <option>Summer 1</option>
-            <option>Summer 2</option>
+        <select multiple class="form-control" required ng-model="proposal.terms">
+            <option value="FALL">Fall</option>
+            <option value="J-TERM">J-Term</option>
+            <option value="SPRING">Spring</option>
+            <option value="SUMMER I">Summer 1</option>
+            <option value="SUMMER II">Summer 2</option>
         </select>
     </div>
     <div class="form-group">
         <label>Prerequisites</label>
-        <input class="form-control" required>
+        <input class="form-control" ng-model="proposal.newCourse.pre_req">
     </div>
     <div class="form-group">
         <label>Fees</label>
-        <label style="color: red;">*</label>
-        <textarea class="form-control" rows="2" required></textarea>
+        <textarea class="form-control" rows="2" ng-model="proposal.fees"></textarea>
     </div>
     <div class="form-group">
         <label>Catalog Description</label>
         <label style="color: red;">*</label>
-        <textarea class="form-control" rows="4" required></textarea>
+        <textarea class="form-control" rows="4" required ng-model="proposal.newCourse.desc"></textarea>
     </div>
     <div class="form-group">
         <label>Rationale</label>
@@ -84,14 +80,11 @@
     </div>
     <div class="form-group" title="The impact on faculty, major programs, students or other factors.">
         <label>Impact</label>
-        <label style="color: red;">*</label>
-        <textarea class="form-control" rows="3" required></textarea>
+        <textarea class="form-control" rows="3" ng-model="proposal.impact"></textarea>
     </div>
     <div class="form-group">
         <label>Staffing Implications</label>
-    </div>
-    <div class="form-group">
-        <label>Another...</label>
+        <textarea class="form-control" rows="3" ng-model="proposal.staffing"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

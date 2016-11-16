@@ -1,8 +1,9 @@
 <div class="containter-fluid">
+	<p>display dammit</p>
 	<div class="panel panel-default" ng-repeat="comment in comments">
 		<div class="panel-header">
 			<h3 class="panel-title">{{comment.user}}</h3>
-			<div class="pull-right">{{comment.date}}</div>
+			<div class="pull-right">{{comment.date | toDate | date : "MMM d, yyyy"}}</div>
 		</div>
 		<div class="panel-body">
 			{{comment.body}}
@@ -13,7 +14,7 @@
 			New Comment
 		</div>
 		<div class="panel-body">
-			<form ng-submit="addComment(proposal, user.name, {{date | date:'dd-MM-yyyy'}}, newComment)">
+			<form ng-submit="addComment(user.name, newComment)">
 				<div class="form-group">
 					<textarea ng-model="newComment" class="form-control" rows="3" required></textarea>
 				</div>

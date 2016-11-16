@@ -9,8 +9,8 @@ app.constant("auth_config", {
     scope: 'profile email'
 });
 
-app.constant("GEN_ED", {
-
+app.constant("EVENTS",{
+    PROPOSAL_ADDED : 'proposal-added'
 });
 
 app.controller("mainCtrl", mainCtrl);
@@ -56,18 +56,32 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
 							link:"mychanges"};
 
     $scope.retrievingData = true;
-    $q.all([dataSrv.getProposals(), dataSrv.getCourses()]).then(function(data){
-        $scope.allProposals.elements = data[0];
-        $scope.courses = data[1];
-        $scope.retrievingData = false;
-    });
+     
+    initData();
+
+    function initData() { 
+        return $q.all([dataSrv.getProposals(), dataSrv.getCourses()]).then(function(data){
+            $scope.allProposals.elements = data[0];
+            $scope.courses = data[1];
+            $scope.retrievingData = false;
+        });
+    }
 
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
 		$scope.page = $location.path();
 		if ($scope.user && $rootScope.user){
-       		$scope.recentlyViewed.elements = $scope.user.recentlyViewed;
+            $scope.recentlyViewed.elements = [];
+            var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
+            angular.forEach($scope.user.recentlyViewed, function(objId) {
+                $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
+            });
        		$scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
        	}
 	});
+
+    $rootScope.$on('proposal-added', function(event, args) {
+        initData();
+        
+    });
 };

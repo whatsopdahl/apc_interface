@@ -6,7 +6,7 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl : "templates/login.html",
 		controller : "authCtrl",
 		resolve : {
-			depts : ['dataSrv', function(dataSrv) {
+			depts : ["dataSrv", function(dataSrv){
 				return dataSrv.getDepts();
 			}]
 		},
@@ -18,7 +18,10 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when("/newproposal", {
 		templateUrl : "templates/new-proposal.html",
-		conroller : "proposalCtrl"
+		controller : "proposalCtrl",
+		resolve : {
+			params : resolveProposalParams
+		}
 	})
 	.when("/dashboard/mychanges",{
 		templateUrl : "templates/changes.html", 
@@ -55,7 +58,17 @@ app.config(['$routeProvider', function($routeProvider){
 		controller : "courseCtrl"
 	})
 	.when("/:course/edit", {
-		templateUrl : "templates/welcome.html"
+		templateUrl : "templates/welcome.html",
+		controller : "editCtrl"
+
 	})
 	.otherwise({ redirectTo : "/"});
 }]);
+
+resolveProposalParams.$inject=["dataSrv", "$q"];
+function resolveProposalParams(dataSrv, $q) {
+	return $q.all([dataSrv.getDepts(), dataSrv.getUsers()]).then(function(data) {
+		return { depts : data[0] ,
+				 faculty : data[1]}
+	});
+}

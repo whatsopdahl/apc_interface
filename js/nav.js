@@ -34,6 +34,7 @@ app.filter("searchFilter", function(){
 				output.push(course);
 			}
 		});
+
 		return output;
 	}	
 });

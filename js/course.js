@@ -25,15 +25,15 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, dataSrv) {
 	}
 
 	//add course to recently viewed courses
-	var courseIdx = $rootScope.user.recentlyViewed.indexOf($scope.course);
+	var courseIdx = $rootScope.user.recentlyViewed.indexOf($scope.course._id.$oid);
 	if (courseIdx == -1){
-		$rootScope.user.recentlyViewed.unshift($scope.course);
+		$rootScope.user.recentlyViewed.unshift($scope.course._id.$oid);
 		if ($rootScope.user.recentlyViewed.length > 7) {
 			$rootScope.user.recentlyViewed.pop();
 		}
 	} else {
 		var lastViewed = $rootScope.user.recentlyViewed[0];
-		$rootScope.user.recentlyViewed[0] = $scope.course;
+		$rootScope.user.recentlyViewed[0] = $scope.course._id.$oid;
 		$rootScope.user.recentlyViewed[courseIdx] = lastViewed;
 	}
 	dataSrv.editUser($rootScope.user).then(function(data) {
@@ -72,7 +72,7 @@ app.directive("courseList", function() {
         scope: {
             data: '=',
             user : '=',
-            extendedView : "&"
+            extendedView : "="
         }
     };
 });

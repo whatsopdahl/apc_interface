@@ -162,14 +162,14 @@ public class ApcHandler implements HttpHandler{
 
                     String response;
                     int status;
-
+                    
                     switch(params.get("q")){
                         case "courses":
                             try{
                                 response = this.getAll(COLLECTION_COURSES);
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "{";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -178,8 +178,7 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_PROPOSALS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                System.err.println(ex.getMessage());
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -192,7 +191,7 @@ public class ApcHandler implements HttpHandler{
                                 }
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -201,7 +200,7 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getRecentlyViewed(params.get("u"));
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -216,7 +215,7 @@ public class ApcHandler implements HttpHandler{
                             break;
                         default:
                             status = STATUS_BAD_REQUEST;
-                            response = "";
+                            response = Json.createObjectBuilder().add("status", "Invalid Query").build().toString();
                             break;
                     }
                     
@@ -255,12 +254,14 @@ public class ApcHandler implements HttpHandler{
                     switch(data.getString("q")){
                         case "create":
                             try{
+                                Document course = Document.parse(data.getJsonObject("d").get("newCourse").toString());
+                                db.getCollection(COLLECTION_COURSES).insertOne(course);
                                 db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
                                 successObj.add("method", "create proposal");
                                 response = successObj.build().toString();
                                 status = STATUS_CREATED;
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -276,7 +277,7 @@ public class ApcHandler implements HttpHandler{
                                 successObj.add("method", "edit user");
                                 response = successObj.build().toString();
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -284,17 +285,17 @@ public class ApcHandler implements HttpHandler{
                             try{
                                 System.out.println("Saving Proposal");
                                 Document idDoc = (Document)doc.get("_id");
-                                String id = idDoc.getString("");
+                                String id = idDoc.getString("_id");
                                 doc.remove("_id");
                                 db.getCollection(COLLECTION_PROPOSALS).updateOne(eq("_id", new ObjectId(id)), new Document("$set", doc));
                                 status = STATUS_CREATED;
                                 successObj.add("method", "save proposal");
                                 response = successObj.build().toString();
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
-                            break;
+                            break;        
                         case "delete":
                             //doc could be entire document, or just part of one I think
                             try{
@@ -303,13 +304,13 @@ public class ApcHandler implements HttpHandler{
                                 successObj.add("method", "delete proposal");
                                 response = successObj.build().toString();
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
                         default:
                             status = STATUS_BAD_REQUEST;
-                            response = "{status: not found}";
+                            response = Json.createObjectBuilder().add("status", "not found").build().toString();
                             break;
                     }
                     

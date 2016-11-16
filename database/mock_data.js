@@ -28478,7 +28478,7 @@ courses = [
     "capacity": 30,
     "name": "PSYC-352",
     "title": "Cognitive Processes",
-    "pre_req": "    PSYC 130, 349, and 350",
+    "pre_req": "PSYC 130, 349, and 350",
     "dept": "PSYC",
     "credit_hrs": 4,
     "desc": "A study of the mental processes involved in the acquisition, organization, representation, and retrieval of information by humans. Topics to be covered include attention, recognition memory, short-term and long-term memory, concept formation, problem solving, and creativity. Lecture, discussion, and weekly laboratories. Students conduct original research."
@@ -28578,6 +28578,26 @@ courses = [
     ],
     "desc": "An introduction to computer science emphasizing problem solving. Problems are selected from a variety of interesting areas such as graphics, image processing, cryptography, data analysis, astronomy, video games, and environmental stimulation. Topics include algorithm design and object oriented programming."
   },
+  {
+    "division": "Science",
+    "capacity": 30,
+    "name": "PSYC-352",
+    "title": "Cognitive Processes",
+    "pre_req": "PSYC 130, 349, and 350",
+    "dept": "PSYC",
+    "credit_hrs": 2,
+    "desc": "This is a test boi"
+  },
+  { 
+  	"division" : "Science",
+  	"capacity" : 25, 
+  	"name" : "CS-237", 
+  	"title" : "Testing",
+  	"pre_req" : "",
+  	"dept" : "CS", 
+  	"credit_hrs" : 4,
+  	"desc" : "Learn best-practices and common frameworks of testing in Java, Python, and C++."
+  }
 ];
 
 db.users.insert(users);
@@ -28589,7 +28609,9 @@ db.archive.insert(courses);
 cs150 = db.courses.findOne({"name" : "CS-150"});
 newcs150 = db.courses.findOne( {"title" : "Introduction to Being a Nerd" });
 cs1 = db.courses.findOne({"name" : "CS-1"});
-
+psyc352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 4});
+newnew = db.courses.findOne({"desc":"This is a test boi"});
+testing = db.courses.findOne({"name" : "CS-237"});
 
 proposals = [
   {
@@ -28621,9 +28643,38 @@ proposals = [
 	"fees": null,
 	"est_enrollment": 30,
 	"instructors": ["Jon Opdahl", "Kyle McNeese"],
-	"comments":  [],
-	"terms" : []
-  }
+	"comments":  []
+  },
+  {
+	"terms": ["Fall", "Spring", "J-term"],
+	"owner": "Kyle McNeese",
+	"stage": 1,
+	"staffing": "Any professor can teach this course.",
+	"rationale": "This will help the developers in senior project test their code.",
+	"impact": "Worst class ever.",
+	"date": null,
+	"oldCourse": psyc352,
+	"newCourse": newnew,
+	"fees": null,
+	"est_enrollment": 30,
+	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	"comments":  []
+  },
+  {
+  	"terms" : [ "FALL", "SPRING" ],
+  	"owner" : "Jonathan Opdahl", 
+  	"stage" : 0, 
+  	"staffing" : "", 
+  	"rationale" : "", 
+  	"impact" : "", 
+  	"date" : "2016-11-15T16:46:33.616Z", 
+  	"oldCourse" : null, 
+  	"newCourse" : testing,
+  	"fees" : "", 
+  	"est_enrollment" : 15, 
+  	"instructors" : [ "Jon Opdahl", "Kyle McNeese", "Aiden Schmitt" ],
+  	"comments" : [ ]
+  	}
 ];
 
 db.proposals.insert(proposals);

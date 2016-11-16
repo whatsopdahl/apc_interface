@@ -1,16 +1,17 @@
 var app = angular.module("CourseProposalApp");
 
 app.controller("forumCtrl", forumCtrl);
-app.directive("course-forum", courseForm);
+app.directive("courseForum", courseForum);
 
 forumCtrl.$inject = ["$scope", "$rootScope", "$log", "$q", "$filter", "dataSrv"];
 function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
+	$log.debug(new Date());
 	$scope.user = $rootScope.user;
-	$scope.date = new Date();
 	$scope.newComment = "";
-	$scope.addComment = function(user, date, commentBody) {
+	$scope.addComment = function(user, commentBody) {
+		var date = new Date();
 		$scope.proposal.comments.push( {"user" : user, 
-										"date" : date, 
+										"date" : String(date), 
 										"body" : commentBody});
 		dataSrv.saveProposal($scope.proposal).then(function(data) {
 			$log.info("Comment Saved");
@@ -18,14 +19,21 @@ function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 	}
 }
 
-function courseForm() {
+function courseForum() {
 	return {
-		restrict : 'E',
+		restrict : "E",
 		templateUrl : "templates/forum.html",
 		controller : "forumCtrl",
+		replace : true,
 		scope : {
-			comments : "=",
-			proposal : "="
+			proposal : "=",
+			comments : "="
 		}
 	}
 }
+
+app.filter("toDate", function() {
+	return function(dateString){ 
+		return new Date(dateString);
+	}
+});
