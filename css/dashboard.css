@@ -84,10 +84,6 @@ body {
     width: 21%;
 }
 
-.largeFormField {
-    width: 100%;
-}
-
 .courseTitle {
     margin-left: 0;
     margin-right: 0;
@@ -121,8 +117,20 @@ body {
 }
 
 .courseInfoDiv {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 25px;
+    width: 58%;
+    float: left;
+}
+
+.courseForum {
+    float: right;
+    width: 35%;
+    margin-right: 25px;
+    margin-top: 40px;
+}
+
+.comment {
+    padding: 7px;
 }
 
 .courseInfo {
@@ -139,7 +147,7 @@ body {
     text-align: center;
     font-size: 12px;
     line-height: 1.5;
-    border-radius: 3px; 
+    border-radius: 3px;
     border-color: #ccc;
     border-width: 1px;
     border-style: solid;

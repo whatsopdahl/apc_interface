@@ -28628,7 +28628,6 @@ proposals = [
 	"est_enrollment": 25,
 	"instructors": ["Jon Opdahl"],
 	"comments":  [],
-	"terms" : []
   },
   {
 	"terms": ["Fall", "Spring", "J-term"],
@@ -28643,7 +28642,18 @@ proposals = [
 	"fees": null,
 	"est_enrollment": 30,
 	"instructors": ["Jon Opdahl", "Kyle McNeese"],
-	"comments":  []
+	"comments":  [
+		{
+			"user": "Jon Opdahl",
+			"date": "Mon Nov 14 2016 21:26:22 GMT-0600 (CST)",
+			"body": "This is the first comment ever."
+		},
+		{
+			"user": "Kyle McNeese",
+			"date": "Mon Nov 14 2016 21:29:26 GMT-0600 (CST)",
+			"body": "you suck."
+		}
+	]
   },
   {
 	"terms": ["Fall", "Spring", "J-term"],
