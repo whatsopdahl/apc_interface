@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -151,7 +152,16 @@ public class ApcSrcHandler implements HttpHandler{
                         //response = loadFile("../../" + request);
                         //responseBytes = response.getBytes();//what is going on with this?
                         responseBytes = new byte[0];
-                    }else {
+                    } else if (request.endsWith(".woff")) {
+                        try{
+                            status = STATUS_OK;
+                            headers.set(HEADER_CONTENT_TYPE, "application/font-woff");
+                            responseBytes = readFileAsByteArray(request);
+                        } catch (IOException ex) {
+                            status = STATUS_BAD_REQUEST;
+                            responseBytes = new byte[0];
+                        }
+                    } else {
                         status = STATUS_BAD_REQUEST;
                         response = "";
                         responseBytes = response.getBytes();
@@ -196,5 +206,10 @@ public class ApcSrcHandler implements HttpHandler{
         byte[] array = baos.toByteArray();
         baos.close();
         return array;
+    }
+    
+    private byte[] readFileAsByteArray(String p) throws IOException {
+        Path path = Paths.get(p);
+        return Files.readAllBytes(path);
     }
 }
