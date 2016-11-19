@@ -4,34 +4,5 @@
 		<div class="alert alert-danger" ng-if="loginfailure">Luther Course Proposal restricts access to Luther accounts. Please enter a valid Luther email and password.</div>
 	  	<sign-in-button></sign-in-button>
 	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="more-user-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-	    	<div class="modal-content">
-	    		<div class="modal-header">
-	    			<button ng-if="!required" type="button" class="close" data-dismiss="modal" aria-label="Close"><a href="#\login"><span aria-hidden="true">&times;</span></a></button>
-	    			<h4 class="modal-title" id="myModalLabel">Department Data</h4>
-	    		</div>
-	    		<div class="modal-body">
-	    			<form id="user-data-form" ng-submit="updateUser()">
-	    				<div class="form-group form-inline" title="Select the departments you are a member of.">
-						    <label>Department</label>
-						    <label style="color: red;">*</label>
-						   	<select class="form-control" required ng-model="selectedDept"
-						   			ng-options="dept as dept.name for dept in depts track by dept.abbrev">
-        					</select>
-        					<div class="btn btn-primary" ng-click="addDept()">Add</div>
-   						</div>
-   						<div class="container-fluid">
-   							<div class="col-xs-4 btn-removable" ng-repeat="dept in memberDepts">{{dept.abbrev}}<div class="pull-right" aria-hidden="true" ng-click="removeDept(dept)">&times;</div>
-   							</div>
-   						</div>
-   						<br>
-   						<button type="submit" class="btn btn-primary">Submit</button>
-	    			</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<edit-depts-modal depts="depts" required="true" user="user" update-depts="updateDepts"></edit-depts-modal>
 </div>

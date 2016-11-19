@@ -226,28 +226,30 @@ public class ApcHandler implements HttpHandler{
                     os.close();
                     break;
                 case METHOD_POST:
-                    System.out.println("posting....");
                     JsonObject data = null;
                     Map<String, String> config = new HashMap<>();
+                    JsonReader reader = null;
                     try {
-                    JsonReaderFactory factory = Json.createReaderFactory(config);
-                    
-                    JsonReader reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
-                    System.out.println("reader built...");
-                    
-                    data = reader.readObject();
-                    System.out.println("DATA: "+data.toString());
-                    reader.close();
+                        JsonReaderFactory factory = Json.createReaderFactory(config);
+
+                        reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
+
+                        data = reader.readObject();
+                        System.out.println("DATA: "+data.toString());
                     } catch (Exception e){
                         System.err.println(e.getClass().toString() +" : "+e.getMessage());
+                    } finally {
+                        if (reader != null) {
+                            reader.close();
+                        }
                     }
                     
                     Document doc = null;
                     if (data != null){
                         doc = Document.parse(data.get("d").toString());
                     } else {
-                      throw new JsonParseException("Could not read Data");       
-                    }                                      
+                        throw new JsonParseException("Could not read Data");       
+                    }                                 
                     JsonObjectBuilder successObj = Json.createObjectBuilder();
                     successObj.add("status", "success");
                     
@@ -261,7 +263,7 @@ public class ApcHandler implements HttpHandler{
                                 response = successObj.build().toString();
                                 status = STATUS_CREATED;
                             } catch (Exception ex){
-                                response = ex.getMessage();
+                                response = ex.getClass().toString() + ": " +ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -284,9 +286,10 @@ public class ApcHandler implements HttpHandler{
                         case "save":
                             try{
                                 System.out.println("Saving Proposal");
-                                Document idDoc = (Document)doc.get("_id");
-                                String id = idDoc.getString("_id");
-                                doc.remove("_id");
+                                JsonObject prop = data.getJsonObject("d");
+                                JsonObject idObj = prop.getJsonObject("_id");
+                                String id = idObj.getString("$oid");
+                                doc = Document.parse(prop.toString());        
                                 db.getCollection(COLLECTION_PROPOSALS).updateOne(eq("_id", new ObjectId(id)), new Document("$set", doc));
                                 status = STATUS_CREATED;
                                 successObj.add("method", "save proposal");
@@ -297,7 +300,6 @@ public class ApcHandler implements HttpHandler{
                             }
                             break;        
                         case "delete":
-                            //doc could be entire document, or just part of one I think
                             try{
                                 db.getCollection(COLLECTION_PROPOSALS).deleteOne(doc);
                                 status = STATUS_CREATED;

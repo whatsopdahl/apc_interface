@@ -25,7 +25,7 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 		auth2 = gapi.auth2.init( auth_config );
 	});
 
-	$rootScope.$on('$locationChangeStart', function(event, next){
+	$rootScope.$on('$locationChangeStart', function(event, next, prev){
 		//if login required (i.e. is not login page) and you're logged out, capture the current path
         if (!$rootScope.user) {
         	nextPath = next.split('#')[1];
@@ -34,12 +34,12 @@ app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$l
 			}
         	$location.url('/login');
         }
-
+        $rootScope.prev = prev;
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv"];
-function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv"];
+function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv, userSrv) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
     $scope.test = "hello";
@@ -67,6 +67,12 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
         });
     }
 
+    $scope.closeModal = function() {
+        var errModal = angular.element("#error-modal");
+        errModal.modal('hide');
+    }
+
+
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
 		$scope.page = $location.path();
@@ -80,8 +86,9 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
        	}
 	});
 
-    $rootScope.$on('proposal-added', function(event, args) {
-        initData();
-        
+    $rootScope.$on('proposal-added', function(event, courseName) {
+        initData().then(function(){
+            userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+        });
     });
 };

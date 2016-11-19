@@ -1,3 +1,9 @@
+<div class="page-header">
+    <h4>
+        <a ng-if="course.name" href="#/{{course.name}}/edit"><div class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+        <a ng-if="!course.name" href="#/{{course.newCourse.name}}/edit"><div class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+    </h4>
+</div>
 <div class="courseInfoDiv">
     <div class="panel-group courseInfo smallFormField">
         <div class="panel-heading"><strong>Course Title</strong></div>

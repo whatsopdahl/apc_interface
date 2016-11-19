@@ -36,6 +36,7 @@
     <script type="text/javascript" src = "js/course.js"></script>
     <script type="text/javascript" src = "js/forum.js"></script>
     <script type="text/javascript" src = "js/proposal.js"></script>
+    <script type="text/javascript" src = "js/user.js"></script>
 </head>
 
 <body ng-app="CourseProposalApp" ng-controller="mainCtrl">
@@ -44,6 +45,21 @@
 	<navbar></navbar>
 	<!-- Using ng-route, our application will load whatever we need depending on our routing definitions in app.config -->
     <div style="margin-top:60px;" ng-view></div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="errModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Error <button ng-if="!required" type="button" class="close" data-dismiss="modal" aria-label="Close"><a href="#\login"><span aria-hidden="true">&times;</span></a></button></h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{errMsg}}</p>
+                    <div class="btn btn-default" ng-click="closeModal()">Ok</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

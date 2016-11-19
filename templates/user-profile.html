@@ -1,0 +1,68 @@
+<div class="container-fluid">
+	<div class="page-header" style="margin-top: 0px;">
+			<h2>{{user.name}} 
+				<div title="Edit User" class="btn btn-success pull-right" ng-click="openEditModal('depts')"><span class="glyphicon glyphicon-pencil"></span> Edit Department</div>
+				<div title="Change Permissions" class="btn btn-danger pull-right" ng-click="openEditModal('permissions')"><span class="glyphicon glyphicon-education"></span> Request Permissions</div>
+			</h2>
+	</div>
+	<user-edit-form ng-show="editing"></user-edit-form>
+	<div ng-hide="editing">
+		<ul style="list-style:none;">
+			<li>
+				<blockquote>
+					<div class="quote-header">
+						<h4>Email</h4>
+					</div>
+					<div class="quote-body">
+						<div class="well well-sm">
+							{{user.email}}
+						</div>
+					</div>
+				</blockquote>
+			</li>
+			<li>
+				<blockquote>
+					<div class="quote-header">
+						<h4>Departments </h4><span class="badge">{{user.dept.length}}</span>
+					</div>
+					<div class="quote-body">
+						<div class="well well-sm" ng-repeat="d in user.dept" style="margin-right: 15px;">
+							{{d}}
+						</div>
+					</div>
+				</blockquote>
+			</li>
+			<li>
+				<blockquote>
+					<div class="quote-header">
+						<h4>Division</h4><span class="badge">{{user.division.length}}</span>
+					</div>
+					<div class="quote-body">
+						<div class="well well-sm" ng-repeat="div in user.division" style="margin-right: 15px;">
+							{{div}}
+						</div>
+					</div>
+				</blockquote>
+			</li>
+			<li>
+				<blockquote>
+					<div class="quote-header">
+						<h4>Chairs Held</h4>
+						<span ng-if="user.chairs" class="badge">{{user.chairs.length}}</span>
+						<span ng-if="!user.chairs" class="badge">0</span>
+					</div>
+					<div class="quote-body">
+						<div ng-show="user.chairs && user.chairs.length > 0" class="well well-sm" ng-repeat="chair in user.chairs">
+							{{chair}}
+						</div>
+						<div ng-hide="user.chairs && user.chairs.length > 0" class="well well-sm">
+							Chair of a committee, you are not. 
+						</div>
+					</div>
+				</blockquote>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- edit depts modal -->
+<edit-depts-modal user="user" depts="depts" required="false" update-depts="updateDepts"></edit-depts-modal>

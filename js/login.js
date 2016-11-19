@@ -14,8 +14,8 @@ app.constant('AUTH_EVENTS', {
 });
 
 // "depts" needs to get added back in
-app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "depts", "AUTH_EVENTS",
-	function($scope, $rootScope, $log, authSrv, dataSrv, depts, AUTH_EVENTS) {
+app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "userSrv", "depts", "AUTH_EVENTS",
+	function($scope, $rootScope, $log, authSrv, dataSrv, userSrv, depts, AUTH_EVENTS) {
 		$scope.loginfailure = false;
 
 		$scope.login = authSrv.login;
@@ -29,46 +29,13 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv"
 	    $rootScope.$on(AUTH_EVENTS.loginSuccess, function(){
 	    	$scope.loginfailure = false;
 	    });
-
-	    //code for extra department information
+        
         $scope.depts = depts;
-        $scope.required = true;
-        $scope.selectedDept;
         $scope.memberDepts = [];
-        $scope.addDept = function() {
-	   		if ($scope.memberDepts.indexOf($scope.selectedDept) == -1){
-	   			$scope.memberDepts.push($scope.selectedDept);
-	   		}
-        }
+        $scope.user = $rootScope.user;
 
-        $scope.removeDept = function(dept) {
-	   		var index = $scope.memberDepts.indexOf(dept);
-	   		$scope.memberDepts.splice(index,1);
-        }
-        
-        $scope.updateUser = updateUser;
-        
-        function updateUser() {
-        	var dialog = angular.element("#more-user-data");
-			dialog.modal('hide');
-	   		var user = $rootScope.user;
-	   		$log.debug("updating user", $rootScope.user);
-	   		user.dept = [];
-	   		user.division = [];
-	   		user.recentlyViewed = [];
-	   		angular.forEach($scope.memberDepts, function(dept){
-	   			if (user.division.indexOf(dept.division) == -1) {
-	   				user.division.push(dept.division);
-	   			}
-	   			user.dept.push(dept.abbrev);
-	   		});
-	   		dataSrv.editUser(user).then(function(resp){
-	   			authSrv.userInfoFound(user);
-	   		}, function(err) {
-	   			$log.error("Unable to update user. Logging out...");
-	   			authSrv.logout();
-	   		});
-	   	}
+
+        $scope.updateDepts = userSrv.updateDepts;
         
 }]);
 

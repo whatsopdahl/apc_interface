@@ -11,7 +11,7 @@ function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 		var date = String(new Date());
 		$scope.course.comments.push( {"user" : user,
 									  "date" : date,
-									  "body" : $scope.newComment});
+									  "body" : $scope.newComment} );
 		dataSrv.saveProposal($scope.course).then(function(data) {
 			$log.info("Comment Saved");
 		});
