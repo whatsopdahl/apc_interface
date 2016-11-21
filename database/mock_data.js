@@ -28571,7 +28571,7 @@ courses = [
     "capacity": 25,
     "name": "CS-150",
     "title": "Introduction to Being a Nerd",
-    "dept": "CS",
+    "dept": "Math",
     "credit_hrs": 3,
     "gen_ed": [
       "QUANT"

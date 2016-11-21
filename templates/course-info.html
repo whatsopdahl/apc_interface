@@ -23,15 +23,15 @@
     <div class="page-header" style="margin-top: 15px;">
         <div>
             <div class="divDept">
-                <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division && course.oldCourse.dept != course.newCourse.dept}">
+                <div class="panel panel-default courseInfo" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division || course.oldCourse.dept != course.newCourse.dept}">
                     <div class="panel-heading">{{course.newCourse.division}} > {{course.newCourse.dept}}</div>
                 </div>
-                <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.division != course.newCourse.division && course.oldCourse.dept != course.newCourse.dept">
+                <div class="panel panel-danger courseInfo" ng-if="course.oldCourse && course.oldCourse.division != course.newCourse.division || course.oldCourse.dept != course.newCourse.dept">
                     <div class="panel-heading">{{course.oldCourse.division}} > {{course.oldCourse.dept}}</div>
                 </div>
             </div>
             <div>
-                <div class="panel panel-default courseInfo inlineBlock" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.name != course.newCourse.name}">
+                <div class="panel panel-info courseInfo inlineBlock">
                     <div class="panel-heading"><strong>{{course.newCourse.name}}</strong></div>
                 </div>
                 <div class="panel panel-danger courseInfo inlineBlock" ng-if="course.oldCourse && course.oldCourse.name != course.newCourse.name">
@@ -40,8 +40,8 @@
             </div>
         </div>
         <div>
-            <div class="panel panel-default courseInfo inlineBlock" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.title != course.newCourse.title}">
-                <div class="panel-heading">{{course.newCourse.title}}</div>
+            <div class="panel panel-info courseInfo inlineBlock">
+                <div class="panel-heading"><strong>{{course.newCourse.title}}</strong></div>
             </div>
             <div class="panel panel-danger courseInfo inlineBlock" ng-if="course.oldCourse && course.oldCourse.title != course.newCourse.title">
                 <div class="panel-heading">{{course.oldCourse.title}}</div>
