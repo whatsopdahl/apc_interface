@@ -1,129 +1,139 @@
+<div class="page-header" style="margin-right: 25px; margin-left: 25px;">
+    <div class="courseInfoProgressBar">
+        <div class="panel-heading" style="margin-bottom: 0;"><strong>Approval Status</strong></div>
+        <div class="progress" style="width: 65%; display: inline-block;">
+            <div class="progress-bar" ng-class="getClass(course.stage, 1)" class="progress-bar-danger" role="progressbar" style="width:25%">
+                Division
+            </div>
+            <div class="progress-bar" ng-class="getClass(course.stage, 2)" role="progressbar" style="width:25%">
+                APC
+            </div>
+            <div class="progress-bar" ng-class="getClass(course.stage, 3)" role="progressbar" style="width:25%">
+                Full Faculty
+            </div>
+            <div class="progress-bar" ng-class="getClass(course.stage, 4)" role="progressbar" style="width:25%">
+                Registrar
+            </div>
+        </div>
+        <button class="approveReject">Approve</button>
+        <button class="approveReject">Reject</button>
+    </div>
+</div>
 <div class="courseInfoDiv">
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Course Title</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.title != course.newCourse.title}">
-            <div class="panel-heading">{{course.newCourse.title}}</div>
+    <div class="page-header" style="margin-top: 15px;">
+        <div>
+            <div class="divDept">
+                <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division && course.oldCourse.dept != course.newCourse.dept}">
+                    <div class="panel-heading">{{course.newCourse.division}} > {{course.newCourse.dept}}</div>
+                </div>
+                <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.division != course.newCourse.division && course.oldCourse.dept != course.newCourse.dept">
+                    <div class="panel-heading">{{course.oldCourse.division}} > {{course.oldCourse.dept}}</div>
+                </div>
+            </div>
+            <div>
+                <div class="panel panel-default courseInfo inlineBlock" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.name != course.newCourse.name}">
+                    <div class="panel-heading"><strong>{{course.newCourse.name}}</strong></div>
+                </div>
+                <div class="panel panel-danger courseInfo inlineBlock" ng-if="course.oldCourse && course.oldCourse.name != course.newCourse.name">
+                    <div class="panel-heading"><strong>{{course.oldCourse.name}}</strong></div>
+                </div>
+            </div>
         </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.title != course.newCourse.title">
-            <div class="panel-heading">{{course.oldCourse.title}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Course Name</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.name != course.newCourse.name}">
-            <div class="panel-heading">{{course.newCourse.name}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.name != course.newCourse.name">
-            <div class="panel-heading">{{course.oldCourse.name}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Credit Hours</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.credit_hrs != course.newCourse.credit_hrs}">
-            <div class="panel-heading">{{course.newCourse.credit_hrs}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.credit_hrs != course.newCourse.credit_hrs">
-            <div class="panel-heading">{{course.oldCourse.credit_hrs}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Capacity</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.capacity != course.newCourse.capacity}">
-            <div class="panel-heading">{{course.newCourse.capacity}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.capacity != course.newCourse.capacity">
-            <div class="panel-heading">{{course.oldCourse.capacity}}</div>
+        <div>
+            <div class="panel panel-default courseInfo inlineBlock" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.title != course.newCourse.title}">
+                <div class="panel-heading">{{course.newCourse.title}}</div>
+            </div>
+            <div class="panel panel-danger courseInfo inlineBlock" ng-if="course.oldCourse && course.oldCourse.title != course.newCourse.title">
+                <div class="panel-heading">{{course.oldCourse.title}}</div>
+            </div>
         </div>
     </div>
-    <div class="panel-group courseInfo">
+    <div>
         <div class="panel-heading"><strong>Description</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.desc != course.newCourse.desc}">
+        <div class="panel panel-default courseInfo" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.desc != course.newCourse.desc}">
             <div class="panel-heading">{{course.newCourse.desc}}</div>
         </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.desc != course.newCourse.desc">
+        <div class="panel panel-danger courseInfo" ng-if="course.oldCourse && course.oldCourse.desc != course.newCourse.desc">
             <div class="panel-heading">{{course.oldCourse.desc}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Gen Eds</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)}">
-            <div class="panel-heading">{{displayListData(course.newCourse.gen_ed)}}</div>
+    <div>
+        <div class="inlineBlock smallFormField">
+            <div class="panel-heading"><strong>Credit Hours</strong></div>
+            <div class="panel panel-default courseInfo sideBySide" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.credit_hrs != course.newCourse.credit_hrs}">
+                <div class="panel-heading">{{course.newCourse.credit_hrs}}</div>
+            </div>
+            <div class="panel panel-danger courseInfo sideBySide" ng-if="course.oldCourse && course.oldCourse.credit_hrs != course.newCourse.credit_hrs">
+                <div class="panel-heading">{{course.oldCourse.credit_hrs}}</div>
+            </div>
         </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)">
-            <div class="panel-heading">{{displayListData(course.oldCourse.gen_ed)}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Department</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.dept != course.newCourse.dept}">
-            <div class="panel-heading">{{course.newCourse.dept}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.dept != course.newCourse.dept">
-            <div class="panel-heading">{{course.oldCourse.dept}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Division</strong></div>
-        <div class="panel panel-default" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division}">
-            <div class="panel-heading">{{course.newCourse.division}}</div>
-        </div>
-        <div class="panel panel-danger" ng-if="course.oldCourse && course.oldCourse.division != course.newCourse.division">
-            <div class="panel-heading">{{course.oldCourse.division}}</div>
+        <div class="inlineBlock smallFormField">
+            <div class="panel-heading"><strong>Gen Eds</strong></div>
+            <div class="panel panel-default courseInfo sideBySide" ng-class="{'panel-success' : course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)}">
+                <div class="panel-heading">{{displayListData(course.newCourse.gen_ed)}}</div>
+            </div>
+            <div class="panel panel-danger courseInfo sideBySide" ng-if="course.oldCourse && displayListData(course.newCourse.gen_ed) != displayListData(course.oldCourse.gen_ed)">
+                <div class="panel-heading">{{displayListData(course.oldCourse.gen_ed)}}</div>
+            </div>
         </div>
     </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Terms</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{displayListData(course.terms)}}</div>
+    <div>
+        <div class="inlineBlock smallFormField">
+            <div class="panel-heading"><strong>Capacity</strong></div>
+            <div class="panel panel-default courseInfo sideBySide" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.capacity != course.newCourse.capacity}">
+                <div class="panel-heading">{{course.newCourse.capacity}}</div>
+            </div>
+            <div class="panel panel-danger courseInfo sideBySide" ng-if="course.oldCourse && course.oldCourse.capacity != course.newCourse.capacity">
+                <div class="panel-heading">{{course.oldCourse.capacity}}</div>
+            </div>
+        </div>
+        <div class="inlineBlock smallFormField">
+            <div class="panel-heading"><strong>Estimated Enrollment</strong></div>
+            <div class="panel panel-default courseInfo">
+                <div class="panel-heading">{{course.est_enrollment}}</div>
+            </div>
         </div>
     </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Owner</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{course.owner}}</div>
+    <div>
+        <div class="panel-heading"><strong>Rationale</strong></div>
+        <div class="panel panel-default courseInfo">
+            <div class="panel-heading">{{course.rationale}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Current Stage</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{stageName(course.stage)}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Instructors</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{displayListData(course.instructors)}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo smallFormField">
-        <div class="panel-heading"><strong>Estimated Enrollment</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{course.est_enrollment}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo" ng-if="course.fees">
-        <div class="panel-heading "><strong>Fees</strong></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">{{course.fees}}</div>
-        </div>
-    </div>
-    <div class="panel-group courseInfo">
+    <div class="courseInfo">
         <div class="panel-heading"><strong>Staffing Implications</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.staffing}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo">
-        <div class="panel-heading"><strong>Rationale</strong></div>
+    <div class="courseInfo">
+        <div class="panel-heading"><strong>Instructors</strong></div>
         <div class="panel panel-default">
-            <div class="panel-heading">{{course.rationale}}</div>
+            <div class="panel-heading">{{displayListData(course.instructors)}}</div>
         </div>
     </div>
-    <div class="panel-group courseInfo">
+    <div class="courseInfo">
         <div class="panel-heading"><strong>Impact</strong></div>
         <div class="panel panel-default">
             <div class="panel-heading">{{course.impact}}</div>
         </div>
     </div>
+    <div class="courseInfo" ng-if="course.fees">
+        <div class="panel-heading "><strong>Fees</strong></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{course.fees}}</div>
+        </div>
+    </div>
+
+    <div class="courseInfo">
+        <div class="panel-heading"><strong>Terms</strong></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{displayListData(course.terms)}}</div>
+        </div>
+    </div>
+
 </div>
-<course-forum class="courseForum"></course-forum>
+<div class="courseForum">
+    <div class="panel-heading" style="margin-bottom: 10px;"><strong>Owner: {{course.owner}}</strong></div>
+    <course-forum></course-forum>
+</div>

@@ -81,7 +81,7 @@ body {
 }
 
 .smallFormField {
-    width: 21%;
+    width: 49%;
 }
 
 .courseTitle {
@@ -126,7 +126,7 @@ body {
     float: right;
     width: 35%;
     margin-right: 25px;
-    margin-top: 40px;
+    margin-top: 15px;
 }
 
 .comment {
@@ -134,10 +134,22 @@ body {
 }
 
 .courseInfo {
-    margin-right: 2%;
-    margin-left: 2%;
+    margin-right: 10px;
+    margin-bottom: 10px;
     display: block;
-    float: left;
+}
+
+.sideBySide {
+    width: 45%;
+    display: inline-block;
+}
+
+.divDept {
+    float: right;
+}
+
+.inlineBlock {
+    display: inline-block;
 }
 
 .btn-removable {
@@ -192,4 +204,16 @@ a > h4 {
 
 a > h4:hover {
     text-decoration: underline;
+}
+
+.courseInfoProgressBar {
+    padding: 0;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.approveReject {
+    float: right;
+    display: inline-block;
+    margin-left: 5px;
 }

@@ -63,6 +63,18 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, dataSrv) {
 		listStr = listStr.substring(0, listStr.length-2);
 		return listStr;
 	}
+
+	$scope.getClass = function(courseStage, progressBarStage) {
+		if (courseStage == progressBarStage) {
+			return 'progress-bar-warning';
+		}
+		else if (courseStage > progressBarStage) {
+			return 'progress-bar-success';
+		}
+		else {
+			return 'progress-bar-danger';
+		}
+	};
 }
 
 app.directive("courseList", function() {

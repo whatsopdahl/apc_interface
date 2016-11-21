@@ -28572,7 +28572,7 @@ courses = [
     "name": "CS-150",
     "title": "Introduction to Being a Nerd",
     "dept": "CS",
-    "credit_hrs": 4,
+    "credit_hrs": 3,
     "gen_ed": [
       "QUANT"
     ],
@@ -28588,13 +28588,13 @@ courses = [
     "credit_hrs": 2,
     "desc": "This is a test boi"
   },
-  { 
+  {
   	"division" : "Science",
-  	"capacity" : 25, 
-  	"name" : "CS-237", 
+  	"capacity" : 25,
+  	"name" : "CS-237",
   	"title" : "Testing",
   	"pre_req" : "",
-  	"dept" : "CS", 
+  	"dept" : "CS",
   	"credit_hrs" : 4,
   	"desc" : "Learn best-practices and common frameworks of testing in Java, Python, and C++."
   }
@@ -28672,16 +28672,16 @@ proposals = [
   },
   {
   	"terms" : [ "FALL", "SPRING" ],
-  	"owner" : "Jonathan Opdahl", 
-  	"stage" : 0, 
-  	"staffing" : "", 
-  	"rationale" : "", 
-  	"impact" : "", 
-  	"date" : "2016-11-15T16:46:33.616Z", 
-  	"oldCourse" : null, 
+  	"owner" : "Jonathan Opdahl",
+  	"stage" : 0,
+  	"staffing" : "",
+  	"rationale" : "",
+  	"impact" : "",
+  	"date" : "2016-11-15T16:46:33.616Z",
+  	"oldCourse" : null,
   	"newCourse" : testing,
-  	"fees" : "", 
-  	"est_enrollment" : 15, 
+  	"fees" : "",
+  	"est_enrollment" : 15,
   	"instructors" : [ "Jon Opdahl", "Kyle McNeese", "Aiden Schmitt" ],
   	"comments" : [ ]
   	}
