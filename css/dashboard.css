@@ -215,5 +215,46 @@ a > h4:hover {
 .approveReject {
     float: right;
     display: inline-block;
-    margin-left: 5px;
+    margin: 0 0 0 5px;
+}
+
+blockquote {
+    padding-top: 0px;
+}
+
+blockquote > .quote-header {
+    margin-bottom: 10px;
+}
+
+blockquote > .quote-header > h4 {
+    margin-top : 0px;
+    margin-right : 20px;
+}
+
+blockquote > .quote-header > * {
+    display: inline-block;
+}
+
+blockquote > .quote-body {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+blockquote > .quote-body > * {
+    display: inline;
+}
+
+.select-btn-combo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.select-btn-combo > select {
+    width:80%;
+    float:left;
+}
+
+.select-btn-combo > .btn {
+    width:20%;
+    float:right;
 }

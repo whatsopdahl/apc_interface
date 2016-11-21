@@ -128,8 +128,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		return $http({ method: "POST",
 				url : DATA_URL,
 				data : data
-		}).then(function success() {
+		}).then(function success(response) {
 			$log.info("Proposal successfully created");
+			return response.data;
 		}, function(response){
 			handleError(response);
 		});

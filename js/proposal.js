@@ -2,48 +2,69 @@ var app = angular.module("CourseProposalApp");
 
 app.controller("proposalCtrl", proposalCtrl);
 
-proposalCtrl.$inject=["$rootScope","$scope", "$log", "$location", "params", "dataSrv", "EVENTS"];
-function proposalCtrl($rootScope, $scope, $log, $location, params, dataSrv, EVENTS) {
+proposalCtrl.$inject=["$rootScope","$scope", "$log", "$location", "$routeParams", "$filter", "$window",  "params", "dataSrv", "userSrv", "EVENTS"];
+function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter, $window, params, dataSrv, userSrv, EVENTS) {
 	$scope.user = $rootScope.user;
 	
 	$scope.selectedDept = null;
+	$scope.selectedInstructor = null;
 	$scope.courseNum = null;
 
 	$scope.depts = params.depts;
 	$scope.faculty = params.faculty;
+	$scope.prevPage = params.prevPage;
 
-	$scope.chosenGenEd = "";
+	$scope.chosenGenEd = null;
 	$scope.gen_eds = ["BL", "SKL", "WEL", "REL", "NWL", "NWNL", "HB", "HBSSM", "HE", "HEPT", "INTCL", "HIST", "QUANT"];
-	$scope.selectedGenEds = [];
 
 	initProposal();
 
 	function initProposal() {
+		var courseName = $routeParams.course;
+
 		$scope.proposal =   {
-							"terms": [],
-							"owner": "",
-							"stage": 0,
-							"staffing": "",
-							"rationale": "",
-							"impact": "",
-							"date": new Date(),
-							"oldCourse": null,
-							"newCourse": { 
-							    "division": "",
-							    "capacity": 0,
-							    "name": "",
-							    "title": "",
-							    "pre_req": "",
-							    "dept": "",
-							    "credit_hrs": 4,
-							    "desc": ""
-							},
-							"fees": "",
-							"est_enrollment": 0,
-							"instructors": [],
-							"comments":  []
-						  };
-		//logic for updating goes here
+								"terms": [],
+								"owner": "",
+								"stage": 0,
+								"staffing": "",
+								"rationale": "",
+								"impact": "",
+								"date": new Date(),
+								"oldCourse": null,
+								"fees": "",
+								"est_enrollment": 0,
+								"instructors": [],
+								"comments":  []
+							  };
+
+		var newCourse = { 
+								    "division": "",
+								    "capacity": 0,
+								    "name": "",
+								    "title": "",
+								    "pre_req": "",
+								    "dept": "",
+								    "credit_hrs": 4,
+								    "desc": "",
+								    "gen_ed" : []
+						};
+
+		if (!courseName) {
+			$scope.proposal["newCourse"] = newCourse;
+		} else {
+			//load data
+			var course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+			
+			// if $scope.proposal has a name key, it is a course and we need to build our proposal obj from scratch
+			if (course.name) {
+				$scope.proposal["newCourse"] = course;
+			} else {
+				//if it is already a proposal, set scope.proposal
+				$scope.proposal = course;
+			}
+			$scope.selectedDept = $filter("filter")($scope.depts, { abbrev : $scope.proposal.newCourse.dept})[0];
+			$scope.courseNum = $scope.proposal.newCourse.name.split("-")[1];
+		}
 	}
 
 	$scope.saveProposal = function() {
@@ -51,10 +72,19 @@ function proposalCtrl($rootScope, $scope, $log, $location, params, dataSrv, EVEN
 		$scope.proposal.newCourse.dept = $scope.selectedDept.abbrev;
 		$scope.proposal.newCourse.division = $scope.selectedDept.division;
 		$scope.proposal.owner = $scope.user.name;
-		$scope.proposal.instructors = $scope.proposal.instructors.split(",");
+
+		if ($scope.proposal.instructors.length == 0) {
+			$scope.$parent.errMsg = "Oh no! No one is teaching this course! How will the students learn!? Please "
+							+"select at least one instructor for the course. You can change it later if "
+							+"you need to!"
+			var errModal = angular.element("#error-modal");
+			errModal.modal('show');
+			return;
+		}
 
 		dataSrv.createProposal($scope.proposal).then(function(data) {
 			$log.info("Proposal saved.");
+			$log.debug("data", data);
 			$rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, $scope.proposal.newCourse.name);
 			$location.path("#/"+$scope.proposal.newCourse.name).replace();
 		}, function(err) {
@@ -63,13 +93,34 @@ function proposalCtrl($rootScope, $scope, $log, $location, params, dataSrv, EVEN
 	}
 
 	$scope.addGenEd = function() {
-		if ($scope.selectedGenEds.indexOf($scope.chosenGenEd) == -1){
-			$scope.selectedGenEds.push($scope.chosenGenEd);
+		if ($scope.chosenGenEd == null){
+			$scope.chooseGenEd = true;
+		}
+		if (!$scope.proposal.newCourse.gen_ed) {
+			$scope.proposal.newCourse.gen_ed = [];
+		}
+		if ($scope.proposal.newCourse.gen_ed.indexOf($scope.chosenGenEd) == -1){
+			$scope.proposal.newCourse.gen_ed.push($scope.chosenGenEd);
 		}
 	}
 
 	$scope.removeGenEd = function(genEd) {
-		$scope.selectedGenEds.splice($scope.selectedGenEds.indexOf(genEd),1);
+		$scope.proposal.newCourse.gen_eds.splice($scope.proposal.newCourse.gen_eds.indexOf(genEd),1);
+	}
+
+	$scope.addInstructor = function() {
+		$log.debug($scope.selectedInstructor);
+		if ($scope.proposal.instructors.indexOf($scope.selectedInstructor) == -1){
+			$scope.proposal.instructors.push($scope.selectedInstructor);
+		}
+	}
+
+	$scope.removeInstructor = function(instructor){
+		$scope.proposal.instructors.splice($scope.proposal.instructors.indexOf(instructor),1);
+	}
+
+	$scope.returnToPrev = function() {
+		$window.history.back();
 	}
 }
 

@@ -27,8 +27,8 @@
 	          	<span class="glyphicon glyphicon-user"></span>User<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	          	<li><p class="navbar-text">Welcome {{user.name}}!</p></li>
-	            <li><a href="#/">View Profile</a></li>
-	            <li><a href="#/">Request Permissions</a></li>
+	            <li><a href="#/user/{{user.name}}">View Profile</a></li>
+	            <li><a href="#/" class="disabled">Request Permissions</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#/" ng-click="logout()">Logout</a></li>
 	          </ul>

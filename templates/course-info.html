@@ -15,8 +15,12 @@
                 Registrar
             </div>
         </div>
-        <button class="approveReject">Approve</button>
-        <button class="approveReject">Reject</button>
+        <h4 class="approveReject">
+            <a ng-if="course.name" href="#/{{course.name}}/edit"><div class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+            <a ng-if="!course.name" href="#/{{course.newCourse.name}}/edit"><div class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+        </h4>
+        <button class="btn btn-danger approveReject">Reject</button>
+        <button class="btn btn-success approveReject">Approve</button>
     </div>
 </div>
 <div class="courseInfoDiv">
