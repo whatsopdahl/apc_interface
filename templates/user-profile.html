@@ -1,12 +1,11 @@
 <div class="container-fluid">
 	<div class="page-header" style="margin-top: 0px;">
 			<h2>{{user.name}} 
-				<div title="Edit User" class="btn btn-success pull-right" ng-click="openEditModal('depts')"><span class="glyphicon glyphicon-pencil"></span> Edit Department</div>
-				<div title="Change Permissions" class="btn btn-danger pull-right" ng-click="openEditModal('permissions')"><span class="glyphicon glyphicon-education"></span> Request Permissions</div>
+				<div title="Edit User" class="btn btn-primary pull-right" ng-click="openEditModal('depts')"><span class="glyphicon glyphicon-pencil"></span> Edit Department</div>
+				<div ng-if="user.chairs.indexOf('APC') != -1" title="Change Permissions" class="btn btn-primary pull-right" ng-click="openEditModal('permissions')" style="margin-right:10px;"><span class="glyphicon glyphicon-education"></span> Edit Permissions</div>
 			</h2>
 	</div>
-	<user-edit-form ng-show="editing"></user-edit-form>
-	<div ng-hide="editing">
+	<div class="col-xs-8">
 		<ul style="list-style:none;">
 			<li>
 				<blockquote>
@@ -66,3 +65,4 @@
 </div>
 <!-- edit depts modal -->
 <edit-depts-modal user="user" depts="depts" required="false" update-depts="updateDepts"></edit-depts-modal>
+<edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != 1" user="user" depts="depts"></edit-permissions-modal>

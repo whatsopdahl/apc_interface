@@ -95,7 +95,7 @@ users = [
 	  	  email: "bohachba@luther.edu",
 	  	  division: ["Humanities"],
 	  	  dept: ["ED"],
-	  	  chair: ["ED"],
+	  	  chairs: ["ED"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name: "Martin Klammer",
@@ -116,7 +116,7 @@ users = [
 	  	  email: "solberbr@luther.edu",
 	  	  division: ["Science"],
 	  	  dept: ["HLTH", "ATHTR"],
-	  	  chair: ["HLTH", "ATHTR"],
+	  	  chairs: ["HLTH", "ATHTR"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name: "Brian Caton",
@@ -158,7 +158,7 @@ users = [
 	  	  email : "petegr01@luther.edu",
 	  	  division : ["Fine Arts"],
 	  	  dept: ["MUS"],
-	  	  chair: ["MUS"],
+	  	  chairs: ["MUS"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name : "La Donna McGohan",
@@ -172,14 +172,14 @@ users = [
 	      email : "sullivre01@luther.edu",
 	  	  division: ["Humanities"],
 	  	  dept: ["ENG"],
-	  	  chair: ["PAID"],
+	  	  chairs: ["PAID"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name : "Storm Bailey",
 	   	  email : "baileyst@luther.edu",
 	   	  division : ["Humanities"],
 	   	  dept : ["PHIL"],
-	   	  chair: ["PHIL"],
+	   	  chairs: ["PHIL"],
 	   		recentlyViewed : []
 	   	},
 	   	{ name : "James Perez",
@@ -200,7 +200,7 @@ users = [
 	  	  email : "njusdavi@luther.edu",
 	  	  division : ["Science"],
 	  	  dept: ["PSYC"],
-	  	  chair : ["PSYC"],
+	  	  chairs : ["PSYC"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name : "Sean Burke",
@@ -221,14 +221,14 @@ users = [
 	  	  email : "mooreben@luther.edu",
 	  	  division : ["Fine Arts"],
 	  	  dept : ["THE", "ARTH"],
-	  	  chair : ["THE", "ARTH"],
+	  	  chairs : ["THE", "ARTH"],
 	  	  recentlyViewed : []
 	  	},
 	  	{ name : "Char Kunkel",
 	  	  email : "kunkelch@luther.edu",
 	  	  division : ["Humanities"],
 	  	  dept: ["WGST"],
-	  	  chair : ["WGST"],
+	  	  chairs : ["WGST"],
 	  		recentlyViewed : []
 	  	},
 	  	{ name : "Kent Lee",
@@ -14059,7 +14059,7 @@ courses = [
     "title": "Internship",
     "dept": "WGST",
     "credit_hrs": 1,
-    "desc": "Required for the WGST major. Each WGST major will complete a 2-credit-hour internship. Students must have had at least two WGST courses before completing an internship. Internship opportunities will be approved for credit by the WGST Board. Internships will be administered through the Career Center, with each intern having a faculty advisor chosen from the WGST Board or WGST faculty. Summer/Fall internship deadline is April 1. January/Spring internship deadline is November 1. Interships will be graded A-F. Contact WGST program chair for information."
+    "desc": "Required for the WGST major. Each WGST major will complete a 2-credit-hour internship. Students must have had at least two WGST courses before completing an internship. Internship opportunities will be approved for credit by the WGST Board. Internships will be administered through the Career Center, with each intern having a faculty advisor chosen from the WGST Board or WGST faculty. Summer/Fall internship deadline is April 1. January/Spring internship deadline is November 1. Interships will be graded A-F. Contact WGST program chairs for information."
   },
   {
     "division": "Humanities",

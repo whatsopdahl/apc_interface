@@ -62,9 +62,10 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     initData();
 
     function initData() { 
-        return $q.all([dataSrv.getProposals(), dataSrv.getCourses()]).then(function(data){
+        return $q.all([dataSrv.getProposals(), dataSrv.getCourses(), dataSrv.getDepts()]).then(function(data){
             $scope.allProposals.elements = data[0];
             $scope.courses = data[1];
+            $scope.depts = data[2];
             $scope.retrievingData = false;
         });
     }

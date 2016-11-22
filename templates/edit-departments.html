@@ -11,7 +11,7 @@
     				<div class="form-group form-inline" title="Select the departments you are a member of.">
 					    <label>Department<span style="color: red;">*</label>
 					   	<select class="form-control" ng-required="required" ng-model="selectedDept"
-					   			ng-options="dept as dept.name for dept in depts track by dept.abbrev">
+					   			ng-options="dept as dept.name for dept in depts | orderBy : 'name' track by dept.abbrev">
     					</select>
     					<div class="btn btn-primary" ng-click="addDept()">Add</div>
 						</div>

@@ -24,7 +24,7 @@
     <div class="form-group" title="Separate multiple professors with commas (i.e. John Doe, Jan Smith).">
         <label class="col-xs-2">Instructor(s)<span style="color: red;">*</span></label>
         <div class="select-btn-combo col-xs-6">
-            <select class="form-control" ng-model="selectedInstructor" ng-options="prof.name as prof.name for prof in faculty" placeholder="Select who will teach this course">
+            <select class="form-control" ng-model="selectedInstructor" ng-options="prof.name as prof.name for prof in faculty | orderBy : 'name'" placeholder="Select who will teach this course">
                 <option value="" disabled selected>Select Instructor</option>
             </select>
             <div class="btn btn-primary" ng-click="addInstructor()">Add</div>
@@ -37,7 +37,7 @@
     <div class="form-group" title="Select the general education requirements fufilled by this course.">
         <label class="col-xs-2">General Requirements Satisfied</label>
         <div class="select-btn-combo col-xs-6">
-            <select class="form-control" ng-model="chosenGenEd" ng-options="genEd as genEd for genEd in gen_eds" placeholder="Select Gen Ed">
+            <select class="form-control" ng-model="chosenGenEd" ng-options="genEd as genEd for genEd in gen_eds | orderBy" placeholder="Select Gen Ed">
                 <option value="" disabled selected>Select Gen Ed</option>
             </select>
             <div class="btn btn-primary" ng-click="addGenEd()">Add</div>

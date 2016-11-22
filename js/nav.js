@@ -13,6 +13,11 @@ function navCtrl($scope, $rootScope, $log, $filter, dataSrv) {
 	$scope.clearSearch = function() {
 		$scope.courseQuery = { query : ""};
 	};
+
+    $scope.openPermissionsModal = function() {
+        var modal = angular.element("#permission-modal");
+        modal.modal("show");
+    }
 }
 
 app.directive("navbar", function() {

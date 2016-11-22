@@ -10,6 +10,7 @@ function userCtrl($rootScope, $scope, depts, userSrv) {
 	$scope.user = $rootScope.user;
 	$scope.depts = depts;
 	$scope.updateDepts = userSrv.updateDepts;
+
 	$scope.openEditModal= function(type) {
 		var editModal;
 		if (type == "depts"){
@@ -19,7 +20,6 @@ function userCtrl($rootScope, $scope, depts, userSrv) {
 		}
 		editModal.modal("show");
 	}
-
 }
 
 userSrv.$inject = ["$rootScope", "$filter", "$log", "dataSrv", "authSrv"];
@@ -180,13 +180,75 @@ function editDeptsModal($filter, $log) {
 editPermissionsModal.$inject = ["$log"];
 function editPermissionsModal() {
 	return {
+		require : "^^confirmationPopup",
 		restrict : "E",
 		templateUrl : "templates/edit-permissions.html",
-		controller : ["$scope", function($scope) {
+		controller : ["$rootScope", "$scope", "$filter", "$log", "dataSrv", 
+						function($rootScope, $scope, $filter, $log, dataSrv) {
 
-		}],
+			$scope.faculty = [];
+			dataSrv.getUsers().then(function(data) {
+				$scope.faculty = data;
+			});
+
+			$scope.selectedUser;
+			$scope.selectedChair;
+
+			var deptAbbrevs = [];
+			angular.forEach($scope.depts, function(d) {
+				deptAbbrevs.push(d.abbrev);
+			});
+			
+			$scope.chairs = [ "APC", "Science","Humanities", "Fine Arts" ].concat(deptAbbrevs);
+
+		    $scope.addChair = function() {
+		   		if ($scope.chairsHeld.indexOf($scope.selectedChair) == -1){
+		   			$scope.chairsHeld.push($scope.selectedChair);
+		   		}
+		    }
+
+		    $scope.removeChair = function(chair) {
+		   		var index = $scope.chairsHeld.indexOf(chair);
+		   		$scope.chairsHeld.splice(index,1);
+		    }
+
+		    $scope.savePermissions = function(confirmed) {
+		    	var modal = angular.element("#permission-modal");
+    			modal.modal('hide');
+		    	$scope.selectedUser["chairs"] = $scope.chairsHeld;
+		    	if ($scope.selectedUser.name == $rootScope.user.name) {
+		    		if ($scope.selectedUser.chairs.indexOf('APC') == -1 && !confirmed) {
+		    			angular.element("#confirm-popup").modal('show');
+		    			return;
+		    		}
+		    		$rootScope.user.chairs = $scope.selectedUser.chairs;
+		    	}
+		    	dataSrv.editUser($scope.selectedUser).then(function(data) {
+		    		angular.element(".modal-backdrop")[0].remove();
+    				angular.element("body").removeClass("modal-open");
+    				confirmed = false;
+		    	});
+		    }
+
+		    $scope.confirm = function() {
+		    	angular.element("#confirm-popup").modal("hide");
+		    	$scope.savePermissions(true);
+		    }
+
+		    $scope.$watch('selectedUser', function() {
+	    		$scope.chairsHeld = [];
+		    	if ($scope.selectedUser) {
+		    		if ($scope.selectedUser.chairs){
+						angular.forEach($scope.selectedUser.chairs, function(c){
+							$scope.chairsHeld.push(c);
+						});
+					}
+				}
+		    });
+		}], 
 		scope : {
-
+			depts : "=",
+			user  : "="
 		}
 	}
 }

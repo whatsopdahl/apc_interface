@@ -60,6 +60,7 @@
             </div>
         </div>
     </div>
+    <edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != -1" user="user" depts="depts"></edit-permissions-modal>
 </body>
 
 </html>
