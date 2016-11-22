@@ -86,7 +86,7 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 		$scope.proposal.owner = $scope.user.name;
 
 		if ($scope.proposal.instructors.length == 0) {
-			$scope.$parent.errMsg = "Oh no! No one is teaching this course! How will the students learn!? Please "
+			$scope.$parent.errMsg = "Oh no! No one is teaching this course. Please "
 							+"select at least one instructor for the course. You can change it later if "
 							+"you need to!"
 			var errModal = angular.element("#error-modal");
@@ -96,6 +96,7 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 
 		if ($scope.proposal._id) {
 			dataSrv.saveProposal($scope.proposal).then(function(data) {
+				$rootScope.$broadcast(EVENTS.PROPOSAL_UPDATED);
 				$location.path("#/"+$scope.proposal.newCourse.name).replace();
 			}, function(err) {
 				$log.err("Proposal not saved: "+err);

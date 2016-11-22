@@ -302,6 +302,10 @@ public class ApcHandler implements HttpHandler{
                                 System.out.println("Saving Proposal");
                                 JsonObject prop = data.getJsonObject("d");
                                 JsonObject idObj = prop.getJsonObject("_id");
+                                JsonObject course = prop.getJsonObject("newCourse");
+                                String courseId = course.getJsonObject("_id").getString("$oid");
+                                doc = Document.parse(course.toString());
+                                db.getCollection(COLLECTION_COURSES).updateOne(eq("_id", new ObjectId(courseId)), new Document("$set", doc));
                                 String id = idObj.getString("$oid");
                                 doc = Document.parse(prop.toString());        
                                 db.getCollection(COLLECTION_PROPOSALS).updateOne(eq("_id", new ObjectId(id)), new Document("$set", doc));
