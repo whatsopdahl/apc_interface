@@ -57,7 +57,19 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 			
 			// if $scope.proposal has a name key, it is a course and we need to build our proposal obj from scratch
 			if (course.name) {
-				$scope.proposal["newCourse"] = course;
+				$scope.proposal.oldCourse = course;
+				//make a copy of the old Course data
+				$scope.proposal["newCourse"] = { 
+												    "division": course.division,
+												    "capacity": course.capacity,
+												    "name": course.name,
+												    "title": course.title,
+												    "pre_req": course.pre_req,
+												    "dept": course.dept,
+												    "credit_hrs": course.credit_hrs,
+												    "desc": course.desc,
+												    "gen_ed" : course.gen_ed.slice()
+									};
 			} else {
 				//if it is already a proposal, set scope.proposal
 				$scope.proposal = course;
@@ -82,14 +94,20 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 			return;
 		}
 
-		dataSrv.createProposal($scope.proposal).then(function(data) {
-			$log.info("Proposal saved.");
-			$log.debug("data", data);
-			$rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, $scope.proposal.newCourse.name);
-			$location.path("#/"+$scope.proposal.newCourse.name).replace();
-		}, function(err) {
-			$log.err("Proposal not saved: "+err);
-		});
+		if ($scope.proposal._id) {
+			dataSrv.saveProposal($scope.proposal).then(function(data) {
+				$location.path("#/"+$scope.proposal.newCourse.name).replace();
+			}, function(err) {
+				$log.err("Proposal not saved: "+err);
+			});
+		} else {
+			dataSrv.createProposal($scope.proposal).then(function(data) {
+				$rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, $scope.proposal.newCourse.name);
+				$location.path("#/"+$scope.proposal.newCourse.name).replace();
+			}, function(err) {
+				$log.err("Proposal not saved: "+err);
+			});
+		}
 	}
 
 	$scope.addGenEd = function() {
@@ -105,11 +123,10 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 	}
 
 	$scope.removeGenEd = function(genEd) {
-		$scope.proposal.newCourse.gen_eds.splice($scope.proposal.newCourse.gen_eds.indexOf(genEd),1);
+		$scope.proposal.newCourse.gen_ed.splice($scope.proposal.newCourse.gen_ed.indexOf(genEd),1);
 	}
 
 	$scope.addInstructor = function() {
-		$log.debug($scope.selectedInstructor);
 		if ($scope.proposal.instructors.indexOf($scope.selectedInstructor) == -1){
 			$scope.proposal.instructors.push($scope.selectedInstructor);
 		}

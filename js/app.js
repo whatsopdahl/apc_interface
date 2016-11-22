@@ -10,7 +10,8 @@ app.constant("auth_config", {
 });
 
 app.constant("EVENTS",{
-    PROPOSAL_ADDED : 'proposal-added'
+    PROPOSAL_ADDED : 'proposal-added',
+    PROPOSAL_REMOVED : 'proposal-removed'
 });
 
 app.controller("mainCtrl", mainCtrl);
@@ -76,7 +77,7 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
 	$rootScope.$watch(function(){
 		$scope.user = $rootScope.user;
 		$scope.page = $location.path();
-		if ($scope.user && $rootScope.user){
+		if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
             $scope.recentlyViewed.elements = [];
             var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
             angular.forEach($scope.user.recentlyViewed, function(objId) {
@@ -90,5 +91,9 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
         initData().then(function(){
             userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
         });
+    });
+
+    $rootScope.$on('proposal-removed', function() {
+        initData();
     });
 };

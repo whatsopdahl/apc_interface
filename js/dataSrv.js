@@ -12,7 +12,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		getDepts : getDepts,
 		editUser : editUser,
 		saveProposal : saveProposal,
-		createProposal : createProposal
+		createProposal : createProposal,
+		deleteProposal : deleteProposal
 	}
 
 	/**
@@ -172,8 +173,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 /**
 	 *
 	 */
-	function deleteProposal(data) {
-		data["q"] = "delete";
+	function deleteProposal(proposal) {
+		var data = { "d" : proposal, "q" : "delete"};
 		return $http({ method: "POST",
 				url : DATA_URL,
 				data : data

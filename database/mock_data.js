@@ -32,6 +32,7 @@ users = [
 		      email : "opdajo01@luther.edu",
 		  	  dept : ["CS", "MATH"],
 		  	  division : ["Science"],
+		  	  chairs : ["CS", "MATH"],
 		  	  recentlyViewed : []
 		  	},
 			{ name : "Brad Miller",
@@ -28571,7 +28572,7 @@ courses = [
     "capacity": 25,
     "name": "CS-150",
     "title": "Introduction to Being a Nerd",
-    "dept": "Math",
+    "dept": "MATH",
     "credit_hrs": 3,
     "gen_ed": [
       "QUANT"
@@ -28597,7 +28598,18 @@ courses = [
   	"dept" : "CS",
   	"credit_hrs" : 4,
   	"desc" : "Learn best-practices and common frameworks of testing in Java, Python, and C++."
-  }
+  },
+  { 
+ 	"division" : "Science", 
+ 	"capacity" : 25, 
+ 	"name" : "MATH-452", 
+ 	"title" : "Partial Differential Equations", 
+ 	"pre_req" : "MATH 351",
+ 	"dept" : "MATH", 
+ 	"credit_hrs" : 4, 
+ 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
+ 	"gen_ed" : [ ]
+	}
 ];
 
 db.users.insert(users);
@@ -28612,6 +28624,18 @@ cs1 = db.courses.findOne({"name" : "CS-1"});
 psyc352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 4});
 newnew = db.courses.findOne({"desc":"This is a test boi"});
 testing = db.courses.findOne({"name" : "CS-237"});
+oldMath452 = db.courses.findOne({"name" : "MATH-452", "gen_ed" : {"$all" : ["QUANT"]} } );
+newMath452 = db.courses.findOne( { 
+	  	 	"division" : "Science", 
+	  	 	"capacity" : 25, 
+	  	 	"name" : "MATH-452", 
+	  	 	"title" : "Partial Differential Equations", 
+	  	 	"pre_req" : "MATH 351",
+	  	 	"dept" : "MATH", 
+	  	 	"credit_hrs" : 4, 
+	  	 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
+	  	 	"gen_ed" : [ ]
+	  	 	});
 
 proposals = [
   {
@@ -28632,7 +28656,7 @@ proposals = [
   {
 	"terms": ["Fall", "Spring", "J-term"],
 	"owner": "Kyle McNeese",
-	"stage": 1,
+	"stage": 0,
 	"staffing": "Any professor can teach this course.",
 	"rationale": "This will help the developers in senior project test their code.",
 	"impact": "Worst class ever.",
@@ -28658,7 +28682,7 @@ proposals = [
   {
 	"terms": ["Fall", "Spring", "J-term"],
 	"owner": "Kyle McNeese",
-	"stage": 1,
+	"stage": 0,
 	"staffing": "Any professor can teach this course.",
 	"rationale": "This will help the developers in senior project test their code.",
 	"impact": "Worst class ever.",
@@ -28684,7 +28708,21 @@ proposals = [
   	"est_enrollment" : 15,
   	"instructors" : [ "Jon Opdahl", "Kyle McNeese", "Aiden Schmitt" ],
   	"comments" : [ ]
-  	}
+  	},
+  	{ 
+  		"terms" : [ "FALL", "SPRING" ], 
+  		"owner" : "Jonathan Opdahl", 
+  		"stage" : 1, "staffing" : "", 
+  		"rationale" : "We removed the QUANT all college requirement as anyone who takes this class will have achieved this by the time they take this class.", 
+  		"impact" : "", 
+  		"date" : "2016-11-22T07:01:02.896Z",
+  		"oldCourse" : oldMath452,
+	  	"fees" : "", 
+	  	"est_enrollment" : 12,
+	  	"instructors" : [ "Eric Westlund" ], 
+	  	"comments" : [ ], 
+	  	"newCourse" : newMath452,
+	  	}
 ];
 
 db.proposals.insert(proposals);

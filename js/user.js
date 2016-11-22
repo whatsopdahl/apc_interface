@@ -26,7 +26,9 @@ userSrv.$inject = ["$rootScope", "$filter", "$log", "dataSrv", "authSrv"];
 function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
 	return {
 		addToRecentlyViewed : addToRecentlyViewed,
-		updateDepts : updateDepts
+		removeFromRecentlyViewed : removeFromRecentlyViewed,
+		updateDepts : updateDepts,
+		canApprove : canApprove
 	}
 
 	/**
@@ -56,6 +58,7 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
 
 		//if the course is in a proposal, use that instead of the plain course.
 		if (proposal) {
+			removeFromRecentlyViewed(course);
 			course = proposal;
 		}
 
@@ -77,6 +80,15 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
 		return course;
 	}
 
+	function removeFromRecentlyViewed(course) {
+		var idx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
+		if (idx != -1) {
+			$rootScope.user.recentlyViewed.splice(idx,1);
+			dataSrv.editUser($rootScope.user).then(function(data) {
+				$log.info("Saved Recently Viewed");
+			});
+		}
+	}
 
     function updateDepts(memberDepts) {
     	var modal = angular.element("#more-user-data");
@@ -100,6 +112,33 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
    			$log.error("Unable to update user. Logging out...");
    			authSrv.logout();
    		});
+   	}
+
+   	function canApprove(proposal) {
+   		//if it is a course, not a proposal, don't allow approvals
+   		if (proposal.name || !$rootScope.user.chairs) {
+   			return false;
+   		}
+   		var chairs = $rootScope.user.chairs;
+   		switch(proposal.stage) {
+   			case 0:
+   				if ($rootScope.user.name == proposal.owner || chairs.indexOf(proposal.newCourse.dept) != -1 
+   						|| chairs.indexOf("APC") != -1 || chairs.indexOf(proposal.newCourse.division) != -1 ){
+   					return true;
+   				}
+   				break;
+   			case 1:
+   				if (chairs.indexOf(proposal.newCourse.division) != -1 || chairs.indexOf("APC") != -1) {
+   					return true;
+   				}
+   				break;
+   			default:
+   				if (chairs.indexOf("APC") != -1) {
+					return true;
+				}
+				break;
+   		}
+   		return false;
    	}
 }
 

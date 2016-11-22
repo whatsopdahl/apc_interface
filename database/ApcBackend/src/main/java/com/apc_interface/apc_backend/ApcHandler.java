@@ -2,6 +2,8 @@ package com.apc_interface.apc_backend;
 
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.bson.Document;
+import org.bson.BsonReader;
 import org.bson.types.ObjectId;
 import javax.json.*;
 import org.bson.json.JsonParseException;
@@ -235,7 +238,6 @@ public class ApcHandler implements HttpHandler{
                         reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
 
                         data = reader.readObject();
-                        System.out.println("DATA: "+data.toString());
                     } catch (Exception e){
                         System.err.println(e.getClass().toString() +" : "+e.getMessage());
                     } finally {
@@ -256,8 +258,20 @@ public class ApcHandler implements HttpHandler{
                     switch(data.getString("q")){
                         case "create":
                             try{
-                                Document course = Document.parse(data.getJsonObject("d").get("newCourse").toString());
+                                JsonObject proposal = data.getJsonObject("d");
+                                String newCourse = proposal.get("newCourse").toString();
+                                Document course = Document.parse(newCourse);
                                 db.getCollection(COLLECTION_COURSES).insertOne(course);
+                                JsonObject newCourseWid = getCourse(newCourse);
+                                JsonObjectBuilder newProp = Json.createObjectBuilder();
+                                for (String key : proposal.keySet()) {
+                                    if (key.equalsIgnoreCase("newCourse")) {
+                                        newProp.add("newCourse", newCourseWid);
+                                    } else {
+                                        newProp.add(key, proposal.get(key));
+                                    }
+                                }
+                                doc = Document.parse(newProp.build().toString());
                                 db.getCollection(COLLECTION_PROPOSALS).insertOne(doc);
                                 successObj.add("method", "create proposal");
                                 response = successObj.build().toString();
@@ -301,6 +315,9 @@ public class ApcHandler implements HttpHandler{
                             break;        
                         case "delete":
                             try{
+                                JsonObject newCourse = data.getJsonObject("d").getJsonObject("newCourse");
+                                Document course = Document.parse(newCourse.toString());
+                                db.getCollection(COLLECTION_COURSES).deleteOne(course);
                                 db.getCollection(COLLECTION_PROPOSALS).deleteOne(doc);
                                 status = STATUS_CREATED;
                                 successObj.add("method", "delete proposal");
@@ -406,6 +423,37 @@ public class ApcHandler implements HttpHandler{
         return json.toString();
     }
 
+    /**
+     * Primarily used to get the course just inserted into the database when we 
+     * create a new proposal so we can get the object id. 
+     * 
+     * @param course course to filter on
+     * @return a JsonObject of 
+     */
+    private JsonObject getCourse(String course) throws Exception{
+        JsonObject json = null;
+        FindIterable find = db.getCollection(COLLECTION_COURSES).find(BasicDBObject.parse(course));
+        
+        MongoCursor<Document> cursor = find.iterator();
+        try {
+            if (cursor.hasNext()){
+                Document doc = cursor.next();
+                
+                JsonReader reader = Json.createReader(new StringReader(doc.toJson()));
+                
+                json = reader.readObject();
+            }
+        } catch(Exception e) {
+            throw e;
+        } finally {
+            cursor.close();
+        }
+        if (json == null) {
+            throw new Exception("Course not found.");
+        }
+        return json;
+    }
+    
     /**
      * Handle HTTP GET request for a specific user. Note that this will return
      * all users with the same email address, so care should be taken to avoid
