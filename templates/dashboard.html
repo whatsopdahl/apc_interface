@@ -1,15 +1,15 @@
 <div class="dashboard container-fluid">
     <div class="col-md-6">
         <div class="container-fluid jumbotron">
-            <course-list data='myChanges' user='user'></course-list>
+            <course-list data='myChanges' user='user' courses="courses" proposals="allProposals"></course-list>
         </div>
         <div class="container-fluid jumbotron">
-            <course-list data='recentlyViewed' user='user'></course-list>
+            <course-list data='recentlyViewed' user='user' courses="courses" proposals="allProposals"></course-list>
         </div>
     </div>
     <div class="col-md-6">
         <div class="container-fluid jumbotron">
-            <course-list data='allProposals' user='user'></course-list>
+            <course-list data='allProposals' user='user' courses="courses" proposals="allProposals"></course-list>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 	<div class="page-header" style="margin-top: 0px;">
 			<h2>{{user.name}} 
 				<div title="Edit User" class="btn btn-primary pull-right" ng-click="openEditModal('depts')"><span class="glyphicon glyphicon-pencil"></span> Edit Department</div>
-				<div ng-if="user.chairs.indexOf('APC') != -1" title="Change Permissions" class="btn btn-primary pull-right" ng-click="openEditModal('permissions')" style="margin-right:10px;"><span class="glyphicon glyphicon-education"></span> Edit Permissions</div>
+				<div ng-if="user.chairs && user.chairs.indexOf('APC') != -1" title="Change Permissions" class="btn btn-primary pull-right" ng-click="openEditModal('permissions')" style="margin-right:10px;"><span class="glyphicon glyphicon-education"></span> Edit Permissions</div>
 			</h2>
 	</div>
 	<div class="col-xs-8">

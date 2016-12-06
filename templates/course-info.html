@@ -9,6 +9,9 @@
                 <div class="panel panel-danger courseInfo inlineBlock" ng-if="course.oldCourse && course.oldCourse.name != course.newCourse.name">
                     <div class="panel-heading"><strong>{{course.oldCourse.name}}</strong></div>
                 </div>
+                <div class="inlineBlock" ng-if="!course.oldCourse">
+                    <strong style="color:green;">[New Course]</strong>
+                </div>
             </div>
             <div class="col-xs-4 text-center">
                 <div class="panel-heading" style="margin-bottom: 0;"><strong>Approval Status</strong></div>
@@ -16,8 +19,8 @@
             <div class="col-xs-4">
                 <div style="margin-right:10px;">
                     <a class="approveReject" ng-if="course.owner == user.name" ng-href="#/{{course.newCourse.name}}/edit"><div class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
-                    <button ng-if="canApprove(course)" class="btn btn-danger approveReject" ng-click="reject()"><span class="glyphicon glyphicon-remove"></span> Reject</button>
-                    <button ng-if="canApprove(course)" class="btn btn-success approveReject" ng-click="approve()"><span class="glyphicon glyphicon-ok"></span> Approve</button>
+                    <button ng-if="canApprove(course)" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span> Reject</button>
+                    <button ng-if="canApprove(course)" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span> Approve</button>
                 </div>
             </div>
         </div>
@@ -110,7 +113,7 @@
             </div>
             <div class="inlineBlock smallFormField">
                 <div class="panel-heading"><strong>Estimated Enrollment</strong></div>
-                <div class="panel panel-default courseInfo">
+                <div class="panel panel-default courseInfo sideBySide">
                     <div class="panel-heading">{{course.est_enrollment}}</div>
                 </div>
             </div>
@@ -155,9 +158,11 @@
 
     </div>
     <div class="courseForum">
-        <div class="panel-heading" style="margin-bottom: 10px;"><strong>Owner: {{course.owner}}</strong></div>
+        <div class="panel-heading" style="margin-bottom: 0px;"><strong>Owner: {{course.owner}}</strong></div>
+        <div class="panel-heading" style="margin-bottom: 10px;"><strong>Date Created: {{course.date | date}}</strong></div>
         <course-forum></course-forum>
     </div>
+    <remove-prop-popup modal-id="remove-prop-modal-{{course.newCourse.name}}" action="Remove {{course.newCourse.name}}" confirm-func="deleteProp" msg="Are you sure you want to reject this proposal? This will delete all proposed changes." course=course></remove-prop-popup>
 </div>
 <!-- display for Course -->
 <div ng-show="course.name" class="container-fluid">
@@ -223,4 +228,3 @@
         </div>
     </div>
 </div>
-<confirmation-popup action="Remove" confirm-func="deleteProp" msg="Are you sure you want to reject this proposal? This will delete all proposed changes."></confirmation-popup>

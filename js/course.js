@@ -1,39 +1,25 @@
 var app = angular.module("CourseProposalApp");
 
 app.controller("courseCtrl", courseCtrl);
-app.directive("confirmationPopup", confirmationPopup);
+app.directive("revokeApcPrivilegesPopup", revokeApcPrivilegesPopup);
+app.directive("removePropPopup", removePropPopup);
 
-courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "dataSrv", "userSrv", "EVENTS"];
-function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, dataSrv, userSrv, EVENTS) {
-	var courseName = $routeParams.course;
+courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv"];
+function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv) {
+	var courseName;
 
-	$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
-
-	$log.debug($scope.course);
+	//if we are viewing a course, add it to recently viewed. 
+	if (!$scope.course) {
+		courseName = $routeParams.course;
+		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+	}
 
 	$scope.canApprove = userSrv.canApprove;
 
-	$scope.approve = function(){
-		$scope.course.stage++;
-		dataSrv.saveProposal($scope.course);
-	}
+	$scope.approve = courseSrv.approve;
+	$scope.reject = courseSrv.reject;
+	$scope.deleteProp = courseSrv.deleteProp;
 
-	$scope.reject = function() {
-		var modal = angular.element("#confirm-popup");
-		modal.modal("show");
-	}
-
-	$scope.deleteProp = function() {
-		var modal = angular.element("#confirm-popup");
-		modal.modal('hide');
-		userSrv.removeFromRecentlyViewed($scope.course);
-    	dataSrv.deleteProposal($scope.course).then(function(data) {
-    		$rootScope.$broadcast(EVENTS.PROPOSAL_REMOVED);
-    		angular.element(".modal-backdrop")[0].remove();
-    		angular.element("body").removeClass("modal-open");
-    		$location.path("/");
-    	});
-	}
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
@@ -74,14 +60,48 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, 
 	};
 }
 
+app.factory("courseSrv", ["$rootScope", "$location", "userSrv", "dataSrv", "EVENTS", function($rootScope, $location, userSrv, dataSrv, EVENTS){
+	approve = function(course){
+		course.stage++;
+		dataSrv.saveProposal(course);
+	}
+
+	reject = function(course) {
+		var modal = angular.element("#remove-prop-modal-"+course.newCourse.name);
+		modal.modal("show");
+	}
+
+	deleteProp = function(course) {
+		var modal = angular.element("#remove-prop-modal-"+course.newCourse.name);
+		modal.modal('hide');
+		userSrv.removeFromRecentlyViewed(course);
+    	dataSrv.deleteProposal(course).then(function(data) {
+    		$rootScope.$broadcast(EVENTS.PROPOSAL_REMOVED);
+    		angular.element(".modal-backdrop")[0].remove();
+    		angular.element("body").removeClass("modal-open");
+    		$location.path("/");
+    	});
+	}
+
+	return {
+		approve : approve,
+		reject : reject,
+		deleteProp : deleteProp
+	}
+
+}])
+
 app.directive("courseList", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course-list.html",
+        controller : "courseListCtrl",
         scope: {
             data: '=',
             user : '=',
-            extendedView : "="
+            extendedView : "=",
+            courses : "=",
+            allProposals : "=proposals"
         }
     };
 });
@@ -90,21 +110,8 @@ app.directive("course", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course.html",
-		controller: ['$scope', function MyTabsController($scope) {
-			// for making the progress bar the correct colors at each stage
-			$scope.getClass = function(courseStage, progressBarStage) {
-		        if (courseStage == progressBarStage) {
-		            return 'progress-bar-warning';
-		        }
-		        else if (courseStage > progressBarStage) {
-		            return 'progress-bar-success';
-		        }
-		        else {
-		            return 'progress-bar-danger';
-		        }
-		    };
-		}]
-    };
+		controller: "courseCtrl"
+    }
 });
 
 app.directive("extended-course", function() {
@@ -114,11 +121,30 @@ app.directive("extended-course", function() {
 	}
 });
 
-function confirmationPopup(){
+
+function removePropPopup(){
+	return {
+		restrict : "E",
+		templateUrl : "templates/confirmation-popup.html",
+		controller : ["$scope", "$log", "courseSrv", function($scope, $log, courseSrv) {
+			$scope.deleteProp = courseSrv;
+		}],
+		scope : {
+			modalId : "@",
+			action : "@",
+			msg : "@",
+			confirmFunc : "=",
+			course : "="
+		}
+	}
+}
+
+function revokeApcPrivilegesPopup() {
 	return {
 		restrict : "E",
 		templateUrl : "templates/confirmation-popup.html",
 		scope : {
+			modalId : "@",
 			action : "@",
 			msg : "@",
 			confirmFunc : "="

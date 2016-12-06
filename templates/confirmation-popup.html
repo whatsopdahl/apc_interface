@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="confirm-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="{{modalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
     	<div class="modal-content">
     		<div class="modal-header">
@@ -14,7 +14,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger pull-right" ng-click="confirmFunc()"><span class="glyphicon glyphicon-trash"></span> {{action}}</button>
+				<button ng-if="course" type="button" class="btn btn-danger pull-right" ng-click="confirmFunc(course)"><span class="glyphicon glyphicon-trash"></span> {{action}}</button>
+				<button ng-if="!course" type="button" class="btn btn-danger pull-right" ng-click="confirmFunc()"><span class="glyphicon glyphicon-trash"></span> {{action}}</button>
 				<button type="button" class="btn btn-default pull-right" style="margin-right: 10px;" aria-label="Close" data-dismiss="modal">Cancel</button>
 			</div>
 		</div>

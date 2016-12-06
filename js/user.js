@@ -5,9 +5,10 @@ app.factory("userSrv", userSrv);
 app.directive("editDeptsModal", editDeptsModal);
 app.directive("editPermissionsModal", editPermissionsModal);
 
-userCtrl.$inject = ["$rootScope", "$scope", "depts", "userSrv"];
-function userCtrl($rootScope, $scope, depts, userSrv) {
+userCtrl.$inject = ["$rootScope", "$scope", "$log", "depts", "userSrv"];
+function userCtrl($rootScope, $scope, $log, depts, userSrv) {
 	$scope.user = $rootScope.user;
+	$log.debug($scope.user);
 	$scope.depts = depts;
 	$scope.updateDepts = userSrv.updateDepts;
 
@@ -43,6 +44,7 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
 	 */
 	function addToRecentlyViewed(courseName, courses, allProposals) {
 		//the course must exist in the database, so find it first
+
 		var course = $filter("filter")(courses, {name: courseName}, true)[0];
 
 		//check to see if it is in any proposals.
@@ -218,7 +220,7 @@ function editPermissionsModal() {
 		    	$scope.selectedUser["chairs"] = $scope.chairsHeld;
 		    	if ($scope.selectedUser.name == $rootScope.user.name) {
 		    		if ($scope.selectedUser.chairs.indexOf('APC') == -1 && !confirmed) {
-		    			angular.element("#confirm-popup").modal('show');
+		    			angular.element("#revoke-apc-privileges-modal").modal('show');
 		    			return;
 		    		}
 		    		$rootScope.user.chairs = $scope.selectedUser.chairs;
@@ -231,7 +233,7 @@ function editPermissionsModal() {
 		    }
 
 		    $scope.confirm = function() {
-		    	angular.element("#confirm-popup").modal("hide");
+		    	angular.element("#revoke-apc-privileges-modal").modal("hide");
 		    	$scope.savePermissions(true);
 		    }
 

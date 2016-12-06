@@ -32,7 +32,7 @@ users = [
 		      email : "opdajo01@luther.edu",
 		  	  dept : ["CS", "MATH"],
 		  	  division : ["Science"],
-		  	  chairs : ["CS", "MATH"],
+		  	  chairs : ["CS", "MATH", "APC"],
 		  	  recentlyViewed : []
 		  	},
 			{ name : "Brad Miller",
@@ -28570,7 +28570,7 @@ courses = [
   {
     "division": "Science",
     "capacity": 25,
-    "name": "CS-150",
+    "name": "MATH-150",
     "title": "Introduction to Being a Nerd",
     "dept": "MATH",
     "credit_hrs": 3,

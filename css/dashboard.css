@@ -265,3 +265,8 @@ blockquote > .quote-body > * {
     padding-bottom: 9px; 
     border-bottom: 1px solid #eee;
 }
+.glyphicon-empty {
+    height: 32px;
+    width : 38px;
+    margin : 1px;
+}

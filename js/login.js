@@ -72,10 +72,8 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		$rootScope.user = user;
 
 		dataSrv.getUser(user).then( function(data) {
-			if (data) {
-				$log.debug(data);
-			} else {
-				$log.debug("No User data found");
+			if (!data) {
+				$log.debug("User not in database, prompting for more data");
 				var dialog = angular.element("#more-user-data");
 				dialog.modal('show');
 				return;

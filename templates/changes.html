@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-switch="view">
-	<course-list ng-switch-when="mychanges" data="myChanges" user='user' extended-view="extendedView"></course-list>
-	<course-list ng-switch-when="allchanges" data="allProposals" user='user' extended-view="true"></course-list>
-	<course-list ng-switch-when="recent" data="recentlyViewed" user='user' extended-view="true"></course-list>
+	<course-list ng-switch-when="mychanges" data="myChanges" user='user' extended-view="extendedView" courses="courses" proposals="allProposals"></course-list>
+	<course-list ng-switch-when="allchanges" data="allProposals" user='user' extended-view="true" courses="courses" proposals="allProposals"></course-list>
+	<course-list ng-switch-when="recent" data="recentlyViewed" user='user' extended-view="true" courses="courses" proposals="allProposals"></course-list>
 </div>
