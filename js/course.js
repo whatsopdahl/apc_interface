@@ -99,7 +99,7 @@ app.directive("courseList", function() {
         scope: {
             data: '=',
             user : '=',
-            extendedView : "=",
+            extendedview : "=",
             courses : "=",
             allProposals : "=proposals"
         }
@@ -112,13 +112,6 @@ app.directive("course", function() {
         templateUrl: "templates/course.html",
 		controller: "courseCtrl"
     }
-});
-
-app.directive("extended-course", function() {
-	return {
-		restrict :"E",
-		templateUrl : "templates/extended-course.html"
-	}
 });
 
 

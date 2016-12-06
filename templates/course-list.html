@@ -53,12 +53,11 @@
     </div>
     <div ng-hide="retrievingData">
     	<div ng-if="data.elements.length == 0" class="container-fluid course" style="text-align: center;">{{data.emptyMsg}}</div>
-        <div ng-if="data.elements.length > 0 && data.title != 'Recently Viewed'" class="container-fluid course" ng-repeat="course in filter(data.elements) | orderBy : 'newCourse.name' | orderBy : sort : zToa">
-            <course ng-if="!extendedview"></course>
-            <extended-course ng-if="extendedview"></extended-course>
+        <div ng-if="(data.elements.length > 0) && (data.link!='recentlyviewed')" class="container-fluid course" ng-repeat="course in filter(data.elements) | orderBy : 'newCourse.name' | orderBy : sort : zToa">
+            <course extendendview="extendendview"></course>
         </div>
-        <div ng-if="data.elements.length > 0 && data.title == 'Recently Viewed'" class="container-fluid course" ng-repeat="course in data.elements">
-            <course></course>
+        <div ng-if="(data.elements.length > 0) && (data.link == 'recentlyviewed') " class="container-fluid course" ng-repeat="course in data.elements">
+            <course extendendview="extendendview"></course>
         </div>
     </div>
     <div ng-show="retrievingData">Loading...</div>

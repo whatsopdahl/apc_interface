@@ -7,7 +7,7 @@ app.controller('dashboardCtrl', ['$rootScope', '$scope',
 
 app.controller("changeCtrl", ["$scope", "view", function($scope, view) {
 	$scope.view = view;
-	$scope.extendedView = true;
+	$scope.extendedview = true;
 }]);
 
 app.controller("courseListCtrl", ["$scope", "$log", "$filter", function($scope, $log, $filter){
@@ -69,7 +69,7 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", function($scope, 
 		var filter = $scope.queries.filter;
 		switch ($scope.currFilter.idx) {
 			case 0:
-				return $filter('searchProposal')(elems, filter, ["stage", "owner"], ["title","name","dept","division"]);
+				return $filter('searchProposal')(elems, filter, ["owner"], ["title","name","dept","division"]);
 			case 1:
 				return $filter('searchProposal')(elems, filter, [], ["title", "name"]);
 			case 2:
@@ -96,7 +96,9 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", function($scope, 
 			case 4:
 				return elem.owner;
 			default:
-				return elem.newCourse.name;
+				if (elem.newCourse)
+					return elem.newCourse.name;
+				else return elem.name;
 		}
 	}
 }]);
@@ -116,12 +118,14 @@ app.filter('searchProposal', ["$log", function($log){
 	return function(proposals, value, propAttrs, courseAttrs){
 		filtered = [];
 		value = value.toLowerCase();
+
 		for (var i =0; i < proposals.length; i++) {
 			var prop = proposals[i];
 			var added = false;
-			for (var pa = 0; pa < propAttrs; pa++) {
+			for (var pa = 0; pa < propAttrs.length; pa++) {
 				if (prop[propAttrs[pa]].toLowerCase().indexOf(value) > -1){
 					filtered.push(prop);
+					added = true;
 					break;
 				}
 			}
