@@ -59,7 +59,7 @@ public class ApcBackend {
      * @see ApcHandler
      */
     public static void main(String[] args) throws IOException{
-        HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
+        HttpServer server = HttpServer.create(new InetSocketAddress(PORT), BACKLOG);
         server.createContext(DATA_CONTEXT_PATH, new ApcHandler());
         server.createContext(SRC_CONTEXT_PATH, new ApcSrcHandler());
         server.setExecutor(null);
