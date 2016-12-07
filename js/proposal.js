@@ -68,8 +68,13 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 												    "dept": course.dept,
 												    "credit_hrs": course.credit_hrs,
 												    "desc": course.desc,
-												    "gen_ed" : course.gen_ed.slice()
 									};
+				if (course.gen_ed) {
+				 	$scope.proposal.newCourse["gen_ed"] = course.gen_ed.slice();
+				} else {
+					$scope.proposal.newCourse["gen_ed"] = [];
+				}
+
 			} else {
 				//if it is already a proposal, set scope.proposal
 				$scope.proposal = course;

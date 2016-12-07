@@ -28587,7 +28587,7 @@ courses = [
     "pre_req": "PSYC 130, 349, and 350",
     "dept": "PSYC",
     "credit_hrs": 2,
-    "desc": "This is a test boi"
+    "desc": "A study of the mental processes involved in the acquisition, organization, representation, and retrieval of information by humans. Topics to be covered include attention, recognition memory, short-term and long-term memory, concept formation, problem solving, and creativity. Lecture, discussion, and weekly laboratories."
   },
   {
   	"division" : "Science",
@@ -28597,7 +28597,7 @@ courses = [
   	"pre_req" : "",
   	"dept" : "CS",
   	"credit_hrs" : 4,
-  	"desc" : "Learn best-practices and common frameworks of testing in Java, Python, and C++."
+  	"desc" : "Learn best-practices and common frameworks for testing in Java, Python, and C++."
   },
   { 
  	"division" : "Science", 
@@ -28609,6 +28609,43 @@ courses = [
  	"credit_hrs" : 4, 
  	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
  	"gen_ed" : [ ]
+	},
+	{ 
+		"division" : "Humanities", 
+		"capacity" : 35, 
+		"name" : "ENG-334", 
+		"title" : "The Wizarding World: Investigating Harry Potter", 
+		"pre_req" : "PAID 111, 112 or transfer equivalents", 
+		"dept" : "ENG", 
+		"credit_hrs" : 4, 
+		"desc" : "A study on the social impact that the Harry Potter franchise has had on millenials through investigative readings of the Harry Potter series. Students will perform character analysis to determining what characterizes the millenial generation and how the novels and movies have impacted social events.", 
+		"gen_ed" : [ "HEPT" ] 
+	},
+	{
+		"division" : "Fine Arts",
+		"capacity" : 14,
+		"name" : "ART-200",
+		"title" : "Finger Painting I",
+		"pre_req" : "ART 108",
+		"dept" : "ART",
+		"credit_hrs" : 4,
+		"desc" : "An introduction to finger painting techniques and color theory including a technical understanding of filangical oil media.  A visual vocabulary and the start of personal investigations into finger painting and conceptual problems will be explored using still life, landscape, and the human figure as subjects.",
+		"gen_ed" : [
+			"HE"
+		]
+	},
+	{
+		"division" : "Humanities",
+		"capacity" : 25,
+		"name" : "HIST-250",
+		"title" : "Tea and Funny Accents: The History of Early Modern Britain",
+		"dept" : "HIST",
+		"credit_hrs" : 4,
+		"desc" : "This class covers two centuries of dramatic change in Tudor-Stuart England. Encompassing the period from 1485 to 1689, the course considers the political, social, and religious history of Great Britain, during a period in which the monarchs in the south attempted to expand their control over the entire territory; the official religion of the land changed with surprising frequency; and the country eventually fell into civil war and revolution. In this survey course, students will be introduced to the major trends, characters and events of this period, examining them in depth via a variety of primary sources, such as letters, journals, and legal documents.",
+		"gen_ed" : [
+			"HIST",
+			"HB"
+		]
 	}
 ];
 
@@ -28622,7 +28659,7 @@ cs150 = db.courses.findOne({"name" : "CS-150"});
 newcs150 = db.courses.findOne( {"title" : "Introduction to Being a Nerd" });
 cs1 = db.courses.findOne({"name" : "CS-1"});
 psyc352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 4});
-newnew = db.courses.findOne({"desc":"This is a test boi"});
+newpsych352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 2});
 testing = db.courses.findOne({"name" : "CS-237"});
 oldMath452 = db.courses.findOne({"name" : "MATH-452", "gen_ed" : {"$all" : ["QUANT"]} } );
 newMath452 = db.courses.findOne( { 
@@ -28636,14 +28673,21 @@ newMath452 = db.courses.findOne( {
 	  	 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
 	  	 	"gen_ed" : [ ]
 	  	 	});
+oldEng334 = db.courses.findOne({"name" : "ENG-334", "title" : "Young Adult Literature"});
+newEng334 = db.courses.findOne({"name" : "ENG-334", "title" : "The Wizarding World: Investigating Harry Potter"});
+oldArt200 = db.courses.findOne({"name" : "ART-200", "title" : "Painting I"});
+newArt200 = db.courses.findOne({"name" : "ART-200", "title" : "Finger Painting I"});
+oldHist250 = db.courses.findOne({"name" : "HIST-250", "title" : "Rulers, Reform, and Revolution:TheyHistory of Early Modern Britain"});
+newHist250 = db.courses.findOne({"name" : "HIST-250", "title" : "Tea and Funny Accents: The History of Early Modern Britain"});
+
 
 proposals = [
   {
 	"terms": ["Fall", "Spring"],
 	"owner": "Jonathan Opdahl",
 	"stage": 3,
-	"staffing": "Any professor can teach this course.",
-	"rationale": "This will help the developers of the senior project test.",
+	"staffing": "We will need to hire a new professor.",
+	"rationale": "How long until this proposal gets rejected?",
 	"impact": "Greatest class ever.",
 	"date": "2016-10-15T16:46:33.616Z",
 	"oldCourse": null,
@@ -28657,25 +28701,25 @@ proposals = [
 	"terms": ["Fall", "Spring", "J-term"],
 	"owner": "Kyle McNeese",
 	"stage": 0,
-	"staffing": "Any professor can teach this course.",
-	"rationale": "This will help the developers in senior project test their code.",
+	"staffing": "Any professor in the CS department can teach this course.",
+	"rationale": "Let's call it what it is....",
 	"impact": "Worst class ever.",
 	"date": "2016-11-04T16:46:33.616Z",
 	"oldCourse": cs150,
 	"newCourse": newcs150,
 	"fees": null,
 	"est_enrollment": 30,
-	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	"instructors": ["Jonathan Opdahl", "Kyle McNeese"],
 	"comments":  [
 		{
-			"user": "Jon Opdahl",
+			"user": "Jonathan Opdahl",
 			"date": "Mon Nov 14 2016 21:26:22 GMT-0600 (CST)",
-			"body": "This is the first comment ever."
+			"body": "Hi Kyle"
 		},
 		{
 			"user": "Kyle McNeese",
 			"date": "Mon Nov 14 2016 21:29:26 GMT-0600 (CST)",
-			"body": "you suck."
+			"body": "suh dude"
 		}
 	]
   },
@@ -28683,21 +28727,21 @@ proposals = [
 	"terms": ["Fall", "Spring", "J-term"],
 	"owner": "Kyle McNeese",
 	"stage": 0,
-	"staffing": "Any professor can teach this course.",
-	"rationale": "This will help the developers in senior project test their code.",
+	"staffing": "",
+	"rationale": "Students will no longer do original research. Ever since the rat race incident of 2015, we don't let psych students conduct original research.",
 	"impact": "Worst class ever.",
 	"date": "2016-11-10T16:46:33.616Z",
 	"oldCourse": psyc352,
-	"newCourse": newnew,
+	"newCourse": newpsych352,
 	"fees": null,
 	"est_enrollment": 30,
-	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	"instructors": ["Jonathan Opdahl", "Kyle McNeese"],
 	"comments":  []
   },
   {
   	"terms" : [ "FALL", "SPRING" ],
-  	"owner" : "Jonathan Opdahl",
-  	"stage" : 0,
+  	"owner" : "Brad Miller",
+  	"stage" : 4,
   	"staffing" : "",
   	"rationale" : "",
   	"impact" : "",
@@ -28706,13 +28750,14 @@ proposals = [
   	"newCourse" : testing,
   	"fees" : "",
   	"est_enrollment" : 15,
-  	"instructors" : [ "Jon Opdahl", "Kyle McNeese", "Aiden Schmitt" ],
+  	"instructors" : [ "Jonathan Opdahl", "Kyle McNeese", "Aidan Schmitt" ],
   	"comments" : [ ]
   	},
   	{ 
   		"terms" : [ "FALL", "SPRING" ], 
   		"owner" : "Jonathan Opdahl", 
-  		"stage" : 1, "staffing" : "", 
+  		"stage" : 1, 
+  		"staffing" : "", 
   		"rationale" : "We removed the QUANT all college requirement as anyone who takes this class will have achieved this by the time they take this class.", 
   		"impact" : "", 
   		"date" : "2016-11-22T07:01:02.896Z",
@@ -28722,7 +28767,62 @@ proposals = [
 	  	"instructors" : [ "Eric Westlund" ], 
 	  	"comments" : [ ], 
 	  	"newCourse" : newMath452,
-	  	}
+	  	},
+	{ 
+		"terms" : [ "FALL", "J-TERM", "SPRING" ], 
+		"owner" : "Aidan Schmitt", 
+		"stage" : 0, 
+		"staffing" : "", 
+		"rationale" : "As Harry Potter remains the defining work of literature for the millenial generation, the study of young adult literature previously highlighted in this course can be synthesized into the study of J.K. Rowling's series of novels.",
+		"oldCourse" : oldEng334,
+		"newCourse" : newEng334,
+		"impact" : "",
+		"date" : "2016-12-06T15:28:55.769Z",
+		"fees" : "",
+		"est_enrollment" : 35, 
+		"instructors" : [ "Rebecca Sullivan" ], 
+		"comments" : [ ]
+	},
+	{
+		"terms" : [
+			"FALL",
+			"J-TERM",
+			"SPRING"
+		],
+		"owner" : "Jonathan Opdahl",
+		"stage" : 1,
+		"staffing" : "",
+		"rationale" : "To understand how to paint with a brush, one must become one with the paint through touching and immersing themselves in the experience of finger painting.",
+		"impact" : "",
+		"date" : "2016-12-06T15:45:06.379Z",
+		"oldCourse" : oldArt200,
+		"newCourse" : newArt200,
+		"fees" : "",
+		"est_enrollment" : 14,
+		"instructors" : [
+			"Philip Freeman"
+		],
+		"comments" : [ ]
+	},
+	{
+		"terms" : [
+			"J-TERM"
+		],
+		"owner" : "Kyle McNeese",
+		"stage" : 2,
+		"staffing" : "",
+		"rationale" : "Tea and funny accents epitomize the British in the early part of the 1800 to current day.",
+		"impact" : "",
+		"date" : "2016-12-06T15:58:18.270Z",
+		"oldCourse" : oldHist250,
+		"newCourse" : newHist250,
+		"fees" : "",
+		"est_enrollment" : 0,
+		"instructors" : [
+			"Kimberly Powell"
+		],
+		"comments" : [ ]
+	}
 ];
 
 db.proposals.insert(proposals);
