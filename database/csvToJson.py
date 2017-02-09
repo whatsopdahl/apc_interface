@@ -1,383 +1,351 @@
-import csv
+import pandas as pd
 import json
 
 genEds = ["BL","SKL","WEL","REL","NWL","NWNL","HB","HBSSM","HE","HEPT","INTCL","HIST","QUANT"]
 
-depts =  {"ACCTG" : { "name" : "Accounting",
+depts =  {"ACCTG" : 
+			{ "name" : "Accounting",
 			  "abbrev" : "ACCTG",
-			  "division" : "Science"
+			  "division" : "Mathematics, Science and Physical Education"
 			},
           "AFRS" :
 			{ "name" : "Africana Studies",
 			  "abbrev" : "AFRS",
-			  "division" : "Humanities"
+			  "division" : "History and Social Sciences"
 			},
           "ANTH" :
 			{ "name" : "Anthropology",
 			  "abbrev": "ANTH",
-			  "division" : "Science"
+			  "division" : "History and Social Sciences"
 			},
           "ART" :
 			{ "name" : "Art",
 			  "abbrev" : "ART",
-			  "division" : "Fine Arts"
+			  "division" : "Humanities and Fine Arts"
 			},
           "ARTH" :
 			{ "name" : "Art History",
 			  "abbrev" : "ARTH",
-			  "division" : "Fine Arts"
+			  "division" : "History and Social Sciences"
 			},
           "AS" :
 			{ "name" : "Aisian Studies",
 			  "abbrev" : "AS",
-			  "division" : "Humanities"
+			  "division" : "History and Social Sciences"
 			},
           "ATHTR" :
 			{ "name" : "Athletic Training",
 		 	  "abbrev" : "ATHTR",
-		 	  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 		 	},
           "BIO" :
 		 	{ "name" : "Biology",
 		 	  "abbrev" : "BIO",
-		 	  "division": "Science"
+		 	  "division": "Mathematics, Science and Physical Education"
 		 	},
           "CHEM" :
 		 	{ "name" : "Chemistry",
 		 	  "abbrev" : "CHEM",
-		 	  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 		 	},
           "CHIN" :
 		 	{ "name" : "Chinese",
 		 	  "abbrev" : "CHIN",
-		 	  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 		 	},
           "CLAS" :
 		 	{ "name" : "Classics",
 		 	  "abbrev" : "CLAS",
-		 	  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 		 	},
           "COMS" :
 		 	{ "name" : "Commuication Studies",
 		 	  "abbrev" : "COMS",
-		 	  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 		 	},
           "CS" :
 		 	{ "name" : "Computer Science",
 		 	  "abbrev" : "CS",
-		 	  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 		 	},
           "DAN" :
 		 	{ "name" : "Dance",
 		 	  "abbrev" : "DAN",
-		 	  "division" : "Fine Arts"
+		 	  "division" : "Humanities and Fine Arts"
 		 	},
           "DS" :
 		 	{ "name" : "Data Science",
 		 	  "abbrev" : "DS",
-		 	  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 		 	},
           "ECON" :
 		 	{ "name" : "Economics",
 		 	  "abbrev" : "ECON",
-		 	  "division" : "Science"
+		 	  "division" : "History and Social Sciences"
 		 	},
           "EDUC" :
 		 	{ "name" : "Education",
 		 	  "abbrev" : "EDUC",
-		 	  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 		 	},
           "ENG" :
 		 	{ "name" : "English",
 		 	  "abbrev" : "ENG",
-			  "division" :"Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "ENVS" :
 			{ "name" : "Environmental Science",
-			  "abbrev" : "ENVS",
-			  "division" : "Science"
+			  "abbrev" : "ENVS"
 			},
           "FCUL" :
-              {"name" : "Foreign Culture",
-               "abbrev" : "FCUL",
-               "division" : "Humanities"
-               },
+            { "name" : "Foreign Culture",
+              "abbrev" : "FCUL",
+		 	  "division" : "History and Social Sciences"
+            },
           "FREN" :
 			{ "name" : "French",
 			  "abbrev" : "FREN",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "GER" :
 			{ "name" : "German",
 			  "abbrev" : "GER",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "GRK" :
 			{ "name" : "Greek",
 			  "abbrev" : "GRK",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "GS" :
-              {"name": "Global Studies",
-               "abbrev": "GS",
-               "division": "Humanities"
-               },
+            { "name": "Global Studies",
+              "abbrev": "GS",
+		 	  "division" : "History and Social Sciences"
+            },
           "HLTH" :
 			{ "name" : "Health",
 			  "abbrev" : "HLTH",
-			  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "HEB" :
 			{
 			  "name" : "Hebrew",
 			  "abbrev" : "HEB",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "HIST" :
-			{
-			  "name" : "History",
+			{ "name" : "History",
 			  "abbrev" : "HIST",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "HONR" :
-              {
-                  "name": "Honor",
-                  "abbrev": "HONR",
-                  "division": "Humanities"
-              },
-          "IMA" : {
-
-                  "name": "Intermedia Arts",
-                  "abbrev": "IMA",
-                  "division": "Fine Arts"
-          },
+            { "name": "Honor",
+              "abbrev": "HONR"
+            },
+          "IMA" : 
+          	{ "name": "Intermedia Arts",
+              "abbrev": "IMA",
+		 	  "division" : "Humanities and Fine Arts"
+          	},
           "INSYS" :
-            {
-              "name": "Information Systems",
+            { "name": "Information Systems",
               "abbrev": "INSYS",
-              "division": "Science"
-          },
+		 	  "division" : "History and Social Sciences"
+          	},
           "INTS" :
-              {
-                  "name": "International Studies",
-                  "abbrev": "IS",
-                  "division": "Humanities"
-              },
+            { "name": "International Studies",
+              "abbrev": "IS",
+		 	  "division" : "History and Social Sciences"
+            },
           "IS" :
 			{
 			  "name" : "International Studies",
 			  "abbrev" : "IS",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "ITAL" :
 			{
 			  "name" : "Italian",
 			  "abbrev" : "ITAL",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "JOUR" :
 			{
 			  "name" : "Journalism",
 			  "abbrev" : "JOUR",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "LAT" :
 			{
 			  "name" : "Latin",
 			  "abbrev" : "LAT",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "LING" :
 			{
 			  "name" : "Linguistics",
 			  "abbrev" : "LING",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "LIST" :
-              {
-                "name" : "Library and Information Studies",
-			    "abbrev" : "LIST",
-			    "division" : "Humanities"
-              },
+            { "name" : "Library and Information Studies",
+			  "abbrev" : "LIST",
+		 	  "division" : "History and Social Sciences"
+            },
           "MGT" :
-			{
-			  "name" : "Management",
+			{ "name" : "Management",
 			  "abbrev" : "MGT",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "MATH" :
-			{
-			  "name" : "Mathematics",
+			{ "name" : "Mathematics",
 			  "abbrev" : "MATH",
-			  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "MUST" :
-			{
-			  "name" : "Museums Studies",
+			{ "name" : "Museums Studies",
 			  "abbrev" : "MUST",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "MUS":
-			{
-			  "name" : "Music",
+			{ "name" : "Music",
 			  "abbrev" : "MUS",
-			  "division" : "Fine Arts"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "NEUR" :
-              {
-                  "name" : "Neuroscience",
-                  "abbrev" : "NEUR",
-                  "division" : "Science"
-              },
+            { "name" : "Neuroscience",
+              "abbrev" : "NEUR",
+		 	  "division" : "Mathematics, Science and Physical Education"
+            },
           "SCST" :
-			{
-			  "name" : "Nordic Studies",
+			{ "name" : "Nordic Studies",
 			  "abbrev" : "SCST",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "NURS" :
-			{
-			  "name" : "Nursing",
+			{ "name" : "Nursing",
 			  "abbrev" : "NURS",
-			  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "OC" :
-            {
-			  "name" : "Off Campus Studies",
-			  "abbrev" : "OC",
-			  "division" : "General"
+            { "name" : "Off Campus Studies",
+			  "abbrev" : "OC"
 			},
           "PAID" :
-			{
-			  "name" : "Paideia",
-			  "abbrev" : "PAID",
-			  "division" : "Humanities"
+			{ "name" : "Paideia",
+			  "abbrev" : "PAID" 
 			},
           "PAID2" :
-			{
-			  "name" : "Paideia 2",
-			  "abbrev" : "PAID2",
-			  "division" : "Humanities"
+			{ "name" : "Paideia 2",
+			  "abbrev" : "PAID2"
 			},
           "PHIL" :
-			{
-			  "name" : "Philosophy",
+			{ "name" : "Philosophy",
 			  "abbrev" : "PHIL",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "PE" :
 			{
 			  "name" : "Physical Education",
 			  "abbrev" : "PE",
-			  "division" : "Humanities"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "PHYS" :
 			{
 			  "name" : "Physics",
 			  "abbrev" : "PHYS",
-			  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "POLS" :
 			{
 			  "name" : "Political Science",
 			  "abbrev" : "POLS",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "PSYC" :
 			{
 			  "name" : "Psychology",
 			  "abbrev" : "PSYC",
-			  "division" : "Science"
+		 	  "division" : "History and Social Sciences"
 			},
           "REL" :
 			{
 			  "name" : "Religion",
 			  "abbrev" : "REL",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "RUS" :
 			{
 			  "name" : "Russian Studies",
 			  "abbrev" : "RUS",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "SCST" :
 			{
 			  "name" : "Scandinavian Studies",
 			  "abbrev" : "SCST",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "SCI" :
 			{
 			  "name" : "Science",
 			  "abbrev" : "SCI",
-			  "division" : "Science"
+		 	  "division" : "Mathematics, Science and Physical Education"
 			},
           "SW" :
 			{
 			  "name" : "Social Work",
 			  "abbrev" : "SW",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "SOC" :
 			{
 			  "name" : "Sociology",
 			  "abbrev" : "SOC",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			},
           "SPAN" :
 			{
 			  "name" : "Spanish",
 			  "abbrev" : "SPAN",
-			  "division" : "Humanities"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "THE" :
 			{
 			  "name" : "Theatre",
 			  "abbrev" : "THE",
-			  "division" : "Fine Arts"
+		 	  "division" : "Humanities and Fine Arts"
 			},
           "WGST":
 			{
 			  "name" : "Women and Gender Studies",
 			  "abbrev" : "WGST",
-			  "division" : "Humanities"
+		 	  "division" : "History and Social Sciences"
 			}
-          }
+        }
 
+def getDivision(row):
+	if 'division' in depts[row['dept']]:
+		return depts[row['dept']]['division']
+	return None
 
-def main():
+# read csv data
+courses = pd.read_csv("courses for apc project 2.csv");
 
-    res = []
+# eliminate unused columns and change course names
+courses = courses[['Crs Title','Crs Name','Crs Subject', 'Crs Desc', 'Crs Min Cred', 'Catalog Course Types CSV', 'Crs Capacity', 'Prerequisite']]
+courses.columns = ['title','name','dept','desc','credit_hrs', 'gen_eds','capacity', 'pre_req'] 
 
-    with open('courses for apc project 2.csv') as csvfile:
-        dictreader = csv.DictReader(csvfile, fieldnames=['crsId', 'title', 'name', 'dept', 'desc', 'shortTitle', 'credit_hrs',
-                                                         'max_credit_hrs', 'crs_start', 'crs_end', 'gen_ed', 'capacity', 'pre_req'])
+#change capacity and credit_hrs to int
+courses[['credit_hrs','capacity']] = courses[['credit_hrs','capacity']].fillna(0.0).astype(int)
 
-        skip = True
-        for row in dictreader:
-            #skip first row
-            if not skip:
-                for k,v in row.items():
-                    if v == '':
-                        del row[k]
-                    elif k == 'crsId' or k == 'crs_start' or k == 'crs_end' or k == 'shortTitle' or k=='max_credit_hrs':
-                        del row[k]
-                    elif k == 'gen_ed':
-                        v = v.strip(".")
-                        row[k] = v.split(",")
-                    elif k == 'dept':
-                        row['division'] = depts[v]["division"]
-                    elif k == 'credit_hrs' or k == 'capacity':
-                        row[k] = int(v)
-                    elif k == 'pre_req':
-                        v = v.strip(".")
-                res.append(row)
-            skip = False
+# get the division associated with the course
+courses["division"] = courses.apply(getDivision, axis=1)
+courses = courses[courses.title.str.contains("ST:XFR Course Since") == False]
 
-    f = open('courseData.json', 'w')
-    f.write(json.dumps(res, indent=2))
-    f.close()
+#prettify the json data
+jsonData = json.loads(courses.to_json(orient="records"))
 
-if __name__ == '__main__':
-    main()
+f = open('courseData.json', 'w')
+f.write(json.dumps(jsonData, indent=2))
+f.close()
