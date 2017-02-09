@@ -24,7 +24,7 @@ app.config(['$routeProvider', function($routeProvider){
 		}
 	})
 	.when("/dashboard/mychanges",{
-		templateUrl : "templates/changes.html", 
+		templateUrl : "templates/changes.html",
 		controller : "changeCtrl",
 		resolve : {
 			view : function() {
@@ -49,6 +49,10 @@ app.config(['$routeProvider', function($routeProvider){
 				return "recent";
 			}
 		}
+	})
+	.when("/dashboard/archives", {
+		templateUrl : "templates/archives.html",
+		controller : "archivesCtrl"
 	})
 	.when("/user/:user", {
 		templateUrl : "templates/user-profile.html",
