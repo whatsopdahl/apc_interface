@@ -4,15 +4,6 @@
  */
 
 /**
- * Drop all existing collections
- */
-db.users.drop();
-db.depts.drop();
-db.courses.drop();
-db.proposals.drop();
-db.archive.drop();
-
-/**
  * Recreate all collections
  */
 users = [
@@ -566,9 +557,19 @@ db.depts.createIndex({"abbrev" : 1});
 var user;
 for (var i=0; i < users.length; i++) {
 	user = users[i];
-	dept = db.depts.findOne({"abbrev": user.dept, {"division" : {$exists : true}}});
+	var query = {"abbrev": user.dept, "division" : {$exists : true}};
+	dept = db.depts.findOne(query);
 	if (dept != null) {
 		user["division"] = dept.division;
+	}
+}
+
+var course;
+for (var i=0; i < courses.length; i++) {
+	course = courses[i];
+	dept = db.depts.findOne({"abbrev" : course.dept, "division" : {$exists: true}});
+	if (dept != null) {
+		course["division"] = dept.division;
 	}
 }
 
@@ -583,7 +584,7 @@ newpsych352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 2});
 testing = db.courses.findOne({"name" : "CS-237"});
 oldMath452 = db.courses.findOne({"name" : "MATH-452", "gen_ed" : {"$all" : ["QUANT"]} } );
 newMath452 = db.courses.findOne( { 
-	  	 	"division" : "Science", 
+	  	 	"division" : "Mathematics, Science and Physical Education", 
 	  	 	"capacity" : 25, 
 	  	 	"name" : "MATH-452", 
 	  	 	"title" : "Partial Differential Equations", 
@@ -747,13 +748,13 @@ proposals = [
 
 db.proposals.insert(proposals);
 
-cs1prop = db.proposals.findOne({"date" : "2016-10-15T16:46:33.616Z"});
+// cs1prop = db.proposals.findOne({"date" : "2016-10-15T16:46:33.616Z"});
 
-var archive = [ 
-	{ 
-	  	proposals : [cs1prop],
-	  	last_course : cs1prop.newCourse.id
-	}
-]	
+// var archive = [ 
+// 	{ 
+// 	  	proposals : [cs1prop],
+// 	  	last_course : cs1prop.newCourse.id
+// 	}
+// ]	
 
-db.archive.insert(archive);
+// db.archive.insert(archive);
