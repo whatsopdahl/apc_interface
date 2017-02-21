@@ -10,19 +10,15 @@ import static com.mongodb.client.model.Filters.eq;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
-import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.bson.Document;
-import org.bson.BsonReader;
 import org.bson.types.ObjectId;
 import javax.json.*;
 import org.bson.json.JsonParseException;
@@ -55,6 +51,7 @@ public class ApcHandler implements HttpHandler{
     private static final String COLLECTION_USERS = "users";
     private static final String COLLECTION_PROPOSALS = "proposals";
     private static final String COLLECTION_DEPTS = "depts";
+    private static final String COLLECTION_ARCHIVES = "archive"; // check this to ensure accuracy
 
     /**
      * An object representation of the MongoDB database.
@@ -212,6 +209,17 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_DEPTS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
+                                response = "";
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archive":
+                            try {
+                                String searchString = params.get("c");
+                                String searchField = params.get("f");
+                                response = searchArchives(searchString, searchField);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
                                 response = "";
                                 status = STATUS_BAD_REQUEST;
                             }
@@ -478,6 +486,31 @@ public class ApcHandler implements HttpHandler{
         });
        
         return json.toString();
+    }
+    
+    /**
+     * Queries the archive collection and returns a string containing the JSON 
+     * response.
+     * 
+     * TODO: Match similar fields but not the same ones
+     * 
+     * @param query the search query from the front-end
+     * @param field the field in the collection to search from, e.g. title
+     * @return a JSON String representation of the search results
+     */
+    public String searchArchives(String query, String field){
+        final StringBuilder response = new StringBuilder();
+        
+        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(eq(field, query));
+        
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                response.append(document.toJson());
+            }
+        });
+        
+        return response.toString();
     }
 
     /**
