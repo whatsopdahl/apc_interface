@@ -260,12 +260,17 @@ blockquote > .quote-body > * {
 
 .course-info-header {
     margin-right: 25px;
-    margin-left: 25px; 
-    padding-bottom: 9px; 
+    margin-left: 25px;
+    padding-bottom: 9px;
     border-bottom: 1px solid #eee;
 }
 .glyphicon-empty {
     height: 32px;
     width : 38px;
     margin : 1px;
+}
+
+.archiveHover:hover {
+    background-color: #D3D3D3;
+    cursor: pointer;
 }
