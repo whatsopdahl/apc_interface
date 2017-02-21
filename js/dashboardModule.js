@@ -58,8 +58,9 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", function($scope, 
 	}
 
 	$scope.sortBy = function(index){
-		if (index == 0 && $scope.currSort.idx != 0) $scope.toggleDir();
 		$scope.currSort = $scope.sortList[index];
+		$scope.zToa = false;
+		if (index == 0) $scope.zToa = true;
 	}
 
 	$scope.filter = function(elems) {

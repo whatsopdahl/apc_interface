@@ -1,6 +1,7 @@
 var app = angular.module("CourseProposalApp");
 
-app.constant("DATA_URL", "http://localhost:8000/data");
+//app.constant("DATA_URL", "http://localhost:8000/data");
+app.constant("DATA_URL", "http://knuth.luther.edu:8000/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
@@ -13,7 +14,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		editUser : editUser,
 		saveProposal : saveProposal,
 		createProposal : createProposal,
-		deleteProposal : deleteProposal
+		deleteProposal : deleteProposal,
+		searchArchive : searchArchive,
+		getArchive : getArchive
 	}
 
 	/**
@@ -181,6 +184,41 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		}).then(function success() {
 			$log.info("Proposal deleted");
 		}, function(response){
+			handleError(response);
+		});
+	}
+	
+	/**
+	 *
+	 */
+	function archiveSearch(query, type) {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archive",
+					s : query,
+					t : type
+				}
+		}).then(function success(response) {
+			$log.info("Received search results from archive query");
+		}, function(response) {
+			handleError(response);
+		}); 
+	}
+	
+	/**
+	 *
+	 */
+	function getArchive(courseID) {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archive",
+					i : courseID
+				}
+		}).then(function success(response) {
+			$log.info("Retrieved archive");
+		}, function(response) {
 			handleError(response);
 		});
 	}

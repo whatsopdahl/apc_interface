@@ -130,7 +130,7 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
    				}
    				break;
    			case 1:
-   				if (chairs.indexOf(proposal.newCourse.division) != -1 || chairs.indexOf("APC") != -1) {
+   				if ((proposal.newCourse.division && chairs.indexOf(proposal.newCourse.division) != -1) || chairs.indexOf("APC") != -1) {
    					return true;
    				}
    				break;
