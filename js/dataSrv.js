@@ -1,7 +1,7 @@
 var app = angular.module("CourseProposalApp");
 
-//app.constant("DATA_URL", "http://localhost:8000/data");
-app.constant("DATA_URL", "http://knuth.luther.edu:8000/data");
+app.constant("DATA_URL", "http://localhost:8000/data");
+// app.constant("DATA_URL", "http://knuth.luther.edu:8000/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
@@ -15,7 +15,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		saveProposal : saveProposal,
 		createProposal : createProposal,
 		deleteProposal : deleteProposal,
-		searchArchive : searchArchive,
+		// searchArchive : searchArchive,
 		getArchive : getArchive
 	}
 
@@ -187,7 +187,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			handleError(response);
 		});
 	}
-	
+
 	/**
 	 *
 	 */
@@ -203,9 +203,9 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			$log.info("Received search results from archive query");
 		}, function(response) {
 			handleError(response);
-		}); 
+		});
 	}
-	
+
 	/**
 	 *
 	 */
