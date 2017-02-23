@@ -3,6 +3,7 @@ package com.apc_interface.apc_backend;
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
@@ -209,18 +210,37 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_DEPTS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
-                        case "archive":
+                        case "archiveSearch":
                             try {
                                 String searchString = params.get("c");
                                 String searchField = params.get("f");
                                 response = searchArchives(searchString, searchField);
                                 status = STATUS_OK;
                             } catch (Exception ex) {
-                                response = "";
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archiveGet":
+                            try{
+                                String searchID = params.get("i");
+                                response = getArchive(searchID);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archiveGetAll":
+                            try {
+                                response = getAll(COLLECTION_ARCHIVES);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -335,6 +355,17 @@ public class ApcHandler implements HttpHandler{
                                 successObj.add("method", "delete proposal");
                                 response = successObj.build().toString();
                             } catch (Exception ex){
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archive":
+                            try {
+                                //these are placeholderks.
+                                status = -1;
+                                response = "";
+                                // TODO implement post function which takes a proposal and puts it into the correct archive system.
+                            } catch (Exception ex) {
                                 response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
@@ -501,7 +532,9 @@ public class ApcHandler implements HttpHandler{
     public String searchArchives(String query, String field){
         final StringBuilder response = new StringBuilder();
         
-        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(eq(field, query));
+        BasicDBObject searchObject = new BasicDBObject("proposals." + field, query);
+        
+        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
         
         iterable.forEach(new Block<Document>() {
             @Override
@@ -511,6 +544,26 @@ public class ApcHandler implements HttpHandler{
         });
         
         return response.toString();
+    }
+    
+    /**
+     * Searches the archives by the lastCourseID and returns as a document a
+     * single archive.
+     * 
+     * @param lastCourseID the ID of the last course of the archive
+     * @return a JSON document containing the relevant archive
+     */
+    public String getArchive(String lastCourseID){
+        BasicDBObject searchObject = new BasicDBObject("last_course", lastCourseID);
+        
+        Document obj = db.getCollection(COLLECTION_ARCHIVES).findOneAndDelete(searchObject);
+        
+        return obj.toJson();
+    }
+    
+    public void addCourseToArchive() {
+        
+        
     }
 
     /**

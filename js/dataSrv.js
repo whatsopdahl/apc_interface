@@ -16,7 +16,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		createProposal : createProposal,
 		deleteProposal : deleteProposal,
 		searchArchive : searchArchive,
-		getArchive : getArchive
+		getArchive : getArchive,
+		getAllArchives : getAllArchives
 	}
 
 	/**
@@ -187,6 +188,23 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 			handleError(response);
 		});
 	}
+
+	/**
+	 * This function takes a proposal object and the ID of the course it's
+	 * replacing and places it in its proper archive table. The backend will
+	 * handle creating new archives if necessary.
+	 */	
+	function archiveProposal(proposal, oldCourseID) {
+		var data = { "d" : proposal, "i" : oldCourseID, "q" : archive };
+		return $http({ method: "POST",
+				url : DATA_URL,
+				data : data
+		}).then(function success() {
+			$log.info("Proposal deleted");
+		}, function(response) {
+			handleError(response);
+		});
+	}
 	
 	/**
 	 *
@@ -195,7 +213,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
-					q : "archive",
+					q : "archiveSearch",
 					s : query,
 					t : type
 				}
@@ -213,12 +231,27 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
-					q : "archive",
+					q : "archiveGet",
 					i : courseID
 				}
 		}).then(function success(response) {
 			$log.info("Retrieved archive");
 		}, function(response) {
+			handleError(response);
+		});
+	}
+	
+	
+	function getAllArchives() {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archiveGetAll"
+				}
+		}).then(function success(response) {
+			$log.info("Retrieved all archive data");
+			return response.data;
+		}, function(response){
 			handleError(response);
 		});
 	}
