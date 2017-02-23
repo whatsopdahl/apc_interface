@@ -9,4 +9,4 @@ mongoimport --db apcdata --collection courses --type json --file ./database/cour
 mongo apcdata database/mock_data.js
 
 #	Start the java backend
-java -jar apcBackend_v1_1_3s.jar 
+java -jar apcBackend_v1_1_3x.jar 
