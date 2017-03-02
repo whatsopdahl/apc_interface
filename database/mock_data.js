@@ -460,7 +460,6 @@ depts = [
 //new courses for proposal
 courses = [
 		{
-		  	"division" : "Science",
 		  	"capacity" : 40,
 		  	"name" : "CS-1",
 		  	"title" : "Fun with computers",
@@ -469,7 +468,6 @@ courses = [
 		  	"desc" : "Learn how the computer is magic! Learn about the little wizard inside that makes your computer work."
 		},
 		{
-		    "division": "Science",
 		    "capacity": 25,
 		    "name": "MATH-150",
 		    "title": "Introduction to Being a Nerd",
@@ -481,7 +479,6 @@ courses = [
 		    "desc": "An introduction to computer science emphasizing problem solving. Problems are selected from a variety of interesting areas such as graphics, image processing, cryptography, data analysis, astronomy, video games, and environmental stimulation. Topics include algorithm design and object oriented programming."
 		},
 		{
-		    "division": "Science",
 		    "capacity": 30,
 		    "name": "PSYC-352",
 		    "title": "Cognitive Processes",
@@ -491,7 +488,6 @@ courses = [
 		    "desc": "A study of the mental processes involved in the acquisition, organization, representation, and retrieval of information by humans. Topics to be covered include attention, recognition memory, short-term and long-term memory, concept formation, problem solving, and creativity. Lecture, discussion, and weekly laboratories."
 		},
 		{
-		  	"division" : "Science",
 		  	"capacity" : 25,
 		  	"name" : "CS-237",
 		  	"title" : "Testing",
@@ -501,7 +497,6 @@ courses = [
 		  	"desc" : "Learn best-practices and common frameworks for testing in Java, Python, and C++."
 		},
 		{
-		 	"division" : "Science",
 		 	"capacity" : 25,
 		 	"name" : "MATH-452",
 		 	"title" : "Partial Differential Equations",
@@ -512,7 +507,6 @@ courses = [
 		 	"gen_ed" : [ ]
 		},
 		{
-			"division" : "Humanities",
 			"capacity" : 35,
 			"name" : "ENG-334",
 			"title" : "The Wizarding World: Investigating Harry Potter",
@@ -523,7 +517,6 @@ courses = [
 			"gen_ed" : [ "HEPT" ]
 		},
 		{
-			"division" : "Fine Arts",
 			"capacity" : 14,
 			"name" : "ART-200",
 			"title" : "Finger Painting I",
@@ -536,7 +529,6 @@ courses = [
 			]
 		},
 		{
-			"division" : "Humanities",
 			"capacity" : 25,
 			"name" : "HIST-250",
 			"title" : "Tea and Funny Accents: The History of Early Modern Britain",
@@ -549,7 +541,6 @@ courses = [
 			]
 		},
 		{
-			"division" : "Science",
 			"capacity" : 40,
 			"name" : "CS-75",
 			"title" : "Computer Magic",
@@ -558,7 +549,6 @@ courses = [
 			"desc" : "Learn why your computer is beast mode."
 		},
 		{
-			"division" : "Science",
 			"capacity" : 40,
 			"name" : "CS-80",
 			"title" : "Computer Magic Tricks",
@@ -567,7 +557,6 @@ courses = [
 			"desc" : "Learn why your computer is beast mode."
 		},
 		{
-			"division" : "Humanities",
 			"capacity" : 20,
 			"name" : "ENG-75",
 			"title" : "We Know Words",
@@ -576,7 +565,6 @@ courses = [
 			"desc" : "Learn so many words."
 		},
 		{
-			"division" : "Humanities",
 			"capacity" : 20,
 			"name" : "ENG-80",
 			"title" : "We Know Many Words",
@@ -832,7 +820,7 @@ db.proposals.insert(proposals);
 
 
 cs70 = {
-		"division" : "Science",
+		"division" : "Mathematics, Science and Physical Education",
 		"capacity" : 30,
 		"name" : "CS-70",
 		"title" : "Computer Magic",
