@@ -1,7 +1,7 @@
 var app = angular.module("CourseProposalApp");
 
 //app.constant("DATA_URL", "http://localhost:8000/data");
-app.constant("DATA_URL", "http://knuth.luther.edu:8000/data");
+app.constant("DATA_URL", "http://knuth.luther.edu:8080/data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
 	return {
