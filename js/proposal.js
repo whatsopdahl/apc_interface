@@ -5,7 +5,7 @@ app.controller("proposalCtrl", proposalCtrl);
 proposalCtrl.$inject=["$rootScope","$scope", "$log", "$location", "$routeParams", "$filter", "$window",  "params", "dataSrv", "userSrv", "EVENTS"];
 function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter, $window, params, dataSrv, userSrv, EVENTS) {
 	$scope.user = $rootScope.user;
-	
+
 	$scope.selectedDept = null;
 	$scope.selectedInstructor = null;
 	$scope.courseNum = null;
@@ -37,7 +37,7 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 								"comments":  []
 							  };
 
-		var newCourse = { 
+		var newCourse = {
 								    "division": "",
 								    "capacity": 0,
 								    "name": "",
@@ -54,12 +54,14 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 		} else {
 			//load data
 			var course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
-			
+
 			// if $scope.proposal has a name key, it is a course and we need to build our proposal obj from scratch
 			if (course.name) {
 				$scope.proposal.oldCourse = course;
+				console.log("printing");
+				console.log(course);
 				//make a copy of the old Course data
-				$scope.proposal["newCourse"] = { 
+				$scope.proposal["newCourse"] = {
 												    "division": course.division,
 												    "capacity": course.capacity,
 												    "name": course.name,
@@ -68,6 +70,7 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 												    "dept": course.dept,
 												    "credit_hrs": course.credit_hrs,
 												    "desc": course.desc,
+
 									};
 				if (course.gen_ed) {
 				 	$scope.proposal.newCourse["gen_ed"] = course.gen_ed.slice();
