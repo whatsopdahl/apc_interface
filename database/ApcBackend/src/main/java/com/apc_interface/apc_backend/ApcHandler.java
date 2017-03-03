@@ -14,6 +14,7 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ApcHandler implements HttpHandler{
     private static final String COLLECTION_USERS = "users";
     private static final String COLLECTION_PROPOSALS = "proposals";
     private static final String COLLECTION_DEPTS = "depts";
-    private static final String COLLECTION_ARCHIVES = "archive"; // check this to ensure accuracy
+    private static final String COLLECTION_ARCHIVES = "archives"; // check this to ensure accuracy
 
     /**
      * An object representation of the MongoDB database.
@@ -361,9 +362,28 @@ public class ApcHandler implements HttpHandler{
                             break;
                         case "archive":
                             try {
-                                //these are placeholderks.
-                                status = -1;
-                                response = "";
+                                JsonObject archive;
+                                if (doc.get("oldCourse") == null) {
+                                    //no old course, create new archive
+                                    JsonObjectBuilder builder = Json.createObjectBuilder();
+                                    builder.add("proposals", Json.createArrayBuilder()
+                                            .add(doc.toJson()).build());
+                                    builder.add("curr_course", data.getJsonObject("newCourse").getString("_id"));
+                                    archive = builder.build();
+                                    
+                                } else {
+                                    //old course and existing archives
+                                    //get archive by old course id, then $push new prop to that archive
+                                    archive = null; //change this to be full archive document
+                                }
+                                
+                                //do this here, or in the if?
+                                //do existing archives need to get deleted and completely rewritten?
+                                db.getCollection(COLLECTION_ARCHIVES).insertOne(Document.parse(archive.toString()));
+                                
+                                status = STATUS_CREATED;
+                                successObj.add("method", "archive proposal");
+                                response = successObj.build().toString();
                                 // TODO implement post function which takes a proposal and puts it into the correct archive system.
                             } catch (Exception ex) {
                                 response = ex.getMessage();
@@ -548,7 +568,9 @@ public class ApcHandler implements HttpHandler{
     
     /**
      * Searches the archives by the lastCourseID and returns as a document a
-     * single archive.
+     * single archive. Note that the search still returns an iterator, but as
+     * the courseID's are unique (and that there's no simple findOne method)
+     * this should work as if a findOne method had been called.
      * 
      * @param lastCourseID the ID of the last course of the archive
      * @return a JSON document containing the relevant archive
@@ -556,9 +578,18 @@ public class ApcHandler implements HttpHandler{
     public String getArchive(String lastCourseID){
         BasicDBObject searchObject = new BasicDBObject("last_course", lastCourseID);
         
-        Document obj = db.getCollection(COLLECTION_ARCHIVES).findOneAndDelete(searchObject);
+        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
         
-        return obj.toJson();
+        final StringBuilder builder = new StringBuilder();
+        
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                builder.append(document.toJson());
+            }
+        });
+        
+        return builder.toString();
     }
     
     public void addCourseToArchive() {

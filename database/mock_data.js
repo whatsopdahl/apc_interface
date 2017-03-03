@@ -629,6 +629,12 @@ newHist250 = db.courses.findOne({"name" : "HIST-250", "title" : "Tea and Funny A
 cs75 = db.courses.findOne({"name" : "CS-75", "title" : "Computer Magic"});
 eng75 = db.courses.findOne({"name" : "Eng-75", "title" : "We Know Words"});
 
+cs80 = db.courses.findOne({"name" : "CS-80", "title" : "Computer Magic Tricks"});
+eng80 = db.courses.findOne({"name" : "Eng-80", "title" : "We Know Many Words"});
+
+cs80prop = db.proposals.findOne({"date" : "2016-11-15T16:46:33.616Z"});
+eng80prop = db.proposals.findOne({"date" : "2016-1-15T16:46:33.616Z"});
+
 
 proposals = [
   {
@@ -872,11 +878,6 @@ eng75prop = {
 	};
 
 
-cs80 = db.courses.findOne({"name" : "CS-80", "title" : "Computer Magic Tricks"});
-eng80 = db.courses.findOne({"name" : "Eng-80", "title" : "We Know Many Words"});
-
-cs80prop = db.proposals.findOne({"date" : "2016-11-15T16:46:33.616Z"});
-eng80prop = db.proposals.findOne({"date" : "2016-1-15T16:46:33.616Z"});
 
 var archives = [
 	{
