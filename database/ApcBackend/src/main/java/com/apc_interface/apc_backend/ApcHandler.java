@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import javax.json.*;
@@ -370,16 +371,14 @@ public class ApcHandler implements HttpHandler{
                                             .add(doc.toJson()).build());
                                     builder.add("curr_course", data.getJsonObject("newCourse").getString("_id"));
                                     archive = builder.build();
-                                    
+                                    db.getCollection(COLLECTION_ARCHIVES).insertOne(Document.parse(archive.toString()));
                                 } else {
                                     //old course and existing archives
                                     //get archive by old course id, then $push new prop to that archive
-                                    archive = null; //change this to be full archive document
+                                    Document idDoc = doc.get("oldCourse", Document.class).get("_id", Document.class);
+                                    BasicDBObject newDoc = (BasicDBObject) new BasicDBObject().put("$push", doc.toJson());
+                                    db.getCollection(COLLECTION_ARCHIVES).findOneAndUpdate(idDoc, newDoc);
                                 }
-                                
-                                //do this here, or in the if?
-                                //do existing archives need to get deleted and completely rewritten?
-                                db.getCollection(COLLECTION_ARCHIVES).insertOne(Document.parse(archive.toString()));
                                 
                                 status = STATUS_CREATED;
                                 successObj.add("method", "archive proposal");
@@ -497,8 +496,7 @@ public class ApcHandler implements HttpHandler{
         JsonObject json = null;
         FindIterable find = db.getCollection(COLLECTION_COURSES).find(BasicDBObject.parse(course));
         
-        MongoCursor<Document> cursor = find.iterator();
-        try {
+        try (MongoCursor<Document> cursor = find.iterator()) {
             if (cursor.hasNext()){
                 Document doc = cursor.next();
                 
@@ -508,8 +506,6 @@ public class ApcHandler implements HttpHandler{
             }
         } catch(Exception e) {
             throw e;
-        } finally {
-            cursor.close();
         }
         if (json == null) {
             throw new Exception("Course not found.");
@@ -543,25 +539,47 @@ public class ApcHandler implements HttpHandler{
      * Queries the archive collection and returns a string containing the JSON 
      * response.
      * 
-     * TODO: Match similar fields but not the same ones
+     * Search fields include title, name, owner, and (year) implemented.
      * 
      * @param query the search query from the front-end
      * @param field the field in the collection to search from, e.g. title
      * @return a JSON String representation of the search results
+     * @throws java.lang.Exception if the search field is invalid.
      */
-    public String searchArchives(String query, String field){
+    public String searchArchives(String query, String field) throws Exception{
         final StringBuilder response = new StringBuilder();
+        final Map<String, String> responses = new HashMap();
         
-        BasicDBObject searchObject = new BasicDBObject("proposals." + field, query);
+        String searchField = "proposals.";
+        switch(field){
+            case "title":
+            case "name":
+                searchField += "newCourse.";
+                break;
+            case "year": //NOT IMPLEMENTED YET
+            case "owner":
+                break;
+            default:
+                throw new Exception("Invalid archive search field");
+        }
+        searchField += field;
+        for (String q: query.split("\\+")){
+            BasicDBObject searchObject = new BasicDBObject(searchField, Pattern.compile(q));
+            FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
+            iterable.forEach(new Block<Document>() {
+                @Override
+                public void apply(final Document document) {
+                    String ans = document.get("_id").toString();
+                    if (!responses.containsKey(ans)){
+                        responses.put(ans, document.toJson());
+                    }
+                }
+            });
+        }
         
-        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
-        
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                response.append(document.toJson());
-            }
-        });
+        for(Map.Entry<String, String> entry: responses.entrySet()){
+            response.append(entry.getValue());
+        }
         
         return response.toString();
     }
