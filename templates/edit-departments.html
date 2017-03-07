@@ -1,29 +1,17 @@
-<!-- Modal -->
-<div class="modal fade" id="more-user-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-    	<div class="modal-content">
-    		<div class="modal-header">
-    			<button ng-if="!required" type="button" class="close" data-dismiss="modal" aria-label="Close"><a href="#\login"><span aria-hidden="true">&times;</span></a></button>
-    			<h4 class="modal-title" id="myModalLabel">Department Data</h4>
-    		</div>
-    		<div class="modal-body">
-    			<form id="user-data-form" ng-submit="updateDepts(memberDepts)">
-    				<div class="form-group form-inline" title="Select the departments you are a member of.">
-					    <label>Department<span style="color: red;">*</label>
-					   	<select class="form-control" ng-required="required" ng-model="selectedDept"
-					   			ng-options="dept as dept.name for dept in depts | orderBy : 'name' track by dept.abbrev">
-    					</select>
-    					<div class="btn btn-primary" ng-click="addDept()">Add</div>
-						</div>
-						<div class="container-fluid">
-							<div class="col-xs-4 btn-removable" ng-repeat="dept in memberDepts">{{dept.abbrev}}<div class="pull-right" aria-hidden="true" ng-click="removeDept(dept)">&times;</div>
-							</div>
-						</div>
-						<br>
-						<button ng-if="!required" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-primary">Submit</button>
-    			</form>
+<h4 class="modal-title" id="myModalLabel">Department Data</h4>
+<div class="modal-body">
+	<div class="container-fluid">
+	    <label>Department<span style="color: red;">*</label>
+	    <form class="form-inline">
+    		<div class="form-group">
+				<select class="form-control" ng-required="required" ng-model="selectedDept" ng-options="dept as dept.name for dept in depts | orderBy : 'name' track by dept.abbrev">
+				</select>
+				<div class="col-xs-4 col-xs-offset-4 btn btn-primary" ng-click="addDept()">Add</div>
 			</div>
+		</form>
+	</div>
+	<div class="container-fluid">
+		<div class="col-xs-4 btn-removable" ng-repeat="dept in memberDepts">{{dept.abbrev}}<div class="pull-right" aria-hidden="true" ng-click="removeDept(dept)">&times;</div>
 		</div>
 	</div>
 </div>

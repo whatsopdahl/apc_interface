@@ -10,14 +10,18 @@ app.controller("changeCtrl", ["$scope", "view", function($scope, view) {
 	$scope.extendedview = true;
 }]);
 
-app.controller("courseListCtrl", ["$scope", "$log", "$filter", function($scope, $log, $filter){
+app.constant("filterList", 
+	[ { idx : 0, name : "All"},
+	  { idx : 1, name : "Title/Name"},
+	  { idx : 2, name : "Department"},
+	  { idx : 3, name : "Division"}, 
+	  { idx : 4, name : "Owner"}
+	]
+);
 
-	$scope.filterList = [ { idx : 0, name : "All"},
-						  { idx : 1, name : "Title/Name"},
-						  { idx : 2, name : "Department"},
-						  { idx : 3, name : "Division"}, 
-						  { idx : 4, name : "Owner"}
-						];
+app.controller("courseListCtrl", ["$scope", "$log", "$filter", "filterList", function($scope, $log, $filter, filterList){
+
+	$scope.filterList = filterList;
 
 	$scope.sortList = [ { idx : -1, name:"None"},
 						{ idx : 0, name : "Stage"},

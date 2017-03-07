@@ -28,6 +28,7 @@
 	          <ul class="dropdown-menu">
 	          	<li><p class="navbar-text">Welcome {{user.name}}!</p></li>
 	            <li><a href="#/user/{{user.name}}">View Profile</a></li>
+	            <li><a href="" ng-click="openUserPreferences()">Preferences</a></li>
 	            <li ng-if="user.chairs && user.chairs.indexOf('APC') != -1"><a href="" ng-click="openPermissionsModal()">Grant Permissions</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#/" ng-click="logout()">Logout</a></li>

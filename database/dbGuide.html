@@ -236,12 +236,27 @@
 		<tr class="odd">
 			<td class="field">division</td>
 			<td class="type">str</td>
-			<td class="desc">The division under which the department falls. Can be either 'Science', 'Humanities', or 'Fine Arts'.</td>
+			<td class="desc">The division under which the department falls. Can be either 'Mathematics, Science, and Physical Education', 'History and Social Sciences', or 'Humanities and Fine Arts'.</td>
 		</tr>
 	</table>
 	<h3 id="depts">Archive</h3>
 	<p>This collection is currently not supported. Coming Spring semester.</p>
 	<table>
+		<tr>
+			<th class="field">Field</th>
+			<th class="type">Type</th>
+			<th class="desc">Description</th>
+		</tr>
+		<tr class="odd">
+			<td class="field">proposals</td>
+			<td class="type">Array</td>
+			<td class="desc">An array of objects. These are all previous proposals that have been modified. Most recent proposals for a given course are at the end. The last proposal in the array holds the current course in its 'newCourse' field.</td>
+		</tr>
+		<tr>
+			<td class="field">curr_course</td>
+			<td class="type">str</td>
+			<td class="desc">The object id of the current course to which this archive record refers. This is the same as proposals[-1].newCourse.id - it exists here for the purposes of lookup.</td>
+		</tr>
 	</table>
 	<br>
 	<footer>

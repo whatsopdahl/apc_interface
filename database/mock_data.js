@@ -460,7 +460,6 @@ depts = [
 //new courses for proposal
 courses = [  
 		{
-		  	"division" : "Science",
 		  	"capacity" : 40,
 		  	"name" : "CS-1",
 		  	"title" : "Fun with computers",
@@ -469,7 +468,6 @@ courses = [
 		  	"desc" : "Learn how the computer is magic! Learn about the little wizard inside that makes your computer work."
 		},
 		{
-		    "division": "Science",
 		    "capacity": 25,
 		    "name": "MATH-150",
 		    "title": "Introduction to Being a Nerd",
@@ -481,7 +479,6 @@ courses = [
 		    "desc": "An introduction to computer science emphasizing problem solving. Problems are selected from a variety of interesting areas such as graphics, image processing, cryptography, data analysis, astronomy, video games, and environmental stimulation. Topics include algorithm design and object oriented programming."
 		},
 		{
-		    "division": "Science",
 		    "capacity": 30,
 		    "name": "PSYC-352",
 		    "title": "Cognitive Processes",
@@ -491,7 +488,6 @@ courses = [
 		    "desc": "A study of the mental processes involved in the acquisition, organization, representation, and retrieval of information by humans. Topics to be covered include attention, recognition memory, short-term and long-term memory, concept formation, problem solving, and creativity. Lecture, discussion, and weekly laboratories."
 		},
 		{
-		  	"division" : "Science",
 		  	"capacity" : 25,
 		  	"name" : "CS-237",
 		  	"title" : "Testing",
@@ -501,7 +497,6 @@ courses = [
 		  	"desc" : "Learn best-practices and common frameworks for testing in Java, Python, and C++."
 		},
 		{ 
-		 	"division" : "Science", 
 		 	"capacity" : 25, 
 		 	"name" : "MATH-452", 
 		 	"title" : "Partial Differential Equations", 
@@ -512,7 +507,6 @@ courses = [
 		 	"gen_ed" : [ ]
 		},
 		{ 
-			"division" : "Humanities", 
 			"capacity" : 35, 
 			"name" : "ENG-334", 
 			"title" : "The Wizarding World: Investigating Harry Potter", 
@@ -523,7 +517,6 @@ courses = [
 			"gen_ed" : [ "HEPT" ] 
 		},
 		{
-			"division" : "Fine Arts",
 			"capacity" : 14,
 			"name" : "ART-200",
 			"title" : "Finger Painting I",
@@ -536,7 +529,6 @@ courses = [
 			]
 		},
 		{
-			"division" : "Humanities",
 			"capacity" : 25,
 			"name" : "HIST-250",
 			"title" : "Tea and Funny Accents: The History of Early Modern Britain",
@@ -557,10 +549,14 @@ db.depts.createIndex({"abbrev" : 1});
 var user;
 for (var i=0; i < users.length; i++) {
 	user = users[i];
-	var query = {"abbrev": user.dept, "division" : {$exists : true}};
-	dept = db.depts.findOne(query);
-	if (dept != null) {
-		user["division"] = dept.division;
+	var query = {"abbrev": { $in : user.dept }, "division" : {$exists : true}};
+	var memberDepts = db.depts.find(query);
+	user["division"] = [];
+	while (memberDepts.hasNext()) {
+		var dept = memberDepts.next();
+		if (user.division.indexOf(dept.division) == -1) {
+			user.division.push(dept.division);
+		}
 	}
 }
 
@@ -748,13 +744,26 @@ proposals = [
 
 db.proposals.insert(proposals);
 
+for (var i=0; i < proposals.length; i++) {
+	var owner = proposals[i].owner;
+	var user = db.users.findOne({"name" : owner});
+	if (user != null) {
+		if (user.totalProps) {
+			db.users.update({"name" : owner}, { $inc : { totalProps : 1 } });
+		} else {
+			db.users.update({"name" : owner}, { $set : { totalProps : 1 } });
+		}
+	}
+}
+//go through archive to get approved numbers
+
 // cs1prop = db.proposals.findOne({"date" : "2016-10-15T16:46:33.616Z"});
 
-// var archive = [ 
-// 	{ 
-// 	  	proposals : [cs1prop],
-// 	  	last_course : cs1prop.newCourse.id
-// 	}
-// ]	
+var archive = [ 
+	{ 
+	  	proposals : [cs1prop],
+	  	last_course : cs1prop.newCourse.id
+	}
+]	
 
 // db.archive.insert(archive);

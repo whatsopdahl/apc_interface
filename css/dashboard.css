@@ -269,3 +269,7 @@ blockquote > .quote-body > * {
     width : 38px;
     margin : 1px;
 }
+
+#view-port {
+    min-height: 200px;
+}
