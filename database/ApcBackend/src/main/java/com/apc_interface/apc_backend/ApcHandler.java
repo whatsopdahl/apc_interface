@@ -264,9 +264,9 @@ public class ApcHandler implements HttpHandler{
                     JsonReader reader = null;
                     try {
                         JsonReaderFactory factory = Json.createReaderFactory(config);
-
+                        
                         reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
-
+                        
                         data = reader.readObject();
                     } catch (Exception e){
                         System.err.println(e.getClass().toString() +" : "+e.getMessage());
@@ -278,8 +278,14 @@ public class ApcHandler implements HttpHandler{
                     
                     Document doc = null;
                     if (data != null){
-                        doc = Document.parse(data.get("d").toString());
+                        try{
+                            doc = Document.parse(data.get("d").toString());
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                        System.out.println(doc.toJson());
                     } else {
+                        System.out.println("could not read data");
                         throw new JsonParseException("Could not read Data");       
                     }                                 
                     JsonObjectBuilder successObj = Json.createObjectBuilder();
@@ -362,15 +368,21 @@ public class ApcHandler implements HttpHandler{
                             }
                             break;
                         case "archive":
+                            System.out.println("Step 1");
                             try {
                                 JsonObject archive;
                                 if (doc.get("oldCourse") == null) {
                                     //no old course, create new archive
+                                    System.out.println("Step 2");
                                     JsonObjectBuilder builder = Json.createObjectBuilder();
                                     builder.add("proposals", Json.createArrayBuilder()
                                             .add(doc.toJson()).build());
-                                    builder.add("curr_course", data.getJsonObject("newCourse").getString("_id"));
+                                    System.out.println("Step 3");
+                                    System.out.println(data.getJsonObject("d"));
+                                    //  put entire course, or just the ID? (add .getString("_id"))
+                                    builder.add("curr_course", data.getJsonObject("d").getJsonObject("newCourse"));
                                     archive = builder.build();
+                                    System.out.println(archive);
                                     db.getCollection(COLLECTION_ARCHIVES).insertOne(Document.parse(archive.toString()));
                                 } else {
                                     //old course and existing archives
@@ -592,21 +604,30 @@ public class ApcHandler implements HttpHandler{
      * 
      * @param lastCourseID the ID of the last course of the archive
      * @return a JSON document containing the relevant archive
+     * @throws java.lang.Exception if the lastCourseID isn't in the database
      */
-    public String getArchive(String lastCourseID){
-        BasicDBObject searchObject = new BasicDBObject("last_course", lastCourseID);
-        
-        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
-        
+    public String getArchive(final String lastCourseID) throws Exception{
+        System.out.println("[info] searching for archive " + lastCourseID);
+        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find();
         final StringBuilder builder = new StringBuilder();
-        
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                builder.append(document.toJson());
+                try {
+                    if(document.get("curr_course", Document.class)
+                            .get("_id").toString().equals(lastCourseID)){
+                        builder.append(document.toJson());
+                    }
+                } catch (Exception ex) {
+                    // curr_case == null; ignore.
+                }
+                
             }
         });
         
+        if (builder.length() == 0) {
+            throw new Exception("Invalid course ID");
+        }
         return builder.toString();
     }
     

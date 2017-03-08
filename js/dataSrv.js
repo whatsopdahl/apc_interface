@@ -15,9 +15,10 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		saveProposal : saveProposal,
 		createProposal : createProposal,
 		deleteProposal : deleteProposal,
-		searchArchive : searchArchive,
 		getArchive : getArchive,
-		getAllArchives : getAllArchives
+		getAllArchives : getAllArchives,
+		archiveSearch : archiveSearch,
+		archiveProposal : archiveProposal
 	}
 
 	/**

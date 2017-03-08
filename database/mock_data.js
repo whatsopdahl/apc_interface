@@ -821,7 +821,7 @@ db.proposals.insert(proposals);
 // 	}
 // ]
 
-// db.archive.insert(archive);
+// db.archives.insert(archive);
 
 
 
