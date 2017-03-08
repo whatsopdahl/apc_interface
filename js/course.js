@@ -4,11 +4,14 @@ app.controller("courseCtrl", courseCtrl);
 app.directive("revokeApcPrivilegesPopup", revokeApcPrivilegesPopup);
 app.directive("removePropPopup", removePropPopup);
 
+// NEW
+app.directive("courseInfo", courseInfo);
+
 courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv"];
 function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv) {
 	var courseName;
 
-	//if we are viewing a course, add it to recently viewed. 
+	//if we are viewing a course, add it to recently viewed.
 	if (!$scope.course) {
 		courseName = $routeParams.course;
 		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
@@ -142,5 +145,14 @@ function revokeApcPrivilegesPopup() {
 			msg : "@",
 			confirmFunc : "="
 		}
+	}
+}
+
+// NEW
+function courseInfo() {
+	return {
+		restrict : "E",
+		templateUrl : "templates/course-info.html",
+		controller : "courseCtrl"
 	}
 }

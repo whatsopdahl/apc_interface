@@ -15,7 +15,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		saveProposal : saveProposal,
 		createProposal : createProposal,
 		deleteProposal : deleteProposal,
-		// searchArchive : searchArchive,
+		searchArchive : searchArchive,
 		getArchive : getArchive
 	}
 
@@ -191,7 +191,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	/**
 	 *
 	 */
-	function archiveSearch(query, type) {
+	function searchArchive(query, type) {
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {

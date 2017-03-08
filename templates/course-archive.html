@@ -1,13 +1,21 @@
 <!-- Modal -->
 <div class="modal fade" id="show-archives" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
     	<div class="modal-content">
     		<div class="modal-header">
                 <button ng-if="!required" type="button" class="close" data-dismiss="modal" aria-label="Close"><a href="#\archives"><span aria-hidden="true">&times;</span></a></button>
-    			<h4 class="modal-title">We Made It</h4>
+    			<h4 class="modal-title">Current Course Title</h4>
     		</div>
             <div class="modal-body">
-                WOOOOOOOOOOOO
+                <!-- ng-repeat here with order -->
+                <div class="well well-sm archiveHover" data-toggle="collapse" href="#showArchiveInfo">
+                    <h4>1st archive</h4>
+                </div>
+                <div class="collapse" id="showArchiveInfo">
+                    <!-- NEW -->
+                    <course-info></course-info>
+                </div>
+                <!-- to here -->
             </div>
         </div>
     </div>

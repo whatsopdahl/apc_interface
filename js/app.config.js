@@ -67,8 +67,12 @@ app.config(['$routeProvider', function($routeProvider){
 		redirectTo : "/dashboard"
 	})
 	.when("/:course", {
-		templateUrl : "templates/course-info.html",
-		controller : "courseCtrl"
+		template : "<course-info></course-info>"
+
+		// BEFORE
+		// templateUrl : "templates/course-info.html",
+        // controller : "courseCtrl"
+
 	})
 	.when("/:course/edit", {
 		templateUrl : "templates/edit-proposal.html",
