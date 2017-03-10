@@ -17,7 +17,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		deleteProposal : deleteProposal,
 		getArchive : getArchive,
 		getAllArchives : getAllArchives,
-		archiveSearch : archiveSearch,
+		searchArchive : searchArchive,
 		archiveProposal : archiveProposal
 	}
 
@@ -215,8 +215,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				url : DATA_URL,
 				params : {
 					q : "archiveSearch",
-					s : query,
-					t : type
+					c : query,
+					f : type
 				}
 		}).then(function success(response) {
 			$log.info("Received search results from archive query");
