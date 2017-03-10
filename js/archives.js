@@ -22,8 +22,8 @@ function archiveSrv($log, dataSrv, $compile, $rootScope) {
     }
 
     function getArchiveById(courseId) {
-        return dataSrv.getArchive(courseId).then(function(data) {
-            return data;
+        dataSrv.getArchive(courseId).then(function(data) {
+            openArchiveModal(data);
         })
     }
 
@@ -80,7 +80,6 @@ function archiveSrv($log, dataSrv, $compile, $rootScope) {
 
 archivesCtrl.$inject = ["$scope", "$rootScope", "archiveSrv"];
 function archivesCtrl($scope, $rootScope, archiveSrv) {
-    $scope.getArchive = archiveSrv.getArchive;
     $scope.openArchiveModal = archiveSrv.openArchiveModal;
 
     $scope.results = [];

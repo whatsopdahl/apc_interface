@@ -23,13 +23,14 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, 
 		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
 	}
 
+	$log.debug($scope.course);
 	$scope.canApprove = userSrv.canApprove;
 
 	$scope.approve = courseSrv.approve;
 	$scope.reject = courseSrv.reject;
 	$scope.deleteProp = courseSrv.deleteProp;
 
-	$scope.openArchiveModal = archiveSrv.openArchiveModal;
+	$scope.getArchiveById = archiveSrv.getArchiveById;
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
