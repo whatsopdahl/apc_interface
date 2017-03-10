@@ -153,3 +153,10 @@ app.filter('searchProposal', ["$log", function($log){
 		return filtered;
 	}
 }]);
+
+app.directive("btnMenu", function() {
+	return {
+		restrict : 'E',
+		templateUrl : 'templates/btn-menu.html'
+	}
+});

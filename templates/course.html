@@ -16,10 +16,8 @@
             </div>
         </div>
         <div class="col-xs-4 pull-right" ng-class="{'col-xs-2' : extendedview == true }" style="padding-right: 0;">
+            <btn-menu></btn-menu>
             <a href="#/{{course.newCourse.name}}/edit" class="btn btn-edit pull-right" ng-if="user.name == course.owner"><span class="glyphicon glyphicon-pencil"></span></a>
-            <div class="glyphicon-empty pull-right" ng-if="user.name != course.owner"></div>
-            <button ng-if="canApprove(course)" title="Reject" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span></button>
-            <button ng-if="canApprove(course)" title="Approve" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span></button>
         </div>
     </div>
 

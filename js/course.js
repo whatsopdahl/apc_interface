@@ -7,13 +7,19 @@ app.directive("removePropPopup", removePropPopup);
 // NEW
 app.directive("courseInfo", courseInfo);
 
-courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv"];
-function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv) {
+courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv", "archiveSrv"];
+function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv, archiveSrv) {
 	var courseName;
 
 	//if we are viewing a course, add it to recently viewed.
 	if (!$scope.course) {
-		courseName = $routeParams.course;
+		if (!$routeParams || !$routeParams.course) {
+			// this is from the archive scope
+			courseName = $scope.courseName
+		} else {
+			// this is from the route params
+			courseName = $routeParams.course;
+		}
 		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
 	}
 
@@ -23,6 +29,7 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, 
 	$scope.reject = courseSrv.reject;
 	$scope.deleteProp = courseSrv.deleteProp;
 
+	$scope.openArchiveModal = archiveSrv.openArchiveModal;
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
@@ -148,7 +155,6 @@ function revokeApcPrivilegesPopup() {
 	}
 }
 
-// NEW
 function courseInfo() {
 	return {
 		restrict : "E",

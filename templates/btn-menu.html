@@ -1,0 +1,14 @@
+<div class="btn-group pull-right">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+	<ul class="dropdown-menu transparent">
+		<li>
+			<button type="button" title="View Archive"  class="btn btn-default approveReject" ng-click="openArchiveModal(5)">See Archive</button>
+		</li>
+        <li>
+            <button type="button" ng-if="canApprove(course)" title="Approve" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span> Approve</button>
+        </li>
+		<li>
+            <button type="button" ng-if="canApprove(course)" title="Reject" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span> Reject</button>
+        </li>
+    </ul>
+</div>

@@ -212,6 +212,7 @@ a > h4:hover {
 }
 
 .approveReject {
+    width : 100%;
     float: right;
     display: inline-block;
     margin: 0 0 0 5px;
@@ -273,4 +274,9 @@ blockquote > .quote-body > * {
 .archiveHover:hover {
     background-color: #D3D3D3;
     cursor: pointer;
+}
+
+.transparent {
+    background-color: transparent;
+    border: none;
 }
