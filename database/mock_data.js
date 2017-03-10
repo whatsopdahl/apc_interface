@@ -496,34 +496,16 @@ courses = [
 		  	"credit_hrs" : 4,
 		  	"desc" : "Learn best-practices and common frameworks for testing in Java, Python, and C++."
 		},
-<<<<<<< HEAD
-		{ 
-		 	"capacity" : 25, 
-		 	"name" : "MATH-452", 
-		 	"title" : "Partial Differential Equations", 
-=======
 		{
 		 	"capacity" : 25,
 		 	"name" : "MATH-452",
 		 	"title" : "Partial Differential Equations",
->>>>>>> 023b1d1214e7f7fe88c1ac0089ba64106f067d49
 		 	"pre_req" : "MATH 351",
 		 	"dept" : "MATH",
 		 	"credit_hrs" : 4,
 		 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
 		 	"gen_ed" : [ ]
 		},
-<<<<<<< HEAD
-		{ 
-			"capacity" : 35, 
-			"name" : "ENG-334", 
-			"title" : "The Wizarding World: Investigating Harry Potter", 
-			"pre_req" : "PAID 111, 112 or transfer equivalents", 
-			"dept" : "ENG", 
-			"credit_hrs" : 4, 
-			"desc" : "A study on the social impact that the Harry Potter franchise has had on millenials through investigative readings of the Harry Potter series. Students will perform character analysis to determining what characterizes the millenial generation and how the novels and movies have impacted social events.", 
-			"gen_ed" : [ "HEPT" ] 
-=======
 		{
 			"capacity" : 35,
 			"name" : "ENG-334",
@@ -533,7 +515,6 @@ courses = [
 			"credit_hrs" : 4,
 			"desc" : "A study on the social impact that the Harry Potter franchise has had on millenials through investigative readings of the Harry Potter series. Students will perform character analysis to determining what characterizes the millenial generation and how the novels and movies have impacted social events.",
 			"gen_ed" : [ "HEPT" ]
->>>>>>> 023b1d1214e7f7fe88c1ac0089ba64106f067d49
 		},
 		{
 			"capacity" : 14,
