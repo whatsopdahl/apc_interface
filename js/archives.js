@@ -28,7 +28,7 @@ function archiveSrv($log, dataSrv, $compile, $rootScope) {
     }
 
     function archiveSearch(query, type) {
-        return dataSrv.archiveSearch(query, type).then(function(data) {
+        return dataSrv.searchArchive(query, type).then(function(data) {
             return data;
         })
     }
@@ -90,52 +90,52 @@ function archivesCtrl($scope, $rootScope, archiveSrv) {
     $scope.searching = false;
     $scope.archiveSearch = function() {
         $scope.searching = true;
-        // archiveSrv.archiveSearch($scope.query, $scope.type).then(function(data) {
-        //     $scope.results = data;
-        //     $scope.searching = false;
-        // });
-        $scope.results = [ 
-            {
-                proposals : [
-                                {
-                                    "terms": ["Fall", "Spring"],
-                                    "owner": "Kyle McNeese",
-                                    "stage": 2,
-                                    "staffing": "We will need to hire a new professor.",
-                                    "rationale": "It will help.",
-                                    "impact": "1st",
-                                    "date": "2015-11-15T16:46:33.616Z",
-                                    "oldCourse": {
-                                                    "division" : "Mathematics, Science and Physical Education",
-                                                    "capacity" : 30,
-                                                    "name" : "CS-70",
-                                                    "title" : "Computer Magic",
-                                                    "dept" : "CS",
-                                                    "credit_hrs" : 4,
-                                                    "desc" : "Learn why your computer is a beast."
-                                                },
-                                    "newCourse": {      
-                                                    "capacity" : 40,
-                                                    "name" : "CS-75",
-                                                    "title" : "Computer Magic",
-                                                    "dept" : "CS",
-                                                    "credit_hrs" : 4,
-                                                    "desc" : "Learn why your computer is beast mode."
-                                                },
-                                    "fees": null,
-                                    "est_enrollment": 20,
-                                    "instructors": ["Jon Opdahl", "Kyle McNeese"],
-                                    "comments":  [      {
-            "user": "Jonathan Opdahl",
-            "date": "Mon Nov 14 2016 21:26:22 GMT-0600 (CST)",
-            "body": "Hi Kyle"
-        }]
-                                }
-                            ],
-                curr_course : 5 
-            }
-        ];
-        $scope.searching = false;
+        archiveSrv.archiveSearch($scope.query, $scope.type).then(function(data) {
+            $scope.results = data;
+            $scope.searching = false;
+        });
+        // $scope.results = [ 
+        //     {
+        //         proposals : [
+        //                         {
+        //                             "terms": ["Fall", "Spring"],
+        //                             "owner": "Kyle McNeese",
+        //                             "stage": 2,
+        //                             "staffing": "We will need to hire a new professor.",
+        //                             "rationale": "It will help.",
+        //                             "impact": "1st",
+        //                             "date": "2015-11-15T16:46:33.616Z",
+        //                             "oldCourse": {
+        //                                             "division" : "Mathematics, Science and Physical Education",
+        //                                             "capacity" : 30,
+        //                                             "name" : "CS-70",
+        //                                             "title" : "Computer Magic",
+        //                                             "dept" : "CS",
+        //                                             "credit_hrs" : 4,
+        //                                             "desc" : "Learn why your computer is a beast."
+        //                                         },
+        //                             "newCourse": {      
+        //                                             "capacity" : 40,
+        //                                             "name" : "CS-75",
+        //                                             "title" : "Computer Magic",
+        //                                             "dept" : "CS",
+        //                                             "credit_hrs" : 4,
+        //                                             "desc" : "Learn why your computer is beast mode."
+        //                                         },
+        //                             "fees": null,
+        //                             "est_enrollment": 20,
+        //                             "instructors": ["Jon Opdahl", "Kyle McNeese"],
+        //                             "comments":  [      {
+        //     "user": "Jonathan Opdahl",
+        //     "date": "Mon Nov 14 2016 21:26:22 GMT-0600 (CST)",
+        //     "body": "Hi Kyle"
+        // }]
+        //                         }
+        //                     ],
+        //         curr_course : 5 
+        //     }
+        // ];
+        // $scope.searching = false;
     }
 
 }
