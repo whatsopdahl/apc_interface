@@ -29,7 +29,7 @@ public class ApcBackend {
     /**
      * The port number to connect to.
      */
-    private static final int PORT = 8000;
+    private static final int PORT = 8080;
     
     /**
      * The backlog of requests allowed to the server. Set to 1, and it shouldn't
@@ -49,6 +49,8 @@ public class ApcBackend {
      */
     private static final String SRC_CONTEXT_PATH = "/src";
     
+    public static String path = "";
+    
     /**
      * Creates, initializes and starts the <code>HttpServer</code> at the 
      * location <code>HOSTNAME:PORT/test</code>
@@ -59,6 +61,35 @@ public class ApcBackend {
      * @see ApcHandler
      */
     public static void main(String[] args) throws IOException{
+        
+        //read command line arguments
+        if (args.length > 0) {
+            switch(args[0]) {
+                case "-p":
+                case "--path":
+                    try {
+                        path = args[1];
+                    } catch (NullPointerException ex) {
+                        System.err.println("Usage: -p <pathname>\nwhere pathname is the relative path to the main directory of files");
+                        System.exit(0);
+                    }
+                    break;
+                case "-h":
+                case "--help":
+                    String output = "";
+                    output += "Usage: apcBackend.jar [options] [parameters]\n";
+                    output += "List of options:\n";
+                    output += "-h, --help: list this help menu";
+                    output += "-p, --path: specify specific path to files";
+                    System.exit(0);
+                    break;
+                default:
+                    System.err.println("Argument not supported, try -h for options.");
+                    System.exit(0);
+                    break;
+            }
+        }
+        
         HttpServer server = HttpServer.create(new InetSocketAddress(PORT), BACKLOG);
         server.createContext(DATA_CONTEXT_PATH, new ApcHandler());
         server.createContext(SRC_CONTEXT_PATH, new ApcSrcHandler());

@@ -581,10 +581,14 @@ db.depts.createIndex({"abbrev" : 1});
 var user;
 for (var i=0; i < users.length; i++) {
 	user = users[i];
-	var query = {"abbrev": user.dept, "division" : {$exists : true}};
-	dept = db.depts.findOne(query);
-	if (dept != null) {
-		user["division"] = dept.division;
+	var query = {"abbrev": { $in : user.dept }, "division" : {$exists : true}};
+	var memberDepts = db.depts.find(query);
+	user["division"] = [];
+	while (memberDepts.hasNext()) {
+		var dept = memberDepts.next();
+		if (user.division.indexOf(dept.division) == -1) {
+			user.division.push(dept.division);
+		}
 	}
 }
 
@@ -632,6 +636,8 @@ eng75 = db.courses.findOne({"name" : "Eng-75", "title" : "We Know Words"});
 cs80 = db.courses.findOne({"name" : "CS-80", "title" : "Computer Magic Tricks"});
 eng80 = db.courses.findOne({"name" : "Eng-80", "title" : "We Know Many Words"});
 
+cs80prop = db.proposals.findOne({"date" : "2016-11-15T16:46:33.616Z"});
+eng80prop = db.proposals.findOne({"date" : "2016-1-15T16:46:33.616Z"});
 
 proposals = [
   {
@@ -809,6 +815,19 @@ proposals = [
 
 db.proposals.insert(proposals);
 
+for (var i=0; i < proposals.length; i++) {
+	var owner = proposals[i].owner;
+	var user = db.users.findOne({"name" : owner});
+	if (user != null) {
+		if (user.totalProps) {
+			db.users.update({"name" : owner}, { $inc : { totalProps : 1 } });
+		} else {
+			db.users.update({"name" : owner}, { $set : { totalProps : 1 } });
+		}
+	}
+}
+//go through archive to get approved numbers
+
 // cs1prop = db.proposals.findOne({"date" : "2016-10-15T16:46:33.616Z"});
 
 // var archive = [
@@ -818,7 +837,7 @@ db.proposals.insert(proposals);
 // 	}
 // ]
 
-// db.archive.insert(archive);
+// db.archives.insert(archive);
 
 
 

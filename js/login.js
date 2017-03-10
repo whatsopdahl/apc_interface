@@ -74,7 +74,7 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		dataSrv.getUser(user).then( function(data) {
 			if (!data) {
 				$log.debug("User not in database, prompting for more data");
-				var dialog = angular.element("#more-user-data");
+				var dialog = angular.element("#preferences-modal");
 				dialog.modal('show');
 				return;
 			}
@@ -92,6 +92,12 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 		//if we have a requested url, redirect to it. otherwise go to the dash
 		if ($rootScope.next){
 			$location.path($rootScope.next).replace();
+		} else if ($rootScope.user.preferences) {
+			var url = $rootScope.user.preferences.homepage;
+			if (url == "/user/") {
+				url += $rootScope.user.name;
+			}
+			$location.path(url).replace();
 		} else {
 			$location.path("/").replace();
 		}

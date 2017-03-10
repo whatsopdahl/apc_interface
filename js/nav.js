@@ -18,6 +18,11 @@ function navCtrl($scope, $rootScope, $log, $filter, dataSrv) {
         var modal = angular.element("#permission-modal");
         modal.modal("show");
     }
+
+    $scope.openUserPreferences = function() {
+    	var modal = angular.element("#preferences-modal");
+    	modal.modal("show");
+    }
 }
 
 app.directive("navbar", function() {
