@@ -14,7 +14,11 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		editUser : editUser,
 		saveProposal : saveProposal,
 		createProposal : createProposal,
-		deleteProposal : deleteProposal
+		deleteProposal : deleteProposal,
+		getArchive : getArchive,
+		getAllArchives : getAllArchives,
+		archiveSearch : archiveSearch,
+		archiveProposal : archiveProposal
 	}
 
 	/**
@@ -181,6 +185,73 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				data : data
 		}).then(function success() {
 			$log.info("Proposal deleted");
+		}, function(response){
+			handleError(response);
+		});
+	}
+
+	/**
+	 * This function takes a proposal object and the ID of the course it's
+	 * replacing and places it in its proper archive table. The backend will
+	 * handle creating new archives if necessary.
+	 */	
+	function archiveProposal(proposal, oldCourseID) {
+		var data = { "d" : proposal, "i" : oldCourseID, "q" : archive };
+		return $http({ method: "POST",
+				url : DATA_URL,
+				data : data
+		}).then(function success() {
+			$log.info("Proposal deleted");
+		}, function(response) {
+			handleError(response);
+		});
+	}
+	
+	/**
+	 *
+	 */
+	function archiveSearch(query, type) {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archiveSearch",
+					s : query,
+					t : type
+				}
+		}).then(function success(response) {
+			$log.info("Received search results from archive query");
+		}, function(response) {
+			handleError(response);
+		}); 
+	}
+	
+	/**
+	 *
+	 */
+	function getArchive(courseID) {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archiveGet",
+					i : courseID
+				}
+		}).then(function success(response) {
+			$log.info("Retrieved archive");
+		}, function(response) {
+			handleError(response);
+		});
+	}
+	
+	
+	function getAllArchives() {
+		return $http({ method : "GET",
+				url : DATA_URL,
+				params : {
+					q : "archiveGetAll"
+				}
+		}).then(function success(response) {
+			$log.info("Retrieved all archive data");
+			return response.data;
 		}, function(response){
 			handleError(response);
 		});

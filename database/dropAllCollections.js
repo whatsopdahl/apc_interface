@@ -10,4 +10,4 @@ db.users.drop();
 db.depts.drop();
 db.courses.drop();
 db.proposals.drop();
-db.archive.drop();
+db.archives.drop();

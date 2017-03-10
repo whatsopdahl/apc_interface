@@ -12,12 +12,13 @@
 	        <li ng-class="{active: page == '/dashboard'}"><a href="#/">Dashboard</a></li>
 	        <li ng-class="{active: page == '/dashboard/mychanges'}"><a href="#/dashboard/mychanges">My Changes</a></li>
 	        <li ng-class="{active: page == '/dashboard/allchanges'}"><a href="#/dashboard/allchanges">All Proposals</a></li>
+			<li ng-class="{active: page == '/dashboard/archives'}"><a href="#/dashboard/archives">Archives</a></li>
 	    	</ul>
 	    	<ul class="nav nav-pills navbar-right">
 	        <li>
 		      	<form class="nav nav-pills navbar-form">
-		        	<div class="form-group">
-			          		<input type="text" ng-model="courseQuery.query" class="form-control" placeholder="Search"/>
+		        	<div class="form-group" title="Use this search bar to find current courses and proposals.">
+			          		<input type="text" ng-model="courseQuery.query" class="form-control" placeholder="Search" />
 <!-- 			          	<span class="input-group-addon" ng-click="clearSearch()">&times;</span> -->
 		        	</div>
 		      	</form>

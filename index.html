@@ -40,6 +40,7 @@
     <script type="text/javascript" src = "js/forum.js"></script>
     <script type="text/javascript" src = "js/proposal.js"></script>
     <script type="text/javascript" src = "js/user.js"></script>
+    <script type="text/javascript" src = "js/archives.js"></script>
 </head>
 
 <body ng-app="CourseProposalApp" ng-controller="mainCtrl">
@@ -65,6 +66,7 @@
     </div>
     <edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != -1" user="user" depts="depts"></edit-permissions-modal>
     <user-preferences-modal user="user" depts="depts"></user-preferences-modal>
+    <archives-modal></archives-modal>
 </body>
 
 </html>

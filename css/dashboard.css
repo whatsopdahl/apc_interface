@@ -260,8 +260,8 @@ blockquote > .quote-body > * {
 
 .course-info-header {
     margin-right: 25px;
-    margin-left: 25px; 
-    padding-bottom: 9px; 
+    margin-left: 25px;
+    padding-bottom: 9px;
     border-bottom: 1px solid #eee;
 }
 .glyphicon-empty {
@@ -270,6 +270,7 @@ blockquote > .quote-body > * {
     margin : 1px;
 }
 
-#view-port {
-    min-height: 200px;
+.archiveHover:hover {
+    background-color: #D3D3D3;
+    cursor: pointer;
 }

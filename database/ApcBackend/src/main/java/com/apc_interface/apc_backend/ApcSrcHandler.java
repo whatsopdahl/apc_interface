@@ -82,6 +82,12 @@ public class ApcSrcHandler implements HttpHandler{
     private static final String METHOD_GET = "GET";
     private static final String METHOD_OPTIONS = "OPTIONS";
     private static final String ALLOWED_METHODS = METHOD_GET + "," + METHOD_OPTIONS;
+    
+    private static final String path;
+    
+    static {
+        path = ApcBackend.path;
+    }
 
     /**
      * Initializes the server.

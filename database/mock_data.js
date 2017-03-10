@@ -197,7 +197,7 @@ users = [
 		  	  recentlyViewed : []
 		  	}
 		];
-depts = [ 
+depts = [
 			{ "name" : "Accounting",
 			  "abbrev" : "ACCTG",
 			  "division" : "Mathematics, Science and Physical Education"
@@ -382,7 +382,7 @@ depts = [
 			  "abbrev" : "OC"
 			},
 			{ "name" : "Paideia",
-			  "abbrev" : "PAID" 
+			  "abbrev" : "PAID"
 			},
 			{ "name" : "Paideia 2",
 			  "abbrev" : "PAID2"
@@ -458,7 +458,7 @@ depts = [
 			}
 		];
 //new courses for proposal
-courses = [  
+courses = [
 		{
 		  	"capacity" : 40,
 		  	"name" : "CS-1",
@@ -496,16 +496,24 @@ courses = [
 		  	"credit_hrs" : 4,
 		  	"desc" : "Learn best-practices and common frameworks for testing in Java, Python, and C++."
 		},
+<<<<<<< HEAD
 		{ 
 		 	"capacity" : 25, 
 		 	"name" : "MATH-452", 
 		 	"title" : "Partial Differential Equations", 
+=======
+		{
+		 	"capacity" : 25,
+		 	"name" : "MATH-452",
+		 	"title" : "Partial Differential Equations",
+>>>>>>> 023b1d1214e7f7fe88c1ac0089ba64106f067d49
 		 	"pre_req" : "MATH 351",
-		 	"dept" : "MATH", 
-		 	"credit_hrs" : 4, 
+		 	"dept" : "MATH",
+		 	"credit_hrs" : 4,
 		 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
 		 	"gen_ed" : [ ]
 		},
+<<<<<<< HEAD
 		{ 
 			"capacity" : 35, 
 			"name" : "ENG-334", 
@@ -515,6 +523,17 @@ courses = [
 			"credit_hrs" : 4, 
 			"desc" : "A study on the social impact that the Harry Potter franchise has had on millenials through investigative readings of the Harry Potter series. Students will perform character analysis to determining what characterizes the millenial generation and how the novels and movies have impacted social events.", 
 			"gen_ed" : [ "HEPT" ] 
+=======
+		{
+			"capacity" : 35,
+			"name" : "ENG-334",
+			"title" : "The Wizarding World: Investigating Harry Potter",
+			"pre_req" : "PAID 111, 112 or transfer equivalents",
+			"dept" : "ENG",
+			"credit_hrs" : 4,
+			"desc" : "A study on the social impact that the Harry Potter franchise has had on millenials through investigative readings of the Harry Potter series. Students will perform character analysis to determining what characterizes the millenial generation and how the novels and movies have impacted social events.",
+			"gen_ed" : [ "HEPT" ]
+>>>>>>> 023b1d1214e7f7fe88c1ac0089ba64106f067d49
 		},
 		{
 			"capacity" : 14,
@@ -539,6 +558,38 @@ courses = [
 				"HIST",
 				"HB"
 			]
+		},
+		{
+			"capacity" : 40,
+			"name" : "CS-75",
+			"title" : "Computer Magic",
+			"dept" : "CS",
+			"credit_hrs" : 4,
+			"desc" : "Learn why your computer is beast mode."
+		},
+		{
+			"capacity" : 40,
+			"name" : "CS-80",
+			"title" : "Computer Magic Tricks",
+			"dept" : "CS",
+			"credit_hrs" : 4,
+			"desc" : "Learn why your computer is beast mode."
+		},
+		{
+			"capacity" : 20,
+			"name" : "ENG-75",
+			"title" : "We Know Words",
+			"dept" : "ENG",
+			"credit_hrs" : 4,
+			"desc" : "Learn so many words."
+		},
+		{
+			"capacity" : 20,
+			"name" : "ENG-80",
+			"title" : "We Know Many Words",
+			"dept" : "ENG",
+			"credit_hrs" : 4,
+			"desc" : "Learn so many words."
 		}
 	];
 
@@ -579,14 +630,14 @@ psyc352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 4});
 newpsych352 = db.courses.findOne({"name" : "PSYC-352", "credit_hrs" : 2});
 testing = db.courses.findOne({"name" : "CS-237"});
 oldMath452 = db.courses.findOne({"name" : "MATH-452", "gen_ed" : {"$all" : ["QUANT"]} } );
-newMath452 = db.courses.findOne( { 
-	  	 	"division" : "Mathematics, Science and Physical Education", 
-	  	 	"capacity" : 25, 
-	  	 	"name" : "MATH-452", 
-	  	 	"title" : "Partial Differential Equations", 
+newMath452 = db.courses.findOne( {
+	  	 	"division" : "Mathematics, Science and Physical Education",
+	  	 	"capacity" : 25,
+	  	 	"name" : "MATH-452",
+	  	 	"title" : "Partial Differential Equations",
 	  	 	"pre_req" : "MATH 351",
-	  	 	"dept" : "MATH", 
-	  	 	"credit_hrs" : 4, 
+	  	 	"dept" : "MATH",
+	  	 	"credit_hrs" : 4,
 	  	 	"desc" : "An introduction to initial and boundary value problems associated with certain linear partial differential equations (Laplace, heat and wave equations). Fourier series methods, including the study of best approximation in the mean and convergence, will be a focus. Sturm-Liouville problems and associated eigenfunctions will be included.  Numerical methods, such as finite difference, finite element and finite analytic, may be introduced, including the topics of stability and convergence of numerical algorithms. Extensive use of a computer algebra system.",
 	  	 	"gen_ed" : [ ]
 	  	 	});
@@ -596,6 +647,16 @@ oldArt200 = db.courses.findOne({"name" : "ART-200", "title" : "Painting I"});
 newArt200 = db.courses.findOne({"name" : "ART-200", "title" : "Finger Painting I"});
 oldHist250 = db.courses.findOne({"name" : "HIST-250", "title" : "Rulers, Reform, and Revolution:TheyHistory of Early Modern Britain"});
 newHist250 = db.courses.findOne({"name" : "HIST-250", "title" : "Tea and Funny Accents: The History of Early Modern Britain"});
+
+
+cs75 = db.courses.findOne({"name" : "CS-75", "title" : "Computer Magic"});
+eng75 = db.courses.findOne({"name" : "Eng-75", "title" : "We Know Words"});
+
+cs80 = db.courses.findOne({"name" : "CS-80", "title" : "Computer Magic Tricks"});
+eng80 = db.courses.findOne({"name" : "Eng-80", "title" : "We Know Many Words"});
+
+cs80prop = db.proposals.findOne({"date" : "2016-11-15T16:46:33.616Z"});
+eng80prop = db.proposals.findOne({"date" : "2016-1-15T16:46:33.616Z"});
 
 
 proposals = [
@@ -670,34 +731,34 @@ proposals = [
   	"instructors" : [ "Jonathan Opdahl", "Kyle McNeese", "Aidan Schmitt" ],
   	"comments" : [ ]
   	},
-  	{ 
-  		"terms" : [ "FALL", "SPRING" ], 
-  		"owner" : "Jonathan Opdahl", 
-  		"stage" : 1, 
-  		"staffing" : "", 
-  		"rationale" : "We removed the QUANT all college requirement as anyone who takes this class will have achieved this by the time they take this class.", 
-  		"impact" : "", 
+  	{
+  		"terms" : [ "FALL", "SPRING" ],
+  		"owner" : "Jonathan Opdahl",
+  		"stage" : 1,
+  		"staffing" : "",
+  		"rationale" : "We removed the QUANT all college requirement as anyone who takes this class will have achieved this by the time they take this class.",
+  		"impact" : "",
   		"date" : "2016-11-22T07:01:02.896Z",
   		"oldCourse" : oldMath452,
-	  	"fees" : "", 
+	  	"fees" : "",
 	  	"est_enrollment" : 12,
-	  	"instructors" : [ "Eric Westlund" ], 
-	  	"comments" : [ ], 
+	  	"instructors" : [ "Eric Westlund" ],
+	  	"comments" : [ ],
 	  	"newCourse" : newMath452,
 	  	},
-	{ 
-		"terms" : [ "FALL", "J-TERM", "SPRING" ], 
-		"owner" : "Aidan Schmitt", 
-		"stage" : 0, 
-		"staffing" : "", 
+	{
+		"terms" : [ "FALL", "J-TERM", "SPRING" ],
+		"owner" : "Aidan Schmitt",
+		"stage" : 0,
+		"staffing" : "",
 		"rationale" : "As Harry Potter remains the defining work of literature for the millenial generation, the study of young adult literature previously highlighted in this course can be synthesized into the study of J.K. Rowling's series of novels.",
 		"oldCourse" : oldEng334,
 		"newCourse" : newEng334,
 		"impact" : "",
 		"date" : "2016-12-06T15:28:55.769Z",
 		"fees" : "",
-		"est_enrollment" : 35, 
-		"instructors" : [ "Rebecca Sullivan" ], 
+		"est_enrollment" : 35,
+		"instructors" : [ "Rebecca Sullivan" ],
 		"comments" : [ ]
 	},
 	{
@@ -739,6 +800,36 @@ proposals = [
 			"Kimberly Powell"
 		],
 		"comments" : [ ]
+	},
+	{
+	  	"terms": ["Fall", "Spring"],
+	  	"owner": "Kyle McNeese",
+	  	"stage": 2,
+	  	"staffing": "We will need to hire a new professor.",
+	  	"rationale": "It will help.",
+	  	"impact": "1st",
+	  	"date": "2016-11-15T16:46:33.616Z",
+	  	"oldCourse": cs75,
+	  	"newCourse": cs80,
+	  	"fees": null,
+	  	"est_enrollment": 20,
+	  	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	  	"comments":  [],
+    },
+	{
+		"terms": ["Fall", "Spring"],
+	  	"owner": "Jon Opdahl",
+	  	"stage": 3,
+	  	"staffing": "We can use our current professors. They agreed to it.",
+	  	"rationale": "More words, more better.",
+	  	"impact": "1st",
+	  	"date": "2016-1-15T16:46:33.616Z",
+	  	"oldCourse": eng75,
+	  	"newCourse": eng80,
+	  	"fees": null,
+	  	"est_enrollment": 15,
+	  	"instructors": ["Kyle McNeese"],
+	  	"comments":  [],
 	}
 ];
 
@@ -759,11 +850,80 @@ for (var i=0; i < proposals.length; i++) {
 
 // cs1prop = db.proposals.findOne({"date" : "2016-10-15T16:46:33.616Z"});
 
-var archive = [ 
-	{ 
-	  	proposals : [cs1prop],
-	  	last_course : cs1prop.newCourse.id
-	}
-]	
+// var archive = [
+// 	{
+// 	  	proposals : [cs1prop],
+// 	  	last_course : cs1prop.newCourse.id
+// 	}
+// ]
 
-// db.archive.insert(archive);
+// db.archives.insert(archive);
+
+
+
+cs70 = {
+		"division" : "Mathematics, Science and Physical Education",
+		"capacity" : 30,
+		"name" : "CS-70",
+		"title" : "Computer Magic",
+		"dept" : "CS",
+		"credit_hrs" : 4,
+		"desc" : "Learn why your computer is a beast."
+	};
+
+eng70 = {
+		"division" : "Humanities",
+		"capacity" : 15,
+		"name" : "ENG-70",
+		"title" : "We Know Words",
+		"dept" : "ENG",
+		"credit_hrs" : 4,
+		"desc" : "Learn so many words."
+	};
+
+cs75prop = {
+	  	"terms": ["Fall", "Spring"],
+	  	"owner": "Kyle McNeese",
+	  	"stage": 2,
+	  	"staffing": "We will need to hire a new professor.",
+	  	"rationale": "It will help.",
+	  	"impact": "1st",
+	  	"date": "2015-11-15T16:46:33.616Z",
+	  	"oldCourse": cs70,
+	  	"newCourse": cs75,
+	  	"fees": null,
+	  	"est_enrollment": 20,
+	  	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	  	"comments":  []
+    };
+
+eng75prop = {
+		"terms": ["Fall", "Spring"],
+	  	"owner": "Jon Opdahl",
+	  	"stage": 3,
+	  	"staffing": "We can use our current professors. They agreed to it.",
+	  	"rationale": "More words, more better.",
+	  	"impact": "1st",
+	  	"date": "2015-1-15T16:46:33.616Z",
+	  	"oldCourse": eng70,
+	  	"newCourse": eng75,
+	  	"fees": null,
+	  	"est_enrollment": 15,
+	  	"instructors": ["Kyle McNeese"],
+	  	"comments":  []
+	};
+
+
+
+var archives = [
+	{
+	  	proposals : [cs75prop, cs80prop],
+	  	curr_course : cs75
+	},
+	{
+	  	proposals : [eng75prop, eng80prop],
+	  	curr_course : eng75
+	}
+]
+
+db.archives.insert(archives);

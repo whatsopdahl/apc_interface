@@ -3,6 +3,7 @@ package com.apc_interface.apc_backend;
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
@@ -10,9 +11,7 @@ import static com.mongodb.client.model.Filters.eq;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.math.BigDecimal;
@@ -21,8 +20,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.bson.Document;
-import org.bson.BsonReader;
 import org.bson.types.ObjectId;
 import javax.json.*;
 import org.bson.json.JsonParseException;
@@ -55,6 +54,7 @@ public class ApcHandler implements HttpHandler{
     private static final String COLLECTION_USERS = "users";
     private static final String COLLECTION_PROPOSALS = "proposals";
     private static final String COLLECTION_DEPTS = "depts";
+    private static final String COLLECTION_ARCHIVES = "archives"; // check this to ensure accuracy
 
     /**
      * An object representation of the MongoDB database.
@@ -212,7 +212,37 @@ public class ApcHandler implements HttpHandler{
                                 response = this.getAll(COLLECTION_DEPTS);
                                 status = STATUS_OK;
                             } catch (Exception ex){
-                                response = "";
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archiveSearch":
+                            try {
+                                String searchString = params.get("c");
+                                String searchField = params.get("f");
+                                response = searchArchives(searchString, searchField);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archiveGet":
+                            try{
+                                String searchID = params.get("i");
+                                response = getArchive(searchID);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archiveGetAll":
+                            try {
+                                response = getAll(COLLECTION_ARCHIVES);
+                                status = STATUS_OK;
+                            } catch (Exception ex) {
+                                response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
                             break;
@@ -234,9 +264,9 @@ public class ApcHandler implements HttpHandler{
                     JsonReader reader = null;
                     try {
                         JsonReaderFactory factory = Json.createReaderFactory(config);
-
+                        
                         reader = factory.createReader(t.getRequestBody(), StandardCharsets.UTF_8);
-
+                        
                         data = reader.readObject();
                     } catch (Exception e){
                         System.err.println(e.getClass().toString() +" : "+e.getMessage());
@@ -248,8 +278,14 @@ public class ApcHandler implements HttpHandler{
                     
                     Document doc = null;
                     if (data != null){
-                        doc = Document.parse(data.get("d").toString());
+                        try{
+                            doc = Document.parse(data.get("d").toString());
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                        System.out.println(doc.toJson());
                     } else {
+                        System.out.println("could not read data");
                         throw new JsonParseException("Could not read Data");       
                     }                                 
                     JsonObjectBuilder successObj = Json.createObjectBuilder();
@@ -327,6 +363,40 @@ public class ApcHandler implements HttpHandler{
                                 successObj.add("method", "delete proposal");
                                 response = successObj.build().toString();
                             } catch (Exception ex){
+                                response = ex.getMessage();
+                                status = STATUS_BAD_REQUEST;
+                            }
+                            break;
+                        case "archive":
+                            System.out.println("Step 1");
+                            try {
+                                JsonObject archive;
+                                if (doc.get("oldCourse") == null) {
+                                    //no old course, create new archive
+                                    System.out.println("Step 2");
+                                    JsonObjectBuilder builder = Json.createObjectBuilder();
+                                    builder.add("proposals", Json.createArrayBuilder()
+                                            .add(doc.toJson()).build());
+                                    System.out.println("Step 3");
+                                    System.out.println(data.getJsonObject("d"));
+                                    //  put entire course, or just the ID? (add .getString("_id"))
+                                    builder.add("curr_course", data.getJsonObject("d").getJsonObject("newCourse"));
+                                    archive = builder.build();
+                                    System.out.println(archive);
+                                    db.getCollection(COLLECTION_ARCHIVES).insertOne(Document.parse(archive.toString()));
+                                } else {
+                                    //old course and existing archives
+                                    //get archive by old course id, then $push new prop to that archive
+                                    Document idDoc = doc.get("oldCourse", Document.class).get("_id", Document.class);
+                                    BasicDBObject newDoc = (BasicDBObject) new BasicDBObject().put("$push", doc.toJson());
+                                    db.getCollection(COLLECTION_ARCHIVES).findOneAndUpdate(idDoc, newDoc);
+                                }
+                                
+                                status = STATUS_CREATED;
+                                successObj.add("method", "archive proposal");
+                                response = successObj.build().toString();
+                                // TODO implement post function which takes a proposal and puts it into the correct archive system.
+                            } catch (Exception ex) {
                                 response = ex.getMessage();
                                 status = STATUS_BAD_REQUEST;
                             }
@@ -438,8 +508,7 @@ public class ApcHandler implements HttpHandler{
         JsonObject json = null;
         FindIterable find = db.getCollection(COLLECTION_COURSES).find(BasicDBObject.parse(course));
         
-        MongoCursor<Document> cursor = find.iterator();
-        try {
+        try (MongoCursor<Document> cursor = find.iterator()) {
             if (cursor.hasNext()){
                 Document doc = cursor.next();
                 
@@ -449,8 +518,6 @@ public class ApcHandler implements HttpHandler{
             }
         } catch(Exception e) {
             throw e;
-        } finally {
-            cursor.close();
         }
         if (json == null) {
             throw new Exception("Course not found.");
@@ -478,6 +545,95 @@ public class ApcHandler implements HttpHandler{
         });
        
         return json.toString();
+    }
+    
+    /**
+     * Queries the archive collection and returns a string containing the JSON 
+     * response.
+     * 
+     * Search fields include title, name, owner, and (year) implemented.
+     * 
+     * @param query the search query from the front-end
+     * @param field the field in the collection to search from, e.g. title
+     * @return a JSON String representation of the search results
+     * @throws java.lang.Exception if the search field is invalid.
+     */
+    public String searchArchives(String query, String field) throws Exception{
+        final StringBuilder response = new StringBuilder();
+        final Map<String, String> responses = new HashMap();
+        
+        String searchField = "proposals.";
+        switch(field){
+            case "title":
+            case "name":
+                searchField += "newCourse.";
+                break;
+            case "year": //NOT IMPLEMENTED YET
+            case "owner":
+                break;
+            default:
+                throw new Exception("Invalid archive search field");
+        }
+        searchField += field;
+        for (String q: query.split("\\+")){
+            BasicDBObject searchObject = new BasicDBObject(searchField, Pattern.compile(q));
+            FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find(searchObject);
+            iterable.forEach(new Block<Document>() {
+                @Override
+                public void apply(final Document document) {
+                    String ans = document.get("_id").toString();
+                    if (!responses.containsKey(ans)){
+                        responses.put(ans, document.toJson());
+                    }
+                }
+            });
+        }
+        
+        for(Map.Entry<String, String> entry: responses.entrySet()){
+            response.append(entry.getValue());
+        }
+        
+        return response.toString();
+    }
+    
+    /**
+     * Searches the archives by the lastCourseID and returns as a document a
+     * single archive. Note that the search still returns an iterator, but as
+     * the courseID's are unique (and that there's no simple findOne method)
+     * this should work as if a findOne method had been called.
+     * 
+     * @param lastCourseID the ID of the last course of the archive
+     * @return a JSON document containing the relevant archive
+     * @throws java.lang.Exception if the lastCourseID isn't in the database
+     */
+    public String getArchive(final String lastCourseID) throws Exception{
+        System.out.println("[info] searching for archive " + lastCourseID);
+        FindIterable iterable = db.getCollection(COLLECTION_ARCHIVES).find();
+        final StringBuilder builder = new StringBuilder();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                try {
+                    if(document.get("curr_course", Document.class)
+                            .get("_id").toString().equals(lastCourseID)){
+                        builder.append(document.toJson());
+                    }
+                } catch (Exception ex) {
+                    // curr_case == null; ignore.
+                }
+                
+            }
+        });
+        
+        if (builder.length() == 0) {
+            throw new Exception("Invalid course ID");
+        }
+        return builder.toString();
+    }
+    
+    public void addCourseToArchive() {
+        
+        
     }
 
     /**
