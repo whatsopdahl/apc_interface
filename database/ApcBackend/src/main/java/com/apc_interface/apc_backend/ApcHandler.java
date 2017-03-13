@@ -218,8 +218,8 @@ public class ApcHandler implements HttpHandler{
                             break;
                         case "archiveSearch":
                             try {
-                                String searchString = params.get("c");
-                                String searchField = params.get("f");
+                                String searchString = params.get("s");
+                                String searchField = params.get("t");
                                 response = searchArchives(searchString, searchField);
                                 status = STATUS_OK;
                             } catch (Exception ex) {
