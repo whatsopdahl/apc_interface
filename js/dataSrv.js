@@ -210,13 +210,13 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	/**
 	 *
 	 */
-	function archiveSearch(query, type) {
+	function archiveSearch(query, field) {
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
 					q : "archiveSearch",
 					s : query,
-					t : type
+					f : field
 				}
 		}).then(function success(response) {
 			$log.info("Received search results from archive query");

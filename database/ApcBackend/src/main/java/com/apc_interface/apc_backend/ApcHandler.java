@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.regex.Pattern;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -219,7 +220,7 @@ public class ApcHandler implements HttpHandler{
                         case "archiveSearch":
                             try {
                                 String searchString = params.get("s");
-                                String searchField = params.get("t");
+                                String searchField = params.get("f");
                                 response = searchArchives(searchString, searchField);
                                 status = STATUS_OK;
                             } catch (Exception ex) {
@@ -589,9 +590,13 @@ public class ApcHandler implements HttpHandler{
             });
         }
         
+        response.append("[");
+        StringJoiner sj = new StringJoiner(", ");
         for(Map.Entry<String, String> entry: responses.entrySet()){
-            response.append(entry.getValue());
+            sj.add(entry.getValue());
         }
+        response.append(sj.toString());
+        response.append("]");
         
         return response.toString();
     }
