@@ -4,22 +4,33 @@ app.controller("courseCtrl", courseCtrl);
 app.directive("revokeApcPrivilegesPopup", revokeApcPrivilegesPopup);
 app.directive("removePropPopup", removePropPopup);
 
-courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv"];
-function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv) {
+// NEW
+app.directive("courseInfo", courseInfo);
+
+courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv", "archiveSrv"];
+function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv, archiveSrv) {
 	var courseName;
 
-	//if we are viewing a course, add it to recently viewed. 
+	//if we are viewing a course, add it to recently viewed.
 	if (!$scope.course) {
-		courseName = $routeParams.course;
+		if (!$routeParams || !$routeParams.course) {
+			// this is from the archive scope
+			courseName = $scope.courseName
+		} else {
+			// this is from the route params
+			courseName = $routeParams.course;
+		}
 		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
 	}
 
+	$log.debug($scope.course);
 	$scope.canApprove = userSrv.canApprove;
 
 	$scope.approve = courseSrv.approve;
 	$scope.reject = courseSrv.reject;
 	$scope.deleteProp = courseSrv.deleteProp;
 
+	$scope.getArchiveById = archiveSrv.getArchiveById;
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
@@ -142,5 +153,13 @@ function revokeApcPrivilegesPopup() {
 			msg : "@",
 			confirmFunc : "="
 		}
+	}
+}
+
+function courseInfo() {
+	return {
+		restrict : "E",
+		templateUrl : "templates/course-info.html",
+		controller : "courseCtrl"
 	}
 }

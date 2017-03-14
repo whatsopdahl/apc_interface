@@ -104,7 +104,7 @@ function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
 		var index = 0;
 		while (index < allProposals.elements.length && proposal == null) {
 			var checkProposal = allProposals.elements[index];
-			if ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || checkProposal.newCourse.name == course.name) {
+			if ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) {
 				proposal = checkProposal;
 			}
 			index++;

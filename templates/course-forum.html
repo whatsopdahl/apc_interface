@@ -1,5 +1,6 @@
 <div class="well">
 	<div class="containter-fluid">
+		<h5><strong>Comments</strong> <span class="badge pull-right">{{course.comments.length}}</span></h5>
 		<div class="panel panel-default comment" ng-repeat="comment in course.comments | orderBy: sortComment">
 			<div class="panel-header">
 				<h3 class="panel-title">{{comment.user}}</h3>
@@ -9,7 +10,7 @@
 				{{comment.body}}
 			</div>
 		</div>
-		<div class="pane panel-primary">
+		<div class="pane panel-primary" ng-hide="hideButtons">
 			<div class="panel-header">
 				New Comment
 			</div>

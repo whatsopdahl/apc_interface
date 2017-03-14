@@ -17,7 +17,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 		deleteProposal : deleteProposal,
 		getArchive : getArchive,
 		getAllArchives : getAllArchives,
-		archiveSearch : archiveSearch,
+		searchArchive : searchArchive,
 		archiveProposal : archiveProposal
 	}
 
@@ -210,7 +210,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	/**
 	 *
 	 */
-	function archiveSearch(query, field) {
+
+	function searchArchive(query, type) {
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
@@ -220,6 +221,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				}
 		}).then(function success(response) {
 			$log.info("Received search results from archive query");
+			return response.data;
 		}, function(response) {
 			handleError(response);
 		}); 
@@ -237,6 +239,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 				}
 		}).then(function success(response) {
 			$log.info("Retrieved archive");
+			return response.data;
 		}, function(response) {
 			handleError(response);
 		});

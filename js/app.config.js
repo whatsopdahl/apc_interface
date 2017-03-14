@@ -68,7 +68,7 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when("/:course", {
 		templateUrl : "templates/course-info.html",
-		controller : "courseCtrl"
+        controller : "courseCtrl",
 	})
 	.when("/:course/edit", {
 		templateUrl : "templates/edit-proposal.html",

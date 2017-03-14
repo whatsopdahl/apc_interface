@@ -17,10 +17,9 @@
                 <div class="panel-heading" style="margin-bottom: 0;"><strong>Approval Status</strong></div>
             </div>
             <div class="col-xs-4">
-                <div style="margin-right:10px;">
-                    <a class="approveReject" ng-if="course.owner == user.name" ng-href="#/{{course.newCourse.name}}/edit"><div class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
-                    <button ng-if="canApprove(course)" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span> Reject</button>
-                    <button ng-if="canApprove(course)" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span> Approve</button>
+                <div ng-if="!hideButtons" style="margin-right:10px;">
+                    <btn-menu></btn-menu>
+                    <a class="approveReject" ng-if="course.owner == user.name" ng-href="#/{{course.newCourse.name}}/edit"><div class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
                 </div>
             </div>
         </div>
