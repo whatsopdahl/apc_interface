@@ -1,0 +1,8 @@
+<div class="container-fluid" >
+	<div class="col-md-4 col-md-offset-4" id="login-container">
+		<h3>Enter your NorseKey username to sign on.</h3>
+		<div class="alert alert-danger" ng-if="loginfailure">Luther Course Proposal restricts access to Luther accounts. Please enter a valid Luther email and password.</div>
+	  	<sign-in-button></sign-in-button>
+	</div>
+	<edit-depts-modal depts="depts" required="true" user="user" update-depts="updateDepts"></edit-depts-modal>
+</div>

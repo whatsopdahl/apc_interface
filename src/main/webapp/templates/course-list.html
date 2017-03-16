@@ -1,0 +1,64 @@
+<div class="course-list">
+    <div class="section-bar container-fluid">
+        <a href="#/dashboard/{{data.link}}"><h4 class="section-title">{{data.title}}</h4><a href="dashboard/{{data.link}}">
+        <button type="button" ng-if="data.title == 'My Changes'" class="btn btn-success pull-right" style="margin-right: 10px;">
+            <a ng-href="#/newproposal" class="newPropLink">New Proposal</a>
+        </button>
+    </div>
+    <div ng-if="data.title=='All Proposals'" class="container-fluid">
+        <div class="row">
+            <div class="col-xs-8">
+                <div> Filter By: 
+                </div>
+                <div class="input-group">
+                    <input id="query" class="form-control" type="text" ng-model="queries.filter" placeholder="Filter By"/>
+                    <div class="input-group-btn">
+                        <button type="button" title="Clear" class="btn btn-default" ng-click="clearFilter()">&times;</button>
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{currFilter.name}}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="disabled"><a href="">Filter By</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ng-repeat="(idx, filterObj) in filterList" ng-click="filterBy(idx)">
+                            <a href="">{{filterObj.name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div>
+                Sort By: 
+                </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{currSort.name}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="disabled"><a href="">Sort By</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ng-repeat="(idx, sortObj) in sortList" ng-click="sortBy(idx)"><a href="">{{sortObj.name}}</a></li>
+                        </ul>
+                        <button title="Toggle order" class="btn btn-default" type="button" ng-click="toggleDir()">
+                            <span ng-show="([-1,1,2,4].indexOf(currSort.idx) > -1 ) && !zToa" class="glyphicon glyphicon-sort-by-alphabet"></span>
+                            <span ng-show="([-1,1,2,4].indexOf(currSort.idx) > -1) && zToa" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                            <span ng-show="[0].indexOf(currSort.idx) > -1 && !zToa" class="glyphicon glyphicon-sort-by-order"></span>
+                            <span ng-show="[0].indexOf(currSort.idx) > -1 && zToa" class="glyphicon glyphicon-sort-by-order-alt"></span>
+                            <span ng-show="[3].indexOf(currSort.idx) > -1 && zToa" class="glyphicon glyphicon-sort-by-order"></span>
+                            <span ng-show="[3].indexOf(currSort.idx) > -1 && !zToa" class="glyphicon glyphicon-sort-by-order-alt"></span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="retrievingData">
+    	<div ng-if="data.elements.length == 0" class="container-fluid course" style="text-align: center;">{{data.emptyMsg}}</div>
+        <div ng-if="(data.elements.length > 0) && (data.link!='recentlyviewed')" class="container-fluid course" ng-repeat="course in filter(data.elements) | orderBy : 'newCourse.name' | orderBy : sort : zToa">
+            <course extendendview="extendendview"></course>
+        </div>
+        <div ng-if="(data.elements.length > 0) && (data.link == 'recentlyviewed') " class="container-fluid course" ng-repeat="course in data.elements">
+            <course extendendview="extendendview"></course>
+        </div>
+    </div>
+    <div ng-show="retrievingData">Loading...</div>
+</div>

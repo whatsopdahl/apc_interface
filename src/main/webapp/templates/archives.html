@@ -1,0 +1,19 @@
+<div class="col-xs-offset-3">
+    <div class="col-xs-4">
+        <input type="text" class="form-control" ng-model="query" placeholder="Archive Search" title="Use this search bar to find archived courses."/>
+    </div>
+    <div class="col-xs-2" title="Choose which category you want to search for.">
+        <div class="form-group">
+          <select class="form-control" ng-model="type" ng-options="t as t for t in types">
+          </select>
+        </div>
+    </div>
+    <button type="button" class="btn btn-success" ng-click="archiveSearch()">Go!</button>
+</div>
+<hr/>
+<div class="container-fluid">
+    <div ng-if="results.length == 0" class="text-center">No Results</div>
+    <div ng-if="results.length > 0" ng-repeat="result in results" class="well col-xs-8 col-xs-offset-2 archiveHover" ng-click="openArchiveModal(result)">
+        <h4>Current Course: {{result.proposals[ (result.proposals.length-1) ].newCourse.name}} - {{result.proposals[ (result.proposals.length-1) ].newCourse.title}} </h4>
+    </div>
+</div>
