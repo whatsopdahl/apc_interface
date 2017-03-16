@@ -1,0 +1,108 @@
+<!-- Modal -->
+<div class="modal fade" id="preferences-modal" tabindex="-1" role="dialog" aria-labelledby="user-preferences">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><a href=""><span aria-hidden="true">&times;</span></a></button>
+    			<h4 class="modal-title" id="user-preferences">User Preferences</h4>
+    		</div>
+    		<div class="modal-body">
+                <div class="container-fluid">
+                    <div class="col-xs-4">
+                        <div class="list-group">
+                            <a href="" title="Edit department membership" class="list-group-item" ng-class="{'active' : selected=='depts'}" ng-click="select('depts')">Departments</a>
+                            <a href="" title="Dashboard customization" 
+                                class="list-group-item">
+                                <div class="container-fluid" data-toggle="collapse" data-target="#dashList" ng-click="toggleCollapsed()">
+                                    <span class="glyphicon" ng-class="{'glyphicon-chevron-right' : collapsed==true, 'glyphicon-chevron-down' : collapsed==false }"></span> Dashboard
+                                </div>
+                                <ul id="dashList" class="collapse" style="list-style: none; padding-left: 5px;">
+                                    <li class="list-group-item" ng-class="{'active' : selected=='All Proposals'}" ng-click="select('All Proposals')" title="Customize all proposals view">All Proposals</li>
+                                    <li class="list-group-item" ng-class="{'active' : selected=='My Changes'}" ng-click="select('My Changes')" title="Customize my changes view">My Changes</li>
+                                    <li class="list-group-item" ng-class="{'active' : selected=='Recently Viewed'}" ng-click="select('Recently Viewed')" title="customize recently viewed view">Recently Viewed</li>
+                                </ul>
+                            </a>
+                            <a href="" title="Login customization" class="list-group-item" ng-class="{'active' : selected=='homepage'}"ng-click="select('homepage')">Homepage</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8" id="view-port" ng-switch="selected">
+                        <div class="container-fluid" ng-switch-when="depts">
+                            <edit-depts user="user" depts="depts" member-depts="memberDepts"></edit-depts>
+                        </div>
+                        <div class="container-fluid" ng-switch-when="All Proposals">
+                            <h5>All Proposals</h5>
+                            <p>Select the default filters you would like applied ot the 'All Proposals' view. You can always override them when you visit the 'All Proposals' page. </p>
+                            <form> 
+                                <div class="form-group" title="Select your default filters">
+                                    <label>Filters</label>
+                                    <select class="form-control" ng-model="filters.allProposals.name" ng-options="item.name as item.name for item in filterList">
+                                    </select>
+                                </div>
+                            </form>
+                            <label>Value</label>
+                            <form class="form-inline">
+                                <div class="form-group" title="Enter the filter value">
+                                    <input type="text" class="form-control" ng-model="filters.allProposals.value"/>
+                                    <div class="btn btn-primary" ng-click="addAllPropsFilter()">Add</div>
+                                </div>
+                            </form>
+                            <div class="container-fluid">
+                                 <div class="col-xs-12 btn-removable" ng-repeat="filter in preferences.allProposals">
+                                 {{filter.name}} = {{filter.value}}<div class="pull-right" aria-hidden="true" ng-click="removeAllPropsFilter(filter)">&times;</div>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="container-fluid" ng-switch-when="My Changes">
+                            <h5>My Changes</h5>
+                            <p>Select the default filters you would like applied to the 'My Changes' view. You can always override them on the page.</p>
+                            <form> 
+                                <div class="form-group" title="Select your default filters">
+                                    <label>Category</label>
+                                    <select class="form-control" ng-model="filters.myChanges.name" ng-options="item.name as item.name for item in filterList">
+                                    </select>
+                                </div>
+                            </form>
+                            <label>Value</label>
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input class="form-control" ng-model="filters.myChanges.value"/>
+                                    <div class="btn btn-primary" ng-click="addMyChangesFilter()">Add</div>
+                                </div>
+                                <div class="container-fluid">
+                                     <div class="col-xs-12 btn-removable" ng-repeat="filter in preferences.myChanges">
+                                        {{filter.name}} = {{filter.value}}<div class="pull-right" aria-hidden="true" ng-click="removeMyChangesFilter(filter)">&times;</div>
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
+                        <div class="container-fluid" ng-switch-when="Recently Viewed">
+                            <h5>Recently Viewed</h5>
+                            <p>Enter how many recently viewed pages you would like to see.</p>
+                            <form> 
+                                <div class="form-group" title="Select your default filters">
+                                    <input type="number" class="form-control"  ng-model="preferences.recentlyViewed.number">
+                                    </input>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="container-fluid" ng-switch-when="homepage">
+                            <h5>Homepage</h5>
+                            <p>Select the page you would like to display when you login.</p>
+                            <form> 
+                                <div class="form-group" title="Select your default filters">
+                                    <select class="form-control" ng-required="required" ng-model="preferences.homepage"
+                                            ng-options="route as label for (label, route) in pages">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    		</div> <!-- modal body -->
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-success" ng-click="savePreferences()">Save</button>
+            </div>
+    	</div>
+    </div>
+</div>
