@@ -211,7 +211,7 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	 *
 	 */
 
-	function searchArchive(query, type) {
+	function searchArchive(query, field) {
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
