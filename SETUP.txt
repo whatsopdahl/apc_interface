@@ -1,0 +1,54 @@
+################################################################################
+                        Instructions for project setup
+################################################################################
+
+The LutherCourseProposal project structure is designed for use with NetBeans IDE. The following instructions detail how to set up the development environment using the NetBeans IDE. 
+
+This setup file describes how to set up your environment to run the project either through NetBeans, or by deploying the war file directly to the Tomcat server. 
+
+================================================================================
+RUNNING WITH NETBEANS
+
+1. Ensure you have Java8 or higher JRE installed. 
+	- the project was developed using Java 8. If you use a different version, you may run into errors.
+
+2. Download and install the Apache Tomcat 8.5.12 server. Follow the given instructions to complete the install. You can download the binary source code here:  
+	- http://tomcat.apache.org/download-80.cgi#8.5.12
+3. After you have set up your tomcat server, open the ${CATALINA_HOME}/conf/tomcat-users.xml file. In this file, make sure you include the following:
+	
+	<role rolename="manager-script"/>
+	<user username="<your username of choice>" password="<your password>" roles="manager-script"/>
+
+	These entries allow you to run the application from NetBeans, a highly recommended feature. Without these entries, you will need to manually deploy the application everytime you build a new .war file.
+
+4. Once you have added your user, you can add the server to your NetBeans installation. 
+	i. 	Open NetBeans
+	ii. Click on Tools > Servers in the top menu bar
+	iii.Click "Add Server"
+	iv. Select "Apache Tomcat or TomEE" and click next
+	v. 	Enter the location of you tomcat installation and the username and password of the user you created in the tomcat-users.xml file
+	vi. Click finish to add the server
+
+5. Next, in a terminal window, navigate to the directory that houses the local repository for the remote repo
+	- if you do not have a local copy, make a git repo, getting the url from here: https://github.com/whatsopdahl/apc_interface
+
+6. Pull the changes from the repository
+
+7. You will now have all the necessary components to run the application via NetBeans, or by manually deploying the latest war in the /target/ directoryto your tomcat server. To see how this is done, move on to the next section. 
+
+8. Go to the NetBeans "File" menu, selecting the "Open Project..." option
+
+9. Go to the directory where your repo is located, select it and click ok
+
+10. This should add the project to your IDE.
+
+11. To run the project, right click on the project name, and click "run". The webpage should pop up in your default browser and you're good to go!
+
+================================================================================
+DEPLOYING THE WAR FILE MANUALLY
+
+1. Copy the .war file from the target/ directory and place it in the ${CATALINA_HOME}/webapps directory
+
+2. run ${CATALINA_HOME}/bin/startup.sh to start the tomcat server
+
+3. Navigate to http://localhost:8080/LutherCourseProposal to use the application. 
