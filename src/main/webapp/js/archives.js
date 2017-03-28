@@ -40,6 +40,8 @@ function archiveSrv($log, dataSrv, $compile, $rootScope) {
         // append the record to the scope
         scope.record = record;
         scope.hideButtons = true;
+        // used to hide status bar
+        scope.isArchive = true;
 
         var content = modal.find("#archive-content");
         //clear old modal content
