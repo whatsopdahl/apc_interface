@@ -60,5 +60,7 @@
             <course extendendview="extendendview"></course>
         </div>
     </div>
-    <div ng-show="retrievingData">Loading...</div>
+    <div ng-show="data.title == 'Ready for Registrar'">
+        <h6>*Courses should be added to catalog before 'Mark as Added' button is clicked. Courses will be removed from the list once button is clicked.</h6>
+    </div>
 </div>
