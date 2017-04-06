@@ -14,6 +14,13 @@ RUNNING WITH NETBEANS
 
 2. Download and install the Apache Tomcat 8.5.12 server. Follow the given instructions to complete the install. You can download the binary source code here:  
 	- http://tomcat.apache.org/download-80.cgi#8.5.12
+	- download the tar.gz
+	- open an terminal window and navigate to the directory you want to install the tomcat server in
+	- extract the server from the zip file:
+		>> tar -xf <tomcat zip file>
+
+	- set your CATALINA_HOME environment variable in your .profile or .bashrc to point to your tomcat installation root folder: this will default to the apache-tomcat-8.5.12 in the directory where you unzipped the tar file
+
 3. After you have set up your tomcat server, open the ${CATALINA_HOME}/conf/tomcat-users.xml file. In this file, make sure you include the following:
 	
 	<role rolename="manager-script"/>

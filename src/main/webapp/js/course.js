@@ -3,8 +3,6 @@ var app = angular.module("CourseProposalApp");
 app.controller("courseCtrl", courseCtrl);
 app.directive("revokeApcPrivilegesPopup", revokeApcPrivilegesPopup);
 app.directive("removePropPopup", removePropPopup);
-
-// NEW
 app.directive("courseInfo", courseInfo);
 
 courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv", "archiveSrv"];
