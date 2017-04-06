@@ -293,8 +293,7 @@ public class ApcController extends HttpServlet {
                     try {
                         JsonObject archive;
                         JsonObject prop = data.getJsonObject("d");
-                        String oldCourseId = data.getString("i");
-                        resp = this.dao.archiveProposal(prop, oldCourseId);
+                        resp = this.dao.archiveProposal(prop);
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex) {
                         resp = ex.getMessage();

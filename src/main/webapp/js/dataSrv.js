@@ -196,9 +196,8 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	 * replacing and places it in its proper archive table. The backend will
 	 * handle creating new archives if necessary.
 	 */	
-	function archiveProposal(proposal, oldCourseID) {
+	function archiveProposal(proposal) {
 		var data = { "d" : proposal, 
-					 "i" : oldCourseID,
 					 "q" : "archive" };
 		return $http({ method: "POST",
 				url : DATA_URL,

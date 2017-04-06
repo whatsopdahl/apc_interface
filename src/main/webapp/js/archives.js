@@ -4,8 +4,8 @@ app.controller("archivesCtrl", archivesCtrl);
 app.factory("archiveSrv", archiveSrv);
 app.directive("archivesModal", archivesModal);
 
-archiveSrv.$inject=["$log", "dataSrv", "$compile", "$rootScope"];
-function archiveSrv($log, dataSrv, $compile, $rootScope) {
+archiveSrv.$inject=["$log", "dataSrv", "$compile", "$rootScope", "EVENTS"];
+function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
     return {
             archiveProposal : archiveProposal,
             archiveSearch : archiveSearch,
@@ -15,9 +15,9 @@ function archiveSrv($log, dataSrv, $compile, $rootScope) {
     }
 
     function archiveProposal(proposal) {
-        var oldCourseId = proposal.oldCourse._id;
-        dataSrv.archiveProposal(proposal, oldCourseId).then(function(data) {
+        dataSrv.archiveProposal(proposal).then(function(data) {
             $log.info("Proposal Archived");
+            $rootScope.$broadcast(EVENTS.PROPOSAL_ARCHIVED); 
         })
     }
 

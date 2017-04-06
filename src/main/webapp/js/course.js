@@ -28,6 +28,7 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, 
 	$scope.deleteProp = courseSrv.deleteProp;
 
 	$scope.getArchiveById = archiveSrv.getArchiveById;
+        $scope.archiveProp = archiveSrv.archiveProposal;
 
 	$scope.stageName = function(stageNum) {
 		if (stageNum == 0) {
@@ -91,17 +92,11 @@ app.factory("courseSrv", ["$rootScope", "$location", "userSrv", "dataSrv", "EVEN
     	});
         }
         
-        archiveProp = function(course) {
-            dataSrv.archiveProposal(course).then(function(data) {
-               $rootScope.$broadcast(EVENTS.PROPOSAL_ARCHIVED); 
-            });
-        }
 
 	return {
 		approve : approve,
 		reject : reject,
 		deleteProp : deleteProp,
-                archiveProp : archiveProp
 	}
 
 }])
@@ -125,7 +120,7 @@ app.directive("course", function() {
     return {
         restrict: "E",
         templateUrl: "templates/course.html",
-		controller: "courseCtrl"
+        controller: "courseCtrl"
     }
 });
 

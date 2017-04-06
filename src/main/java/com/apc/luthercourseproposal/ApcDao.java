@@ -353,10 +353,10 @@ public class ApcDao {
         return builder.toString();
     }
 
-    public String archiveProposal(JsonObject proposal, String oldCourseId) { 
+    public String archiveProposal(JsonObject proposal) { 
         JsonObject archive;
         JsonObjectBuilder successObj = buildSuccessObj("archive proposal");
-        if (proposal.get("oldCourse") == null) {
+        if (proposal.isNull("oldCourse")) {
             //no old course, create new archive
             JsonObjectBuilder builder = Json.createObjectBuilder();
             builder.add("proposals", Json.createArrayBuilder()
