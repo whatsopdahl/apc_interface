@@ -352,11 +352,6 @@ public class ApcDao {
         }
         return builder.toString();
     }
-    
-    public void addCourseToArchive() {
-        
-        
-    }
 
     public String archiveProposal(JsonObject proposal, String oldCourseId) { 
         JsonObject archive;
