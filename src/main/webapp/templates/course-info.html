@@ -13,13 +13,24 @@
                     <strong style="color:green;">[New Course]</strong>
                 </div>
             </div>
-            <div class="col-xs-4 text-center">
+            <div class="col-xs-4 text-center" ng-hide="isArchive">
                 <div class="panel-heading" style="margin-bottom: 0;"><strong>Approval Status</strong></div>
             </div>
             <div class="col-xs-4">
                 <div ng-if="!hideButtons" style="margin-right:10px;">
                     <btn-menu></btn-menu>
                     <a class="approveReject" ng-if="course.owner == user.name" ng-href="#/{{course.newCourse.name}}/edit"><div class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+                </div>
+            </div>
+            <!-- this div duplicated bit lower in code, but hidden in different circumstances, depending if it's archive or course/proposal view -->
+            <div class="col-xs-4" ng-hide="!isArchive">
+                <div class="divDept">
+                    <div class="panel panel-default courseInfo" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division || course.oldCourse.dept != course.newCourse.dept}">
+                        <div class="panel-heading">{{course.newCourse.division}} > {{course.newCourse.dept}}</div>
+                    </div>
+                    <div class="panel panel-danger courseInfo" ng-if="course.oldCourse && ( course.oldCourse.division != course.newCourse.division || course.oldCourse.dept != course.newCourse.dept )">
+                        <div class="panel-heading">{{course.oldCourse.division}} > {{course.oldCourse.dept}}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,7 +43,7 @@
                     <div class="panel-heading">{{course.oldCourse.title}}</div>
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4" ng-hide="isArchive">
                 <div class="progress">
                     <div class="progress-bar" ng-class="getClass(course.stage, 1)" class="progress-bar-danger" role="progressbar" style="width:25%">
                         Division
@@ -48,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4" ng-hide="isArchive">
                 <div class="divDept">
                     <div class="panel panel-default courseInfo" ng-class="{'panel-success' : course.oldCourse && course.oldCourse.division != course.newCourse.division || course.oldCourse.dept != course.newCourse.dept}">
                         <div class="panel-heading">{{course.newCourse.division}} > {{course.newCourse.dept}}</div>

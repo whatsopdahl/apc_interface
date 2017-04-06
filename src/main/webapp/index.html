@@ -46,9 +46,9 @@
 <body ng-app="CourseProposalApp" ng-controller="mainCtrl">
     <!-- This element does not display, only for google's API -->
     <div id="g-signin2" style="display: none;"></div>
-	<navbar></navbar>
+	<navbar ng-disabled="retrievingData"></navbar>
 	<!-- Using ng-route, our application will load whatever we need depending on our routing definitions in app.config -->
-    <div style="margin-top:60px;" ng-view></div>
+    <div style="margin-top:60px;" ng-view ng-show="!retrievingData"></div>
 
     <!-- Error Modal -->
     <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="errModal">
@@ -67,6 +67,9 @@
     <edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != -1" user="user" depts="depts"></edit-permissions-modal>
     <user-preferences-modal user="user" depts="depts"></user-preferences-modal>
     <archives-modal></archives-modal>
+    <div align="center" ng-show="retrievingData" style="margin-top: 30px;">
+        <img src="img/loading.gif"/>
+    </div>
 </body>
 
 </html>
