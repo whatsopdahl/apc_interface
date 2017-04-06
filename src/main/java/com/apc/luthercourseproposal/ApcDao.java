@@ -371,6 +371,11 @@ public class ApcDao {
             BasicDBObject newDoc = (BasicDBObject) new BasicDBObject().put("$push", proposal);
             db.getCollection(Collections.COLLECTION_ARCHIVES.toString()).findOneAndUpdate(idDoc, newDoc);
         }
+        try {
+            deleteProposal(proposal);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return successObj.build().toString();
     }
 }
