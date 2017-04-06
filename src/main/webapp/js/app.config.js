@@ -50,6 +50,15 @@ app.config(['$routeProvider', function($routeProvider){
 			}
 		}
 	})
+        .when("/dashboard/registrarView", {
+		templateUrl : "templates/changes.html",
+		controller : "changeCtrl",
+                resolve : {
+                        view : function(){
+                                return "registrar";
+                        }
+                }
+	})
 	.when("/dashboard/archives", {
 		templateUrl : "templates/archives.html",
 		controller : "archivesCtrl"

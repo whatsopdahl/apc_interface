@@ -12,7 +12,8 @@ app.constant("auth_config", {
 app.constant("EVENTS",{
     PROPOSAL_ADDED : 'proposal-added',
     PROPOSAL_REMOVED : 'proposal-removed',
-    PROPOSAL_UPDATED : 'proposal-updated'
+    PROPOSAL_UPDATED : 'proposal-updated',
+    PROPOSAL_ARCHIVED : 'proposal-archived'
 });
 
 app.controller("mainCtrl", mainCtrl);
@@ -56,14 +57,22 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
 	$scope.myChanges = {	title:"My Changes",
 							emptyMsg: "You currently do not own any proposals",
 							link:"mychanges"};
+    $scope.registrarData = {    title: "Ready for Registrar",
+                                emptyMsg: "There are no proposals that have made it through all stages.",
+                                link: "registrar"};
 
     $scope.retrievingData = true;
+    
+    function pastAllStages(proposal) {
+        return proposal.stage == 4;
+    }
      
     initData();
 
     function initData() { 
         return $q.all([dataSrv.getProposals(), dataSrv.getCourses(), dataSrv.getDepts()]).then(function(data){
             $scope.allProposals.elements = data[0];
+            $scope.registrarData.elements = data[0].filter(pastAllStages);
             $scope.courses = data[1];
             $scope.depts = data[2];
             $scope.retrievingData = false;
@@ -100,6 +109,10 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     });
 
     $rootScope.$on('proposal-updated', function() {
+        initData();
+    });
+    
+    $rootScope.$on('proposal-archived', function() {
         initData();
     });
 };
