@@ -12,7 +12,8 @@ app.constant("auth_config", {
 app.constant("EVENTS",{
     PROPOSAL_ADDED : 'proposal-added',
     PROPOSAL_REMOVED : 'proposal-removed',
-    PROPOSAL_UPDATED : 'proposal-updated'
+    PROPOSAL_UPDATED : 'proposal-updated',
+    PROPOSAL_ARCHIVED : 'proposal-archived'
 });
 
 app.controller("mainCtrl", mainCtrl);
@@ -108,6 +109,10 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     });
 
     $rootScope.$on('proposal-updated', function() {
+        initData();
+    });
+    
+    $rootScope.$on('proposal-archived', function() {
         initData();
     });
 };
