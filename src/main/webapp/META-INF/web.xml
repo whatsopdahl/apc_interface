@@ -11,4 +11,19 @@
         <servlet-name>luthercourseproposal</servlet-name>
         <url-pattern>/data</url-pattern>
     </servlet-mapping>
+<!--    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>All pages</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Students</role-name>
+        </auth-constraint>
+    </security-constraint>
+        <security-role>
+            <role-name>Students</role-name>
+        </security-role>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>-->
 </web-app>
