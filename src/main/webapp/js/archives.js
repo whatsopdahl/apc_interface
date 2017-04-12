@@ -39,6 +39,7 @@ function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
 
         // append the record to the scope
         scope.record = record;
+                
         scope.hideButtons = true;
         // used to hide status bar
         scope.isArchive = true;
@@ -46,8 +47,12 @@ function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
         var content = modal.find("#archive-content");
         //clear old modal content
         content.empty();
+        
         //load new content
-        content.append($compile(
+        if (scope.record.msg) {
+            content.append($compile("<div class=\"text-center\" style=\"margin: 10px 0 10px 0;\">No archives exist</div>")(scope));
+        } else {
+            content.append($compile(
                 "<div class=\"modal-header\">"
                     +"<button ng-if=\"!required\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
                     +"<h4 class=\"modal-title\">Current Course: {{record.proposals[ (record.proposals.length-1) ].newCourse.name}} - {{record.proposals[ (record.proposals.length-1) ].newCourse.title}} </h4>"
@@ -68,7 +73,8 @@ function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
                         +"</div>"
                     +"</div>"
                 +"</div>")(scope));
-
+        }
+                
         modal.modal("show");
     }
 
@@ -97,7 +103,7 @@ function archivesCtrl($scope, $rootScope, $log, archiveSrv) {
             $scope.searching = false;
         });
     }
-
+        
 }
 
 function archivesModal() {
