@@ -1,39 +1,22 @@
 package com.apc.luthercourseproposal;
 
 import com.apc.luthercourseproposal.ApcDao.Collections;
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
-import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
-import java.io.StringReader;
-import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bson.Document;
-import org.bson.BsonReader;
-import org.bson.types.ObjectId;
 import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.bson.json.JsonParseException;
 
 
 /**
