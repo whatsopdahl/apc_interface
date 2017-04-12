@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -348,7 +349,10 @@ public class ApcDao {
         });
         
         if (builder.length() == 0) {
-            throw new Exception("Invalid course ID");
+            JsonObject res = Json.createObjectBuilder()
+                                .add("msg", "No archive available for this course.")
+                                .build();
+            return res.toString();
         }
         return builder.toString();
     }
