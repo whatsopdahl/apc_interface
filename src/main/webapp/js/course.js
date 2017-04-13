@@ -13,7 +13,7 @@ function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, 
 	if (!$scope.course) {
 		if (!$routeParams || !$routeParams.course) {
 			// this is from the archive scope
-			courseName = $scope.courseName
+			courseName = $scope.courseName;
 		} else {
 			// this is from the route params
 			courseName = $routeParams.course;

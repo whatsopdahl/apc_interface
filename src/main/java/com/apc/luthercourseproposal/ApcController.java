@@ -265,7 +265,8 @@ public class ApcController extends HttpServlet {
                 case "edituser":
                     try{
                         String user = data.getString("u");
-                        resp = this.dao.editUser(user, data);
+                        JsonObject newUserData = data.getJsonObject("d");
+                        resp = this.dao.editUser(user, newUserData);
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex){
                         resp = ex.getMessage();
