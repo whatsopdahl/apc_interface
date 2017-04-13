@@ -5,11 +5,11 @@ app.config(['$routeProvider', function($routeProvider){
 	.when("/login", {
 		templateUrl : "templates/login.html",
 		controller : "authCtrl",
-		resolve : {
-			depts : ["dataSrv", function(dataSrv){
-				return dataSrv.getDepts();
-			}]
-		},
+//		resolve : {
+//			depts : ["dataSrv", function(dataSrv){
+//				return dataSrv.getDepts();
+//			}]
+//		},
 		isLogin : true
 	})
 	.when("/dashboard", {

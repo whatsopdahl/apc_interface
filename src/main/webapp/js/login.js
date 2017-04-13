@@ -1,7 +1,5 @@
 var app = angular.module('CourseProposalApp');
 
-app.directive("signInButton", signInButton);
-
 app.constant('AUTH_EVENTS', {
   loginSuccess: 'auth-login-success',
   loginFailed: 'auth-login-failed',
@@ -10,15 +8,17 @@ app.constant('AUTH_EVENTS', {
   userNotFound: 'user-not-found',
   notAuthenticated: 'auth-not-authenticated',
   notAuthorized: 'auth-not-authorized',
-  userChanged : 'auth-user-changed'
+  userChanged : 'auth-user-changed',
+  authenticating : 'auth-in-progress',
+  moreUserData : 'gathering-user-data'
 });
 
 // "depts" needs to get added back in
-app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "userSrv", "depts", "AUTH_EVENTS",
-	function($scope, $rootScope, $log, authSrv, dataSrv, userSrv, depts, AUTH_EVENTS) {
-		$scope.loginfailure = false;
-
-		$scope.login = authSrv.login;
+app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv", "userSrv", "AUTH_EVENTS",
+	function($scope, $rootScope, $log, authSrv, dataSrv, userSrv, AUTH_EVENTS) {
+            $scope.loginfailure = false;
+            $scope.j_username;
+            $scope.j_password;
 
 	    $scope.loginFailed = authSrv.loginFailed;
 
@@ -28,23 +28,23 @@ app.controller("authCtrl", ["$scope", "$rootScope", "$log", "authSrv", "dataSrv"
 
 	    $rootScope.$on(AUTH_EVENTS.loginSuccess, function(){
 	    	$scope.loginfailure = false;
+                $scope.depts = dataSrv.getDepts();
 	    });
         
-        $scope.depts = depts;
-        $scope.memberDepts = [];
-        $scope.user = $rootScope.user;
+            $scope.memberDepts = [];
+            $scope.user = $rootScope.user;
+            
+            $scope.authenticate = function() {
+                $rootScope.$broadcast(AUTH_EVENTS.authenticating);
+                authSrv.login($scope.j_username, $scope.j_password);
+            }
 
-
-        $scope.updateDepts = userSrv.updateDepts;
-        
+            $scope.updateDepts = userSrv.updateDepts;        
 }]);
 
-app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv",
-			 function($log, $rootScope, $location, AUTH_EVENTS, dataSrv){
+app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataSrv", "$http",
+			 function($log, $rootScope, $location, AUTH_EVENTS, dataSrv, $http){
 	return {
-		signinChanged : signinChanged,
-		userChanged : userChanged,
-		refreshValues : refreshValues,
 		login : login,
 		logout : logout,
 		loginFailed : loginFailed,
@@ -53,42 +53,41 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 
 
 	function logout() {
-    	auth2 = gapi.auth2.getAuthInstance();
-    	auth2.disconnect();
-    	auth2.signOut().then(function () {
-      		$log.info('User signed out.');
-      		$rootScope.user = null;
-      		$location.url("/login");
-      		$rootScope.$digest();
-    	});
-    }
+            $log.info('User signed out.');
+            $rootScope.user = null;
+            $location.url("/login");
+            $rootScope.$digest();
+        }
 
-	function login(googleUser) {
-		var user = {};
-		var profile = googleUser.getBasicProfile();
-		user["name"] = profile.getName();
-		user["email"] = profile.getEmail();
-
-		$rootScope.user = user;
-
-		dataSrv.getUser(user).then( function(data) {
+	function login(username, password) {
+            $http( { method : "POST",
+                     url : "j_security_check",
+                     data : {
+                         j_username : username,
+                         j_password : password
+                     }
+            }).then(function success(response) {
+                $log.debug(response);
+                dataSrv.getUser().then( function(data) {
 			if (!data) {
 				$log.debug("User not in database, prompting for more data");
 				var dialog = angular.element("#preferences-modal");
 				dialog.modal('show');
+                                $rootScope.$broadcast(AUTH_EVENTS.moreUserData);
 				return;
 			}
 			userInfoFound(data);
 		});
+            }, function error(response) {
+                loginFailed(response);
+            });
 	}
 
 	function userInfoFound(user) {		
 		$rootScope.user = user;
-		
-		$log.info("logged in as " + $rootScope.user.name);
-
 		$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 
+		$log.info("logged in as " + $rootScope.user.name);
 		//if we have a requested url, redirect to it. otherwise go to the dash
 		if ($rootScope.next){
 			$location.path($rootScope.next).replace();
@@ -107,71 +106,5 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
     	$log.info("login failed: "+error.reason);
     	$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 		$location.url("/login");
-		$rootScope.$digest();
-    }
-	/**
-	 * Updates signinStatus
-	 *
-	 * @param loggedIn boolean value of login status
-	 */
-	function signinChanged(loggedIn) {
-		if (loggedIn) {
-			refreshValues();
-		} else {
-			logout();
-		}
-	}
-
-	function userChanged(user) {
-		updateUser(user);
-	}
-
-	/**
-	 * Retrieves the current user and signed in states from the GoogleAuth
-	 * object.
-	 */
-	function refreshValues() {
-	  if (auth2){
-	    googleUser = auth2.currentUser.get();
-
-	    if (auth2.isSignedIn.get()) {
-	    	updateUser(googleUser);
-	    }
-	  }
-	}
-
-	function updateUser(user){
-		var profile = user.getBasicProfile();
-		if (profile) {
-			if (!$rootScope.user) {
-				$rootScope.user = {};
-			}
-			$rootScope.user.name = profile.getName();
-			$rootScope.user.email = profile.getEmail();
-			//get rest of user data with backside call
-		} else {
-			$rootScope.user = null;
-		}
-	};
-}]);
-
-signInButton.$inject = ["authSrv"];
-function signInButton(authSrv) {
-	return {
-		restrict : 'E',
-		template: '<div></div>',
-        link: function(scope, element, attrs) {
-        	var div = element.find('div')[0];
-            div.id = "signInBtn";
-            gapi.signin2.render(div.id, {
-        		'scope': 'profile email',
-		        'width': 240,
-		        'height': 50,
-		        'longtitle': true,
-		        'theme': 'light',
-		        'onsuccess': scope.login,
-		        'onfailure': scope.loginFailed
-		    });
         }
-	}
-}
+}]);

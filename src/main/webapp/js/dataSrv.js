@@ -1,6 +1,5 @@
 var app = angular.module("CourseProposalApp");
 
-//app.constant("DATA_URL", "http://localhost:8000/data");
 app.constant("DATA_URL", "data");
 
 app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
@@ -58,15 +57,15 @@ app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_
 	/**
 	 *
 	 */
-	function getUser(user) {
+	function getUser() {
 		return $http({ method : "GET",
 				url : DATA_URL,
 				params : {
-					q : "users",
-					u : user.email
-				}
+					q : "getUser"
+                                }
 		}).then(function success(response) {
-			$log.info("Retieved user data");
+			$log.info("Retrieved user data");
+                        $log.debug(response);
 			return response.data;
 		}, function(response){
 			handleError(response);
