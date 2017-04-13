@@ -10,7 +10,7 @@
 	    <div ng-if="user" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav nav-pills navbar-left">
 	        <li ng-class="{active: page == '/dashboard'}"><a href="#/">Dashboard</a></li>
-	        <li ng-class="{active: page == '/dashboard/mychanges'}"><a href="#/dashboard/mychanges">My Changes</a></li>
+	        <li ng-class="{active: page == '/dashboard/mychanges'}" ng-show="user.role != 'Registrars_Office'"><a href="#/dashboard/mychanges">My Changes</a></li>
 	        <li ng-class="{active: page == '/dashboard/allchanges'}"><a href="#/dashboard/allchanges">All Proposals</a></li>
 	        <li ng-class="{active: page == '/dashboard/registrarView'}"><a href="#/dashboard/registrarView">Registrar</a></li>
 		<li ng-class="{active: page == '/dashboard/archives'}"><a href="#/dashboard/archives">Archives</a></li>
@@ -30,7 +30,7 @@
 	          <ul class="dropdown-menu">
 	          	<li><p class="navbar-text">Welcome {{user.name}}!</p></li>
 	            <li><a href="#/user/{{user.name}}">View Profile</a></li>
-	            <li><a href="" ng-click="openUserPreferences()">Preferences</a></li>
+	            <li><a href="" ng-click="openUserPreferences()" ng-show="user.role != 'Registrars_Office'">Preferences</a></li>
 	            <li ng-if="user.chairs && user.chairs.indexOf('APC') != -1"><a href="" ng-click="openPermissionsModal()">Grant Permissions</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#/" ng-click="logout()">Logout</a></li>

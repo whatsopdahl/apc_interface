@@ -17,7 +17,7 @@
         </div>
         <div class="col-xs-4 pull-right" ng-class="{'col-xs-2' : extendedview == true }" style="padding-right: 0;">
             <btn-menu></btn-menu>
-            <a href="#/{{course.newCourse.name}}/edit" class="btn btn-edit pull-right" ng-if="user.name == course.owner"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#/{{course.newCourse.name}}/edit" class="btn btn-edit pull-right" ng-if="user.name == course.owner && user.role != 'Registrars_Office'"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
     </div>
 

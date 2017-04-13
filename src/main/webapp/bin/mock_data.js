@@ -14,11 +14,12 @@ users = [
 			},
 			{ name : "Kyle McNeese",
 			  email : "mcneky01@luther.edu",
-			  dept : ["CS"],
-			  recentlyViewed : [],
+			  dept : ["CS", "MATH"],
+                          chairs : ["CS", "MATH", "APC"],
+			  recentlyViewed : []
 			},
 			{ name : "Jonathan Opdahl",
-		      email : "opdajo01@luther.edu",
+		          email : "opdajo01@luther.edu",
 		  	  dept : ["CS", "MATH"],
 		  	  chairs : ["CS", "MATH", "APC"],
 		  	  recentlyViewed : []
