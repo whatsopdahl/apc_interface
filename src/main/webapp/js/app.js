@@ -9,23 +9,18 @@ app.constant("EVENTS",{
 app.controller("mainCtrl", mainCtrl);
 
 //initialization funciton
-app.run(["$rootScope", "authSrv", "$location", "AUTH_EVENTS", "$log", "dataSrv",
-			 function($rootScope, authSrv, $location, AUTH_EVENTS, $log, dataSrv) {
+app.run(["$rootScope", "authSrv", "$location", "AUTH_EVENTS", "$log", "dataSrv", "userSrv",
+			 function($rootScope, authSrv, $location, AUTH_EVENTS, $log, dataSrv, userSrv) {
 	$rootScope.$on('$locationChangeStart', function(event, next, prev){
-		//if login required (i.e. is not login page) and you're logged out, capture the current path
+            $rootScope.prev=prev;
+            $rootScope.next=next;
         if (!$rootScope.user) {
-        	nextPath = next.split('#')[1];
-        	if (!( nextPath == '/login')) {
-	        	$rootScope.next = $location.url();
-			}
-        	$location.url('/login');
+            dataSrv.getUser().then(function (user) {
+                $rootScope.user = user;
+                $rootScope.$broadcast(AUTH_EVENTS.userUpdated);
+            });
         }
-        $rootScope.prev = prev;
 	});
-}]);
-
-app.config(["$httpProvider", function ($httpProvider) {
-    $httpProvider.defaults.withCredentials = true;
 }]);
 
 mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv", "AUTH_EVENTS"];
@@ -44,18 +39,9 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
 	$scope.myChanges = {	title:"My Changes",
 							emptyMsg: "You currently do not own any proposals",
 							link:"mychanges"};
-    $rootScope.$on(AUTH_EVENTS.loginSuccess, function() {
-       initData(); 
-    });
-     
-    $rootScope.$on(AUTH_EVENTS.authenticating, function() {
-        $scope.retrievingData = true;
-    });
+                                                    
+    initData();
     
-    $rootScope.$on(AUTH_EVENTS.moreUserData, function() {
-       $scope.retrievingData = false; 
-    });
-     
     function initData() { 
         return $q.all([dataSrv.getProposals(), dataSrv.getCourses(), dataSrv.getDepts()]).then(function(data){
             $scope.allProposals.elements = data[0];
@@ -71,18 +57,18 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     }
 
 
-	$rootScope.$watch(function(){
-		$scope.user = $rootScope.user;
-		$scope.page = $location.path();
-		if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
-            $scope.recentlyViewed.elements = [];
-            var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
-            angular.forEach($scope.user.recentlyViewed, function(objId) {
-                $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
-            });
-       		$scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
-       	}
-	});
+    $rootScope.$watch(function(){
+            $scope.user = $rootScope.user;
+            $scope.page = $location.path();
+            if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
+                $scope.recentlyViewed.elements = [];
+                var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
+                angular.forEach($scope.user.recentlyViewed, function(objId) {
+                    $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
+                });
+                    $scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
+            }
+    });
 
     $rootScope.$on('proposal-added', function(event, courseName) {
         initData().then(function(){
@@ -96,5 +82,9 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
 
     $rootScope.$on('proposal-updated', function() {
         initData();
+    });
+    
+    $rootScope.$on('auth-login-success', function() {
+       initData(); 
     });
 };

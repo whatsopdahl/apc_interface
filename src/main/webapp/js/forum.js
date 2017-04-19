@@ -5,6 +5,9 @@ app.controller("forumCtrl", forumCtrl);
 forumCtrl.$inject = ["$scope", "$rootScope", "$log", "$q", "$filter", "dataSrv"];
 function forumCtrl($scope, $rootScope, $log, $q, $filter, dataSrv) {
 	$scope.user = $rootScope.user;
+        $rootScope.$on('user-updated', function() {
+            $scope.user = $rootScope.user;
+        });
 	$scope.newComment = "";
 	$scope.addComment = function(user, date, commentBody) {
 		var date = String(new Date());

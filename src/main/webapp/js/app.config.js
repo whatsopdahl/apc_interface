@@ -2,16 +2,6 @@ var app = angular.module('CourseProposalApp');
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-	.when("/login", {
-		templateUrl : "templates/login.html",
-		controller : "authCtrl",
-//		resolve : {
-//			depts : ["dataSrv", function(dataSrv){
-//				return dataSrv.getDepts();
-//			}]
-//		},
-		isLogin : true
-	})
 	.when("/dashboard", {
 		templateUrl : "templates/dashboard.html",
 		controller : "dashboardCtrl"
@@ -58,8 +48,8 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl : "templates/user-profile.html",
 		controller : "userCtrl",
 		resolve : {
-			depts : ["dataSrv", function(dataSrv) {
-				return dataSrv.getDepts();
+			allProposals : ["dataSrv", function(dataSrv) {
+				return dataSrv.getProposals();
 			}]
 		}
 	})

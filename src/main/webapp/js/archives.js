@@ -103,8 +103,6 @@ function archivesCtrl($scope, $rootScope, $log, archiveSrv) {
 function archivesModal() {
 	return {
 		restrict : "E",
-		templateUrl : "templates/course-archive.html",
-        controller : ["$scope", "$log", "archiveSrv", function($scope, $log, archiveSrv) {
-        }]
+		templateUrl : "templates/course-archive.html"
 	}
 }

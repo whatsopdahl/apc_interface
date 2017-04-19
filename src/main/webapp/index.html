@@ -5,7 +5,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -56,7 +56,7 @@
         </div>
     </div>
     <edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != -1" user="user" depts="depts"></edit-permissions-modal>
-    <user-preferences-modal user="user" depts="depts"></user-preferences-modal>
+    <user-preferences-modal></user-preferences-modal>
     <archives-modal></archives-modal>
     <div align="center" ng-show="retrievingData" style="margin-top: 30px;">
         <img src="img/loading.gif"/>

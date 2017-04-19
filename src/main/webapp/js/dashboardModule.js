@@ -19,7 +19,7 @@ app.constant("filterList",
 	]
 );
 
-app.controller("courseListCtrl", ["$scope", "$log", "$filter", "filterList", function($scope, $log, $filter, filterList){
+app.controller("courseListCtrl", ["$scope", "$rootScope", "$log", "$filter", "filterList", function($scope, $rootScope, $log, $filter, filterList){
 
 	$scope.filterList = filterList;
 
@@ -32,14 +32,19 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", "filterList", fun
 						];
 
 	$scope.queries = { "filter" : null, 
-					   "sort" 	: null
-					   };
-
-	$scope.currFilter = $scope.filterList[0];
+                            "sort" 	: null
+					   };                         
 	$scope.currSort = $scope.sortList[0];
 
 	//direction is 1 or 0: 0-A-Z, 1-Z-A
 	$scope.zToa = false;
+
+        if ($rootScope.user && $rootScope.user.preferences && $rootScope.user.preferences.filters.name) {
+            $scope.currFilter = $filter("filter")(filterList, {"name" : $rootScope.user.preferences.filters.name})[0];
+            $scope.queries.filter = $rootScope.user.preferences.filters.value;
+        } else {
+            $scope.currFilter = $scope.filterList[0];
+        }
 
 	$scope.toggleDir = function() {
 		if ($scope.zToa) {
@@ -58,7 +63,7 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", "filterList", fun
 	}
 
 	$scope.filterBy = function(index) {
-		$scope.currFilter = $scope.filterList[index];
+            $scope.currFilter = $scope.filterList[index];
 	}
 
 	$scope.sortBy = function(index){
@@ -121,39 +126,41 @@ app.controller("courseListCtrl", ["$scope", "$log", "$filter", "filterList", fun
  */
 app.filter('searchProposal', ["$log", function($log){
 	return function(proposals, value, propAttrs, courseAttrs){
-		filtered = [];
+		var filtered = [];
 		value = value.toLowerCase();
 
-		for (var i =0; i < proposals.length; i++) {
-			var prop = proposals[i];
-			var added = false;
-			for (var pa = 0; pa < propAttrs.length; pa++) {
-				if (prop[propAttrs[pa]].toLowerCase().indexOf(value) > -1){
-					filtered.push(prop);
-					added = true;
-					break;
-				}
-			}
+		if (proposals) {
+                    for (var i =0; i < proposals.length; i++) {
+                            var prop = proposals[i];
+                            var added = false;
+                            for (var pa = 0; pa < propAttrs.length; pa++) {
+                                    if (prop[propAttrs[pa]].toLowerCase().indexOf(value) > -1){
+                                            filtered.push(prop);
+                                            added = true;
+                                            break;
+                                    }
+                            }
 
-			if (added) continue;
+                            if (added) continue;
 
-			for (var ca=0; ca < courseAttrs.length; ca++) {
-				var attr = courseAttrs[ca];
+                            for (var ca=0; ca < courseAttrs.length; ca++) {
+                                    var attr = courseAttrs[ca];
 
-				if (prop.oldCourse && prop.oldCourse != null) {
-					if (prop.oldCourse[attr].toLowerCase().indexOf(value) > -1){
-						filtered.push(prop);
-						break;
-					}
-				} 
+                                    if (prop.oldCourse && prop.oldCourse != null) {
+                                            if (prop.oldCourse[attr].toLowerCase().indexOf(value) > -1){
+                                                    filtered.push(prop);
+                                                    break;
+                                            }
+                                    } 
 
-				if (prop.newCourse[attr].toLowerCase().indexOf(value) > -1 ){
-					filtered.push(prop);
-					break;
-				}
-				if (added) break;
-			}
-		}
+                                    if (prop.newCourse[attr].toLowerCase().indexOf(value) > -1 ){
+                                            filtered.push(prop);
+                                            break;
+                                    }
+                                    if (added) break;
+                            }
+                    }
+                }
 		return filtered;
 	}
 }]);

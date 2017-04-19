@@ -5,6 +5,10 @@ app.controller("proposalCtrl", proposalCtrl);
 proposalCtrl.$inject=["$rootScope","$scope", "$log", "$location", "$routeParams", "$filter", "$window",  "params", "dataSrv", "userSrv", "EVENTS"];
 function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter, $window, params, dataSrv, userSrv, EVENTS) {
 	$scope.user = $rootScope.user;
+        
+        $rootScope.$on('user-updated', function() {
+           $scope.user = $rootScope.user; 
+        });
 
 	$scope.selectedDept = null;
 	$scope.selectedInstructor = null;

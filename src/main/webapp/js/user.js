@@ -1,229 +1,356 @@
 var app = angular.module("CourseProposalApp");
 
 app.controller("userCtrl", userCtrl);
-app.controller("editDeptsCtrl", editDeptsCtrl);
 app.factory("userSrv", userSrv);
-app.directive("editDepts", editDepts);
 app.directive("editPermissionsModal", editPermissionsModal);
 app.directive("userPreferencesModal", userPreferencesModal);
 
-userCtrl.$inject = ["$rootScope", "$scope", "$log", "depts", "userSrv"];
-function userCtrl($rootScope, $scope, $log, depts, userSrv) {
+userCtrl.$inject = ["$rootScope", "$scope", "$log", "$filter","allProposals", "userSrv"];
+function userCtrl($rootScope, $scope, $log, $filter, allProposals, userSrv) {
 	$scope.user = $rootScope.user;
-	$scope.depts = depts;
+        $scope.allProposals = allProposals;
+        $scope.myChanges = { elements  : $filter('filter')($scope.allProposals, { owner : $scope.user.name })};
 
 	$scope.openEditModal= function(type) {
-		var editModal;
 		if (type == "permissions") {
-			editModal = angular.element("#permission-modal");
+			angular.element("#permission-modal").modal("show");
 		} else if (type == "preferences") {
-			editModal = angular.element("#preferences-modal");
+			userSrv.openPreferencesModal();
 		}
-
-		editModal.modal("show");
 	}
 
-	/* Create the user stat chart */
-	var chartData = {
-			labels : ["Pending","Approved","Rejected"],
-			datasets : [
-				{
-					/* Here is where we put the data: pending approvals, then approved, finally rejected*/
-					data : userSrv.getUserStats($scope.myChanges.elements.length),
-					backgroundColor : [
-							"#f0ad4e",
-							"#5cb85c",
-							"#d9534f"
-					],
-					hoverBackgroundColor: [
-							"#ec971f",
-							"#449d44",
-							"#c9302c"
-					]
-				}
-			]	
-		};
-	var ctx = angular.element("#proposal-stat-chart");
-	var statsChart = new Chart(ctx, {
-		type : 'doughnut',
-		data : chartData
-	})
+        /* Create the user stat chart */
+        var chartData = {
+                        labels : ["Pending","Approved","Rejected"],
+                        datasets : [
+                                {
+                                        /* Here is where we put the data: pending approvals, then approved, finally rejected*/
+                                        data : userSrv.getUserStats($scope.myChanges.elements.length),
+                                        backgroundColor : [
+                                                        "#f0ad4e",
+                                                        "#5cb85c",
+                                                        "#d9534f"
+                                        ],
+                                        hoverBackgroundColor: [
+                                                        "#ec971f",
+                                                        "#449d44",
+                                                        "#c9302c"
+                                        ]
+                                }
+                        ]	
+                };
+        var ctx = angular.element("#proposal-stat-chart");
+        var statsChart = new Chart(ctx, {
+                type : 'doughnut',
+                data : chartData
+        })
+        
+        $rootScope.$on("user-updated", function() {
+           $scope.user = $rootScope.user; 
+        });
 }
 
-editDeptsCtrl.$inject = ["$scope", "$filter", "$log"];
-function editDeptsCtrl($scope, $filter, $log) {	
-	$scope.selectedDept;
-	if ($scope.user && $scope.user.dept && $scope.user.dept.length > 0) {
-		var memberDepts = [];
-		angular.forEach($scope.user.dept, function(d){
-			memberDepts.push($filter("filter")($scope.depts, { abbrev : d})[0]);
-		});
-		$scope.memberDepts = memberDepts;
-		$scope.selectedDept = $scope.memberDepts[0];
-	}
-
-    $scope.addDept = function() {
-   		if ($scope.memberDepts.indexOf($scope.selectedDept) == -1){
-   			$scope.memberDepts.push($scope.selectedDept);
-   		}
+userSrv.$inject = ["$rootScope", "$filter", "$log", "$q", "$compile", "dataSrv", "authSrv", "filterList"];
+function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filterList) {
+    return {
+            addToRecentlyViewed : addToRecentlyViewed,
+            removeFromRecentlyViewed : removeFromRecentlyViewed,
+            openPreferencesModal : openPreferencesModal,
+            canApprove : canApprove,
+            getUserStats : getUserStats
     }
 
-    $scope.removeDept = function(dept) {
-   		var index = $scope.memberDepts.indexOf(dept);
-   		$scope.memberDepts.splice(index,1);
-    } 
-}
+    /**
+     *  takes a courseName and finds the corresponding course in the database. If there is a
+     *  proposal related to the course, finds that and adds it to the recently viewed. Returns
+     *  the course/proposal. 
+     *
+     *  @param courseName name of the course
+     *  @param courses courses to search (all)
+     *  @param allProposals proposals to search (all)
+     *  @return course/proposal object
+     */
+    function addToRecentlyViewed(courseName, courses, allProposals) {
+            //the course must exist in the database, so find it first
 
-userSrv.$inject = ["$rootScope", "$filter", "$log", "dataSrv", "authSrv"];
-function userSrv($rootScope, $filter, $log, dataSrv, authSrv) {
-	return {
-		addToRecentlyViewed : addToRecentlyViewed,
-		removeFromRecentlyViewed : removeFromRecentlyViewed,
-		updateUser : updateUser,
-		canApprove : canApprove,
-		getUserStats : getUserStats
-	}
+            var course = $filter("filter")(courses, {name: courseName}, true)[0];
 
-	/**
-	 *  takes a courseName and finds the corresponding course in the database. If there is a
-	 *  proposal related to the course, finds that and adds it to the recently viewed. Returns
-	 *  the course/proposal. 
-	 *
-	 *  @param courseName name of the course
-	 *  @param courses courses to search (all)
-	 *  @param allProposals proposals to search (all)
-	 *  @return course/proposal object
-	 */
-	function addToRecentlyViewed(courseName, courses, allProposals) {
-		//the course must exist in the database, so find it first
+            //check to see if it is in any proposals.
+            var proposal = null;
+            var index = 0;
+            while (index < allProposals.elements.length && proposal == null) {
+                    var checkProposal = allProposals.elements[index];
+                    if ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) {
+                            proposal = checkProposal;
+                    }
+                    index++;
+            }
 
-		var course = $filter("filter")(courses, {name: courseName}, true)[0];
+            //if the course is in a proposal, use that instead of the plain course.
+            if (proposal) {
+                    removeFromRecentlyViewed(course);
+                    course = proposal;
+            }
 
-		//check to see if it is in any proposals.
-		var proposal = null;
-		var index = 0;
-		while (index < allProposals.elements.length && proposal == null) {
-			var checkProposal = allProposals.elements[index];
-			if ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) {
-				proposal = checkProposal;
-			}
-			index++;
-		}
+            //add course to recently viewed courses
+            var courseIdx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
+            if (courseIdx == -1){
+                    $rootScope.user.recentlyViewed.unshift(course._id.$oid);
+                    var limit = 7;
+                    if ($rootScope.user.preferences) {
+                        limit = $rootScope.user.preferences.recentlyViewed.number;
+                    }
+                    if ($rootScope.user.recentlyViewed.length > limit) {
+                            $rootScope.user.recentlyViewed.pop();
+                    }
+            } else {
+                    var lastViewed = $rootScope.user.recentlyViewed[0];
+                    $rootScope.user.recentlyViewed[0] = course._id.$oid;
+                    $rootScope.user.recentlyViewed[courseIdx] = lastViewed;
+            }
+            dataSrv.editUser($rootScope.user).then(function(data) {
+                    $log.info("Saved Recently Viewed");
+            });
+            return course;
+    }
 
-		//if the course is in a proposal, use that instead of the plain course.
-		if (proposal) {
-			removeFromRecentlyViewed(course);
-			course = proposal;
-		}
+    function removeFromRecentlyViewed(course) {
+            var idx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
+            if (idx != -1) {
+                    $rootScope.user.recentlyViewed.splice(idx,1);
+                    dataSrv.editUser($rootScope.user).then(function(data) {
+                            $log.info("Saved Recently Viewed");
+                    });
+            }
+    }
 
-		//add course to recently viewed courses
-		var courseIdx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
-		if (courseIdx == -1){
-			$rootScope.user.recentlyViewed.unshift(course._id.$oid);
-			if ($rootScope.user.recentlyViewed.length > 7) {
-				$rootScope.user.recentlyViewed.pop();
-			}
-		} else {
-			var lastViewed = $rootScope.user.recentlyViewed[0];
-			$rootScope.user.recentlyViewed[0] = course._id.$oid;
-			$rootScope.user.recentlyViewed[courseIdx] = lastViewed;
-		}
-		dataSrv.editUser($rootScope.user).then(function(data) {
-			$log.info("Saved Recently Viewed");
-		});
-		return course;
-	}
+    /**
+     * This function dynamically creates the preferences modal. Due to async
+     * nature of the login function, this needs to be done dynamically. 
+     */
+    function openPreferencesModal() {
+        var modal = angular.element("#preferences-modal");
+        var scope = $rootScope.$new();
 
-	function removeFromRecentlyViewed(course) {
-		var idx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
-		if (idx != -1) {
-			$rootScope.user.recentlyViewed.splice(idx,1);
-			dataSrv.editUser($rootScope.user).then(function(data) {
-				$log.info("Saved Recently Viewed");
-			});
-		}
-	}
+        // append the record to the scope
+        scope.user = $rootScope.user;
+        $q.all([dataSrv.getDepts()]).then( function(data) {
+            scope.depts = data[0];
+            var memberDepts = [];
+            if (scope.user.dept) {
+                angular.forEach(scope.user.dept, function(d){
+                    memberDepts.push($filter("filter")(scope.depts, { abbrev : d})[0]);
+                });
+            }
+            scope.memberDepts = memberDepts;
+            scope.selectedDept = {"dept" : scope.depts[0]};
+            //initialize user preferences
+            if (!scope.user.preferences) {
+                scope.preferences = {  "filters" : {},
+                                        "recentlyViewed" : {"number" : 7}
+                                    }
+            } else {
+                scope.preferences = scope.user.preferences;
+            }
 
-    function updateUser(memberDepts) {
-    	var modal = angular.element("#preferences-modal");
-    	modal.modal('hide');
-    	angular.element(".modal-backdrop")[0].remove();
-    	angular.element("body").removeClass("modal-open");
-   		var user = $rootScope.user;
-   		$log.info("updating user");
-   		user.dept = [];
-   		user.division = [];
-   		user.recentlyViewed = [];
-   		angular.forEach(memberDepts, function(dept){
-   			if (user.division.indexOf(dept.division) == -1) {
-   				user.division.push(dept.division);
-   			}
-   			user.dept.push(dept.abbrev);
-   		});
-   		dataSrv.editUser(user).then(function(resp){
-   			authSrv.userInfoFound(user);
-   		}, function(err) {
-   			$log.error("Unable to update user. Logging out...");
-   			authSrv.logout();
-   		});
-   	}
+            scope.addDept = function() {
+                if (scope.memberDepts.indexOf(scope.selectedDept.dept) == -1){
+                    scope.memberDepts.push(scope.selectedDept.dept);
+                }
+            }
 
-   	function canApprove(proposal) {
-   		//if it is a course, not a proposal, don't allow approvals
-   		if (proposal.name || !$rootScope.user.chairs) {
-   			return false;
-   		}
-   		var chairs = $rootScope.user.chairs;
-   		switch(proposal.stage) {
-   			case 0:
-   				if ($rootScope.user.name == proposal.owner || chairs.indexOf(proposal.newCourse.dept) != -1 
-   						|| chairs.indexOf("APC") != -1 || chairs.indexOf(proposal.newCourse.division) != -1 ){
-   					return true;
-   				}
-   				break;
-   			case 1:
-   				if ( (proposal.newCourse.division && chairs.indexOf(proposal.newCourse.division) != -1) || chairs.indexOf("APC") != -1 ) {
-   					return true;
-   				}
-   				break;
-   			default:
-   				if (chairs.indexOf("APC") != -1) {
-					return true;
-				}
-				break;
-   		}
-   		return false;
-   	}
+            scope.removeDept = function(dept) {
+                var index = scope.memberDepts.indexOf(dept);
+                scope.memberDepts.splice(index,1);
+            } 
 
-   	/**
-	 * This function returns an array of the user's pending, approved and 
-	 * rejected proposals, in that order. Approved and rejected are gathered
-	 * from the user's profile, and pending is calculated seperately. 
-   	 */
-   	function getUserStats(openPropCount) {
-   		var approved = 0;
-   		var total = 0;
-   		if ($rootScope.user.totalProps) {
-   			total = $rootScope.user.totalProps;
-   		}
-   		if ($rootScope.user.approved) {
-   			approved = $rootScope.user.approved;
-   		}
-   		return [openPropCount, approved, total-openPropCount-approved];
-   	}
-}
+            scope.selected;
+            // filters options
+            scope.filterList = filterList;
+            scope.filters = { "name" : scope.filterList[0].name,
+                              "value" : ""};
 
-function editDepts() {
-	return {
-		restrict : "E",
-		templateUrl : "templates/edit-departments.html",
-		controller : "editDeptsCtrl", 
-		scope : {
-			depts : "=",
-			user : "=",
-			memberDepts : "="
-		}
-	}
+            scope.toggleCollapsed = function() {
+                if (scope.collapsed) {
+                        scope.collapsed = false;
+                } else {
+                        scope.collapsed = true;
+                }
+            }
+            scope.select = function(menu) {
+                    scope.selected = menu;
+            }
+            scope.addAllPropsFilter = function() {
+                    scope.preferences.filters["name"] = scope.filters.name;
+                    scope.preferences.filters["value"] = scope.filters.value;
+                    scope.filters.value = "";
+            }
+            scope.removeAllPropsFilter = function(filter) {
+                    scope.preferences.filters = {};
+            }
+
+            scope.savePreferences = function() {
+                    scope.user.preferences = scope.preferences;
+                    var modal = angular.element("#preferences-modal");
+                    modal.modal('hide');
+                    angular.element(".modal-backdrop")[0].remove();
+                    angular.element("body").removeClass("modal-open");
+                    scope.user.division = [];
+                    scope.user.dept = [];
+                    angular.forEach(scope.memberDepts, function(dept){
+                            if (scope.user.division.indexOf(dept.division) == -1) {
+                                    scope.user.division.push(dept.division);
+                            }
+                            if (scope.user.dept.indexOf(dept.abbrev) == -1) {
+                                scope.user.dept.push(dept.abbrev);
+                            }
+                    });
+                    scope.user.recentlyViewed = scope.user.recentlyViewed.slice(0,scope.user.preferences.recentlyViewed.number);
+                    dataSrv.editUser(scope.user).then(function(resp){
+                        $rootScope.user = scope.user;
+                        authSrv.userUpdated();
+                    }, function(err) {
+                            $log.error("Unable to update user. Logging out...");
+                            authSrv.logout();
+                    });
+            }   
+
+            scope.clearData = function() {
+                scope.filters = { "name" : scope.filterList[0].name,
+                              "value" : ""};
+                var memberDepts = [];
+                if (scope.user.dept) {
+                    angular.forEach(scope.user.dept, function(d){
+                        memberDepts.push($filter("filter")(scope.depts, { abbrev : d})[0]);
+                    });
+                }
+                scope.memberDepts = memberDepts;
+                scope.selectedDept = {"dept" : scope.depts[0]};
+            }
+            var content = modal.find("#preferences-modal-content");
+            //clear old modal content
+            content.empty();
+            //load new content
+            content.append($compile(
+                    "<div class=\"modal-header\">"
+                            +"<button type=\"button\" ng-click=\"clearData()\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><a href=\"\"><span aria-hidden=\"true\">&times;</span></a></button>"
+                            +"<h4 class=\"modal-title\" id=\"user-preferences\">User Preferences</h4>"
+                    +"</div>"
+                    +"<div class=\"modal-body\">"
+                    +"<div class=\"container-fluid\">"
+                        +"<div class=\"col-xs-4\">"
+                            +"<div class=\"list-group\">"
+                                +"<a href=\"\" title=\"Edit department membership\" class=\"list-group-item\" ng-class=\"{'active' : selected=='depts'}\" ng-click=\"select('depts')\">Departments</a>"
+                                +"<a href=\"\" title=\"Default Filters\" class=\"list-group-item\" ng-class=\"{'active' : selected=='All Proposals'}\" ng-click=\"select('All Proposals')\">Default Filters</a>"
+                                +"<a href=\"\" title=\"Recently Viewed\" class=\"list-group-item\" ng-class=\"{'active' : selected=='Recently Viewed'}\"ng-click=\"select('Recently Viewed')\">Recently Viewed</a>"
+                            +"</div>"
+                        +"</div>"
+                        +"<div class=\"col-xs-8\" id=\"view-port\" ng-switch=\"selected\">"
+                            +"<div class=\"container-fluid\" ng-switch-when=\"depts\">"
+                                +"<div class=\"container-fluid\">"
+                                    +"<label>Department<span style=\"color: red;\">*</label>"
+                                    +"<form class=\"form-inline\">"
+                                        +"<div class=\"form-group\">"
+                                                        +"<select class=\"form-control\" ng-required=\"required\" ng-model=\"selectedDept.dept\" ng-options=\"dept as dept.name for dept in depts | orderBy : 'name' track by dept.abbrev\">"
+                                                        +"</select>"
+                                                        +"<div class=\"col-xs-4 col-xs-offset-4 btn btn-primary\" ng-click=\"addDept()\">Add</div>"
+                                                +"</div>"
+                                        +"</form>"
+                                +"</div>"
+                                +"<div class=\"container-fluid\">"
+                                        +"<div class=\"col-xs-4 btn-removable\" ng-repeat=\"dept in memberDepts track by dept.abbrev\">{{dept.abbrev}}<div class=\"pull-right\" aria-hidden=\"true\" ng-click=\"removeDept(dept)\">&times;</div>"
+                                        +"</div>"
+                                +"</div>"
+                            +"</div>"
+                            +"<div class=\"container-fluid\" ng-switch-when=\"All Proposals\">"
+                                +"<h5>All Proposals</h5>"
+                                +"<p>Select the default filters you would like applied to the 'All Proposals' view. You can always override them when you visit the 'All Proposals' page. </p>"
+                                +"<form> "
+                                    +"<div class=\"form-group\" title=\"Select your default filters\">"
+                                        +"<label>Filters</label>"
+                                        +"<select class=\"form-control\" ng-model=\"filters.name\" ng-options=\"item.name as item.name for item in filterList\">"
+                                        +"</select>"
+                                    +"</div>"
+                                +"</form>"
+                                +"<label>Value</label>"
+                                +"<form class=\"form-inline\">"
+                                    +"<div class=\"form-group\" title=\"Enter the filter value\">"
+                                        +"<input type=\"text\" class=\"form-control\" ng-model=\"filters.value\"/>"
+                                        +"<div class=\"btn btn-primary\" ng-click=\"addAllPropsFilter()\">Add</div>"
+                                    +"</div>"
+                                +"</form>"
+                                +"<div class=\"container-fluid\">"
+                                     +"<div ng-if=\"preferences.filters.name && preferences.filters.value\" class=\"col-xs-12 btn-removable\">"
+                                     +"{{preferences.filters.name}} = {{preferences.filters.value}}<div class=\"pull-right\" aria-hidden=\"true\" ng-click=\"removeAllPropsFilter(filter)\">&times;</div>"
+                                    +"</div>"
+                                 +"</div>"
+                            +"</div>"
+                            +"<div class=\"container-fluid\" ng-switch-when=\"Recently Viewed\">"
+                                +"<h5>Recently Viewed</h5>"
+                                +"<p>Enter how many recently viewed pages you would like to see.</p>"
+                                +"<form>" 
+                                    +"<div class=\"form-group\" title=\"Select your default filters\">"
+                                        +"<input type=\"number\" class=\"form-control\"  ng-model=\"preferences.recentlyViewed.number\">"
+                                        +"</input>"
+                                    +"</div>"
+                                +"</form>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>" //end of modal body
+                +"<div class=\"modal-footer\">"
+                    +"<button class=\"btn btn-default\" ng-click=\"clearData()\" data-dismiss=\"modal\">Close</button>"
+                    +"<button class=\"btn btn-success\" ng-click=\"savePreferences()\">Save</button>"
+                +"</div>")(scope)
+            );
+    
+            modal.modal("show");
+        });
+    }
+
+    function canApprove(proposal) {
+        //if it is a course, not a proposal, don't allow approvals
+        if (proposal.name || !$rootScope.user.chairs) {
+                return false;
+        }
+        var chairs = $rootScope.user.chairs;
+        switch(proposal.stage) {
+                case 0:
+                        if ($rootScope.user.name == proposal.owner || chairs.indexOf(proposal.newCourse.dept) != -1 
+                                        || chairs.indexOf("APC") != -1 || chairs.indexOf(proposal.newCourse.division) != -1 ){
+                                return true;
+                        }
+                        break;
+                case 1:
+                        if ( (proposal.newCourse.division && chairs.indexOf(proposal.newCourse.division) != -1) || chairs.indexOf("APC") != -1 ) {
+                                return true;
+                        }
+                        break;
+                default:
+                        if (chairs.indexOf("APC") != -1) {
+                                return true;
+                        }
+                        break;
+        }
+        return false;
+    }
+
+    /**
+     * This function returns an array of the user's pending, approved and 
+     * rejected proposals, in that order. Approved and rejected are gathered
+     * from the user's profile, and pending is calculated seperately. 
+     */
+    function getUserStats(openPropCount) {
+            var approved = 0;
+            var total = 0;
+            if ($rootScope.user.totalProps) {
+                    total = $rootScope.user.totalProps;
+            }
+            if ($rootScope.user.approved) {
+                    approved = $rootScope.user.approved;
+            }
+            return [openPropCount, approved, total-openPropCount-approved];
+    }
 }
 
 function editPermissionsModal() {
@@ -247,7 +374,7 @@ function editPermissionsModal() {
 				deptAbbrevs.push(d.abbrev);
 			});
 			
-			$scope.chairs = [ "APC", "Science","Humanities", "Fine Arts" ].concat(deptAbbrevs);
+			$scope.chairs = [ "APC", "History and Social Sciences","Humanities and Fine Arts", "Mathematics, Science and Physical Education" ].concat(deptAbbrevs);
 
 		    $scope.addChair = function() {
 		   		if ($scope.chairsHeld.indexOf($scope.selectedChair) == -1){
@@ -304,84 +431,7 @@ function editPermissionsModal() {
 
 function userPreferencesModal() {
 	return {
-		require: "^^editDepts",
 		restrict : "E",
-		templateUrl : "templates/preferences-modal.html",
-		controller : ["$rootScope", "$scope", '$log', "$filter", "userSrv", "dataSrv", "filterList", function($rootScope, $scope, $log, $filter, userSrv, dataSrv, filterList) {
-			$scope.collapsed = true;
-			$scope.selected;
-			// filters options
-			$scope.filterList = filterList;
-			$scope.filters = {"allProposals" : 
-												{ "name" : $scope.filterList[0].name,
-												  "value" : ""},
-							  "myChanges" : 	{ "name" : $scope.filterList[0].name,
-												  "value" : ""}
-							};
-
-			//vars for editDepts directive
-			$scope.memberDepts;
-
-			//initialize user preferences
-			if (!$scope.user || !$scope.user.preferences) {
-				$scope.preferences = { 
-										"allProposals" : [],
-										"myChanges" : [],
-										"recentlyViewed" : {"number" : 7},
-										"homepage"	: "/" }
-			} else {
-				$scope.preferences = $scope.user.preferences;
-			}
-
-			// options for a homepage
-			$scope.pages = { 	
-								"Dashboard" 		: "/" ,
-								"Profile"			: "/user/",
-								"My Changes"  		: "/dashboard/mychanges",
-								"All Proposals" 	: "/dashboard/allchanges"
-							};
-
-			$scope.toggleCollapsed = function() {
-				if ($scope.collapsed) {
-					$scope.collapsed = false;
-				} else {
-					$scope.collapsed = true;
-				}
-			}
-			$scope.select = function(menu) {
-				$scope.selected = menu;
-			}
-			$scope.addAllPropsFilter = function() {
-				var filter = {};
-				filter["name"] = $scope.filters.allProposals.name;
-				filter["value"] = $scope.filters.allProposals.value;
-				$scope.preferences.allProposals.push(filter);
-				$scope.filters.allProposals.value = "";
-			}
-			$scope.addMyChangesFilter = function() {
-				var filter = {};
-				filter["name"] = $scope.filters.myChanges.name;
-				filter["value"] = $scope.filters.myChanges.value;
-				$scope.preferences.myChanges.push(filter);
-				$scope.filters.myChanges.value = "";
-			}
-			$scope.removeAllPropsFilter = function(filter) {
-				var idx = $scope.preferences.allProposals.indexOf(filter);
-				$scope.preferences.allProposals.splice(idx,1);
-			}
-			$scope.removeMyChangesFilter = function(filter) {
-				var idx = $scope.preferences.myChanges.indexOf(filter);
-				$scope.preferences.myChanges.splice(idx,1);
-			}
-
-			$scope.savePreferences = function() {
-				$scope.user.preferences = $scope.preferences;
-				userSrv.updateUser($scope.memberDepts);
-			}
-		}],
-		scope : {
-			depts : "=",
-			user : "="
-		}
+		templateUrl : "templates/preferences-modal.html"
 	}
 }
