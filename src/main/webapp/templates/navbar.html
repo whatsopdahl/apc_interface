@@ -7,7 +7,7 @@
 				</a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div ng-if="user" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav nav-pills navbar-left">
 	        <li ng-class="{active: page == '/dashboard'}"><a href="#/">Dashboard</a></li>
 	        <li ng-class="{active: page == '/dashboard/mychanges'}" ng-show="user.role != 'Registrars_Office'"><a href="#/dashboard/mychanges">My Changes</a></li>
@@ -33,7 +33,7 @@
 	            <li><a href="" ng-click="openUserPreferences()" ng-show="user.role != 'Registrars_Office'">Preferences</a></li>
 	            <li ng-if="user.chairs && user.chairs.indexOf('APC') != -1"><a href="" ng-click="openPermissionsModal()">Grant Permissions</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#/" ng-click="logout()">Logout</a></li>
+	            <li><a href="logout.jsp">Logout</a></li>
 	          </ul>
 	        </li>
 	      </ul>

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,14 +128,21 @@ public class ApcController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try{
-//            final Headers headers = t.getResponseHeaders();
-//            headers.add("Access-Control-Allow-Origin", "*");
-//            headers.add("Access-Control-Allow-Credentials", "true");
-//            headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             String resp; 
             int status;
             Map<String, String[]> params = request.getParameterMap();
             switch(request.getParameter("q")){
+                case "getUser" :
+                    try {
+                        Principal up = request.getUserPrincipal();
+                        String email = up.getName();
+                        resp = this.dao.getUser(email);
+                        status = STATUS_OK;
+                    } catch (Exception ex) {
+                        resp = ex.getMessage();
+                        status = STATUS_BAD_REQUEST;
+                    }
+                    break;
                 case "courses":
                     try{
                         resp = this.dao.getAll(Collections.COLLECTION_COURSES);
@@ -155,11 +163,7 @@ public class ApcController extends HttpServlet {
                     break;
                 case "users":
                     try{
-                        if (params.containsKey("u")){
-                            resp = this.dao.getUser(request.getParameter("u"));
-                        } else {
-                            resp = this.dao.getAll(Collections.COLLECTION_USERS);
-                        }
+                        resp = this.dao.getAll(Collections.COLLECTION_USERS);
                         status = STATUS_OK;
                     } catch (Exception ex){
                         resp = ex.getMessage();
@@ -248,7 +252,8 @@ public class ApcController extends HttpServlet {
                 case "edituser":
                     try{
                         String user = data.getString("u");
-                        resp = this.dao.editUser(user, data);
+                        JsonObject newUserData = data.getJsonObject("d");
+                        resp = this.dao.editUser(user, newUserData);
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex){
                         resp = ex.getMessage();

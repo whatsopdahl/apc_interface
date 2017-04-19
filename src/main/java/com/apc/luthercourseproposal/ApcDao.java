@@ -254,7 +254,7 @@ public class ApcDao {
      * @param email the email of the intended user
      * @return a JSON formatted string of the user's data
      */
-    public String getUser(String email){
+    public String getUser(String email) throws Exception{
         final StringBuilder json = new StringBuilder();
         FindIterable iterable = db.getCollection(Collections.COLLECTION_USERS.toString()).find(eq("email", email));
 
@@ -264,7 +264,19 @@ public class ApcDao {
                json.append(document.toJson());
            }
         });
-       
+        
+        if (json.length() == 0) {
+            JsonObjectBuilder user = Json.createObjectBuilder();
+            user.add("email", email);
+            //user.add("name", name);
+            user.add("recentlyViewed", Json.createArrayBuilder().build());
+            user.add("dept",Json.createArrayBuilder().build());
+            user.add("division", Json.createArrayBuilder().build());
+            user.add("totalProps", 0);
+            JsonObject userObj = user.build();
+            editUser(email, userObj);
+            return userObj.toString();
+        }
         return json.toString();
     }
     

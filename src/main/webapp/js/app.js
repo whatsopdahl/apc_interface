@@ -1,14 +1,5 @@
 var app = angular.module('CourseProposalApp', ['ngRoute']);
 
-var gapi;
-var auth2;
-
-app.constant("auth_config", {
-	client_id: '118685821641-30uo5v5evufhdqdlabs2a71p711qla3e.apps.googleusercontent.com',
-	hosted_domain : "luther.edu",
-    scope: 'profile email'
-});
-
 app.constant("EVENTS",{
     PROPOSAL_ADDED : 'proposal-added',
     PROPOSAL_REMOVED : 'proposal-removed',
@@ -19,30 +10,22 @@ app.constant("EVENTS",{
 app.controller("mainCtrl", mainCtrl);
 
 //initialization funciton
-app.run(["$rootScope", "authSrv", "auth_config", "$location", "AUTH_EVENTS", "$log", "dataSrv",
-			 function($rootScope, authSrv, auth_config, $location, AUTH_EVENTS, $log, dataSrv) {
-
-	var postLogInRoute;
-
-	gapi.load("auth2", function() {
-		auth2 = gapi.auth2.init( auth_config );
-	});
-
+app.run(["$rootScope", "authSrv", "$location", "AUTH_EVENTS", "$log", "dataSrv", "userSrv",
+			 function($rootScope, authSrv, $location, AUTH_EVENTS, $log, dataSrv, userSrv) {
 	$rootScope.$on('$locationChangeStart', function(event, next, prev){
-		//if login required (i.e. is not login page) and you're logged out, capture the current path
+            $rootScope.prev=prev;
+            $rootScope.next=next;
         if (!$rootScope.user) {
-        	nextPath = next.split('#')[1];
-        	if (!( nextPath == '/login')) {
-	        	$rootScope.next = $location.url();
-			}
-        	$location.url('/login');
+            dataSrv.getUser().then(function (user) {
+                $rootScope.user = user;
+                $rootScope.$broadcast(AUTH_EVENTS.userUpdated);
+            });
         }
-        $rootScope.prev = prev;
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv"];
-function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv, userSrv) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv", "AUTH_EVENTS"];
+function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv, userSrv, AUTH_EVENTS) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
     $scope.test = "hello";
@@ -68,7 +51,7 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     }
      
     initData();
-
+    
     function initData() { 
         return $q.all([dataSrv.getProposals(), dataSrv.getCourses(), dataSrv.getDepts()]).then(function(data){
             $scope.allProposals.elements = data[0];
@@ -85,18 +68,18 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     }
 
 
-	$rootScope.$watch(function(){
-		$scope.user = $rootScope.user;
-		$scope.page = $location.path();
-		if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
-            $scope.recentlyViewed.elements = [];
-            var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
-            angular.forEach($scope.user.recentlyViewed, function(objId) {
-                $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
-            });
-       		$scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
-       	}
-	});
+    $rootScope.$watch(function(){
+            $scope.user = $rootScope.user;
+            $scope.page = $location.path();
+            if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
+                $scope.recentlyViewed.elements = [];
+                var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
+                angular.forEach($scope.user.recentlyViewed, function(objId) {
+                    $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
+                });
+                    $scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
+            }
+    });
 
     $rootScope.$on('proposal-added', function(event, courseName) {
         initData().then(function(){
@@ -112,7 +95,7 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
         initData();
     });
     
-    $rootScope.$on('proposal-archived', function() {
-        initData();
+    $rootScope.$on('auth-login-success', function() {
+       initData(); 
     });
 };

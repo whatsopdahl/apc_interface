@@ -5,7 +5,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -14,13 +14,6 @@
 
     <!-- icon -->
     <link rel="icon" href="img/CourseProposalLogo.png"/>
-
-    <!-- Google OAuth 2.0 API pre-reqs -->
-    <!-- Google Platform API -->
-    <script src="https://apis.google.com/js/platform.js"></script>
-
-    <!-- Client ID for OAuth-->
-    <meta name="google-signin-client_id" content="118685821641-30uo5v5evufhdqdlabs2a71p711qla3e.apps.googleusercontent.com"/>
 
     <!-- Char JS -->
     <script src="libs/chart.js/Chart.min.js"></script>
@@ -44,8 +37,6 @@
 </head>
 
 <body ng-app="CourseProposalApp" ng-controller="mainCtrl">
-    <!-- This element does not display, only for google's API -->
-    <div id="g-signin2" style="display: none;"></div>
 	<navbar ng-disabled="retrievingData"></navbar>
 	<!-- Using ng-route, our application will load whatever we need depending on our routing definitions in app.config -->
     <div style="margin-top:60px;" ng-view ng-show="!retrievingData"></div>
@@ -65,7 +56,7 @@
         </div>
     </div>
     <edit-permissions-modal ng-if="user.chairs && user.chairs.indexOf('APC') != -1" user="user" depts="depts"></edit-permissions-modal>
-    <user-preferences-modal user="user" depts="depts"></user-preferences-modal>
+    <user-preferences-modal></user-preferences-modal>
     <archives-modal></archives-modal>
     <div align="center" ng-show="retrievingData" style="margin-top: 30px;">
         <img src="img/loading.gif"/>

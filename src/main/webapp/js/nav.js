@@ -2,8 +2,8 @@ var app = angular.module("CourseProposalApp");
 
 app.controller("navCtrl", navCtrl);
 
-navCtrl.$inject = ["$scope", "$rootScope", "$log", "$filter", "dataSrv"];
-function navCtrl($scope, $rootScope, $log, $filter, dataSrv) {
+navCtrl.$inject = ["$scope", "$rootScope", "$log", "$filter", "dataSrv", "userSrv"];
+function navCtrl($scope, $rootScope, $log, $filter, dataSrv, userSrv) {
 	$scope.courseQuery = { query : ""};
 
 	$rootScope.$watch("user", function(){
@@ -19,10 +19,7 @@ function navCtrl($scope, $rootScope, $log, $filter, dataSrv) {
         modal.modal("show");
     }
 
-    $scope.openUserPreferences = function() {
-    	var modal = angular.element("#preferences-modal");
-    	modal.modal("show");
-    }
+    $scope.openUserPreferences = userSrv.openPreferencesModal;
 }
 
 app.directive("navbar", function() {
