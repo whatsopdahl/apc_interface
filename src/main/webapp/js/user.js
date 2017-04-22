@@ -18,32 +18,6 @@ function userCtrl($rootScope, $scope, $log, $filter, allProposals, userSrv) {
 			userSrv.openPreferencesModal();
 		}
 	}
-
-        /* Create the user stat chart */
-        var chartData = {
-                        labels : ["Pending","Approved","Rejected"],
-                        datasets : [
-                                {
-                                        /* Here is where we put the data: pending approvals, then approved, finally rejected*/
-                                        data : userSrv.getUserStats($scope.myChanges.elements.length),
-                                        backgroundColor : [
-                                                        "#f0ad4e",
-                                                        "#5cb85c",
-                                                        "#d9534f"
-                                        ],
-                                        hoverBackgroundColor: [
-                                                        "#ec971f",
-                                                        "#449d44",
-                                                        "#c9302c"
-                                        ]
-                                }
-                        ]	
-                };
-        var ctx = angular.element("#proposal-stat-chart");
-        var statsChart = new Chart(ctx, {
-                type : 'doughnut',
-                data : chartData
-        })
         
         $rootScope.$on("user-updated", function() {
            $scope.user = $rootScope.user; 
@@ -56,9 +30,8 @@ function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filt
             addToRecentlyViewed : addToRecentlyViewed,
             removeFromRecentlyViewed : removeFromRecentlyViewed,
             openPreferencesModal : openPreferencesModal,
-            canApprove : canApprove,
-            getUserStats : getUserStats
-    }
+            canApprove : canApprove
+        }
 
     /**
      *  takes a courseName and finds the corresponding course in the database. If there is a
@@ -80,7 +53,7 @@ function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filt
             var index = 0;
             while (index < allProposals.elements.length && proposal == null) {
                     var checkProposal = allProposals.elements[index];
-                    if ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) {
+                    if ( checkProposal && (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) {
                             proposal = checkProposal;
                     }
                     index++;
@@ -333,23 +306,6 @@ function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filt
                         break;
         }
         return false;
-    }
-
-    /**
-     * This function returns an array of the user's pending, approved and 
-     * rejected proposals, in that order. Approved and rejected are gathered
-     * from the user's profile, and pending is calculated seperately. 
-     */
-    function getUserStats(openPropCount) {
-            var approved = 0;
-            var total = 0;
-            if ($rootScope.user.totalProps) {
-                    total = $rootScope.user.totalProps;
-            }
-            if ($rootScope.user.approved) {
-                    approved = $rootScope.user.approved;
-            }
-            return [openPropCount, approved, total-openPropCount-approved];
     }
 }
 

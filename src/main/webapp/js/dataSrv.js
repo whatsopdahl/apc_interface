@@ -2,7 +2,7 @@ var app = angular.module("CourseProposalApp");
 
 app.constant("DATA_URL", "data");
 
-app.factory("dataSrv", ["$http", "$log", "DATA_URL", function($http, $log, DATA_URL){
+app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($http, $log, $rootScope, DATA_URL){
 	return {
 		getUser : getUser,
 		getUsers : getUsers,

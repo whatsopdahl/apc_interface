@@ -187,12 +187,12 @@ public class ApcDao {
     public String editUser(String user, JsonObject data) throws Exception {
         Document doc = parseDocument(data.toString());
         JsonObjectBuilder successObj = buildSuccessObj("edit user");
-        if (("").equals(this.getUser(user))) {
-            db.getCollection(Collections.COLLECTION_USERS.toString()).insertOne(doc);
-        } else {
-            db.getCollection(Collections.COLLECTION_USERS.toString()).updateOne(eq("email", user), new Document("$set", doc));
-        }
+        db.getCollection(Collections.COLLECTION_USERS.toString()).updateOne(eq("email", user), new Document("$set", doc));
         return successObj.build().toString();
+    }
+    
+    private void addUser(JsonObject data) throws Exception {
+        db.getCollection(Collections.COLLECTION_USERS.toString()).insertOne(parseDocument(data.toString()));
     }
     
     
@@ -254,8 +254,9 @@ public class ApcDao {
      * @param email the email of the intended user
      * @return a JSON formatted string of the user's data
      */
-    public String getUser(String email) throws Exception{
+    public String getUser(String email, String name) throws Exception{
         final StringBuilder json = new StringBuilder();
+        email = email+"@luther.edu";
         FindIterable iterable = db.getCollection(Collections.COLLECTION_USERS.toString()).find(eq("email", email));
 
         iterable.forEach(new Block<Document>() {
@@ -268,13 +269,12 @@ public class ApcDao {
         if (json.length() == 0) {
             JsonObjectBuilder user = Json.createObjectBuilder();
             user.add("email", email);
-            //user.add("name", name);
+            user.add("name", name);
             user.add("recentlyViewed", Json.createArrayBuilder().build());
             user.add("dept",Json.createArrayBuilder().build());
             user.add("division", Json.createArrayBuilder().build());
-            user.add("totalProps", 0);
             JsonObject userObj = user.build();
-            editUser(email, userObj);
+            addUser(userObj);
             return userObj.toString();
         }
         return json.toString();

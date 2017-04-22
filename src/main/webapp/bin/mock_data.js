@@ -7,196 +7,29 @@
  * Recreate all collections
  */
 users = [
-			{ name : "Aidan Schmitt",
+			{ name : "Aidan Michael Schmitt",
 			  email : "schmai01@luther.edu",
 			  dept : ["CS"],
 			  recentlyViewed : []
 			},
-			{ name : "Kyle McNeese",
+			{ name : "Kyle Joseph McNeese",
 			  email : "mcneky01@luther.edu",
 			  dept : ["CS", "MATH"],
-                          chairs : ["CS", "MATH", "APC"],
+              chairs : ["CS", "MATH", "APC"],
 			  recentlyViewed : []
 			},
-			{ name : "Jonathan Opdahl",
+			{ name : "Jonathan Stuart Opdahl",
 		          email : "opdajo01@luther.edu",
 		  	  dept : ["CS", "MATH"],
 		  	  chairs : ["CS", "MATH", "APC"],
 		  	  recentlyViewed : []
 		  	},
-			{ name : "Brad Miller",
+			{ name : "Bradley N. Miller",
 			  email : "bmiller@luther.edu",
 			  dept : ["CS"],
 			  chairs : ["APC", "CS"],
 			  recentlyViewed : []
-			},
-			{ name : "Todd Pedlar",
-			  email : "pedlto01@luther.edu",
-			  dept : ["PHYS"],
-			  chairs: ["APC"],
-			  recentlyViewed : []
-			},
-			{ name: "Novian Whitsitt",
-		 	  email: "whitsino@luther.edu",
-		 	  dept: ["AFST"],
-		 	  chairs : ["AFST"],
-		 	  recentlyViewed : []
-		 	},
-		 	{ name: "Mark Eichinger",
-		 	  email: "eichma01@luther.edu",
-		 	  dept: ["BIO"],
-		 	  chars: ["BIO"],
-		 	  recentlyViewed : []
-		 	},
-		 	{ name: "Brad Chamberlain",
-		 	  email: "chambr01@luther.edu",
-		 	  dept: ["CHEM"],
-		 	  chairs: ["CHEM"],
-		 	  recentlyViewed : []
-		 	},
-		 	{ name: "Philip Freeman",
-		 	  email: "freephi01@luther.edu",
-		 	  dept: ["CLAS"],
-		 	  chairs: ["CLAS"],
-		 	  recentlyViewed : []
-		 	},
-		 	{ name:"Kimberly Powell",
-		 	  email: "kimpowell@luther.edu",
-		 	  dept: ["COMS"],
-		 	  chairs: ["COMS"],
-		      recentlyViewed : []
-		 	},
-		 	{ name: "Steve Holland",
-		  	  email: "steve.holland@luther.edu",
-		  	  dept: ["ECON", "ACCTG"],
-		  	  chairs: ["ECON", "ACCTG"],
-			  recentlyViewed : []
-		  	},
-	  		{ name: "Barbara Bohach",
-	  	  	  email: "bohachba@luther.edu",
-	  	  	  dept: ["ED"],
-	  	  	  chairs: ["ED"],
-	  		  recentlyViewed : []
-	  		},
-	  		{ name: "Martin Klammer",
-		  	  email : "klammerm@luther.edu",
-		  	  dept: ["ENG"],
-		  	  chairs: ["ENG"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name: "Eric Baack",
-		  	  email: "baacer01@luther.edu",
-		  	  dept: ["ENVS"],
-		  	  chairs: ["ENVS"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Brian Solberg",
-		  	  email: "solberbr@luther.edu",
-		  	  dept: ["HLTH", "ATHTR"],
-		  	  chairs: ["HLTH", "ATHTR"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name: "Brian Caton",
-		      email: "catobr01@luther.edu",
-		  	  dept: ["HIST"],
-		  	  chairs: ["HIST"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Pedro dos Santos",
-		  	  email : "dosspe01@luther.edu",
-		  	  dept: ["IS"],
-		  	  chairs: ["IS"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Eric Westlund",
-		  	  email : "wester01@luther.edu",
-		  	  dept: ["MATH"],
-		  	  charis : ["MATH"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name: "David Thompson",
-		  	  email : "thomda01@luther.edu",
-		  	  dept: ["LING"],
-		  	  chairs : ["LING"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Ed Tebbenhoff",
-		  	  email : "tebbened@luther.edu",
-		  	  dept: ["MUST"],
-		  	  chairs: ["MUST"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name: "Gregory Peterson",
-		  	  email : "petegr01@luther.edu",
-		  	  dept: ["MUS"],
-		  	  chairs: ["MUS"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "La Donna McGohan",
-		   	  email : "mcgola01@luther.edu",
-		   	  dept: ["NURS"],
-		   	  chairs : ["NURS"],
-		   	  recentlyViewed : []
-		   	},
-		   	{ name : "Rebecca Sullivan",
-		      email : "sullivre01@luther.edu",
-		  	  dept: ["ENG"],
-		  	  chairs: ["PAID"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Storm Bailey",
-		   	  email : "baileyst@luther.edu",
-		   	  dept : ["PHIL"],
-		   	  chairs: ["PHIL"],
-		   	  recentlyViewed : []
-		   	},
-		   	{ name : "James Perez",
-		   	  email : "perezjam@luther.edu",
-		   	  dept : ["PHYS"],
-		   	  chairs: ["PHYS"],
-		   	  recentlyViewed : []
-		   	},
-		   	{ name : "Paul Gardner",
-		      email : "gardnerp@luther.edu",
-		  	  dept : ["POLS"],
-		  	  chairs : ["POLS"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "David Njus",
-		  	  email : "njusdavi@luther.edu",
-		  	  dept: ["PSYC"],
-		  	  chairs : ["PSYC"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Sean Burke",
-		  	  email : "burkse01@luther.edu",
-		  	  dept: ["REL"],
-		  	  chairs: ["REL"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Laurie Iudin-Nelson",
-		  	  email : "iudinnel@luther.edu",
-		  	  dept : ["RUS"],
-		  	  chairs: ["RUS"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Ben Moore",
-		  	  email : "mooreben@luther.edu",
-		  	  dept : ["THE", "ARTH"],
-		  	  chairs : ["THE", "ARTH"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Char Kunkel",
-		  	  email : "kunkelch@luther.edu",
-		  	  dept: ["WGST"],
-		  	  chairs : ["WGST"],
-		  	  recentlyViewed : []
-		  	},
-		  	{ name : "Kent Lee",
-		  	  email : "leekentd@luther.edu",
-		  	  dept : ["CS"],
-		  	  recentlyViewed : []
-		  	}
+			}
 		];
 depts = [
 			{ "name" : "Accounting",
@@ -640,7 +473,7 @@ eng80 = db.courses.findOne({"name" : "ENG-80", "title" : "We Know Many Words"});
 proposals = [
   {
 	"terms": ["Fall", "Spring"],
-	"owner": "Jonathan Opdahl",
+	"owner": "Jonathan Stuart Opdahl",
 	"stage": 3,
 	"staffing": "We will need to hire a new professor.",
 	"rationale": "How long until this proposal gets rejected?",
@@ -650,12 +483,12 @@ proposals = [
 	"newCourse": cs1,
 	"fees": null,
 	"est_enrollment": 25,
-	"instructors": ["Jon Opdahl"],
+	"instructors": ["Jonathan Stuart Opdahl"],
 	"comments":  [],
   },
   {
 	"terms": ["Fall", "Spring", "J-term"],
-	"owner": "Kyle McNeese",
+	"owner": "Kyle Joseph McNeese",
 	"stage": 0,
 	"staffing": "Any professor in the CS department can teach this course.",
 	"rationale": "Let's call it what it is....",
@@ -665,15 +498,15 @@ proposals = [
 	"newCourse": newcs150,
 	"fees": null,
 	"est_enrollment": 30,
-	"instructors": ["Jonathan Opdahl", "Kyle McNeese"],
+	"instructors": ["Jonathan Stuart Opdahl", "Kyle Joseph McNeese"],
 	"comments":  [
 		{
-			"user": "Jonathan Opdahl",
+			"user": "Jonathan Stuart Opdahl",
 			"date": "Mon Nov 14 2016 21:26:22 GMT-0600 (CST)",
 			"body": "Hi Kyle"
 		},
 		{
-			"user": "Kyle McNeese",
+			"user": "Kyle Joseph McNeese",
 			"date": "Mon Nov 14 2016 21:29:26 GMT-0600 (CST)",
 			"body": "suh dude"
 		}
@@ -681,7 +514,7 @@ proposals = [
   },
   {
 	"terms": ["Fall", "Spring", "J-term"],
-	"owner": "Kyle McNeese",
+	"owner": "Kyle Joseph McNeese",
 	"stage": 0,
 	"staffing": "",
 	"rationale": "Students will no longer do original research. Ever since the rat race incident of 2015, we don't let psych students conduct original research.",
@@ -691,12 +524,12 @@ proposals = [
 	"newCourse": newpsych352,
 	"fees": null,
 	"est_enrollment": 30,
-	"instructors": ["Jonathan Opdahl", "Kyle McNeese"],
+	"instructors": ["Jonathan Stuart Opdahl", "Kyle Joseph McNeese"],
 	"comments":  []
   },
   {
   	"terms" : [ "FALL", "SPRING" ],
-  	"owner" : "Brad Miller",
+  	"owner" : "Bradley N. Miller",
   	"stage" : 4,
   	"staffing" : "",
   	"rationale" : "",
@@ -706,12 +539,12 @@ proposals = [
   	"newCourse" : testing,
   	"fees" : "",
   	"est_enrollment" : 15,
-  	"instructors" : [ "Jonathan Opdahl", "Kyle McNeese", "Aidan Schmitt" ],
+  	"instructors" : [ "Jonathan Stuart Opdahl", "Kyle Joseph McNeese", "Aidan Michael Schmitt" ],
   	"comments" : [ ]
   	},
   	{
   		"terms" : [ "FALL", "SPRING" ],
-  		"owner" : "Jonathan Opdahl",
+  		"owner" : "Jonathan Stuart Opdahl",
   		"stage" : 1,
   		"staffing" : "",
   		"rationale" : "We removed the QUANT all college requirement as anyone who takes this class will have achieved this by the time they take this class.",
@@ -720,13 +553,13 @@ proposals = [
   		"oldCourse" : oldMath452,
 	  	"fees" : "",
 	  	"est_enrollment" : 12,
-	  	"instructors" : [ "Eric Westlund" ],
+	  	"instructors" : [ "Jonathan Stuart Opdahl" ],
 	  	"comments" : [ ],
 	  	"newCourse" : newMath452,
 	  	},
 	{
 		"terms" : [ "FALL", "J-TERM", "SPRING" ],
-		"owner" : "Aidan Schmitt",
+		"owner" : "Aidan Michael Schmitt",
 		"stage" : 0,
 		"staffing" : "",
 		"rationale" : "As Harry Potter remains the defining work of literature for the millenial generation, the study of young adult literature previously highlighted in this course can be synthesized into the study of J.K. Rowling's series of novels.",
@@ -736,7 +569,7 @@ proposals = [
 		"date" : "2016-12-06T15:28:55.769Z",
 		"fees" : "",
 		"est_enrollment" : 35,
-		"instructors" : [ "Rebecca Sullivan" ],
+		"instructors" : [ "Bradley N. Miller" ],
 		"comments" : [ ]
 	},
 	{
@@ -745,7 +578,7 @@ proposals = [
 			"J-TERM",
 			"SPRING"
 		],
-		"owner" : "Jonathan Opdahl",
+		"owner" : "Jonathan Stuart Opdahl",
 		"stage" : 1,
 		"staffing" : "",
 		"rationale" : "To understand how to paint with a brush, one must become one with the paint through touching and immersing themselves in the experience of finger painting.",
@@ -756,7 +589,7 @@ proposals = [
 		"fees" : "",
 		"est_enrollment" : 14,
 		"instructors" : [
-			"Philip Freeman"
+			"Aidan Michael Schmitt"
 		],
 		"comments" : [ ]
 	},
@@ -764,7 +597,7 @@ proposals = [
 		"terms" : [
 			"J-TERM"
 		],
-		"owner" : "Kyle McNeese",
+		"owner" : "Kyle Joseph McNeese",
 		"stage" : 2,
 		"staffing" : "",
 		"rationale" : "Tea and funny accents epitomize the British in the early part of the 1800 to current day.",
@@ -775,13 +608,13 @@ proposals = [
 		"fees" : "",
 		"est_enrollment" : 0,
 		"instructors" : [
-			"Kimberly Powell"
+			"Kyle Joseph McNeese"
 		],
 		"comments" : [ ]
 	},
 	{
 	  	"terms": ["Fall", "Spring"],
-	  	"owner": "Kyle McNeese",
+	  	"owner": "Kyle Joseph McNeese",
 	  	"stage": 2,
 	  	"staffing": "We will need to hire a new professor.",
 	  	"rationale": "It will help.",
@@ -791,7 +624,7 @@ proposals = [
 	  	"newCourse": cs80,
 	  	"fees": null,
 	  	"est_enrollment": 20,
-	  	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	  	"instructors": ["Jonathan Stuart Opdahl", "Kyle Joseph McNeese"],
 	  	"comments":  [],
     },
 	{
@@ -806,7 +639,7 @@ proposals = [
 	  	"newCourse": eng80,
 	  	"fees": null,
 	  	"est_enrollment": 15,
-	  	"instructors": ["Kyle McNeese"],
+	  	"instructors": ["Kyle Joseph McNeese"],
 	  	"comments":  [],
 	}
 ];
@@ -848,7 +681,7 @@ eng70 = {
 
 cs75prop = {
 	  	"terms": ["Fall", "Spring"],
-	  	"owner": "Kyle McNeese",
+	  	"owner": "Kyle Joseph McNeese",
 	  	"stage": 2,
 	  	"staffing": "We will need to hire a new professor.",
 	  	"rationale": "It will help.",
@@ -858,7 +691,7 @@ cs75prop = {
 	  	"newCourse": cs75,
 	  	"fees": null,
 	  	"est_enrollment": 20,
-	  	"instructors": ["Jon Opdahl", "Kyle McNeese"],
+	  	"instructors": ["Jon Opdahl", "Kyle Joseph McNeese"],
 	  	"comments":  []
     };
 
@@ -874,7 +707,7 @@ eng75prop = {
 	  	"newCourse": eng75,
 	  	"fees": null,
 	  	"est_enrollment": 15,
-	  	"instructors": ["Kyle McNeese"],
+	  	"instructors": ["Kyle Joseph McNeese"],
 	  	"comments":  []
 	};
 

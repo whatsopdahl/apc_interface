@@ -135,8 +135,13 @@ public class ApcController extends HttpServlet {
                 case "getUser" :
                     try {
                         Principal up = request.getUserPrincipal();
+                        ApcUser user = new ApcUser();
+                        String name = user.getUserName(up.getName());
                         String email = up.getName();
-                        resp = this.dao.getUser(email);
+                        if (name == null) {
+                            name = email;
+                        }
+                        resp = this.dao.getUser(email, name);
                         status = STATUS_OK;
                     } catch (Exception ex) {
                         resp = ex.getMessage();
@@ -242,7 +247,7 @@ public class ApcController extends HttpServlet {
             switch(data.getString("q")){
                 case "create":               
                     try{
-                        resp = this.dao.createProposal(data);
+                        resp = this.dao.createProposal(data.getJsonObject("d"));
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex){
                         resp = ex.getClass().toString() + ": " +ex.getMessage();
