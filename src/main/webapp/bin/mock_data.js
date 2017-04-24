@@ -611,36 +611,6 @@ proposals = [
 			"Kyle Joseph McNeese"
 		],
 		"comments" : [ ]
-	},
-	{
-	  	"terms": ["Fall", "Spring"],
-	  	"owner": "Kyle Joseph McNeese",
-	  	"stage": 2,
-	  	"staffing": "We will need to hire a new professor.",
-	  	"rationale": "It will help.",
-	  	"impact": "1st",
-	  	"date": "2016-03-15T16:46:33.616Z",
-	  	"oldCourse": cs75,
-	  	"newCourse": cs80,
-	  	"fees": null,
-	  	"est_enrollment": 20,
-	  	"instructors": ["Jonathan Stuart Opdahl", "Kyle Joseph McNeese"],
-	  	"comments":  [],
-    },
-	{
-		"terms": ["Fall", "Spring"],
-	  	"owner": "Jon Opdahl",
-	  	"stage": 3,
-	  	"staffing": "We can use our current professors. They agreed to it.",
-	  	"rationale": "More words, more better.",
-	  	"impact": "1st",
-	  	"date": "2016-02-15T16:46:33.616Z",
-	  	"oldCourse": eng75,
-	  	"newCourse": eng80,
-	  	"fees": null,
-	  	"est_enrollment": 15,
-	  	"instructors": ["Kyle Joseph McNeese"],
-	  	"comments":  [],
 	}
 ];
 
@@ -712,8 +682,36 @@ eng75prop = {
 	};
 
 
-cs80prop = db.proposals.findOne({"date" : "2016-03-15T16:46:33.616Z"});
-eng80prop = db.proposals.findOne({"date" : "2016-02-15T16:46:33.616Z"});
+cs80prop = 	{
+	  	"terms": ["Fall", "Spring"],
+	  	"owner": "Kyle Joseph McNeese",
+	  	"stage": 5,
+	  	"staffing": "We will need to hire a new professor.",
+	  	"rationale": "It will help.",
+	  	"impact": "1st",
+	  	"date": "2016-03-15T16:46:33.616Z",
+	  	"oldCourse": cs75,
+	  	"newCourse": cs80,
+	  	"fees": null,
+	  	"est_enrollment": 20,
+	  	"instructors": ["Jonathan Stuart Opdahl", "Kyle Joseph McNeese"],
+	  	"comments":  [],
+    };
+eng80prop = 	{
+		"terms": ["Fall", "Spring"],
+	  	"owner": "Jon Opdahl",
+	  	"stage": 5,
+	  	"staffing": "We can use our current professors. They agreed to it.",
+	  	"rationale": "More words, more better.",
+	  	"impact": "1st",
+	  	"date": "2016-02-15T16:46:33.616Z",
+	  	"oldCourse": eng75,
+	  	"newCourse": eng80,
+	  	"fees": null,
+	  	"est_enrollment": 15,
+	  	"instructors": ["Kyle Joseph McNeese"],
+	  	"comments":  [],
+	};
 
 var archives = [
 	{

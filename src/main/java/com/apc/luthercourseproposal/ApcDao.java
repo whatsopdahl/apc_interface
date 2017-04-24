@@ -394,7 +394,7 @@ public class ApcDao {
         } else {
             //old course and existing archives
             //get archive by old course id, then $push new prop to that archive
-            Document idDoc = parseDocument(proposal.getJsonObject("oldCourse").getString("_id"));
+            Document idDoc = parseDocument(proposal.getJsonObject("oldCourse").getJsonObject("_id").getString("$oid"));
             BasicDBObject newDoc = (BasicDBObject) new BasicDBObject().put("$push", proposal);
             db.getCollection(Collections.COLLECTION_ARCHIVES.toString()).findOneAndUpdate(idDoc, newDoc);
         }

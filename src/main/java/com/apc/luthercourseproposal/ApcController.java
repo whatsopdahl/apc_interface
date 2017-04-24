@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.*;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -153,11 +154,16 @@ public class ApcController extends HttpServlet {
             }
             JsonArray roles = roleBuilder.build();
             
+            ServletContext sc = getServletContext();
+            String ldap_url = sc.getInitParameter("ldap_url");
+            String ldap_user = sc.getInitParameter("ldap_user");
+            String ldap_pass = sc.getInitParameter("ldap_pass");
+            
             switch(request.getParameter("q")){
                 case "getUser" :
                     try {
                         Principal up = request.getUserPrincipal();
-                        ApcUser user = new ApcUser();
+                        ApcUser user = new ApcUser(ldap_url, ldap_pass, ldap_user);
                         String name = user.getUserName(up.getName());
                         String email = up.getName();
                         if (name == null) {

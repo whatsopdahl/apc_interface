@@ -26,14 +26,10 @@ app.factory("authSrv", ["$log", "$rootScope", "$location", "AUTH_EVENTS", "dataS
 
 		$log.info("logged in as " + $rootScope.user.name);
 		//if we have a requested url, redirect to it. otherwise go to the dash
-		if ($rootScope.next){
+                if ($rootScope.user.role.length == 1 && $rootScope.user.role.indexOf('Registrars_Office') > -1) {
+			$location.path("/dashboard/allchanges").replace();
+		} else if ($rootScope.next){
 			$location.path($rootScope.next).replace();
-		} else if ($rootScope.user.preferences) {
-			var url = $rootScope.user.preferences.homepage;
-			if (url == "/user/") {
-				url += $rootScope.user.name;
-			}
-			$location.path(url).replace();
 		} else {
 			$location.path("/").replace();
 		}

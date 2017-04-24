@@ -15,12 +15,12 @@ app.run(["$rootScope", "authSrv", "$location", "AUTH_EVENTS", "$log", "dataSrv",
 	$rootScope.$on('$locationChangeStart', function(event, next, prev){
             $rootScope.prev=prev;
             $rootScope.next=next;
-        if (!$rootScope.user) {
-            dataSrv.getUser().then(function (user) {
-                $rootScope.user = user;
-                $rootScope.$broadcast(AUTH_EVENTS.userUpdated);
-            });
-        }
+            if (!$rootScope.user) {
+                dataSrv.getUser().then(function (user) {
+                    $rootScope.user = user;
+                    $rootScope.$broadcast(AUTH_EVENTS.userUpdated);
+                });
+            }
 	});
 }]);
 
@@ -56,6 +56,8 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
         return $q.all([dataSrv.getProposals(), dataSrv.getCourses(), dataSrv.getDepts()]).then(function(data){
             $scope.allProposals.elements = data[0];
             $scope.registrarData.elements = data[0].filter(pastAllStages);
+            $log.debug($scope.registrarData);
+            $log.debug($scope.user);
             $scope.courses = data[1];
             $scope.depts = data[2];
             $scope.retrievingData = false;

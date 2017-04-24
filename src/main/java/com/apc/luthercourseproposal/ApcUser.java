@@ -20,20 +20,20 @@ public class ApcUser {
     private LdapContext ldapCtx;
     private SearchControls searchCtrls;
     
-    ApcUser() {
-        this.ldapCtx = getLdapContext();
+    ApcUser(String ldap_url, String ldap_pass, String ldap_user) {
+        this.ldapCtx = getLdapContext(ldap_url, ldap_pass, ldap_user);
         this.searchCtrls = getSearchControls();
     }
     
-    private static LdapContext getLdapContext() {
+    private static LdapContext getLdapContext(String ldap_url, String ldap_pass, String ldap_user) {
         LdapContext ctx = null;
         try {
             Hashtable<String, String> env = new Hashtable<String, String>();
             env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
             env.put(Context.SECURITY_AUTHENTICATION, "Simple");
-            env.put(Context.SECURITY_PRINCIPAL, "CN=apc,OU=Vendor,DC=lc,DC=luther,DC=edu");//input user & password for access to ldap
-            env.put(Context.SECURITY_CREDENTIALS, "72455&TMFbgL4");
-            env.put(Context.PROVIDER_URL, "ldap://dc-1.lc.luther.edu:3268");
+            env.put(Context.SECURITY_PRINCIPAL, ldap_user);//input user & password for access to ldap
+            env.put(Context.SECURITY_CREDENTIALS, ldap_pass);
+            env.put(Context.PROVIDER_URL, ldap_url);
             ctx = new InitialLdapContext(env, null);
         }catch (NamingException e) {
             System.err.println(e.getMessage());
@@ -57,8 +57,6 @@ public class ApcUser {
             if (answer.hasMore()) {
                 Attributes attrs = answer.next().getAttributes();
                 displayName = attrs.get("displayName").toString().split(":")[1].trim();
-            } else {
-                System.out.println("user not found.");
             }
         } catch (Exception ex) {
         }

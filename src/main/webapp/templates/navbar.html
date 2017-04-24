@@ -10,7 +10,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav nav-pills navbar-left">
 	        <li ng-class="{active: page == '/dashboard'}"><a href="#/">Dashboard</a></li>
-	        <li ng-class="{active: page == '/dashboard/mychanges'}" ng-show="user.role != 'Registrars_Office'"><a href="#/dashboard/mychanges">My Changes</a></li>
+	        <li ng-class="{active: page == '/dashboard/mychanges'}" ng-hide="user.role.length ==1 && user.role.indexOf( 'Registrars_Office' ) != -1"><a href="#/dashboard/mychanges">My Changes</a></li>
 	        <li ng-class="{active: page == '/dashboard/allchanges'}"><a href="#/dashboard/allchanges">All Proposals</a></li>
 	        <li ng-class="{active: page == '/dashboard/registrarView'}"><a href="#/dashboard/registrarView">Registrar</a></li>
 		<li ng-class="{active: page == '/dashboard/archives'}"><a href="#/dashboard/archives">Archives</a></li>

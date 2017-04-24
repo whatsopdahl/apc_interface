@@ -197,7 +197,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a ng-href="#/{{course.name}}/edit"><div class="btn btn-primary pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
+                   <button type="button" title="View Archive"  class="btn btn-default pull-right" ng-click="getArchiveById(course._id.$oid)">See Archive</button>
+                   <a ng-href="#/{{course.name}}/edit"><div class="btn btn-primary pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-pencil"></span> Edit</div></a>
                 </div>
             </div>
         </h5>

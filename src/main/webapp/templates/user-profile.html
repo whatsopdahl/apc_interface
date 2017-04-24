@@ -31,7 +31,7 @@
 					</div>
 				</blockquote>
 			</li>
-			<li>
+			<li ng-hide="user.role.length ==1 && user.role.indexOf( 'Registrars_Office' ) != -1">
 				<blockquote>
 					<div class="quote-header">
 						<h4>Departments </h4><span class="badge">{{user.dept.length}}</span>
@@ -43,7 +43,7 @@
 					</div>
 				</blockquote>
 			</li>
-			<li>
+			<li ng-hide="user.role.length ==1 && user.role.indexOf( 'Registrars_Office' ) != -1">
 				<blockquote>
 					<div class="quote-header">
 						<h4>Division</h4><span class="badge">{{user.division.length}}</span>
@@ -55,7 +55,7 @@
 					</div>
 				</blockquote>
 			</li>
-			<li>
+			<li ng-hide="user.role.length ==1 && user.role.indexOf( 'Registrars_Office' ) != -1">
 				<blockquote>
 					<div class="quote-header">
 						<h4>Chairs Held</h4>

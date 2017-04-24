@@ -20,7 +20,10 @@ app.constant("filterList",
 );
 
 app.controller("courseListCtrl", ["$scope", "$rootScope", "$log", "$filter", "filterList", function($scope, $rootScope, $log, $filter, filterList){
-
+        $rootScope.$watch("user", function() {
+           $scope.user = $rootScope.user; 
+        });
+        
 	$scope.filterList = filterList;
 
 	$scope.sortList = [ { idx : -1, name:"None"},
