@@ -2,7 +2,7 @@ var app = angular.module("CourseProposalApp");
 
 app.constant("DATA_URL", "data");
 
-app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($http, $log, $rootScope, DATA_URL){
+app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", "EVENTS", function($http, $log, $rootScope, DATA_URL, EVENTS){
 	return {
 		getUser : getUser,
 		getUsers : getUsers,
@@ -133,6 +133,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($htt
 				data : data
 		}).then(function success(response) {
 			$log.info("Proposal successfully created");
+                        $rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, proposal.newCourse.name);
 			return response.data;
 		}, function(response){
 			handleError(response);
@@ -168,6 +169,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($htt
 				data : data
 		}).then(function success() {
 			$log.info("Proposal saved");
+                        $rootScope.$broadcast(EVENTS.PROPOSAL_UPDATED);
 		}, function(response){
 			handleError(response);
 		});
@@ -184,6 +186,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($htt
 				data : data
 		}).then(function success() {
 			$log.info("Proposal deleted");
+                        $rootScope.$broadcast(EVENTS.PROPOSAL_REMOVED);
 		}, function(response){
 			handleError(response);
 		});
@@ -201,7 +204,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($htt
 				url : DATA_URL,
 				data : data
 		}).then(function success() {
-			$log.info("Proposal deleted");
+			$log.info("Proposal archived");
 		}, function(response) {
 			handleError(response);
 		});
@@ -274,6 +277,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "DATA_URL", function($htt
 				data : data
 		}).then(function success() {
 			$log.info("Proposal deleted");
+                        $rootScope.$broadcast(EVENTS.PROPOSAL_ARCHIVED);
 		}, function(response) {
 			handleError(response);
 		});

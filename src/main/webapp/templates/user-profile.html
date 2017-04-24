@@ -19,6 +19,18 @@
 					</div>
 				</blockquote>
 			</li>
+                        <li>
+				<blockquote>
+					<div class="quote-header">
+						<h4>Roles </h4><span class="badge">{{user.role.length}}</span>
+					</div>
+					<div class="quote-body">
+						<div class="well well-sm" ng-repeat="r in user.role" style="margin-right: 15px;">
+							{{r}}
+						</div>
+					</div>
+				</blockquote>
+			</li>
 			<li>
 				<blockquote>
 					<div class="quote-header">

@@ -24,8 +24,8 @@ app.run(["$rootScope", "authSrv", "$location", "AUTH_EVENTS", "$log", "dataSrv",
 	});
 }]);
 
-mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv", "AUTH_EVENTS"];
-function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv, userSrv, AUTH_EVENTS) {
+mainCtrl.$inject = ["$rootScope", "$scope", "$log", "$location", "$q", "$filter","authSrv", "dataSrv", "userSrv", "AUTH_EVENTS", "EVENTS"];
+function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dataSrv, userSrv, AUTH_EVENTS, EVENTS) {
 	$scope.logout = authSrv.logout;
 	$scope.user = null;
     $scope.test = "hello";
@@ -81,17 +81,21 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
             }
     });
 
-    $rootScope.$on('proposal-added', function(event, courseName) {
+    $rootScope.$on(EVENTS.PROPOSAL_ADDED, function(event, courseName) {
         initData().then(function(){
             userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
         });
     });
 
-    $rootScope.$on('proposal-removed', function() {
+    $rootScope.$on(EVENTS.PROPOSAL_REMOVED, function() {
         initData();
     });
 
-    $rootScope.$on('proposal-updated', function() {
+    $rootScope.$on(EVENTS.PROPOSAL_UPDATED, function() {
+        initData();
+    });
+    
+    $rootScope.$on(EVENTS.PROPOSAL_ARCHIVED, function() {
         initData();
     });
     

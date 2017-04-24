@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,6 +86,13 @@ public class ApcController extends HttpServlet {
     private static final Logger logger = Logger.getLogger( ApcController.class.getName() );
     
     /**
+     * Roles in the application
+     */
+    private static final String ROLE_ADMIN = "Students";
+    private static final String ROLE_FACULTY = "Faculty";
+    private static final String ROLE_REGISTRAR = "Registrars_Office";
+    
+    /**
      * Handles the HTTP requests. Switches based on method type, and handles
      * each method differently. If an invalid method is used, it sends a 405
      * error and tells the client which methods are available.
@@ -131,6 +139,20 @@ public class ApcController extends HttpServlet {
             String resp; 
             int status;
             Map<String, String[]> params = request.getParameterMap();
+            
+            JsonArrayBuilder roleBuilder = Json.createArrayBuilder();
+            
+            if (request.isUserInRole(ROLE_ADMIN)) {
+                roleBuilder.add(ROLE_ADMIN);
+            }
+            if (request.isUserInRole(ROLE_REGISTRAR)) {
+                roleBuilder.add(ROLE_REGISTRAR);
+            }
+            if (request.isUserInRole(ROLE_FACULTY)) {
+                roleBuilder.add(ROLE_FACULTY);
+            }
+            JsonArray roles = roleBuilder.build();
+            
             switch(request.getParameter("q")){
                 case "getUser" :
                     try {
@@ -141,7 +163,7 @@ public class ApcController extends HttpServlet {
                         if (name == null) {
                             name = email;
                         }
-                        resp = this.dao.getUser(email, name);
+                        resp = this.dao.getUser(email, name, roles);
                         status = STATUS_OK;
                     } catch (Exception ex) {
                         resp = ex.getMessage();
@@ -243,10 +265,25 @@ public class ApcController extends HttpServlet {
             Reader reqReader = request.getReader();
             JsonObject data = Json.createReader(reqReader).readObject();
             String resp;
-
+            
+            ArrayList<String> roles = new ArrayList<String>();
+            
+            if (request.isUserInRole(ROLE_ADMIN)) {
+                roles.add(ROLE_ADMIN);
+            }
+            if (request.isUserInRole(ROLE_REGISTRAR)) {
+                roles.add(ROLE_REGISTRAR);
+            }
+            if (request.isUserInRole(ROLE_FACULTY)) {
+                roles.add(ROLE_FACULTY);
+            }
+            
             switch(data.getString("q")){
                 case "create":               
                     try{
+                        if (!roles.contains(ROLE_ADMIN) && !roles.contains(ROLE_FACULTY)) {
+                            throw new Exception("User is not allowed to create a proposal - contact admin for priveleges.");
+                        }
                         resp = this.dao.createProposal(data.getJsonObject("d"));
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex){
@@ -267,7 +304,10 @@ public class ApcController extends HttpServlet {
                     break;
                 case "save":
                     try{
-                        resp = this.dao.saveProposal(data);
+                        if (!roles.contains(ROLE_ADMIN) && !roles.contains(ROLE_FACULTY)) {
+                            throw new Exception("User is not allowed to update proposals - contact admin for priveleges.");
+                        }
+                        resp = this.dao.saveProposal(data.getJsonObject("d"));
                     } catch (Exception ex){
                         resp = ex.getMessage();
                         response.setStatus(STATUS_BAD_REQUEST);
@@ -275,7 +315,7 @@ public class ApcController extends HttpServlet {
                     break;        
                 case "delete":
                     try{
-                        resp = this.dao.deleteProposal(data);
+                        resp = this.dao.deleteProposal(data.getJsonObject("d"));
                         response.setStatus(STATUS_CREATED);
                     } catch (Exception ex){
                         resp = ex.getMessage();
@@ -284,6 +324,9 @@ public class ApcController extends HttpServlet {
                     break;
                 case "archive":
                     try {
+                        if (!roles.contains(ROLE_REGISTRAR) && !roles.contains(ROLE_ADMIN)) {
+                            throw new Exception("User is not allowed to finalize proposals.");
+                        }
                         JsonObject archive;
                         JsonObject prop = data.getJsonObject("d");
                         resp = this.dao.archiveProposal(prop);

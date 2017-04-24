@@ -5,13 +5,13 @@
             <button type="button" title="View Archive"  class="btn btn-default approveReject" ng-click="getArchiveById(course.newCourse._id.$oid)">See Archive</button>
         </li>
         <li>
-            <button type="button" ng-if="canApprove(course) && user.role != 'Registrars_Office'" title="Approve" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span> Approve</button>
+            <button type="button" ng-if="canApprove(course) && course.stage < 4" title="Approve" class="btn btn-success approveReject" ng-click="approve(course)"><span class="glyphicon glyphicon-ok"></span> Approve</button>
         </li>
         <li>
-            <button type="button" ng-if="canApprove(course) && user.role != 'Registrars_Office'" title="Reject" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span> Reject</button>
+            <button type="button" ng-if="canApprove(course) && course.stage < 4" title="Reject" class="btn btn-danger approveReject" ng-click="reject(course)"><span class="glyphicon glyphicon-remove"></span> Reject</button>
         </li>
         <li>
-            <button type="button" title="Course should be added to catalog before this is clicked. It will be removed from this list." class="btn btn-info approveReject" ng-click="archiveProp(course);" ng-show="user.role == 'Registrars_Office'"><span class="glyphicon glyphicon-ok"></span> Complete</button>
+            <button type="button" title="Course should be added to catalog before this is clicked. It will be removed from this list." class="btn btn-info approveReject" ng-click="archiveProp(course);" ng-show="(user.role.indexOf('Registrars_Office') > -1 || user.role.indexOf('Students') > -1) && course.stage==4"><span class="glyphicon glyphicon-ok"></span> Complete</button>
         </li>   
     </ul>
 </div>

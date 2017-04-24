@@ -108,14 +108,12 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 
 		if ($scope.proposal._id) {
 			dataSrv.saveProposal($scope.proposal).then(function(data) {
-				$rootScope.$broadcast(EVENTS.PROPOSAL_UPDATED);
 				$location.path("#/"+$scope.proposal.newCourse.name).replace();
 			}, function(err) {
 				$log.err("Proposal not saved: "+err);
 			});
 		} else {
 			dataSrv.createProposal($scope.proposal).then(function(data) {
-				$rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, $scope.proposal.newCourse.name);
 				$location.path("#/"+$scope.proposal.newCourse.name).replace();
 			}, function(err) {
 				$log.err("Proposal not saved: "+err);

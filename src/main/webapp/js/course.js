@@ -85,7 +85,6 @@ app.factory("courseSrv", ["$rootScope", "$location", "userSrv", "dataSrv", "EVEN
 		modal.modal('hide');
 		userSrv.removeFromRecentlyViewed(course);
     	dataSrv.deleteProposal(course).then(function(data) {
-    		$rootScope.$broadcast(EVENTS.PROPOSAL_REMOVED);
     		angular.element(".modal-backdrop")[0].remove();
     		angular.element("body").removeClass("modal-open");
     		$location.path("/");

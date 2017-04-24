@@ -15,16 +15,13 @@ function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
     }
 
     function archiveProposal(proposal) {
-        dataSrv.archiveProposal(proposal).then(function(data) {
-            $log.info("Proposal Archived");
-            $rootScope.$broadcast(EVENTS.PROPOSAL_ARCHIVED); 
-        })
+        dataSrv.archiveProposal(proposal);
     }
 
     function getArchiveById(courseId) {
         dataSrv.getArchive(courseId).then(function(data) {
             openArchiveModal(data);
-        })
+        });
     }
 
     function archiveSearch(query, type) {
@@ -50,7 +47,11 @@ function archiveSrv($log, dataSrv, $compile, $rootScope, EVENTS) {
         
         //load new content
         if (scope.record.msg) {
-            content.append($compile("<div class=\"text-center\" style=\"margin: 10px 0 10px 0;\">No archives exist</div>")(scope));
+            content.append($compile(
+                "<div class=\"modal-header\">"
+                    +"<button ng-if=\"!required\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
+                    +"<h4 class=\"modal-title\">No Archives Exist for this course </h4>"
+                +"</div>")(scope));
         } else {
             content.append($compile(
                 "<div class=\"modal-header\">"

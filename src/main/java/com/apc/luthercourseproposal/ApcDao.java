@@ -15,9 +15,11 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
+import javax.json.JsonValue;
 import org.bson.Document;
 import org.bson.json.JsonParseException;
 import org.bson.types.ObjectId;
@@ -254,11 +256,11 @@ public class ApcDao {
      * @param email the email of the intended user
      * @return a JSON formatted string of the user's data
      */
-    public String getUser(String email, String name) throws Exception{
+    public String getUser(String email, String name, JsonArray roles) throws Exception{
         final StringBuilder json = new StringBuilder();
         email = email+"@luther.edu";
         FindIterable iterable = db.getCollection(Collections.COLLECTION_USERS.toString()).find(eq("email", email));
-
+        
         iterable.forEach(new Block<Document>() {
            @Override
            public void apply(final Document document){
@@ -275,9 +277,18 @@ public class ApcDao {
             user.add("division", Json.createArrayBuilder().build());
             JsonObject userObj = user.build();
             addUser(userObj);
-            return userObj.toString();
+            user.add("role", roles);
+            return user.build().toString();
         }
-        return json.toString();
+        StringReader in = new StringReader(json.toString());
+        JsonReader read = Json.createReader(in);
+        JsonObject obj = read.readObject();
+        JsonObjectBuilder res = Json.createObjectBuilder();
+        for (String key : obj.keySet()) {
+            res.add(key, obj.get(key));
+        }
+        res.add("role", roles);
+        return res.build().toString();
     }
     
     /**
