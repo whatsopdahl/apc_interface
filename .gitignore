@@ -1,2 +1,3 @@
 target/
-!target/*.war
+!target/ROOT.war
+src/main/webapp/WEB-INF/context.xml
