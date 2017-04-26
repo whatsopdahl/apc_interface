@@ -2,7 +2,7 @@
 	<div class="page-header" style="margin-top: 0px;">
 			<h2>{{user.name}} 
 				<div ng-if="user.chairs && user.chairs.indexOf('APC') != -1" title="Change Permissions" class="btn btn-primary pull-right" ng-click="openEditModal('permissions')" style="margin-right:10px;"><span class="glyphicon glyphicon-education"></span> Edit Permissions</div>
-				<div title="Edit Preferences" class="btn btn-primary pull-right" ng-click="openEditModal('preferences')" style="margin-right:10px;" ng-show="user.role.length == 1 && user.role.indexOf( 'Registrars_Office' ) != -1"><span class="glyphicon glyphicon-user"></span>User Preferences</div>
+				<div title="Edit Preferences" class="btn btn-primary pull-right" ng-click="openEditModal('preferences')" style="margin-right:10px;" ng-hide="user.role.length == 1 && user.role.indexOf( 'Registrars_Office' ) != -1"><span class="glyphicon glyphicon-user"></span>User Preferences</div>
 			</h2>
 	</div>
 	<div class="col-xs-8">
