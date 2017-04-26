@@ -89,7 +89,7 @@ public class ApcController extends HttpServlet {
     /**
      * Roles in the application
      */
-    private static final String ROLE_ADMIN = "Students";
+    private static final String ROLE_ADMIN = "apc_development";
     private static final String ROLE_FACULTY = "Faculty";
     private static final String ROLE_REGISTRAR = "Registrars_Office";
     
