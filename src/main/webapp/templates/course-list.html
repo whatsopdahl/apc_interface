@@ -2,7 +2,7 @@
     <div class="section-bar container-fluid">
         <a href="#/dashboard/{{data.link}}"><h4 class="section-title">{{data.title}}</h4><a href="dashboard/{{data.link}}">
         <button type="button" ng-if="data.title == 'My Changes' && user.role.length == 1 && user.role.indexOf( 'Registrars_Office' ) == -1" class="btn btn-success pull-right" style="margin-right: 10px;">
-            <a ng-href="#/newproposal" class="newPropLink">New Proposal</a>
+            <a ng-href="#/newproposal" class="newPropLink">New Course</a>
         </button>
     </div>
     <div ng-if="data.title=='All Proposals'" class="container-fluid">

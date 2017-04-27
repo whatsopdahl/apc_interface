@@ -399,7 +399,8 @@ public class ApcDao {
             db.getCollection(Collections.COLLECTION_ARCHIVES.toString()).findOneAndUpdate(idDoc, newDoc);
         }
         try {
-            deleteProposal(proposal);
+            Document doc = parseDocument(proposal.toString());
+            db.getCollection(Collections.COLLECTION_PROPOSALS.toString()).deleteOne(doc); 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
