@@ -92,7 +92,7 @@ function archivesCtrl($scope, $rootScope, $log, archiveSrv) {
     $scope.openArchiveModal = archiveSrv.openArchiveModal;
 
     $scope.results = [];
-    $scope.types = ["name", "title", "year", ];
+    $scope.types = ["name", "title"];
     $scope.type = $scope.types[0];
     $scope.query = "";
 
