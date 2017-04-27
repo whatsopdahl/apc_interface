@@ -15,7 +15,7 @@ users = [
 			{ name : "Kyle Joseph McNeese",
 			  email : "mcneky01@luther.edu",
 			  dept : ["CS", "MATH"],
-              chairs : ["CS", "MATH", "APC"],
+                          chairs : ["CS", "MATH", "APC"],
 			  recentlyViewed : []
 			},
 			{ name : "Jonathan Stuart Opdahl",
