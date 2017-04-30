@@ -98,6 +98,7 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
     });
     
     $rootScope.$on(EVENTS.PROPOSAL_ARCHIVED, function() {
+        $location.url("/dashboard");
         initData();
     });
     

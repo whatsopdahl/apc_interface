@@ -33,69 +33,12 @@ function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filt
             canApprove : canApprove
         }
 
-    /**
-     *  takes a courseName and finds the corresponding course in the database. If there is a
-     *  proposal related to the course, finds that and adds it to the recently viewed. Returns
-     *  the course/proposal. 
-     *
-     *  @param courseName name of the course
-     *  @param courses courses to search (all)
-     *  @param allProposals proposals to search (all)
-     *  @return course/proposal object
-     */
     function addToRecentlyViewed(courseName, courses, allProposals) {
-            //the course must exist in the database, so find it first
-
-            var course = $filter("filter")(courses, {name: courseName}, true)[0];
-
-            //check to see if it is in any proposals.
-            var proposal = null;
-            var index = 0;
-            while (index < allProposals.elements.length && proposal == null) {
-                    var checkProposal = allProposals.elements[index];
-                    if ( checkProposal && ( (checkProposal.oldCourse && checkProposal.oldCourse.name == course.name) || 
-                            (checkProposal.newCourse && checkProposal.newCourse.name == course.name) ) ) {
-                            proposal = checkProposal;
-                    }
-                    index++;
-            }
-
-            //if the course is in a proposal, use that instead of the plain course.
-            if (proposal) {
-                    removeFromRecentlyViewed(course);
-                    course = proposal;
-            }
-
-            //add course to recently viewed courses
-            var courseIdx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
-            if (courseIdx == -1){
-                    $rootScope.user.recentlyViewed.unshift(course._id.$oid);
-                    var limit = 7;
-                    if ($rootScope.user.preferences) {
-                        limit = $rootScope.user.preferences.recentlyViewed.number;
-                    }
-                    if ($rootScope.user.recentlyViewed.length > limit) {
-                            $rootScope.user.recentlyViewed.pop();
-                    }
-            } else {
-                    var lastViewed = $rootScope.user.recentlyViewed[0];
-                    $rootScope.user.recentlyViewed[0] = course._id.$oid;
-                    $rootScope.user.recentlyViewed[courseIdx] = lastViewed;
-            }
-            dataSrv.editUser($rootScope.user).then(function(data) {
-                    $log.info("Saved Recently Viewed");
-            });
-            return course;
+        return dataSrv.addToRecentlyViewed(courseName, courses, allProposals);
     }
-
+    
     function removeFromRecentlyViewed(course) {
-            var idx = $rootScope.user.recentlyViewed.indexOf(course._id.$oid);
-            if (idx != -1) {
-                    $rootScope.user.recentlyViewed.splice(idx,1);
-                    dataSrv.editUser($rootScope.user).then(function(data) {
-                            $log.info("Saved Recently Viewed");
-                    });
-            }
+        dataSrv.removeFromRecentlyViewed(course);
     }
 
     /**
