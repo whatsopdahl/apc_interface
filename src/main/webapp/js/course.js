@@ -8,17 +8,20 @@ app.directive("courseInfo", courseInfo);
 courseCtrl.$inject=["$rootScope", "$scope", "$filter", "$log", "$routeParams", "$location", "userSrv", "courseSrv", "archiveSrv"];
 function courseCtrl($rootScope, $scope, $filter, $log, $routeParams, $location, userSrv, courseSrv, archiveSrv) {
 	var courseName;
+        var courseTitle;
 
 	//if we are viewing a course, add it to recently viewed.
 	if (!$scope.course) {
-		if (!$routeParams || !$routeParams.course) {
-			// this is from the archive scope
-			courseName = $scope.courseName;
-		} else {
+//		if (!$routeParams || !$routeParams.course || !$routeParams.courseTitle) {
+//			// this is from the archive scope
+//			courseName = $scope.courseName;
+//                        courseTitle = $scope.courseTitle;
+//		} else {
 			// this is from the route params
 			courseName = $routeParams.course;
-		}
-		$scope.course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+                        courseTitle = $routeParams.courseTitle;
+		//}
+		$scope.course = userSrv.addToRecentlyViewed(courseName, courseTitle, $scope.courses, $scope.allProposals);
 	}
 
 	$scope.canApprove = userSrv.canApprove;

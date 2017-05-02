@@ -25,6 +25,7 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 
 	function initProposal() {
 		var courseName = $routeParams.course;
+                var courseTitle = $routeParams.courseTitle;
 
 		$scope.proposal =   {
 								"terms": [],
@@ -57,13 +58,11 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 			$scope.proposal["newCourse"] = newCourse;
 		} else {
 			//load data
-			var course = userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+			var course = userSrv.addToRecentlyViewed(courseName, courseTitle, $scope.courses, $scope.allProposals);
 
 			// if $scope.proposal has a name key, it is a course and we need to build our proposal obj from scratch
 			if (course.name) {
 				$scope.proposal.oldCourse = course;
-				console.log("printing");
-				console.log(course);
 				//make a copy of the old Course data
 				$scope.proposal["newCourse"] = {
 												    "division": course.division,
@@ -108,13 +107,13 @@ function proposalCtrl($rootScope, $scope, $log, $location, $routeParams, $filter
 
 		if ($scope.proposal._id) {
 			dataSrv.saveProposal($scope.proposal).then(function(data) {
-				$location.path("#/"+$scope.proposal.newCourse.name).replace();
+				$location.path("#/"+$scope.proposal.newCourse.name+"/"+$scope.proposal.newCourse.title).replace();
 			}, function(err) {
 				$log.err("Proposal not saved: "+err);
 			});
 		} else {
 			dataSrv.createProposal($scope.proposal).then(function(data) {
-				$location.path("#/"+$scope.proposal.newCourse.name).replace();
+				$location.path("#/"+$scope.proposal.newCourse.name+"/"+$scope.proposal.newCourse.title).replace();
 			}, function(err) {
 				$log.err("Proposal not saved: "+err);
 			});

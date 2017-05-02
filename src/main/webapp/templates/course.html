@@ -2,7 +2,7 @@
 <div ng-if="course.name == null" class="container-fluid courseLink">
     <div class="container-fluid" style="padding-left:0; padding-right: 0;">
         <div class="col-xs-8" ng-class="{'col-xs-3' : extendedview == true}" style="padding-left: 0; float: left; text-align: left;">
-            <a ng-href="#/{{course.newCourse.name}}">{{course.newCourse.name}}
+            <a ng-href="#/{{course.newCourse.name}}/{{course.newCourse.title}}">{{course.newCourse.name}}
                 <span class="old-course" ng-if="course.oldCourse && course.oldCourse.name != course.newCourse.name">{{course.oldCourse.name}}</span>
                 <br>
                 <span class="courseTitle"><strong>{{course.newCourse.title}} </strong> </span>
@@ -17,7 +17,7 @@
         </div>
         <div class="col-xs-4 pull-right" ng-class="{'col-xs-2' : extendedview == true }" style="padding-right: 0;">
             <btn-menu></btn-menu>
-            <a href="#/{{course.newCourse.name}}/edit" class="btn btn-edit pull-right" ng-if="user.name == course.owner && !(user.role.length == 1 && user.role.indexOf('Registrars_Office') != -1)"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#/{{course.newCourse.name}}/{{course.newCourse.title}}/edit" class="btn btn-edit pull-right" ng-if="user.name == course.owner && !(user.role.length == 1 && user.role.indexOf('Registrars_Office') != -1)"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
 <div ng-if="course.name != null">
     <div class="container-fluid courseLink">
         <div class="col-xs-8" ng-class="{'col-xs-3' : extendedview == true}" style="padding-left: 0;">
-            <a ng-href="#/{{course.name}}">{{course.name}}
+            <a ng-href="#/{{course.name}}/{{course.title}}">{{course.name}}
                 <span class="courseTitle"><strong>{{course.title}} </strong> </span>
             </a>
         </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="col-xs-4 pull-right" style="padding-right: 0;">
             <a href="" title="View Archive" class="btn btn-edit pull-right" ng-click="getArchiveById(course._id.$oid)"><span class="glyphicon glyphicon-book"></span></a>
-            <a href="#/{{course.name}}/edit" class="btn btn-edit pull-right" ng-if="!(user.role.length == 1 && user.role.indexOf('Registrars_Office') != -1)"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#/{{course.name}}/{{course.title}}/edit" class="btn btn-edit pull-right" ng-if="!(user.role.length == 1 && user.role.indexOf('Registrars_Office') != -1)"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <div ng-if="!extendedview">
             <div class="container-fluid">

@@ -33,8 +33,8 @@ function userSrv($rootScope, $filter, $log, $q, $compile, dataSrv, authSrv, filt
             canApprove : canApprove
         }
 
-    function addToRecentlyViewed(courseName, courses, allProposals) {
-        return dataSrv.addToRecentlyViewed(courseName, courses, allProposals);
+    function addToRecentlyViewed(courseName, courseTitle, courses, allProposals) {
+        return dataSrv.addToRecentlyViewed(courseName, courseTitle, courses, allProposals);
     }
     
     function removeFromRecentlyViewed(course) {

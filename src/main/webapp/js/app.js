@@ -76,16 +76,32 @@ function mainCtrl($rootScope, $scope, $log, $location, $q, $filter, authSrv, dat
             if ($scope.user && $rootScope.user && $scope.allProposals && $scope.courses){
                 $scope.recentlyViewed.elements = [];
                 var allCoursesAndProposals = $scope.allProposals.elements.concat($scope.courses);
+                var recentlyViewedToRemove = [];
                 angular.forEach($scope.user.recentlyViewed, function(objId) {
-                    $scope.recentlyViewed.elements.push($filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}})[0]);
+                    var crs = $filter("filter")(allCoursesAndProposals, {_id : {$oid: objId}});
+                    $log.debug(crs);
+                    if (crs == null || crs.length == 0) {
+                        recentlyViewedToRemove.push(objId);
+                    } else {
+                         $scope.recentlyViewed.elements.push(crs[0]);
+                    }
                 });
-                    $scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
-            }
+                $scope.myChanges["elements"] = $filter('filter')($scope.allProposals.elements, { owner : $scope.user.name });
+                if (recentlyViewedToRemove.length != 0) {
+                    for (var i=0; i < recentlyViewedToRemove.length; i++){
+                        var idx = $scope.user.recentlyViewed.indexOf(recentlyViewedToRemove[i]);
+                        if (idx > -1) {
+                            $scope.user.recentlyViewed.splice(idx,1);
+                        }
+                    }
+                    dataSrv.editUser($scope.user);
+                }
+        }
     });
 
-    $rootScope.$on(EVENTS.PROPOSAL_ADDED, function(event, courseName) {
+    $rootScope.$on(EVENTS.PROPOSAL_ADDED, function(event, courseName, courseTitle) {
         initData().then(function(){
-            userSrv.addToRecentlyViewed(courseName, $scope.courses, $scope.allProposals);
+            userSrv.addToRecentlyViewed(courseName, courseTitle, $scope.courses, $scope.allProposals);
         });
     });
 

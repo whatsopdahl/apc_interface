@@ -136,7 +136,7 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "$filter", "DATA_URL", "E
 				data : data
 		}).then(function success(response) {
 			$log.info("Proposal successfully created");
-                        $rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, proposal.newCourse.name);
+                        $rootScope.$broadcast(EVENTS.PROPOSAL_ADDED, proposal.newCourse.name, proposal.newCourse.title);
 			return response.data;
 		}, function(response){
 			handleError(response);
@@ -289,10 +289,10 @@ app.factory("dataSrv", ["$http", "$log", "$rootScope", "$filter", "DATA_URL", "E
         *  @param allProposals proposals to search (all)
         *  @return course/proposal object
         */
-       function addToRecentlyViewed(courseName, courses, allProposals) {
+       function addToRecentlyViewed(courseName, courseTitle, courses, allProposals) {
                //the course must exist in the database, so find it first
 
-               var course = $filter("filter")(courses, {name: courseName}, true)[0];
+               var course = $filter("filter")(courses, {name: courseName, title: courseTitle}, true)[0];
 
                //check to see if it is in any proposals.
                var proposal = null;

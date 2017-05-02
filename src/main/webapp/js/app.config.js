@@ -65,11 +65,11 @@ app.config(['$routeProvider', function($routeProvider){
 	.when("/", {
 		redirectTo : "/dashboard"
 	})
-	.when("/:course", {
+	.when("/:course/:courseTitle", {
 		templateUrl : "templates/course-info.html",
         controller : "courseCtrl",
 	})
-	.when("/:course/edit", {
+	.when("/:course/:courseTitle/edit", {
 		templateUrl : "templates/edit-proposal.html",
 		controller : "proposalCtrl",
 		resolve : {

@@ -42,7 +42,7 @@
 	    <div id="search-results-container" ng-show="courseQuery.query!=''">
 	    	<ul style="list-style: None;">
 	    		<li class="col-xs-4" ng-repeat="course in courses | searchFilter:courseQuery.query" style="display:inline;">
-	    			<a href="#/{{course.name}}" ng-click="clearSearch()"> {{course.name}}- {{course.title}} </a>
+	    			<a href="#/{{course.name}}/{{course.title}}" ng-click="clearSearch()"> {{course.name}}- {{course.title}} </a>
 	    		</li>
 	    	</ul>
 	    </div>
