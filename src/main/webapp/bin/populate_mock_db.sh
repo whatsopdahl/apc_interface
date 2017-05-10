@@ -8,4 +8,4 @@
 echo "[info] Creating new mongoDB database from database/mock_data.js..."
 mongo apcdata ./dropAllCollections.js
 mongoimport --db apcdata --collection courses --type json --file ./courseData.json --jsonArray
-mongo apcdata ./init_data.js
+mongo apcdata ./mock_data.js
