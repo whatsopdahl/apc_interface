@@ -1,0 +1,71 @@
+LutherCourseProposal is hosted at https://apc-2017-cs.luther.edu. The following is a list of instructions to update/ manage this server. 
+
+========================================================
+Server specifics
+========================================================
+Luther Course Proposal runs on an apache-tomcat (verson 8.5.12) web server which interfaces with a mongodb database. On the host server (apc-2017-cs.luther.edu), there apache2 is also installed. This cannot be running in order for the webserver to run. So, we include instructions to start and stop this server, the tomcat server, and the mongod daemon.
+
+========================================================
+Running mongod
+========================================================
+For the application to work, mongod must be running. If this process stops, as is the case if the server shuts down/ restarts, you must run this command to start it again: 
+
+sudo systemctl start mongod
+
+To stop mongod, run
+
+sudo systemctl stop mongod
+
+=======================================================
+Starting and Stopping apache2
+=======================================================
+Apache2 will take up the ports tomcat needs to run if it is running. 
+To stop apache2, run this command:
+
+sudo service apache2 stop
+
+To Start apache2, run this:
+
+sudo service apache2 start
+
+=======================================================
+Starting/Stopping Tomcat
+=======================================================
+The tomcat server is installed at /opt/apache-tomcat-8.5.12. To stop and start it, you must invoke the startup and shutdown scripts in the bin folder. Remember to execute these as sudo. 
+
+So, in /opt/apache-tomcat-8.5.12/bin folder, run
+
+sudo ./startup.sh
+
+or
+
+sudo ./shutdown.sh
+
+========================================================
+Updating the application
+========================================================
+1. locally package the .war file using netbeans
+2. scp the new .war file into your home directory on apc-2017-cs.luther.edu
+		- scp apc_interface/target/ROOT.war <your user>@apc-2017-cs.luther.edu:~
+3. ssh into apc-2017-cs.luther.edu
+4. if not done already, stop the tomcat server (See above)
+5. navigate to the tomcat installation (see above section)
+6. cd into the webapps folder (/opt/apache-tomcat-8.5.12/webapps)
+7. remove the previod ROOT directory and the ROOT.war file with the following commands
+		- sudo rm -r ROOT
+		- sudo rm ROOT.war
+8. copy the new war file into the webapps folder
+		- sudo cp ~/ROOT.war .
+9. start the tomcat server
+
+=======================================================
+Manually updating database (for error purposes)
+=======================================================
+If for some reason, the database becomes unstable, you may need to try and restore a stable state. To do this, try
+
+sudo mongod --repair
+
+To connect to the database via terminal, use
+
+sudo mongo apcdata
+
