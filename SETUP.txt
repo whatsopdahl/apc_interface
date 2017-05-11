@@ -7,6 +7,54 @@ The LutherCourseProposal project structure is designed for use with NetBeans IDE
 This setup file describes how to set up your environment to run the project either through NetBeans, or by deploying the war file directly to the Tomcat server. 
 
 ================================================================================
+INSTALLING MONGODB
+
+To run the project, you need to install mongodb. Follow the instructions at https://www.mongodb.com/download-center to install the community edition of MongoDB. 
+
+================================================================================
+STARTING MONGO SERVICE
+
+To allow the database to run, you first need to start the mongod service. Run the command
+
+sudo service mongod start
+
+If this doesn't work, run 
+
+sudo systemctl start mongod
+
+================================================================================
+INITIALIZING DATABASE
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++                       Getting a data dump from the registrar                  + 
++ If you get a data dump from the registrar, you should put the csv file in the +
++ src/main/webapp/bin directory then run the csvToJson.py python file to        +
++ generate the json data used in the population script. Otherwise, you will use +
++ the old data we have already parsed in the project.                           +
++                                                                               +
++ NOTE : This will delete all the current courses in the database. If you wish  +
++ to keep certain courses and merge data, a custom script will have to be       +
++ written and used.                                                             +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+To initialize an empty database, in your repo directory, navigate to src/main/webapp/bin folder and run 
+
+./populate_db.sh
+
+If you wish to have some mock data (if it is a test db), run
+
+./populate_mock_db.sh
+
+These will intialize the database for you so you're ready to go!
+
+================================================================================
+INSTALLING PROJECT IN NETBEANS
+
+1. Clone git repo into desired location on local machine (recommened is NetBeansProjects folder)
+	- git clone https://github.com/whatsopdahl/whatsopdahl.github.io.git
+2. Click 'File' -> 'Open Project' and select the root project directory
+
+================================================================================
 RUNNING WITH NETBEANS
 
 1. Ensure you have Java8 or higher JRE installed. 
