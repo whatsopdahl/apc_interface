@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import sys
 
 genEds = ["BL","SKL","WEL","REL","NWL","NWNL","HB","HBSSM","HE","HEPT","INTCL","HIST","QUANT"]
 
@@ -329,8 +330,12 @@ def getDivision(row):
 		return depts[row['dept']]['division']
 	return None
 
+if len(sys.argv) != 2:
+	print("ERROR: Unexpected number of arguments. Please pass in one argument- the csv file to parse")
+	sys.exit()
+
 # read csv data
-courses = pd.read_csv("courses for apc project 2.csv");
+courses = pd.read_csv(sys.argv[1]);
 
 # eliminate unused columns and change course names
 courses = courses[['Crs Title','Crs Name','Crs Subject', 'Crs Desc', 'Crs Min Cred', 'Catalog Course Types CSV', 'Crs Capacity', 'Prerequisite']]

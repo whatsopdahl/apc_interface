@@ -156,7 +156,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-261", 
+    "name": "REL-229", 
     "title": "Religions of South Asia", 
     "pre_req": "REL 101, 111, or 112. ", 
     "dept": "REL", 
@@ -200,7 +200,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-251", 
+    "name": "REL-225", 
     "title": "Judaism", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
@@ -244,7 +244,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-222", 
+    "name": "REL-254", 
     "title": "Religion in America", 
     "pre_req": "REL 101, 111, or 112", 
     "dept": "REL", 
@@ -256,17 +256,17 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-230", 
-    "title": "Philosophy of Religion", 
+    "title": "God, Self, and the Afterlife", 
     "pre_req": "REL 101, 111 or 112", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT,REL", 
-    "desc": "A study of attempts to bring rational justification and clarification to religious beliefs and practice, focusing primarily on the concepts of Christian theology. Topics will include: the existence and attributes of God, faith and reason, death and immortality, miracles and revelation, the problem of evil, and religious pluralism. (Same as PHIL 130)"
+    "desc": "This course introduces students to philosophy of religion. It attempts to bring rational justification and clarification to religious beliefs and practice. This course will explore the traditional approaches as developed in the Christian and Islamic traditions as well as the global critical approaches suggested by current scholarship. Topics may include: the existence and nature of ultimate reality, the existence and attributes of God, faith and reason, death and immortality, miracles and revelation, religious experience, the problem of evil, the purpose of religious practice and rituals, the difficulties of defining religion, the question of religious morality, and religious pluralism. (Same as PHIL 130)"
   }, 
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-227", 
+    "name": "REL-201", 
     "title": "Luther and Lutheranism", 
     "pre_req": "REL 101, 111 or 112.", 
     "dept": "REL", 
@@ -277,7 +277,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-241", 
+    "name": "REL-218", 
     "title": "Christian Ethics", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
@@ -298,14 +298,14 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 22, 
-    "name": "REL-242", 
-    "title": "Dietrich Bonhoeffer", 
+    "capacity": 25, 
+    "name": "REL-226", 
+    "title": "Religionless Christianity", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL,HEPT", 
-    "desc": "An introduction to the life and thought of Dietrich Bonhoeffer, a Lutheran theologian executed for his participation in a conspiracy to assassinate Adolf Hitler. His theological ethics are examined in their historical context through three major primary texts: The Cost of Discipleship, Ethics, and Letters and Papers from Prison. Attention is given to the significance of Bonhoeffer's work for today. Offered alternate years."
+    "desc": "Is the \"religion\" called Christianity fading into irrelevance? Has religion as routine and custom replaced faith and discipleship? Could a religionless Christianity restore the vitality and mission of the church? This course explores these questions through the life and thought of Dietrich Bonhoeffer, a Lutheran theologian executed for his participation in a conspiracy to assassinate Adolf Hitler. These questions along with other aspects of his theological ethics are examined in their historical context through three primary texts: The Cost of Discipleship, Ethics, and Letters and Papers from Prison. Attention is given to the significance of Bonhoeffer's work for today. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -321,7 +321,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-211", 
+    "name": "REL-217", 
     "title": "Bible and Christian Faith", 
     "pre_req": "REL 101, 111 or 112.", 
     "dept": "REL", 
@@ -332,24 +332,13 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-312", 
-    "title": "The World of the Bible", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL", 
-    "desc": "Using archaeological, literary and artistic sources together with the Bible, this course examines the environment within which the biblical books were written. Both Old and New Testaments are examined in the light of outside sources."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
     "name": "REL-316", 
-    "title": "Jesus and the Gospels", 
-    "pre_req": "REL 101, 111, or 112.", 
+    "title": "Studying Jesus", 
+    "pre_req": "REL 101, 111, or 112; PAID 111D and PAID 112D or transfer equivalents", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL,HEPT", 
-    "desc": "An examination of the different ways in which the Jesus tradition was assimilated in the first two centuries of the Common Era. The course centers its attention on the four New Testament portraits of Jesus because they became the accepted interpretation of Jesus. Those portraits will be compared and contrasted with other ancient options available from recent discoveries. Topics studied will include: the canonical Gospels and the Synoptic problem, several non-canonical Gospels (including especially the Gospel according to Thomas), and the quest for the historical Jesus."
+    "desc": "This course explores the academic study of Jesus as both a literary and a historical figure. Students will engage in contextual and comparative analysis of the literary representations of Jesus in the four gospels of the New Testament and other gospels not included in the New Testament. Students will also engage in contextual and comparative analysis and critique of publications produced by scholars of the Historical Jesus. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -782,7 +771,7 @@
   }, 
   {
     "division": "History and Social Sciences", 
-    "capacity": 20, 
+    "capacity": 25, 
     "name": "SW-102", 
     "title": "Social Work Field Experience", 
     "pre_req": null, 
@@ -1466,7 +1455,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 16, 
     "name": "ART-111", 
-    "title": "Foundations: 3-DIMENTIONAL Processes", 
+    "title": "Foundations: 3-DIMENSIONAL Processes", 
     "pre_req": null, 
     "dept": "ART", 
     "credit_hrs": 4, 
@@ -1739,14 +1728,14 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 16, 
-    "name": "REL-263", 
+    "capacity": 20, 
+    "name": "REL-220", 
     "title": "Experiencing Mahayana Buddhism", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL,INTCL,HEPT", 
-    "desc": "This course introduces students to Mahayana Buddhism. It explores the development of Mahayana Buddhism, its relationship with other religious traditions, and its influence on culture.  The primary teaching method is experiential. Students will visit temples in China and/or Japan, have instructions by an abbot, participate in the monastic life, will meet scholars of Buddhism, visit holy sites, and participate in Buddhist worship.  The students will spend three days in a temple, joining the monks in meditation and religious practice.  In addition to this experiential dimension, the course will familiarize students with the history, scriptures, and beliefs of Mahayana Buddhism through readings from primary texts, lectures, videos, and class discussions.  It will further analyze the Buddhist response to general topics and problems, such as the absolute, the notion of self, the problem of human existence, as well as soteriological and ethical issues. "
+    "desc": "This course introduces students to Mahayana Buddhism. It explores the development of Mahayana Buddhism, its relationship with other religious traditions, and its influence on culture. The primary teaching method is experiential. Students will visit temples in selected areas of East Asia, have instructions by an abbot, participate in the monastic life, will meet scholars of Buddhism, visit holy sites, and participate in Buddhist worship. The students will spend three days in a temple, joining the monks in meditation and religious practice. In addition to this experiential dimension, the course will familiarize students with the history, scriptures, and beliefs of Mahayana Buddhism through readings from primary texts, lectures, videos, and class discussions. It will further analyze the Buddhist response to general topics and problems, such as the absolute, the notion of self, the problem of human existence, as well as soteriological and ethical issues.  "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -1757,7 +1746,7 @@
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL,HIST", 
-    "desc": "This course will explore the role of archaeology in biblical studies as well as studies of the history of ancient Israel.  The course will consist of an examination of the methods and techniques used in Palestinian archaeology; an overview of the role that archaeology has played in biblical studies from the nineteenth century to the present; and an examination of specific archaeological sites and artifacts and their relation to biblical texts. Offered alternate years."
+    "desc": "This course will explore the role archaeology has played in biblical studies and studies of the history of ancient Israel from the nineteenth century to the present. Students will critically analyze the ways that biblical narratives and material evidence have been used to reconstruct the history of Israel and Judah; the use of biblical texts and archaeological evidence in broader religious and political discourse; and ethical issues related to archaeology and historical reconstruction of ancient Israel and Judah. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -2676,7 +2665,7 @@
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 25, 
     "name": "CS-450", 
-    "title": "Operating Systems andyArchitecture", 
+    "title": "Operating Systems and\u00fdArchitecture", 
     "pre_req": "CS 252 or 253, 260.", 
     "dept": "CS", 
     "credit_hrs": 4, 
@@ -2841,7 +2830,7 @@
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 12, 
     "name": "BIO-365L", 
-    "title": "General Ecology Lab", 
+    "title": "Ecology Lab", 
     "pre_req": null, 
     "dept": "BIO", 
     "credit_hrs": 0, 
@@ -2983,7 +2972,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-232", 
+    "name": "REL-219", 
     "title": "Christian Theology", 
     "pre_req": "REL 101, 111, or 112", 
     "dept": "REL", 
@@ -3270,7 +3259,7 @@
     "division": null, 
     "capacity": 999, 
     "name": "OC-340", 
-    "title": "Lc Off-Campus Programs", 
+    "title": "Lc Off Campus Programs", 
     "pre_req": null, 
     "dept": "OC", 
     "credit_hrs": 12, 
@@ -3324,24 +3313,13 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-256", 
-    "title": "Islam", 
+    "name": "REL-224", 
+    "title": "Islam: Historical Foundations and\u00fdContemporary Realities", 
     "pre_req": "REL 101, 111, or 112", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL,HEPT,INTCL", 
-    "desc": "This course will introduce students to the history, development, and theological traditions of Islam. Special attention will be given to Muhammad and the founding of the Muslim community; the Quran and Sunnah (the way of the Prophet) and their roles as sources for Muslim religious traditions; and the various expressions of Islam in the contemporary world, especially revivalism and modernism.  The relationship between Islam and Chrisitianity will also be a topic of consideration."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-332", 
-    "title": "Human Nature and Religion", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HEPT,REL,HB", 
-    "desc": "All religious traditions are in some measure shaped by their conceptions of human nature. Academic theories of religion, too, are shaped by conceptions of human nature.  Human self-understanding is therefore central both to the believer's search for religious meaning and to the scholar's search for the meaning of religion. This course will examine the roles played by conceptions of human nature in various religious traditions and in various theories of religion. The course will also assess whether and how contemporary scientific accounts of human nature challenge traditional belief systems. Offered alternate years."
+    "desc": "The nature of the early development of Islam has been much contested and somewhat shrouded in mystery. Who was Muhammad? What were the goals and motivations of the early Islamic movement? New historical research is beginning to shed light on these questions in ways that could have real implications for how we understand the nature of Islamic identity in the contemporary world. In this course, we will explore the growing evidence for Islamic origins and analyze its implications for understanding the contemporary realities of various Muslim movements and traditions. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -3374,7 +3352,7 @@
     "dept": "SW", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "Course is designed to introduce students to current theories, research and practice in the field of crisis intervention with interpersonal violence, with specific focus on the area of family violence.  Crisis intervention strategies with respect to people who have been physically, sexually, and emotionally abused will be covered in this course.  An introduction to assessment and intervention skills for working with individuals and families from diverse backgrounds will be emphasized.  This includes interventions with family members, as well as community level interventions that are culturally appropriate. This course will prepare students to serve as volunteers on the crisis line for the Domestic and Sexual Abuse Resource Center. Students interested in service learning in the area of interpersonal and family violence will have the opportunity to enroll in 104, a one-hour community based field experience which wil be offered during the following spring semester. (Same as women's studies 103.) Prerequisite: Must be first-year students."
+    "desc": "Course is designed to introduce students to current theories, research and practice in the field of crisis intervention with interpersonal violence, with specific focus on the area of family violence.  Crisis intervention strategies with respect to people who have been physically, sexually, and emotionally abused will be covered in this course.  An introduction to assessment and intervention skills for working with individuals and families from diverse backgrounds will be emphasized.  This includes interventions with family members, as well as community level interventions that are culturally appropriate. This course will prepare students to serve as volunteers on the crisis line for the Domestic and Sexual Abuse Resource Center. Prerequisite: Must be first-year students."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -5085,7 +5063,7 @@
     "division": null, 
     "capacity": 15, 
     "name": "ENVS-175", 
-    "title": "Introduction to GeographicyInformation Systems", 
+    "title": "Introduction to Geographic\u00fdInformation Systems", 
     "pre_req": null, 
     "dept": "ENVS", 
     "credit_hrs": 2, 
@@ -5195,12 +5173,12 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 35, 
     "name": "MUS-118", 
-    "title": "Preparation for PianoyProficiency Test", 
-    "pre_req": null, 
+    "title": "Preparation for Piano\u00fdProficiency Test", 
+    "pre_req": "Piano Placement Recommendation", 
     "dept": "MUS", 
     "credit_hrs": 0, 
     "gen_eds": null, 
-    "desc": "For first-semester music majors with significant background in piano. Two one-hour sessions will help these students prepare for the Piano Proficiency Test. Prerequisite: piano placement recommendation."
+    "desc": "For first-semester music majors with significant background in piano. Two one-hour sessions will help these students prepare for the Piano Proficiency Test. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -5233,7 +5211,7 @@
     "dept": "ENG", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT", 
-    "desc": "When writers write, they sing, whisper, and shout. This course, an introduction to the English major, emphasizes literature and writing as forms of personal and cultural expression.  Our central literary focus is on poetry, by may include fiction, drama, or non-fiction.  The course also gives extended attention to student writing as a performative act, conscious of voice, audience, and purpose."
+    "desc": "Literature invites us into experiences and worlds  both familiar and strange. This course introduces  students to the appreciation and analysis of  literature through close reading, discussing, and  writing about literary texts from renowned  classics to hidden gems. An introduction to the  English major, the course is open to any student  who wishes to cultivate perceptive reading and  writing while expanding his or her imaginative  world."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -5332,7 +5310,7 @@
     "dept": "EDUC", 
     "credit_hrs": 2, 
     "gen_eds": null, 
-    "desc": "This 100 hour clinical practicum is taken as part of the methods practicum sequence. Students work under the direction of a cooperating teacher and plan, teach, rehearse, and reflect on the teaching of music in a vocal/orchestra/band program at the elementary, middle/high school level. Course objectives are formulated from the core competencies of the teacher education program at Luther Colelge. "
+    "desc": "This 100 hour clinical practicum is taken as part of the methods practicum sequence. Students work under the direction of a cooperating teacher and plan, teach, rehearse, and reflect on the teaching of music in a vocal/orchestra/band program at the elementary, middle/high school level. Course objectives are formulated from the core competencies of the teacher education program at Luther College.  Graded credit/no credit. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -6183,14 +6161,14 @@
   }, 
   {
     "division": null, 
-    "capacity": 25, 
+    "capacity": 40, 
     "name": "ENVS-134", 
-    "title": "Environmental Geology", 
+    "title": "The Earth System", 
     "pre_req": null, 
     "dept": "ENVS", 
     "credit_hrs": 4, 
     "gen_eds": "NWL", 
-    "desc": "Just as the physical environment impacts human activities, so too do our actions influence our surroundings. In this course we will seek to understand geologic processes and the ways in which humans interact with them. We will also explore the unique geology and physical geography of northeast Iowa during labs and field trips."
+    "desc": "This course is an introduction to the natural and human-influenced processes that govern the interactions among the components of the Earth system:  the solid earth, water, the atmosphere, and life.  We will covers topics such as geologic hazards, sedimentary processes, mineral and energy resources, and global climate change, all with an emphasis on the ways in which Earth system processes both impact and are impacted by human activities.  Laboratories include field-based investigations of Earth system processes in northeast Iowa."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -6778,17 +6756,6 @@
   {
     "division": "History and Social Sciences", 
     "capacity": 25, 
-    "name": "COMS-342", 
-    "title": "Feminist Rhetorical Theories", 
-    "pre_req": "WGST 130 or COMS 132", 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": "HE,HBSSM,HIST", 
-    "desc": "This course is a study of feminist rhetorical theories and expression. The class reads texts by feminist rhetorical theorists and rhetors. Special emphasis is placed on the intersection between social, cultural and economic contexts, political influences, and rhetorical strategies of women rhetors challenging Western patriarchy. This course applies toward the theory requirement for the WGST major. Offered alternate years. (Same as WGST 342)"
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 25, 
     "name": "SOC-239", 
     "title": "Special Topic:Social Conflict", 
     "pre_req": null, 
@@ -7175,7 +7142,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "ENG-365", 
-    "title": "British Romanticism: Revolution, Nature,yAnd the Imagination", 
+    "title": "British Romanticism: Revolution, Nature,\u00fdAnd the Imagination", 
     "pre_req": "Junior standing", 
     "dept": "ENG", 
     "credit_hrs": 4, 
@@ -7327,25 +7294,25 @@
   }, 
   {
     "division": "History and Social Sciences", 
-    "capacity": 20, 
+    "capacity": 25, 
     "name": "COMS-463", 
-    "title": "Communciation and Public Relations", 
+    "title": "Public Relations and Corporate\u00fdCommunication", 
     "pre_req": "Junior standing", 
     "dept": "COMS", 
     "credit_hrs": 4, 
     "gen_eds": "HB", 
-    "desc": "This course examines concepts of public relations practice in organizational systems with emphasis on communication theory and development of a problem-solving perspective. Students apply theory directly to practical public relations problems. Requires junior or senior status."
+    "desc": "This course examines concepts of public relations and corporate communication within and outside of an organization.  Students will study cases, write communication strategies, press releases, inter-departmental communication, and study corporate responsibility and conduct."
   }, 
   {
     "division": "History and Social Sciences", 
-    "capacity": 15, 
+    "capacity": 25, 
     "name": "COMS-133", 
-    "title": "Mass Media", 
+    "title": "Mass Media and Popular Culture", 
     "pre_req": null, 
     "dept": "COMS", 
     "credit_hrs": 4, 
     "gen_eds": "HBSSM", 
-    "desc": "This course studies the evolution of mass media and its relationship with our culture.  In addition to gaining an understanding of mass media, students will critque various forms of media, and explore basic writing skills necessary for media production."
+    "desc": "To gain an understanding of the relationship between media, popular culture, and society--as well as the historical, political, and social significance thereof--students engage, analyze, and critique a wide variety of mediated texts."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -7390,17 +7357,6 @@
     "credit_hrs": 4, 
     "gen_eds": "HE", 
     "desc": "The course takes a rhetorical perspective on argument. Basic principles of argumentation are explored: problem solving through evidence, reasoning, and persuasion. Analysis and criticism of various types of contemporary speech-making based on principles, models, and theories of argumentation. Offered alternate years."
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 25, 
-    "name": "COMS-359", 
-    "title": "Media and Popular Culture", 
-    "pre_req": "COMS 133", 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": "HB", 
-    "desc": "An in-depth exploration of the relationship between mass media and culture with particular emphasis on the relationship between the media of mass communication and particular fundamental institutions, such as family, government, religious institutions, and the commercial sphere.  The course will also offer opportunities for student research concerning how media influence language, values, and social norms."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -7879,7 +7835,7 @@
     "division": null, 
     "capacity": 20, 
     "name": "ENVS-185", 
-    "title": "First-Year Seminar: Natural Disasters", 
+    "title": "Natural Disasters", 
     "pre_req": null, 
     "dept": "ENVS", 
     "credit_hrs": 4, 
@@ -8130,9 +8086,9 @@
   }, 
   {
     "division": null, 
-    "capacity": 15, 
+    "capacity": 20, 
     "name": "ENVS-320", 
-    "title": "Soil Genesis, Morphology andyClassification", 
+    "title": "Soil Genesis, Morphology and\u00fdClassification", 
     "pre_req": "ENVS 134.", 
     "dept": "ENVS", 
     "credit_hrs": 4, 
@@ -8143,7 +8099,7 @@
     "division": null, 
     "capacity": 0, 
     "name": "ENVS-320L", 
-    "title": "Soil Genesis, Morphology &yClassification Lab", 
+    "title": "Soil Genesis, Morphology &\u00fdClassification Lab", 
     "pre_req": null, 
     "dept": "ENVS", 
     "credit_hrs": 0, 
@@ -8570,14 +8526,14 @@
   }, 
   {
     "division": "History and Social Sciences", 
-    "capacity": 19, 
+    "capacity": 25, 
     "name": "COMS-233", 
     "title": "Rhetoric of Spirituality", 
     "pre_req": null, 
     "dept": "COMS", 
     "credit_hrs": 4, 
-    "gen_eds": "HE", 
-    "desc": "Engaging a variety of spiritual traditions (e.g. Christianity, Judaism, Islam, Buddhism, Taoism, Wicca, New Ageism), this course explores the relationship between communication, U.S. American popular culture, and the constitution of spiritual practice.  Throughout the course, students study how popular spiritual texts contribute to the creation and maintenance of self, other, and spiritual ideologies.  Offered alternate years."
+    "gen_eds": "HE,REL", 
+    "desc": "Engaging a variety of traditions (e.g. Christianity, Judaism, Islam, Buddhism, Taoism, Wicca, New Ageism), Rhetoric of Spirituality explores the relationship between communication, U.S. American popular culture, and spiritual practice.  Utilizing the fundamentals of rhetorical analysis--close textual reading, thematic interpretation, and critical judgment--the course examines the role of religion and spirituality in public dialogue.  Throughout the course, students study how popular spiritual texts like political speeches, feature films, television shows, and written works contribute to the communicative creation, maintenance, and reconceptualization of self, other, and spiritual ideologies."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -8831,17 +8787,6 @@
     "credit_hrs": 4, 
     "gen_eds": "REL", 
     "desc": "Special Topic:  Babylon in the Bible and History. Babylon has occupied a particular place in the Western religious and cultural tradition, both as symbol(the enemy, the place of exile, the ultimate Other, and as geographical and historical reality (as ancient super-power and center of early Judaism). Students will examine Babylon historically and archaeologically within the context of the Ancient Near East and also in relation to Biblical literature and Western art. The course will include reading texts, viewing photos of objects, discussions, a group presentation project, and possibly a field-trip to the Oriental Institute Museum in Chicago. Prerequisite: Rel 101, 111, or 112."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-262", 
-    "title": "Religions of East Asia", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL,HEPT,INTCL", 
-    "desc": "This course will introduce the religious and philosophical traditions of China, Korea, and Japan. Particularly, it will focus on the historical, textual, and doctrinal foundations of Buddhism, Confucianism, Daoism, and Shintoism. It will analyze excerpts of their sacred scriptures, survey their beliefs, study their practices, and explore their ethical systems. Additional consideration will be given to contemporary issues facing these traditions."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -9111,12 +9056,12 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "COMS-354", 
-    "title": "Persuasion Theories", 
+    "title": "Persuasion and Social Influence", 
     "pre_req": "COMS 130, 132, and 133", 
     "dept": "COMS", 
     "credit_hrs": 4, 
     "gen_eds": "HB", 
-    "desc": "The course examines contemporary persuasion theory and its applicability to the media of news, advertising, and political communication."
+    "desc": "This course looks at the cognitive, social, and rhetorical dimensions of social change considering how persuasive messages affect the thoughts and behaviors of individuals.  To understand these elements, students will study social movements and political campaigns in a variety of contexts."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -9309,7 +9254,7 @@
     "division": null, 
     "capacity": 18, 
     "name": "ENVS-185", 
-    "title": "First-Year Seminar: Polymers, theyEnvironment and Sustainable Development", 
+    "title": "Polymers, the Environment & SustainableyEnvironment", 
     "pre_req": null, 
     "dept": "ENVS", 
     "credit_hrs": 3, 
@@ -9412,7 +9357,7 @@
     "pre_req": null, 
     "dept": "MUS", 
     "credit_hrs": 4, 
-    "gen_eds": "HE", 
+    "gen_eds": null, 
     "desc": "An introduction to the principles of singing-acting skills with lab practice in solo performance, group scene performances, and production.  Consent of instructor required."
   }, 
   {
@@ -9835,17 +9780,6 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-364", 
-    "title": "Topics in Asian Religions", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL", 
-    "desc": "This course will explore one particular topic in the field of Asian religions. Likely topics include meditation theory, nationalism and religion, and theories of justice. This course is designed  for students with a particular interest in Asian studies, religious studies, or philosophy. Offered alternate years."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
     "capacity": 777, 
     "name": "CLAS-375", 
     "title": "Directed Readings", 
@@ -10184,17 +10118,6 @@
     "credit_hrs": 4, 
     "gen_eds": "HEPT", 
     "desc": "A study of how women writers from different historical periods use poems, stories, essays, and plays to address gender issues in the private and the public world. The course looks at how literature both presents and critiques culture and its construction of gender, as well as how it offers new visions and choices for women and men. Readings include such writers as Mary Wollstonecraft, Charlotte Bronte, Emily Dickinson, Toni Morrison, Gloria Anzaldua, and Octavia Butler. (Same as ENG 245)"
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 20, 
-    "name": "WGST-342", 
-    "title": "Feminist Rhetorical Theories", 
-    "pre_req": "WGST 130 or COMS 132", 
-    "dept": "WGST", 
-    "credit_hrs": 4, 
-    "gen_eds": "HBSSM,HIST,HE", 
-    "desc": "This course is a study of feminist rhetorical theories and expression. The class reads texts by feminist rhetorical theorists and rhetors. Special emphasis is placed on the intersection between social, cultural and economic contexts, political influences, and rhetorical strategies of women rhetors challenging Western patriarchy. This course counts as theory requirement for the WGST major. Offered alternate years. (Same as COMS 342)"
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -11201,12 +11124,12 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "WGST-260", 
-    "title": "Feminist Philosophy", 
-    "pre_req": "One course in PHIL or two courses in WGST", 
+    "title": "Identity and Power", 
+    "pre_req": "One course in PHIL or one course in WGST", 
     "dept": "WGST", 
     "credit_hrs": 4, 
-    "gen_eds": "HEPT", 
-    "desc": "Examination of feminist philosophies, including issues in epistemology, ethics, social philosophy, political philosophy, philosophy of religion and historical interpretation. Focus on the challenges which feminist theory presents to traditional philosophical assumptions in the Western tradition. This course counts as theory requirement for the WGST major. Offered alternate years. (Same as PHIL 260)"
+    "gen_eds": "HEPT,HB", 
+    "desc": "A study of contemporary feminist political thought, concentrating on the ways social categories such as race, class, gender and sexuality interact with each other.  Attention will be paid to the way power structures contribute to limiting or expanding human freedom and to feminist methodologies.  Fufills theory requirement in WGST. Offered alternate years. (Same as PHIL 260)"
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -12235,7 +12158,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 24, 
     "name": "ENG-130", 
-    "title": "Literary Ventures: Comic and CosmicyQuests", 
+    "title": "Literary Ventures: Comic and Cosmic\u00fdQuests", 
     "pre_req": null, 
     "dept": "ENG", 
     "credit_hrs": 4, 
@@ -12290,7 +12213,7 @@
     "division": "History and Social Sciences", 
     "capacity": 777, 
     "name": "POLS-139", 
-    "title": "Special Topic:Controversy and the U.S.ySupreme Court (Washington Consortium)", 
+    "title": "Special Topic:Controversy and the U.S.\u00fdSupreme Court (Washington Consortium)", 
     "pre_req": null, 
     "dept": "POLS", 
     "credit_hrs": 4, 
@@ -12334,7 +12257,7 @@
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 999, 
     "name": "PE-120", 
-    "title": "Athletic Participation: Men'syOutdoor Track", 
+    "title": "Athletic Participation: Men's\u00fdTrack", 
     "pre_req": null, 
     "dept": "PE", 
     "credit_hrs": 0, 
@@ -12598,9 +12521,20 @@
     "division": "History and Social Sciences", 
     "capacity": 18, 
     "name": "HIST-185", 
-    "title": "The Rise and Development of Black Nationalism in the United States", 
+    "title": "The Rise and Development of BlackyNationalism in the United States", 
     "pre_req": null, 
     "dept": "HIST", 
+    "credit_hrs": 4, 
+    "gen_eds": "HIST,HB,INTCL", 
+    "desc": "A study of the philosophy and movements of black unification in the United States, beginning with the Ethiopian move and ending with Black Power and the cultural revolution of the late 1960s and 1970s."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 18, 
+    "name": "AFRS-185", 
+    "title": "The Rise and Development of BlackyNationalism in the United States", 
+    "pre_req": null, 
+    "dept": "AFRS", 
     "credit_hrs": 4, 
     "gen_eds": "HIST,HB,INTCL", 
     "desc": "A study of the philosophy and movements of black unification in the United States, beginning with the Ethiopian move and ending with Black Power and the cultural revolution of the late 1960s and 1970s."
@@ -12659,17 +12593,6 @@
     "credit_hrs": 4, 
     "gen_eds": null, 
     "desc": "The basic structures of German. Students will learn to understand, speak, read, and write German at a beginner's level and gain awareness of the culture of German-speaking countries."
-  }, 
-  {
-    "division": null, 
-    "capacity": 18, 
-    "name": "ENVS-310", 
-    "title": "Earth: Evolution of a Habitable Planet", 
-    "pre_req": "ENVS 134.", 
-    "dept": "ENVS", 
-    "credit_hrs": 4, 
-    "gen_eds": "NWL", 
-    "desc": "Among the planets of our solar system, the Earth alone has remained hospitable to life throughout its long history.  What processes and feedbacks have consistently maintained conditions on the Earth's surface within the bounds required for survival of life?  From the earliest Earth to the modern day, we will explore the intertwined histories of life, atmospheric chemistry, geologic processes, and the climate system.  Additional emphasis on the scientific techniques used to reconstruct Earth history.  Laboratory includes fieldtrips exploring regional geology."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -12844,7 +12767,7 @@
     "pre_req": null, 
     "dept": "FCUL", 
     "credit_hrs": 4, 
-    "gen_eds": "INTCL", 
+    "gen_eds": null, 
     "desc": "This course will introduce Chinese films made in mainland China, Taiwan, and Hong Kong with the aim of exposing students to non-Hollywood filmmaking traditions.  Films that are representative of new Chinese Cinema will help students to better understand China's history, culture, politics, and aesthetic conventions over the past century.  It will also examine new changes brought in by the advent of globalization.  Issues including gender relations, nationhood, tradition versus modernity, film's pedagogical function versus entertainment, cross-cultural spectatorship, and authorship will be addressed in this course.  All films have English subtitles.  All readings are in English. No language background required."
   }, 
   {
@@ -13112,17 +13035,6 @@
     "desc": "A survey of the ideas and policies embraced by religious and political leaders concerning the proper relationship between the church and the state from the early church to the present, with particular attention given to issues of religious establishment, disestablishment, toleration, and libety in modern Europe and the United States."
   }, 
   {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-257", 
-    "title": "Contemporary Islamic Movements", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HEPT,INTCL,REL", 
-    "desc": "This course explores the development and influence of a variety of Islamic movements that are growing in the contemporary world. After an overview of the basic structure of Islamic thought and of the Islamic Revivialist and Modernist movements of the nineteenth and twentieth centuries, attention will be given to contemporary expressions of these larger trends such as Islamic Democracy, Islamic Economics, Islamic Feminism, and Progressive Islam. Special attention will be given to the role of Islamic thought in the post-9/11 world."
-  }, 
-  {
     "division": "History and Social Sciences", 
     "capacity": 999, 
     "name": "PSYC-381", 
@@ -13313,7 +13225,7 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "WGST-212", 
-    "title": "Sex in Religious Texts", 
+    "title": "Sex in the Bible and the Qur'an", 
     "pre_req": "REL 101, 111, or 112", 
     "dept": "WGST", 
     "credit_hrs": 4, 
@@ -13335,12 +13247,12 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-212", 
-    "title": "Sex in Religious Texts", 
+    "title": "Sex in the Bible and the Qur'an", 
     "pre_req": "REL 101, 111, OR 112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT,REL", 
-    "desc": "This course will explore constructions of gender and sexuality in the texts of two or more religious traditions.  Students will be introduced to contemporary theories of gender and sexuality that they will use to analyze primary texts in relation to their sociopolitical and religious contexts.  Specific topics may include competing representations of men and women, different constructions of marriage, the use of marriage as a metaphor, the role of sexuality in mystical traditions and spiritual manuals, and representations of homoeroticism and bisexuality in religious texts. (Same as WGST 212)"
+    "desc": "This course will explore constructions of gender and sexuality in the Bible and the Qur'an. Students will be introduced to contemporary theories of gender and sexuality that they will use to analyze primary texts in relation to their cultural contexts. Specific topics may include competing representations of men and women, different constructions of marriage, the use of marriage as a metaphor, and representations of homoeroticism. "
   }, 
   {
     "division": "History and Social Sciences", 
@@ -13462,17 +13374,6 @@
     "credit_hrs": 4, 
     "gen_eds": "INTCL", 
     "desc": "In this course Luther students will experience the joys, challenges, and realities of service in the world through the opportunity to lead a two-week summer camp for disadvantaged youth ages 8-16 in Cape Town, South Africa.  Organized by New Hope Ministries (Cape Town), the camp will offer music, sports, art, drama, personal health, and other activities according to Luther student interests, as well as life skills and vocational decision-making.  In the final week we will travel to rural Kwazulu-Natal for sightseeing and an additional service learning opportunity. Throughout the month we will visit historical sites and speak with various South Africans about the challenges of transforming a post-apartheid, democratic society.  At heart this course will invite each of us to ask: how do I live out my vocation of service in a wondrous but complicated world?"
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 25, 
-    "name": "COMS-464", 
-    "title": "Advanced Research Methods", 
-    "pre_req": "COMS 130, 132, 133, and 357", 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": "HBSSM", 
-    "desc": "Students build on research methods learned  in COMS 357.  Research focus is dependent upon instructor and ranges from rhetorical to qualitative, quantitative, and media research. Students will produce a research project suitable for professional presentation."
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -13775,7 +13676,7 @@
     "division": null, 
     "capacity": 1, 
     "name": "PAID2-450", 
-    "title": "American Diversity (Wash Cons) (washington Consortium)", 
+    "title": "American Diversity (Wash Cons)y(washington Consortium)", 
     "pre_req": null, 
     "dept": "PAID2", 
     "credit_hrs": 4, 
@@ -14780,7 +14681,7 @@
     "pre_req": null, 
     "dept": "FCUL", 
     "credit_hrs": 4, 
-    "gen_eds": "HEPT", 
+    "gen_eds": null, 
     "desc": "This seminar will concentrate on the evolution of the fairy tale literary genre with attention to 17th and 18th century French contes that have become favorites in the English speaking world (Beauty and the Beast, Cinderella, Little Red Riding Hood, Sleeping Beauty, Puss in Boots...). Drawing on studies by theorists such as Bettelheim, Tatar, and Zipes, we will identify the use of fantastic elements in other genres such as French Baroque Opera, early 20th century movies, Broadway Musicals, and of course Disney. Questions to examine include the persistence and relevance of fairy tales in times of unease and cultural transition, the representation of the feminine and cultural differences between French and American adaptation of these stories. Students wil take responsiblity for course presentation and interaction with peers. (All reading will be in English). HE/PT/"
   }, 
   {
@@ -15178,17 +15079,6 @@
     "credit_hrs": 4, 
     "gen_eds": "QUANT", 
     "desc": "Topics related to instantaneous rates of change: functions, limits, continuity, derivatives, mean value theorem and applications; antiderivatives and definite integrals. Graphing calculator use may be required. (Students who earn credit for MATH 151 may not earn credit for MATH 140 or 141). Prerequisite: three years of high school mathematics including algebra, trigonometry, and geometry, and a suggested placement."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-364", 
-    "title": "Topics in Asian Religion:BuddhistyEthics", 
-    "pre_req": "Take Rel 101, Rel 111 or Rel 112", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL", 
-    "desc": "The course introduces a variety of approaches to general ethical questions developed and offered by thinkers and texts from the Buddhist traditions. It explores questions such as \"What moral guidelines does the Buddhist tradition provide?\" \"How do Buddhist texts conceive of good and evil?\" \"How do Buddhist groups and movements use Buddhist texts and ideas to support their struggle for social justice?\"  \"How do Buddhist thinkers and leaders respond to contemporary ethical challenges?\"  The course combines textual study, theoretical reflection, and an examination of specific cases in order to explore the contributions of classical and contemporary Buddhist thought to the solution of current ethical questions."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -15895,17 +15785,6 @@
     "desc": "In this course, students will apply interpretive methods to biblical texts in order to develop an understanding of the context and significance of these texts, then develop educational programs for use in a congregational setting that reflect this analysis. The entirety of the course will consist of collaborative work in groups. Class time will consist of four weekdays and Sunday mornings; a significant amount of the course will consist of group work outside of class. In groups of 4-5 people, students will choose a text appropriate for a specific age group, apply interpretive methods to that text, and develop a Sunday School lesson for that age group. Groups will rotate to different Sunday School classes each week. In addition, students will develop an outline for an adult education series, and assess existing curricular materials after the experience of developing their own programming."
   }, 
   {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-270", 
-    "title": "Religious Identity and InterfaithyEngagement", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HE,REL,INTCL", 
-    "desc": "This course explores issues of religious identity and interfaith engagement in a pluralistic world. Through a variety of methods, including textual study, theoretical reflection and a case study approach, we will discuss questions such as: what is religious identity, is it possible to identify with more than one religious tradition, can one remain committed to a single religious tradition in a pluralistic world, and how can people of different faiths build relationships with each other and work together for the common good? In addition, this course will examine interreligious encounters in a variety of contexts (in the United States and globally), and analyze responses to religious pluralism from a number of different religious perspectives. "
-  }, 
-  {
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "POLS-239", 
@@ -16091,17 +15970,6 @@
     "credit_hrs": 4, 
     "gen_eds": "HBSSM", 
     "desc": "Interpersonal communication used to be conducted only in face-to-face encounters. These are still important, but today we use the telephone, text, email, Facebook, and other technologies to keep in touch with our family, friends, and acquaintances. How does technology shape or alter our interpersonal relationships? In what ways does the medium we choose change the messages we exchange with important people in our lives? Has Facebook changed our definition of friendship? How are our online selves different from our real life selves? This course will explore ways researchers have sought answers to these and other related questions, and to design research that will help us discover our own answers."
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 25, 
-    "name": "COMS-270", 
-    "title": "Rethinking Freedoms of Religion, Speech,yAnd Press", 
-    "pre_req": null, 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": "HIST,HB", 
-    "desc": "The First Amendment to the U.S. Constitution guarantees freedom of speech and the press, along with freedoms of religion and assembly. Often news media tests the boundaries of these freedoms with controversial stories and blased reporting that raises questions of journalistic ethics.  This course reviews the history of the First Amendment with a particular focus on media law and Supreme Court decisions, and examines the ethics of news reporting on controversial matters."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -16513,28 +16381,6 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-214", 
-    "title": "Lost Scriptures", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HEPT,REL", 
-    "desc": "This course will examine writings which were considered sacred by some Jewish and Christian groups but which were not included in the orthodox canons of the Hebrew Bible or the New Testament. Students will analyze selected texts in their social, historical, ideological, and religious contexts, and they will use these texts to identify and to analyze diverse ancient forms of Judaism and Christianity. The sources of texts include the Old Testament Pseudepigrapha, the Dead Sea Scrolls, the New Testament Apocrypha, and the Nag Hammadi Library."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-223", 
-    "title": "Christianity and Its Modern Critics", 
-    "pre_req": "REL 101, 111 or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HIST,HEPT,REL", 
-    "desc": "A survey of the more prominent critics and criticisms of Western Christianity from the Enlightenment to the present. Students will engage critics from a variety of spheres, including philosophy, theology, politics, science, literature, journalism, and popular culture. Criticisms of traditional Christian beliefs in the existence of God, the afterlife, and the possibility of miracles, among others, will be addressed, as will accusations of Christianity's detrimental influence on constructions of race, gender, and sexuality."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
     "name": "ART-239", 
     "title": "Special Topics: Art of the 20th Century", 
     "pre_req": null, 
@@ -16823,7 +16669,7 @@
     "capacity": 15, 
     "name": "MATH-327", 
     "title": "Applied Statistics I", 
-    "pre_req": "MATH 321, BIO 256, PSYC 350, SOC 350, ECON 242, or MGT 150", 
+    "pre_req": "MATH 115, MATH 321, MATH 322, BIO 256, PSYC 350, SOC 350, ECON 242, or MGT 150", 
     "dept": "MATH", 
     "credit_hrs": 4, 
     "gen_eds": "QUANT", 
@@ -16866,23 +16712,23 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "HIST-111", 
-    "title": "Survey of US History to 1877", 
+    "title": "Survey of US History Part One", 
     "pre_req": null, 
     "dept": "HIST", 
     "credit_hrs": 4, 
     "gen_eds": "HIST,HBSSM", 
-    "desc": "This course surveys American history from the early colonial period to the end of Reconstruction in 1877. Topics are wide-ranging and include society, politics and culture but the overall theme emphasizes the evolution of the New England colonies, the Middle Colonies, the Chesapeake,and the Lower South into coherent regions with different economies, social structures and cultural attributes. The course then explores how these various regions successfully cooperated with one another long enough to engage in an independence movement that separated them from Great Britain and created the United States. These regional differences lived on into the nineteenth century, however, and became the basis for the sectional conflict which erupted into Civil War in 1861. The course closes with the successes and failures of Reconstruction policy as a bridge to later American history."
+    "desc": "This course surveys American history from the early colonial period to the end of Reconstruction in 1877. Topics are wide-ranging and include the geographic and social evolution of the New England colonies, the Middle Colonies, the Chesapeake, and the Lower South into coherent regions with different economies, social structures and cultural attributes. The course then explores how these various regions successfully cooperated politically with one another long enough to engage in an independence movement that separated them from Great Britain and created the United States. But political, economic and social differences lived on into the nineteenth century, however, and became the basis for the geographic and sectional conflict which erupted into Civil War in 1861. The course closes with the political and economic successes and failures of Reconstruction policy as a bridge to later American history. "
   }, 
   {
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "HIST-112", 
-    "title": "Survey of US History Since 1877", 
+    "title": "Survey of US History Part Two", 
     "pre_req": null, 
     "dept": "HIST", 
     "credit_hrs": 4, 
     "gen_eds": "HIST,HBSSM,INTCL", 
-    "desc": "This course surveys American history since Reconstruction, exploring transformations in American politics, society, and culture. Though it is wide-ranging, it has as a unifying theme the question of how and why people have defined the American nation in different ways, and how those ideas have related to race and gender. Topics covered include the end of the westward expansion after the Civil War and Indian resistance, industrialization, immigration, World War I, African American migration and cultural innovation, the cultural turmoil of the 1920s, the Depression and New Deal, the Second World War at home and abroad, the Cold War, the Civil Rights Movement, feminism, other social movements, the Vietnam war and the anti-war movement, cultural politics in the 1970s, the new conservatism and 1980s culture wars, the 1990s, 9/11, the Gulf War, and the Iraq and Afghanistan Wars."
+    "desc": "This course surveys American history since Reconstruction, exploring transformations in American geography, politics, economics, society, and culture. The course has, as a unifying theme the question of how and why people have defined the American nation in different ways, and how those ideas have related to race and gender. Topics covered include the end of the westward expansion after the Civil War, Indian resistance, industrialization, the Populist political movement, immigration, the successes and failures of the Progressive movement, the First World War, African American migration and cultural innovation, the cultural turmoil of the 1920s, the Depression and New Deal, the Second World War at home and abroad, the Cold War, the Civil Rights Movement, feminism, other social movements, the Vietnam war and the anti-war movement, cultural politics in the 1970s, the Reagan Revolution and the 1980s culture wars, Republican and Democratic party battles of the 1990s, 9/11 and its aftermath, and the Iraq and Afghanistan Wars. "
   }, 
   {
     "division": null, 
@@ -17425,14 +17271,14 @@
   }, 
   {
     "division": null, 
-    "capacity": 12, 
+    "capacity": 20, 
     "name": "ENVS-220", 
-    "title": "Environmental Geochemistry", 
-    "pre_req": "ENVS 134 and CHEM 152 or 201", 
+    "title": "Earth System Biogeochemistry", 
+    "pre_req": "ENVS 134 and CHEM 141, 152 or 201", 
     "dept": "ENVS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "In this course we will focus on chemical reactions in the environment in order to understand the properties and behavior of air, soil and water. We will apply this understanding to environmental issues such as resource extraction, energy production, toxic waste disposal and climate engineering while also exploring the ways in which chemistry can be used as a tool to increase our understanding of environmental processes, both in the present and in Earth's geologic past. Labs include both fieldwork and laboratory analyses. Offered alternate years."
+    "desc": "In this course we will focus on the interacting biological, chemical, and geologic processes that combine to control the properties and behavior of the atmosphere, ocean, and terrestrial environments. Students will apply chemical principles to understand both natural and anthropogenic influences on surface environmental conditions such as nutrient availability, soil and water quality, chemical pollution, ocean chemistry, and global climate. Students will also learn how chemical tracers can be used as tools for understanding environmental processes both now and in the Earth's geologic past. Labs emphasize techniques for chemical analysis and environmental problem solving. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -17514,13 +17360,13 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-239", 
-    "title": "ST: Clamoring for Change:yChristianity and Social Change", 
+    "name": "REL-234", 
+    "title": "Clamoring for Change:\u00fdChristianity and Social Change", 
     "pre_req": "    Take REL-101 REL-111 or REL-112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HB,REL", 
-    "desc": "It is hard to think of a more common political watchword than \"change.\" A demand for change dominates both our national political discourse and the current global political discourse. A demand for change is also inherent in Christian scriptures. This seminar-style course will be an exploration into the concept of \"change.\" What exactly is change? When demanding change, who are the ones who need to change and why? How is change best accomplished? Since change implies power, what is the relationship between change and power? In exploring these and other questions, the course will consider what (if any) role and/or contribution Christianity might have in effecting change-both individual and social. The course will engage in a critique of the \"world-changing\" political theologies of both the Christian Right and Christian Left. In examining these modern theologies, the course will (re)examine the New Testament concept of metanoia, \"repentance,\" considering it as a way of thinking about change-juxtaposing the traditional Christian understanding of \"repentance\" as individual remorse and personal transformation against an understanding of repentance as a radical and fundamental change in thinking and living that results in both individual and societal change."
+    "desc": "A demand for change is inherent in Christian scriptures. This course will be an exploration into the concept of \"change.\" What exactly is change? When demanding change, who are the ones who need to change and why? How is change best accomplished? Since change implies power, what is the relationship between change and power? In exploring these and other questions, the course will consider what (if any) role and/or contribution Christianity might have in effecting change, both individual and social. The course will engage in a critique of the \"world-changing\" political theologies of both the Christian Right and the Christian Left. In examining these modern theologies, the course will (re)examine the New Testament concept of metanoia, \"repentance,\" considering it as a way of thinking about change, juxtaposing the traditional Christian understanding of repentance as individual remorse and personal transformation against an understanding of repentance as a radical and fundamental change in thinking and living that results in both individual and societal change. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -17543,17 +17389,6 @@
     "credit_hrs": 4, 
     "gen_eds": "HEPT,REL", 
     "desc": "This course allows students to develop both knowledge of a key body of mythology and an important technique for the analysis of mythology. The course involves critical reflection on the category of myth and the development of a sophisticated understanding of the nature of mythology. In particular we will explore the writings and methods of Claude L\u201avi-Strauss and the development of those methods by later Neo-Structuralist thinkers. Students will then use these techniques to undertake their own original analysis of a body of mythology of their choosing. This can include, but need not be restricted to, Classical Mythology, Scandinavian Mythologies, Hebrew Mythology, Celtic Mythology and Asian Mythologies. By the end of the course students will be able to reflect critically on the term mythology, be familiar with a core set of texts discussing the analysis of mythology, have demonstrated some degree of mastery of a core technique for the analysis of mythology and have developed an in depth knowledge of an area of mythology of their own choosing."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 25, 
-    "name": "REL-231", 
-    "title": "Psychology and Religion", 
-    "pre_req": "REL 101, 111, or 112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "HE,REL", 
-    "desc": "This course explores the intersections between psychology and religion. It examines how psychological theories can illuminate religious practices and rituals and what religious texts and beliefs can contribute to the understanding of the human mind. In particular, the course focuses on similarities between the trajectory of spiritual progress as proposed in selected religious texts and Analytical Psychology, the use of meditation techniques and rituals in therapy, and the recent dialogue between Buddhist psychology and Cognitive Science. In its analysis of religious rituals, texts, and practices, the course focuses predominantly on spiritual guides, ritual manuals, and meditation theory from Buddhism, Christianity, and Daoism."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -18141,13 +17976,13 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 16, 
-    "name": "ENG-239", 
+    "name": "ENG-263", 
     "title": "In Frankenstein's Footstep: theyKeats-Shelley Circle in London, Geneva,yAnd Italy", 
     "pre_req": "Take Paideia 111 and 112 or transfer equivalent, and consent of instructor.", 
     "dept": "ENG", 
     "credit_hrs": 4, 
     "gen_eds": "HIST,HEPT", 
-    "desc": "Mary Shelley composed her famous novel Frankenstein (1816) amid a whirlwind of personal turmoil, important friendships, and significant travel. This course will retrace the path of her journeys from childhood to Frankenstein, visiting sites associated with her and her circle - including John Keats, Percy Shelley, and Lord Byron - in London, Switzerland, and Italy, as we investigate the relationships between an author's historical and imaginative realities. "
+    "desc": "Mary Shelley composed her famous novel Frankenstein (1816) amid a whirlwind of personal turmoil, important friendships, and significant travel. This course will retrace the path of her journeys from childhood to Frankenstein, visiting sites associated with her and her circle - including John Keats, Percy Shelley, and Lord Byron - in London, Geneva, Venice, Florence, and Rome, as we investigate the relationships between an author's historical and imaginative realities. "
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -18616,7 +18451,7 @@
     "capacity": 18, 
     "name": "REL-370", 
     "title": "Theology and Religious Diversity", 
-    "pre_req": "REL 101, 111, or 112.", 
+    "pre_req": "REL 101, 111, or 112; PAID 111D and PAID 112D or transfer equivalents", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT,INTCL,REL", 
@@ -18676,17 +18511,6 @@
     "credit_hrs": 4, 
     "gen_eds": "HE", 
     "desc": "Communicating through graphical and visual means is an important skill that all scientists need to master.  In this course, students learn to translate their scientific understanding into illustrative visual representations and to make effective, aesthetically pleasing figures for presentations and publications.  Drawing from the cognitive sciences and making use of Italy's long art history, students explore the connections between art, science, and our sense of the aesthetic in order to develop their own skills in the visual communication of scientific information. Prerequisite:  Admission into Earth and Environment in Italy program."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
-    "capacity": 777, 
-    "name": "REL-364", 
-    "title": "Topics in Asian Religion:JapaneseyPhilosophy", 
-    "pre_req": "Take Rel-101 Rel-111 or Rel-112", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL", 
-    "desc": null
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -19731,7 +19555,7 @@
     "dept": "THE", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "An introduction to the principles of production skills with lab practice in solo performance, group scene performances, design, technical theatre and production.  Consent of instructor required."
+    "desc": "An introduction to the principles of production skills with lab practice in solo performance, group scene performances, design, technical theatre and production.  "
   }, 
   {
     "division": "History and Social Sciences", 
@@ -19883,7 +19707,7 @@
     "title": "Directed Study", 
     "pre_req": null, 
     "dept": "HLTH", 
-    "credit_hrs": 2, 
+    "credit_hrs": 1, 
     "gen_eds": null, 
     "desc": "An opportunity to pursue individualized or experiential learning with a faculty member, at the sophomore level or above, either within or outside the major. Offered only during January term."
   }, 
@@ -20086,17 +19910,6 @@
     "desc": "An in-depth study of the archaeology of ancient Greece, with a focus on the high points of Greek civilization and material culture during the Classical and Hellenistic periods.  We will examine archaeological methods along with developments in technology, architecture, sculpture, painting, and the minor arts.  We will also consider the nature of archaeological evidence, the relationship between classical archaeology and history, and the legacy of Athens and the classical world in modern culture. Offered alternate years."
   }, 
   {
-    "division": "History and Social Sciences", 
-    "capacity": 25, 
-    "name": "COMS-280", 
-    "title": "Communication and Aging", 
-    "pre_req": null, 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": "HB", 
-    "desc": "This course will acquaint students with theory and research to increase understanding of the role of communication in the aging process.  Topics covered include the social construction of age, sterotypes and myths, media portrayals, media usage, intergenerational communication in the family and workforce, the relationships of elderly within peer cohorts, and health communication during the life span.  Learning will occur through readings, discussion, projects, and media analysis."
-  }, 
-  {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "CLAS-275", 
@@ -20143,8 +19956,8 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-239", 
-    "title": "Special Topic:Islamophobia", 
+    "name": "REL-238", 
+    "title": "Islamophobia", 
     "pre_req": "Take Rel-101 Rel-111 or Rel-112", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -20502,17 +20315,6 @@
     "credit_hrs": 4, 
     "gen_eds": null, 
     "desc": "This course will take a critical look at diets (low-fat vs low-carb); the research of Ancel Keys, which led to the establishment of the USDA food pyramid; and the role of food science in the development of \"irrestible\" foods.  Students will examine health and nutrition claims with the goal of understanding the fundamentals of the argument and to discern whether or not a claim is validated scientifically.  The role of drugs to treat nutrition-related illnesses (like diabetes and high cholesterol) will be included."
-  }, 
-  {
-    "division": "History and Social Sciences", 
-    "capacity": 20, 
-    "name": "COMS-247", 
-    "title": "Electronic News Gathering", 
-    "pre_req": "COMS 133", 
-    "dept": "COMS", 
-    "credit_hrs": 4, 
-    "gen_eds": null, 
-    "desc": "In the modern technological environment, journalists construct the news for a variety of media in a style that is fast-paced, visual, and highly standardized.  This project-based course explores the process of establishing a story focus, gathering appropriate audio and video, scripting, presentation, and final editing to produce spot news packages.  At the same time, students will be challenged to critique both the process, as well as the structure of the news industry, and to consider social, legal, ethical, and aesthetic issues that affect audience perceptions of newsworthy events. Offered alternate years. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -20989,9 +20791,9 @@
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
-    "capacity": 40, 
+    "capacity": 50, 
     "name": "NURS-480", 
-    "title": "Senior Leadership Capstone", 
+    "title": "Leadership Capstone", 
     "pre_req": "NURS 370, 371, 372, 373, 375, 376, 377, 378, 382, 384, 386, 388, 390", 
     "dept": "NURS", 
     "credit_hrs": 4, 
@@ -21190,7 +20992,7 @@
     "capacity": 16, 
     "name": "BIO-358", 
     "title": "Toxicology", 
-    "pre_req": "BIO 151, 152, and BIO 255 or BIO 252 or CHEM 241.", 
+    "pre_req": "BIO 151, 152, and BIO 255 or BIO 262 or CHEM 241.", 
     "dept": "BIO", 
     "credit_hrs": 4, 
     "gen_eds": null, 
@@ -22180,7 +21982,7 @@
     "capacity": 25, 
     "name": "EDUC-387", 
     "title": "High School Choral Methods", 
-    "pre_req": "Admission to Teacher Education program and EDUC 361", 
+    "pre_req": "Admission to Teacher Education program", 
     "dept": "EDUC", 
     "credit_hrs": 2, 
     "gen_eds": null, 
@@ -22586,12 +22388,12 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "PHIL-260", 
-    "title": "Feminist Philosophy", 
-    "pre_req": "One course in PHIL or two courses in WGST", 
+    "title": "Identity and Power", 
+    "pre_req": "One course in PHIL or one course in WGST", 
     "dept": "PHIL", 
     "credit_hrs": 4, 
-    "gen_eds": "HEPT", 
-    "desc": "Examination of feminist philosophies, including issues in epistemology, ethics, social philosophy, political philosophy, philosophy of religion and historical interpretation. Focus on the challenges which feminist theory presents to traditional philosophical assumptions in the Western tradition. Offered alternate years. (Same as WGST 260)"
+    "gen_eds": "HEPT,HB", 
+    "desc": "A study of contemporary feminist political thought, concentrating on the ways social categories such as race, class, gender, and sexuality interact with each other.  Attention will be paid to the way power structures contribute to limiting or expanding human freedom and to feminist methodologies.  Fulfills theory requirement in WGST.  Offered alternative years.  (Same as WGST 260)"
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -22763,7 +22565,7 @@
     "capacity": 25, 
     "name": "PHIL-330", 
     "title": "Minds, Brains, and Persons", 
-    "pre_req": "take two courses in philosophy, or at least one course in psychology or neuroscience numbered 300 and above.", 
+    "pre_req": "Take two courses in philosophy, psychology, or neuroscience", 
     "dept": "PHIL", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT", 
@@ -23036,7 +22838,7 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-215", 
+    "name": "REL-258", 
     "title": "Sacred Texts & Religious Diversity", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
@@ -23070,7 +22872,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-239", 
-    "title": "ST: Politicis, Murder, and Cover-Up: A Postcolonial Reading of the Books ofySamuel", 
+    "title": "ST: Politicis, Murder, and Cover-Up:yA Postcolonial Reading of the Books ofySamuel", 
     "pre_req": "Take Rel 101, 111 or 112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -23126,7 +22928,7 @@
     "capacity": 18, 
     "name": "REL-371", 
     "title": "Jesus and Jihad: A New Approach toyComparative Religion", 
-    "pre_req": "REL 101, 111, or 112.", 
+    "pre_req": "REL 101, 111, or 112; PAID 111D and PAID 112D or transfer equivalents", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "REL", 
@@ -23718,13 +23520,13 @@
   {
     "division": null, 
     "capacity": 25, 
-    "name": "ENVS-239", 
-    "title": "Special Topic:Rivers and Society", 
+    "name": "ENVS-248", 
+    "title": "Rivers and Society", 
     "pre_req": "Complete Paideia 111, 112 or transfer equivalents.", 
     "dept": "ENVS", 
     "credit_hrs": 4, 
     "gen_eds": "HB", 
-    "desc": "Rivers are important environmental, cultural, and economic features in the landscape, yet we struggle to manage them sustainably.  Using rivers as an integrating element, the course draws from multidisciplinary perspectives to understand social dependence on river systems, as well as human modification and management of river environments.  In particular, we will examine cultural meanings of rivers in the arts; the politics of dams; rivers and pollution policy; water rights and water conflicts; fishing culture and fisheries policy; and river recreation and restoration.  We will ground our examination in case studies of rivers, ranging from the local Upper Iowa River, to the Mississippi, to major river systems of the world, such as the Ganges, the Yangtze, and the Amazon."
+    "desc": "Rivers are important environmental, cultural, and economic features in the landscape, yet we struggle to manage them sustainably.  Using rivers as an integrating element, the course draws from multidisciplinary perspectives to understand social dependence on river systems, as well as human modification and management of river environments.  In particular, we will examine cultural meanings of rivers in the arts; the politics of dams; rivers and pollution policy; water rights and water conflicts; fishing culture and fisheries policy; and river recreation and restoration.  We will ground our examination in case studies of rivers, ranging from the local Upper Iowa River, to the Mississippi, to major river systems of the world, such as the Ganges, the Yangtze, and the Nile."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -23827,14 +23629,14 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 16, 
-    "name": "REL-264", 
-    "title": "Disaster and Enlightenment: PilgrimagesyIn Japan and China", 
+    "capacity": 22, 
+    "name": "REL-236", 
+    "title": "Disaster and Enlightenment: Pilgrimages\u00fdEast Asia", 
     "pre_req": "REL 101, 111, or 112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HE,INTCL,REL", 
-    "desc": "This course explores traditional and new forms of pilgrimages in China and Japan. In particular, it examines two kinds of pilgrimages: traditional ones to sacred mountains, sanctuaries, and other religious pilgrimage sites, on the one side, and pilgrimages to memorials that commemorate immense natural and human catastrophes in Sendai (3/11 earthquake and tsunami), Hiroshima (dropping of the atomic bomb), and Nanjing (1937/8 massacre), on the other. What connects these two kinds of pilgrimages is the importance attributed to memory, the desire for healing, and the need for reflection. The goal of this course is to investigate the religious and political dimensions of memory, self-cultivation, and contemplation. The course accomplishes this goal by examining questions such as: what is the social dimension of religious pilgrimages, what is the moral dimension of memory, and what is the spiritual dimension of healing and reconciliation? Offered only during January term."
+    "desc": "This course explores traditional and new forms of pilgrimages in East Asia. In particular, it examines two kinds of pilgrimages: traditional ones to sacred mountains, sanctuaries, and other religious pilgrimage sites, on the one side, and pilgrimages to memorials that commemorate immense natural and human catastrophes such as Hiroshima (dropping of the atomic bomb) and Nanjing (1937/8 massacre), on the other. What connects these two kinds of pilgrimages is the importance attributed to memory, the desire for healing, and the need for reflection. The goal of this course is to investigate the religious and political dimensions of memory, self-cultivation, and contemplation. The course accomplishes this goal by examining questions such as: what is the social dimension of religious pilgrimages, what is the moral dimension of memory, and what is the spiritual dimension of healing and reconciliation? Offered only during January term. "
   }, 
   {
     "division": "History and Social Sciences", 
@@ -24038,7 +23840,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 18, 
     "name": "REL-339", 
-    "title": "Special Topic: Beyond Conversion andyPersuasion:Reinterpreting DominantyBiblical (and Christian) Portrayals ofyConversion", 
+    "title": "Beyond Persuasion and Conversion\u00fdBiblical (and Christian) Portrayals of", 
     "pre_req": "Take Rel-101, Rel-111 or Rel-112", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -24048,13 +23850,13 @@
   {
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
-    "name": "REL-265", 
-    "title": "Religious Narratives in Japan: Demons,ySex, and Martial Arts", 
+    "name": "REL-202", 
+    "title": "From Buddhist Texts to Anime", 
     "pre_req": "Take Rel-101 Rel-111 or Rel-112", 
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": "HEPT,INTCL,REL", 
-    "desc": "This course examines religious themes in and the religious function of various narrative forms in Japan. The narratives studied in this course assume a spiritual topography that includes demons, ghosts, and gods, probe the gender and sexual identities of their characters, and introduce self-cultivation techniques such as martial arts. In particular, this course will focus on two traditional, narrative forms, Kabuki and No, and two contemporary ones, Manga and Anime. Some Kabuki and No plays function as religious ritual, while some Manga and Anime consciously reflect on moral attitudes and religious beliefs. These forms are also the product of various interactions among Japanese, Chinese, and American cultures. Analyzing these four kinds of cultural and religious expressions, the course examines the role of religious ritual and sacred texts in premodern as well as contemporary Japan. The course introduces students to religious studies methodology, critical theory (including gender and queer studies), and intercultural analysis. It will also deepen the skills in textual and literary criticism introduced in the courses fulfilling the Bible requirement. This course exposes students equally to the study of Japanese culture and the religious phenomenon. "
+    "desc": "This course examines religious themes in and the religious function of various narrative forms in Japan. The course will examine primary scriptures and commentaries from the Buddhist tradition as well as ghost stories, poems, plays (No and Kabuki), novels, manga, and anime. These literary forms are a product of various interactions among the Japanese, Chinese, and American cultures. Analyzing these kinds of cultural and religious expressions, the course examines the role of religious ritual and sacred texts in pre-modern as well as contemporary Japan. The course deepens the skills in textual and literary criticism introduced in the courses fulfilling the Bible requirement. It will also introduce students to critical theory (including gender and queer studies), and intercultural analysis. This course exposes students equally to the study of Japanese culture and various methods of textual interpretation. "
   }, 
   {
     "division": "History and Social Sciences", 
@@ -24071,7 +23873,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "ART-222", 
-    "title": "Art and Community:yIntroductory Art Methods & Materials", 
+    "title": "Art and Community:\u00fdIntroductory Art Methods & Materials", 
     "pre_req": null, 
     "dept": "ART", 
     "credit_hrs": 2, 
@@ -24170,7 +23972,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "SPAN-335", 
-    "title": "Cultural Expressions of the HispanicyWorld", 
+    "title": "Cultural Expressions of the Hispanic\u00fdWorld", 
     "pre_req": "Take Span-303", 
     "dept": "SPAN", 
     "credit_hrs": 4, 
@@ -24181,7 +23983,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 1, 
     "name": "THE-239", 
-    "title": "Special Topic: Washington TheateryExperience (Washington Consortium)", 
+    "title": "Special Topic: Washington Theater\u00fdExperience (Washington Consortium)", 
     "pre_req": null, 
     "dept": "THE", 
     "credit_hrs": 4, 
@@ -24214,7 +24016,7 @@
     "division": null, 
     "capacity": 16, 
     "name": "PAID-450", 
-    "title": "Cold Wars Then and Now:Germany, CzechyRepublic, and Ukraine", 
+    "title": "Cold Wars Then and Now:Germany, Czech\u00fdRepublic, and Ukraine", 
     "pre_req": null, 
     "dept": "PAID", 
     "credit_hrs": 4, 
@@ -24225,7 +24027,7 @@
     "division": null, 
     "capacity": 24, 
     "name": "PAID-450", 
-    "title": "Dao, Mao, Now:Chinese Perspectives onyChange", 
+    "title": "Dao, Mao, Now:Chinese Perspectives on\u00fdChange", 
     "pre_req": null, 
     "dept": "PAID", 
     "credit_hrs": 4, 
@@ -24577,7 +24379,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-239", 
-    "title": "Special Topics: \"Black Lives Matter\": A Biblical Theology ofyConfrontation", 
+    "title": "Special Topics: \"Black Lives Matter\":yA Biblical Theology ofyConfrontation", 
     "pre_req": "Take Rel-101 Rel-111 or Rel-112.", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -24588,7 +24390,7 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "AFRS-239", 
-    "title": "Special Topics: \"Black Lives Matter\": A Biblical Theology ofyConfrontation", 
+    "title": "Special Topics: \"Black Lives Matter\":yA Biblical Theology ofyConfrontation", 
     "pre_req": "Take Rel-101 Rel-111 or Rel-112.", 
     "dept": "AFRS", 
     "credit_hrs": 4, 
@@ -24665,23 +24467,23 @@
     "division": "History and Social Sciences", 
     "capacity": 22, 
     "name": "COMS-239", 
-    "title": "Special Topic:Euro 2016: SocceryCoaching Methods and Sport Media", 
+    "title": "Special Topic: How Soccer ExplainsyEurope: Coaching Methods and CriticalyApproaches", 
     "pre_req": "Take Coms-260", 
     "dept": "COMS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "Utilizing the 2016 UEFA European Championship as a backdrop, this course will examine all facets of coaching (specifically the coaching of soccer), as well as investigate the roles of sport media and the general impact of soccer on communities. Using various texts, videos, lectures and on-field discussions, we will engage in not only the technical/tactical aspects of the game of soccer, but also how to manage the different facets of running a soccer team. Additionally, we will juxtapose the coaching methods, tactics and technical nuances of the National Soccer teams of the countries we will be visiting. Furthermore, we will study the important cultural, social, and political roles of soccer in these locations, as well as worldwide. To recognize how soccer, as well as mediated soccer, can be approached critically and read in different ways, topics such as globalization, nationalism, labor migration, hooliganism, fandom, identification, and commercialism will be discussed and critiqued. "
+    "desc": "This course will examine all facets of coaching, specifically the coaching of soccer, as well as investigate the roles of sport media and the general impact of soccer on communities. Using various texts, videos, lectures, and on-field discussions, we will engage in not only the technical/tactical aspects of the game of soccer, but also how to manage the different facets of running a soccer team. Additionally, we will juxtapose the coaching methods, tactics and technical nuances of the different nations we will be visiting. Furthermore, we will study the important cultural, social, and political roles of soccer in these locations, as well as worldwide. Finally, to recognize how soccer, as well as mediated soccer, can be approached critically and read in different ways, topics such as globalization, nationalism, labor migration, hooliganism, fandom, colonialism, identification, and commercialism will be discussed. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
-    "capacity": 22, 
+    "capacity": 24, 
     "name": "PE-239", 
-    "title": "Special Topic: Euro 2016: SocceryCoaching Methods and Sport Media", 
+    "title": "Special Topic: How Soccer Explains\u00fdEurope: Coaching Methods and Critical\u00fdApproaches", 
     "pre_req": "Take Coms-260", 
     "dept": "PE", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "Utilizing the 2016 UEFA European Championship as a backdrop, this course will examine all facets of coaching (specifically the coaching of soccer), as well as investigate the roles of sport media and the general impact of soccer on communities. Using various texts, videos, lectures and on-field discussions, we will engage in not only the technical/tactical aspects of the game of soccer, but also how to manage the different facets of running a soccer team. Additionally, we will juxtapose the coaching methods, tactics and technical nuances of the National Soccer teams of the countries we will be visiting. Furthermore, we will study the important cultural, social, and political roles of soccer in these locations, as well as worldwide. To recognize how soccer, as well as mediated soccer, can be approached critically and read in different ways, topics such as globalization, nationalism, labor migration, hooliganism, fandom, identification, and commercialism will be discussed and critiqued. "
+    "desc": "This course will examine all facets of coaching, specifically the coaching of soccer, as well as investigate the roles of sport media and the general impact of soccer on communities. Using various texts, videos, lectures, and on-field discussions, we will engage in not only the technical/tactical aspects of the game of soccer, but also how to manage the different facets of running a soccer team. Additionally, we will juxtapose the coaching methods, tactics and technical nuances of the different nations we will be visiting. Furthermore, we will study the important cultural, social, and political roles of soccer in these locations, as well as worldwide. Finally, to recognize how soccer, as well as mediated soccer, can be approached critically and read in different ways, topics such as globalization, nationalism, labor migration, hooliganism, fandom, colonialism, identification, and commercialism will be discussed. "
   }, 
   {
     "division": "History and Social Sciences", 
@@ -24940,7 +24742,7 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "SOC-270", 
-    "title": "Haters Gonna Hate: The Study of HateyCrimes and Hate Groups", 
+    "title": "Haters Gonna Hate: The Study of Hate\u00fdCrimes and Hate Groups", 
     "pre_req": "SOC 101.", 
     "dept": "SOC", 
     "credit_hrs": 4, 
@@ -24951,7 +24753,7 @@
     "division": "History and Social Sciences", 
     "capacity": 24, 
     "name": "SW-239", 
-    "title": "Imagining a Sustainable Future:yScandinavian Models", 
+    "title": "Imagining a Sustainable Future:\u00fdScandinavian Models", 
     "pre_req": null, 
     "dept": "SW", 
     "credit_hrs": 4, 
@@ -24973,7 +24775,7 @@
     "division": null, 
     "capacity": 44, 
     "name": "PAID-450", 
-    "title": "Nordic Environmentalism:Cultures,yEthics, and Politics", 
+    "title": "Nordic Environmentalism:Cultures,\u00fdEthics, and Politics", 
     "pre_req": null, 
     "dept": "PAID", 
     "credit_hrs": 4, 
@@ -25435,7 +25237,7 @@
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 8, 
     "name": "NURS-425L", 
-    "title": "Synthesis of Clinical Practice AcrossyThe Lifespan Lab", 
+    "title": "Synthesis of Clinical Practice Across\u00fdThe Lifespan Lab", 
     "pre_req": null, 
     "dept": "NURS", 
     "credit_hrs": 0, 
@@ -25446,7 +25248,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 15, 
     "name": "PHIL-485", 
-    "title": "Seminar: Contemporary and 20th CenturyyMetaethics", 
+    "title": "Seminar: Contemporary and 20th Century\u00fdMetaethics", 
     "pre_req": "three courses in philosophy", 
     "dept": "PHIL", 
     "credit_hrs": 4, 
@@ -25532,17 +25334,6 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 18, 
-    "name": "REL-364", 
-    "title": "Topics in Asian Relgions: Religion,ySex, and Nationhood: Philosophy ofyReligion in Japan", 
-    "pre_req": "    Take REL-101 REL-111 or REL-112.", 
-    "dept": "REL", 
-    "credit_hrs": 4, 
-    "gen_eds": "REL", 
-    "desc": "This course will explore the notion of \"religion\" in the Japanese traditions. It traces the development of what is now called \"religion\" through classical, premodern, modern, and contemporary texts of Shinto, Buddhism, Confucianism, and Christianity in Japan. It explores interactions among and between these \"traditions.\" In particular, the course examines conceptions of \"religion,\" beliefs about the self, the world, and the beyond, investigations into cognitive processes, constructions of gender and sexuality, as well as moral and political theories found in these texts."
-  }, 
-  {
-    "division": "Humanities and Fine Arts", 
     "capacity": 15, 
     "name": "REL-485", 
     "title": "Seminar: Constructive Theologies", 
@@ -25550,13 +25341,13 @@
     "dept": "REL", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "A feature of contemporary theological thought is its capacity to dialogue with and draw from multiple areas of knowledge. By becoming more interdisciplinary and intersectional, theological discourses and practices have been able to present an array of constructive theologies. Pulling from fields such as literary criticism, continental philosophy, political science, or ecological thought (to mention a few) has afforded new intellectual engagement to theological questions, particularly those related to the orthopraxy of contextual theological movements. These constructive theologies identify overlapping social identities and related systems of oppression, while also pointing out modes of liberation drawn from the strategies presented by these contextual movements. Among the authors to be studied are Catherine Keller (Cloud of the Impossible: Negative Theology and Planetary Entanglement ), Kelly Brown Douglas (Stand Your Ground: Black Bodies and the Justice of God), J\u0081rgen Moltmann (The Living God and the Fullness of Life), Kristin Johnston Largen (Baby Krishna, Infant Christ: A Comparative Theology of Salvation) and Robert C. Saler (Between Magisterium and Marketplace: A Constructive Account of Theology and the Church)."
+    "desc": "A feature of contemporary theological thought is its capacity to dialogue with and draw from multiple areas of knowledge. By becoming more interdisciplinary and intersectional, theological discourses and practices have been able to present an array of constructive theologies. Pulling from fields such as literary criticism, continental philosophy, political science, or ecological thought (to mention a few) has afforded new intellectual engagement to theological questions, particularly those related to the orthopraxy of contextual theological movements. These constructive theologies identify overlapping social identities and related systems of oppression, while also pointing out modes of liberation drawn from the strategies presented by these contextual movements. Among the authors to be studied are Catherine Keller (Cloud of the Impossible: Negative Theology and Planetary Entanglement ), Kelly Brown Douglas (Stand Your Ground: Black Bodies and the Justice of God), J\u00fcrgen Moltmann (The Living God and the Fullness of Life), Kristin Johnston Largen (Baby Krishna, Infant Christ: A Comparative Theology of Salvation) and Robert C. Saler (Between Magisterium and Marketplace: A Constructive Account of Theology and the Church)."
   }, 
   {
     "division": "History and Social Sciences", 
     "capacity": 15, 
     "name": "POLS-485", 
-    "title": "Seminar:2016 American PresidentialyElection", 
+    "title": "Seminar:2016 American Presidential\u00fdElection", 
     "pre_req": null, 
     "dept": "POLS", 
     "credit_hrs": 4, 
@@ -25611,7 +25402,7 @@
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "WGST-290", 
-    "title": "Gender & Woman's History: a New WorldyOf Gender Relations, 1600-1820", 
+    "title": "Gender & Woman's History: a New World\u00fdOf Gender Relations, 1600-1820", 
     "pre_req": null, 
     "dept": "WGST", 
     "credit_hrs": 4, 
@@ -25704,7 +25495,7 @@
     "dept": "ENVS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "The causes and consequences of many environmental problems are increasingly understood on a scientific level, yet paradoxically, advances in scientific understanding have often failed to translate into meaningful and effective societal responses. Nowhere is this paradox more apparent than in the challenge of global climate change, which has revealed many of the inherent difficulties - from psychological to political - in addressing scientifically and societally complex environmental issues.  With a particular focus on climate change, this seminar explores the many dimensions of the human response to environmental challenges and analyzes strategies for promoting sustainable behaviors by individuals and organizations. Students will gain literacy in basic climate science while also exploring the intersections between scientific knowledge, communication, and decision-making. This course is conducted in seminar format, and assignments emphasize oral, written, and graphic communication skills. "
+    "desc": "The causes and consequences of many environmental problems are increasingly understood on a scientific level, yet paradoxically, advances in scientific understanding have often failed to translate into meaningful and effective societal responses. Nowhere is this paradox more apparent than in the challenge of global climate change, which has revealed many of the inherent difficulties - from psychological to cultural to political - in addressing scientifically and societally complex environmental issues. In this seminar, students explore the roots of our collective inaction on climate change, and evaluate ways of approaching and communicating about both climate change and its solutions that hold promise for building consensus and achieving meaningful collective action to address climate change. The course is conducted in seminar format; students will participate in and lead class discussions, make presentations, and conduct an extended independent project (W)."
   }, 
   {
     "division": null, 
@@ -25715,7 +25506,7 @@
     "dept": "ENVS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "The causes and consequences of many environmental problems are increasingly understood on a scientific level, yet paradoxically, advances in scientific understanding have often failed to translate into meaningful and effective societal responses. Nowhere is this paradox more apparent than in the challenge of global climate change, which has revealed many of the inherent difficulties - from psychological to political - in addressing scientifically and societally complex environmental issues.  With a particular focus on climate change, this seminar explores the many dimensions of the human response to environmental challenges and analyzes strategies for promoting sustainable behaviors by individuals and organizations. Students will gain literacy in basic climate science while also exploring the intersections between scientific knowledge, communication, and decision-making. This course is conducted in seminar format, and assignments emphasize oral, written, and graphic communication skills. "
+    "desc": "The causes and consequences of many environmental problems are increasingly understood on a scientific level, yet paradoxically, advances in scientific understanding have often failed to translate into meaningful and effective societal responses. Nowhere is this paradox more apparent than in the challenge of global climate change, which has revealed many of the inherent difficulties - from psychological to cultural to political - in addressing scientifically and societally complex environmental issues. In this seminar, students explore the roots of our collective inaction on climate change, and evaluate ways of approaching and communicating about both climate change and its solutions that hold promise for building consensus and achieving meaningful collective action to address climate change. The course is conducted in seminar format; students will participate in and lead class discussions, make presentations, and conduct an extended independent project (W)."
   }, 
   {
     "division": "Humanities and Fine Arts", 
@@ -25732,7 +25523,7 @@
     "division": "History and Social Sciences", 
     "capacity": 24, 
     "name": "POLS-239", 
-    "title": "Special Topic: Development, Inequality,yand Race in Brazil", 
+    "title": "Special Topic: Development, Inequality,\u00fdand Race in Brazil", 
     "pre_req": null, 
     "dept": "POLS", 
     "credit_hrs": 4, 
@@ -26049,10 +25840,10 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 6, 
+    "capacity": 20, 
     "name": "ART-309", 
     "title": "2D Studio II", 
-    "pre_req": "ART 209", 
+    "pre_req": "ART 200, 206, 208, 209, 216 or 218", 
     "dept": "ART", 
     "credit_hrs": 4, 
     "gen_eds": null, 
@@ -26073,7 +25864,7 @@
     "division": "History and Social Sciences", 
     "capacity": 20, 
     "name": "EDUC-354", 
-    "title": "Elementary School Art Content, Methods,yand Assessment", 
+    "title": "Elementary School Art Content, Methods,\u00fdand Assessment", 
     "pre_req": "ART 222, EDUC 185 or 215, and Admittance to Teacher Educ Program", 
     "dept": "EDUC", 
     "credit_hrs": 2, 
@@ -26173,7 +25964,7 @@
     "capacity": 12, 
     "name": "ART-210", 
     "title": "Ceramics I", 
-    "pre_req": "ART 111", 
+    "pre_req": "Recommended 100 level Art course, ART 111 preferred.", 
     "dept": "ART", 
     "credit_hrs": 4, 
     "gen_eds": "HE", 
@@ -26194,7 +25985,7 @@
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 25, 
     "name": "DS-320", 
-    "title": "Data Analysis andyVisualization", 
+    "title": "Data Analysis and\u00fdVisualization", 
     "pre_req": "CS 150; MATH 115 or equivalent college level statistics course", 
     "dept": "DS", 
     "credit_hrs": 4, 
@@ -26470,7 +26261,7 @@
     "capacity": 25, 
     "name": "MUS-239", 
     "title": "St: Johann Sebastian Bach", 
-    "pre_req": "MUS 121 and MUS 131 or consent of instructor", 
+    "pre_req": "MUS 121 or MUS 131 or consent of instructor", 
     "dept": "MUS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
@@ -26513,7 +26304,7 @@
     "division": "History and Social Sciences", 
     "capacity": 19, 
     "name": "PSYC-185", 
-    "title": "The End of the World As WeyKnow It", 
+    "title": "The End of the World As We\u00fdKnow It", 
     "pre_req": null, 
     "dept": "PSYC", 
     "credit_hrs": 4, 
@@ -26524,7 +26315,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-239", 
-    "title": "Marrige, Divorce, and FamilyyEthics", 
+    "title": "Marrige, Divorce, and Family\u00fdEthics", 
     "pre_req": "REL 101, REL 111, or REL 112", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -26535,7 +26326,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 25, 
     "name": "REL-239", 
-    "title": "Sexual Ethics", 
+    "title": "Special Topic: Sexual Ethics", 
     "pre_req": "REL 101, REL 111, or REL 112", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -26544,9 +26335,9 @@
   }, 
   {
     "division": "Humanities and Fine Arts", 
-    "capacity": 0, 
-    "name": "REL-339", 
-    "title": "R.A.C.E. (Racism and ChristianityyExplored)", 
+    "capacity": 18, 
+    "name": "REL-302", 
+    "title": "R.a.c.e. (racism and\u00fdChristianity Explored)", 
     "pre_req": "PAID 111 and 112 and either REL 101, 111, or 112", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -26623,7 +26414,7 @@
     "division": "Humanities and Fine Arts", 
     "capacity": 15, 
     "name": "REL-485", 
-    "title": "Seminar: Metacriticism of HistoricalyJesus Scholarship", 
+    "title": "Seminar: Metacriticism of Historical\u00fdJesus Scholarship", 
     "pre_req": "Complete 3 courses in Religion", 
     "dept": "REL", 
     "credit_hrs": 4, 
@@ -26656,7 +26447,7 @@
     "division": "History and Social Sciences", 
     "capacity": 15, 
     "name": "POLS-485", 
-    "title": "Seminar: Political MovementyAnd Political Change", 
+    "title": "Seminar: Political Movement\u00fdAnd Political Change", 
     "pre_req": null, 
     "dept": "POLS", 
     "credit_hrs": 4, 
@@ -26687,6 +26478,28 @@
   }, 
   {
     "division": "History and Social Sciences", 
+    "capacity": 15, 
+    "name": "AFRS-371", 
+    "title": "Topics in African History: South Africayand Apartheid", 
+    "pre_req": "PAID 112 or transfer equivalent", 
+    "dept": "AFRS", 
+    "credit_hrs": 4, 
+    "gen_eds": "HBSSM,HIST", 
+    "desc": "\"No one truly knows a nation until he has been inside its jail...\" (Nelson Mandela, 1994): South Africa and Apartheid.  South Africa's past is a painful history of deep racial discrimination, racialized violence, and segregation.  But it is also a history of human resilience and the struggle for freedom and justice.  This resilience is exemplified by the participation of women and men from diverse racial and social backgrounds, who struggled to end the racist policies of apartheid in South Africa.  This course examines the important philosophies underpinning the policy of apartheid and the equally powerful, and at times competing, arguments made by those who sacrificed their lives in opposition to it.  The course will draw on multiple sources including autobiographies, biographies, and films so that students encounter multiple perspectives that will help them weigh the historical evidence regarding the controversies that have marked South African history from 1948 up to the present. (Same as HIST 371)."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 15, 
+    "name": "HIST-371", 
+    "title": "Topics in African History: South Africayand Apartheid", 
+    "pre_req": "PAID 112 or transfer equivalent", 
+    "dept": "HIST", 
+    "credit_hrs": 4, 
+    "gen_eds": "HBSSM,HIST", 
+    "desc": "\"No one truly knows a nation until he has been inside its jail...\" (Nelson Mandela, 1994): South Africa and Apartheid.  South Africa's past is a painful history of deep racial discrimination, racialized violence, and segregation.  But it is also a history of human resilience and the struggle for freedom and justice.  This resilience is exemplified by the participation of women and men from diverse racial and social backgrounds, who struggled to end the racist policies of apartheid in South Africa.  This course examines the important philosophies underpinning the policy of apartheid and the equally powerful, and at times competing, arguments made by those who sacrificed their lives in opposition to it.  The course will draw on multiple sources including autobiographies, biographies, and films so that students encounter multiple perspectives that will help them weigh the historical evidence regarding the controversies that have marked South African history from 1948 up to the present. (Same as AFRS 371)."
+  }, 
+  {
+    "division": "History and Social Sciences", 
     "capacity": 20, 
     "name": "HIST-355", 
     "title": "The Reformation in Renaissance Europe", 
@@ -26695,6 +26508,72 @@
     "credit_hrs": 4, 
     "gen_eds": "HBSSM,HIST,REL", 
     "desc": "An in-depth analysis of the various elements of the Protestant and Catholic Reformations in the context of Renaissance Europe. The focus is on the traditions, beliefs, values and theologies of the Christian religious reformation and the influences on that reformation from the many cross-cultural currents in the sixteenth century, in particular the ideas and methods promoted by the Renaissance thinkers. The course will also include various aspects of social, economic, and political history, as part of the effort to contextualize the reformers' ideas, as well as their impact across society. Offered alternate years."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 0, 
+    "name": "ITAL-98", 
+    "title": "High School Italian - 1 Semester Done", 
+    "pre_req": null, 
+    "dept": "ITAL", 
+    "credit_hrs": 0, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 0, 
+    "name": "ITAL-99", 
+    "title": "High School Italian - 2 Semester Done", 
+    "pre_req": null, 
+    "dept": "ITAL", 
+    "credit_hrs": 0, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 0, 
+    "name": "FREN-460", 
+    "title": "French Electoral Systems and Elections", 
+    "pre_req": "FREN 344, 346, or 348", 
+    "dept": "FREN", 
+    "credit_hrs": 4, 
+    "gen_eds": "HEPT", 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 999, 
+    "name": "PE-285", 
+    "title": "Directed Study", 
+    "pre_req": null, 
+    "dept": "PE", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 999, 
+    "name": "PE-120", 
+    "title": "Athletic Participation: Womens Track", 
+    "pre_req": null, 
+    "dept": "PE", 
+    "credit_hrs": 0, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "IS-395", 
+    "title": "Independent Study", 
+    "pre_req": null, 
+    "dept": "IS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -26708,6 +26587,94 @@
     "desc": null
   }, 
   {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 999, 
+    "name": "CS-285", 
+    "title": "Directed Study", 
+    "pre_req": null, 
+    "dept": "CS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "SCST-381", 
+    "title": "Internship", 
+    "pre_req": null, 
+    "dept": "SCST", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 999, 
+    "name": "DS-380", 
+    "title": "Internship", 
+    "pre_req": null, 
+    "dept": "DS", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "AS-375", 
+    "title": "Directed Reading", 
+    "pre_req": null, 
+    "dept": "AS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "FCUL-285", 
+    "title": "Directed Study", 
+    "pre_req": null, 
+    "dept": "FCUL", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 0, 
+    "name": "CS-339", 
+    "title": "ST:XFR Course since 1988FA", 
+    "pre_req": null, 
+    "dept": "CS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 999, 
+    "name": "NEUR-490", 
+    "title": "Senior Project", 
+    "pre_req": null, 
+    "dept": "NEUR", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 16, 
+    "name": "NEUR-485", 
+    "title": "Neuroscience Seminar", 
+    "pre_req": "BIO 254, NEUR 254, PSYC 249, NEUR 249, BIO 362 or NEUR 362 and junior/senior standing.", 
+    "dept": "NEUR", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This seminar for students completing the neuroscience major will use primarily literature to explore topics spanning the breadth of neuroscience.  Graded credit/no credit.  "
+  }, 
+  {
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "HIST-290", 
@@ -26717,6 +26684,116 @@
     "credit_hrs": 4, 
     "gen_eds": "HBSSM,HIST", 
     "desc": "Faculty teaching this course will focus on the history of gender within their own period of expertise. The course will examine such gender questions as: Why and how should we study the history of gender? What do gender roles from the past tell us about our own gender experience? How do the histories of men and women as gendered persons intersect? The course will focus on these questions as they are related to the history of work, family, politics, and social behavior for the particular period and nation the instructor selects. (Same as WGST 290)"
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "INTS-493", 
+    "title": "Senior Honors Project", 
+    "pre_req": null, 
+    "dept": "INTS", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "Consult specific departmental guidelines."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "ANTH-204", 
+    "title": "This is Not Your Country: AnyAnthropology of Migration", 
+    "pre_req": null, 
+    "dept": "ANTH", 
+    "credit_hrs": 4, 
+    "gen_eds": "HB,INTCL", 
+    "desc": "This Is Not Your Country, is a course intended to capture the broadest possible spectrum of the migration experience: from the violence and suffering caused by practices social, economic, political, and cultural exclusion, to the sympathy and solidarity expressed in practices of inclusion. Students will engage in critical reading of contemporary ethnographies of migration to explore: (1) how global migration flows are shaping the lives of persons who move across national borders, and (2) how these people are affected by practices of social exclusion. The case studies will focus on undocumented migration between Latin America and the United States. From theory, we will move to practice by doing field visits to locations such as the Decorah Community Free Clinic, the Northeast Iowa Peace and Justice Center, and the town of Postville, IA, to learn about the local grassroots and civil society efforts of inclusion of migrants in our immediate community. "
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "ARTH-239", 
+    "title": "Special Topic: Art and Visual Culture\u00fdof the Northern Renaissance", 
+    "pre_req": null, 
+    "dept": "ARTH", 
+    "credit_hrs": 4, 
+    "gen_eds": "HEPT", 
+    "desc": "This course will investigate developments in Netherlandish, French, and German art in the context of the radical cultural changes that swept Europe in the 13th through the 16th centuries."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "ENG-339", 
+    "title": "Special Topic: Migrations in AmericanyLiterature", 
+    "pre_req": "PAID 111, 112 or transfer equivalents", 
+    "dept": "ENG", 
+    "credit_hrs": 4, 
+    "gen_eds": "HEPT", 
+    "desc": "People and resources, wealth and ideologies, liberty and violence all flow in to and out of America. The fiction, drama, and poetry of American literature has long captured the lived experiences of moving and being moved. Columbus's letters back to Spain, settler's accounts of cultural conflict and captivity, diverse slave narratives, Hemingway's portraits of wandering through Europe, a David Henry Hwang play about intersections of gender and race-each text documents and/or imagines lives in migration. We will examine the ways literature can reinforce border walls and community formations and how it can help tear down walls and reconfigure communities. Classmates will also collaborate on a project to put our literary explorations into conversation with matters of American migrations today. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "FREN-339", 
+    "title": "Special Topic: Religions, Secularism,yand the French State", 
+    "pre_req": "FREN 202", 
+    "dept": "FREN", 
+    "credit_hrs": 4, 
+    "gen_eds": "HIST,REL", 
+    "desc": "This course examines the French concept of \"la\u2039cit\u201a\", or secularism, concentrating on whether this republican requirement has led to the exclusion of religious minorities from the French public sphere. Specific topics will include examples of citizens who seek to practice their faith, be it Islam, Judaism, or Protestantism, within the various spaces of the Republic. The course will include a role-playing simulation exploring the ban of the Muslim headscarf in French schools in order to explore how non-Muslims in France portray Muslim women's understandings and experience of the sacred and divine, and what these portrayals also reveal about French conceptions of faith and identity. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "PHIL-105", 
+    "title": "Reasons", 
+    "pre_req": null, 
+    "dept": "PHIL", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "An introduction to critical thinking, with attention to the structure of everyday arguments and common fallacies in areas including probabilistic, casual, and inductive reasoning."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 18, 
+    "name": "MGT-190", 
+    "title": "Business Communication", 
+    "pre_req": null, 
+    "dept": "MGT", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This course introduces the fundamentals of writing and oral presentation for business through practical application of the principles of effective communication for a professional setting. Students will draft, revise and present a range of useful business and electronic communication items, such as e-newsletters. Topics examined include organization, drafting, editing, peer review, audience attention, and development of both oral and written communication and presentation skills. "
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "MGT-110", 
+    "title": "Introduction to Business", 
+    "pre_req": null, 
+    "dept": "MGT", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "Designed for students with no previous coursework in business, this course introduces students to foundational information associated with \"doing business.\" Through a combination of content and application, students will begin to understand the theories associated with business and the complexities of applying/recognizing these theories through in-class activities and studying the decisions being made by businesses. Topics include; business forms, business ethics, management, marketing, finance, accounting, business environment, technology, and decision making."
+  }, 
+  {
+    "division": null, 
+    "capacity": 44, 
+    "name": "PAID-450", 
+    "title": "Re-Imaging Race through SpeculativeyFiction", 
+    "pre_req": "Junior or senior standing", 
+    "dept": "PAID", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "This course explores the ethical imagination as it unfolds in intersections of speculative fiction and critical race analysis. Speculative fiction, which includes science fiction and fantasy among other forms, provides a unique forum in which we can diagnose contemporary challenges and imagine alternatives for the common good. Critical race analysis offers frameworks and tools we can bring to fundamental questions about race and racism, as well as strategizing how to build socially just communities. Likewise, both of the discrete elements of this class enhance our ability to think intersectionally--to grasp and approach social challenges as intersections of race, gender, class, and environment. Today this intersection is thriving as creators, consumers, and critics turn to strange but popular genres to move our discussion of the ethics and aesthetics of \"race construction\" beyond traditional frameworks of analysis. We will read and discuss, write and present on print, film, and multimedia texts that rewrite racist legacies, design radical futures, and reach wide entertainment audiences. "
+  }, 
+  {
+    "division": null, 
+    "capacity": 25, 
+    "name": "PAID-450", 
+    "title": "Working Japan: Religion and CorporateyCulture in Japan", 
+    "pre_req": "Junior or senior standing", 
+    "dept": "PAID", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "This course will study religious and corporate cultures in Japan as well as their intersections. In particular, the course will examine how Confucian and Buddhist institutions, principles, and values shape Japanese business practices explicitly and implicitly. The course will explore the history and structure of Japanese religions and culture as well as their impact on communication processes and ethical decision making within and among businesses. Can Buddhist and Confucian values that shape Japanese culture be reconciled with the notions of success and profit? What is the role of social relationships in business decisions? What values does the stratification of relationships and communication reflect? Students will examine how history, economics, politics, society, and culture fuse to frame a business environment that can extract sizable direct and indirect costs. ! To increase, our understanding of the governing principle as well as practice of Japanese culture and communication processes, the class will explore business settings as well as religious institutions. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -26730,6 +26807,116 @@
     "desc": "This course continues the discussion of physical ideas begun in PHYS 181. Topics include optics, electricity and magnetism, electromagnetic waves and electric circuits. The laboratory work focuses on measurement and observation to enhance conceptual understanding of the material."
   }, 
   {
+    "division": null, 
+    "capacity": 24, 
+    "name": "PAID-450", 
+    "title": "Exploring the Ethics of SustainableyOrganizations", 
+    "pre_req": "Junior or senior standing", 
+    "dept": "PAID", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "This course explores the questions of cultural norms and values and their influence on the development of today's organizations in the Nordic region. Through site visits to organizations in Norway and Sweden, cultural interactions and discussions, personal and guided research on ethics and the \"triple bottom line\"* approach (a balanced approach to the planet, people and profit) to leading organizations, and the development of an e-portfolio of writing, students will demonstrate their growth in understanding the ethical dimensions that shape sustainable design for organizations in these Nordic countries. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-120", 
+    "title": "Religion: Curse Or Blessing?", 
+    "pre_req": null, 
+    "dept": "REL", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This course explores the role and purpose of religions throughout history, across cultures, and in today's society. It will examine how religions have shaped and were shaped by politics, sciences, moral values, and our understanding of what it means to be human. It will deal with questions such as What is religion? Does religion do any good? Do we need religion? What are the benefits and perils of religion? "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-200", 
+    "title": "Ancient Mediterranean Heroes", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HEPT", 
+    "desc": "Why do communities identify certain people as heroes? Why are there so many similarities in the narratives communities living in different times and places have told about their heroes? What role do hero narratives play in the social construction of \"religions\"? This course will explore questions such as these by focusing on ancient Mediterranean hero narratives. Students will engage theories of heroes and hero narratives produced from the nineteenth century to the present. They will then utilize these theories in the analysis of hero narratives from ancient Ugarit, Mesopotamia, Greece, Rome, and Israel/Judah. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-203", 
+    "title": "Rewriting Scripture: From Chronicles toyThe Qur'an", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HEPT", 
+    "desc": "Is the text of the Bible fixed and static or has it undergone change and modification over time? In this course, we will consider the widely-recognized phenomenon of the re-written Bible by analyzing evidence that demonstrates textual change. Examples will include the way the book of Chronicles rewrites the history of the Israelite monarchy found in Samuel and Kings, the reworkings of biblical materials in the Dead Sea Scrolls and other early Jewish literature, the textual fluidity of early New Testament manuscripts, and the reworking of biblical materials in the Qur'an. Attention will be given to how the changing circumstances of religious communities influence the transmission of the texts they deem authoritative. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-228", 
+    "title": "Religion and Philosophy in Japan", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HEPT,INTCL", 
+    "desc": "This course examines the religious and philosophical traditions of Japan, Buddhism, Shinto, Confucianism, and Christianity, to understand their influence on Japanese culture. It will trace these traditions from their beginnings and formative periods to today and explore their influence on the current worldviews, rituals, festivals, literature, practices, ethics, and politics in Japan. Special consideration will be given to the notion of \"religion,\" the construction of gender, as well as moral and political visions found in the foundational texts of these traditions. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-240", 
+    "title": "Topics in Religion and Social Justice", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HB", 
+    "desc": "This course will explore ways in which one or more religious tradition(s) have, can, and/or might be able to engage with and/or respond to the demands of one or more specific contemporary social justice issues (e.g. \"#BlackLivesMatter). "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-244", 
+    "title": "Religion and Sports", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HB", 
+    "desc": "Can sports be considered a religion? Is there a spiritual aspect to sport participation? How have religions incorporated sports into their practices and institutions, and vice versa? When have religion and sports come into conflict? In this course students will explore such questions as they critically analyze interconnections between sports and religion. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-252", 
+    "title": "Introduction to Interfaith Studies", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HE,INTCL", 
+    "desc": "This course introduces students to the emerging field of interfaith studies, a discipline that analyzes how people who orient around religion differently think about and interact with one another, along with the implications of these interactions for civil society, global politics, and the common good. Particular focus will be given to the following themes: religious and interfaith literacy, theologies and philosophies of religious pluralism, multi-religious belonging and practice, interfaith families, interfaith leadership, interfaith peacemaking, and secular and non-religious contributions to interfaith engagement."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-255", 
+    "title": "Religious Identity and Diversity in East\u00fdAsia", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HE,INTCL", 
+    "desc": "A study of the ways in which religious identity is constructed and negotiated in China, Korea, and Japan. This course investigates concrete encounters between various Buddhist, Confucian, Daoist, and Shinto schools, institutions, thinkers, and practitioners as well as between political entities and cultural traditions alike; explores variations of the \"three teachings in one\" as they are expressed in religious myths, especially those involving martial art heroes, meditation manuals, and religious practice in East Asia; and analyzes the theoretical models developed to explain the diversity of beliefs, practices, and cultures in East Asia. This course will provide an in-depth understanding of East Asian religions and cultures and the interaction among them as well as engaging models of religious identity and diversity. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 18, 
+    "name": "REL-301", 
+    "title": "Is Morality Any Good", 
+    "pre_req": "REL 101, 111, or 112; PAID 111D and PAID 112D or transfer equivalents", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,HEPT", 
+    "desc": "This seminar explores moral theories framed in the context of multiple religious traditions with a special emphasis on Christianity and Buddhism. In particular, it examines how selected primary and secondary texts develop religious moral theories in response to the fact of evil within a monotheistic, humanistic, or non-dualist framework. The seminar focuses on following questions: What is Evil? How do religious texts explain the existence of evil? What is the goal of moral theory? How does moral theory respond to evil? What makes a moral theory effective? Is moral theory necessary for the attainment of religious goals? Is religion necessary for a moral life? The students will engage a variety of religious and philosophical positions. "
+  }, 
+  {
     "division": "History and Social Sciences", 
     "capacity": 25, 
     "name": "HIST-227", 
@@ -26741,6 +26928,270 @@
     "desc": "This course explores the various ways in which history is created, incorporated into and presented in U.S. popular culture. This course will combine hands on work with local historical societies, museums, and other public history venues with academic study of public history techniques and ethical challenges. Topics may include the ways in which historical road markers, entertainment corporations (such as the History Channel and Disney), local and regional history associations present history to the public and how the public interacts with these discourses on history. A comparison of the differences in purpose and audience between public and scholarly presentations of history is a central theme of the course. Offered alternate years."
   }, 
   {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 18, 
+    "name": "REL-303", 
+    "title": "Religious Pluralism in Latin America and\u00fdCaribbean", 
+    "pre_req": "REL 101, 111, or 112; PAID 111D and PAID 112D or transfer equivalents", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL,INTCL", 
+    "desc": "Human migration, colonialism, missionary endeavors, and globalization have significantly impacted the world's religious landscape, leaving us with a greater awareness not only of religious diversity, but also the power dynamics engendered by conflicting religious truth claims. In Latin America and the Caribbean, this encounter of different religions often led to violent clashes but also to the development of hybrid religious identities, combining elements of Christianity with religious expressions stemming from Indigenous and African matrices such as Santeria, Voodoo, Candombl\u00e9, Animism, and Spiritism, for example. Although drawing from theoretical and methodological reflections developed in a global context, this course will use case studies from Latin America and the Caribbean to study religious pluralism and multiple religious belongings. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 25, 
+    "name": "REL-204", 
+    "title": "The World of the Bible", 
+    "pre_req": "REL 101, REL 111, or REL 112", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": "REL", 
+    "desc": "Using archaeological, literary, and artistic sources together with the Bible, this course examines the environments within which the biblical books were written. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 15, 
+    "name": "ENG-485", 
+    "title": "Seminar: The Ironics of H.G. Wells", 
+    "pre_req": "Two courses from ENG 251, 352-354, 361-368", 
+    "dept": "ENG", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "H.G. Wells wrote pioneering fiction about alien invasion, time travel, space travel, modified organisms, super-food, liberated women, utopian dystopias, and consumer culture run amok. He engaged with the theory of evolution with a seriousness few have matched. We will explore the scientific romances, novels, and stories Wells wrote between 1895 and 1909, considering their bearing on his time and ours.  In addition, we will consider the nature of discourse in speculative fiction as well as the types of irony at work in Wells' fictions: the many ways our dreams and highest ideals can in their realization prove unrecognizable, or the way our biology may be carrying out one plan while our hearts and minds entertain another."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 20, 
+    "name": "THE-305", 
+    "title": "Acting: Special Topics -\u00fdAdvanced Acting Techniques", 
+    "pre_req": "Take THE-105", 
+    "dept": "THE", 
+    "credit_hrs": 4, 
+    "gen_eds": "HE", 
+    "desc": null
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 0, 
+    "name": "PHIL-485", 
+    "title": "Seminar:Visual Epistemology", 
+    "pre_req": "Take 3 courses from subject PHIL;", 
+    "dept": "PHIL", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "A comparative and critical study of theories of knowing that engage or employ visual evidence or argumentation. Do we think differently about phenomena we visualize?  Might visualizing allow us to know things we might not otherwise?  While epistemological topics concern the possibility, origins, nature, and extent of human knowledge, visual epistemology considers knowledge claims that involve visual perception and graphic representation--such as are bound up in maps, graphs, charts, drawings, paintings, and photographs--and can involve varieties of reasoning from the scientific to the aesthetic. The course includes classical as well as contemporary readings.  Prerequisite: 3 courses in Philosophy or permission of instructor. (Advanced students in the visual arts and art history are encouraged to enroll; contact baileyst@luther.edu.)"
+  }, 
+  {
+    "division": null, 
+    "capacity": 0, 
+    "name": "ENVS-485", 
+    "title": "Seminar: Latitude - Conservation in\u00fdThe Amerizad", 
+    "pre_req": null, 
+    "dept": "ENVS", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "What strategies aim to conserve biodiversity across the Americas?  How do conservation approaches in countries such as Ecuador, Brazil, and Costa Rica resemble (or differ from) one another? Policies to promote conservation include the establishment of protected areas, community-based conservation efforts, law enforcement, and incentive-based systems, but meet their targets with varying success.  Using case studies from North, Central, and South America, we will explore these topics using literature from policy and scientific perspectives, with the opportunity to connect with professionals involved in on-the-ground conservation.  Students will participate and lead discussions, presentations, and multi-week projects (W)"
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 0, 
+    "name": "HIST-321", 
+    "title": "Topics in US History: The 1960's\u00fdIn Myth and Reality", 
+    "pre_req": null, 
+    "dept": "HIST", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "The documentary series Making Sense of the Sixties (1991) presents the 1960s as a turbulent time, fraught with struggle. The producers present this decade as an era which created deep and lasting change in U.S. politics and society. Even at the time of its production this thesis was seen by historians and critics as problematic. Using the six-episode series as a touchstone, this course will take a deeper look at the documentary's claims regarding the time as a reaction against the 50s, the civil rights movement, the impact of the Vietnam war, and political upheaval. Students will review recent historical monographs on issues incorporated into the documentary to evaluate its accuracy and argument."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 0, 
+    "name": "HIST-485", 
+    "title": "Jr/Sr Sem: Mod Colonialism", 
+    "pre_req": null, 
+    "dept": "HIST", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 18, 
+    "name": "BIO-139", 
+    "title": "Special Topic: Phage Hunting", 
+    "pre_req": null, 
+    "dept": "BIO", 
+    "credit_hrs": 4, 
+    "gen_eds": "NWL", 
+    "desc": "Bacteriophage, or phage, are viruses that specifically infect bacteria.  This blended lecture/laboratory course will engage students in inquiry-based research to discover novel bacteriophage.  Starting with a spoonful of dirt, each student will ultimately identify their very own phage.  Through simple and accessible laboratory techniques, students will get to see first hand what it is like to be a scientist."
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 20, 
+    "name": "BIO-339", 
+    "title": "Special Topic: Human Genetics", 
+    "pre_req": "BIO 248", 
+    "dept": "BIO", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "Students will apply basic genetic concepts to specific human traits.  The course will examine the molecular mechanisms behind common inheritance patterns, such as haploinsufficiency or protein misfolding.  In addition to common human traits, the course will focus on genetic disorders.  Students will each research a specific genetic disorder to learn about the history, incidence, inheritance pattern, molecular and cellular mechanisms, and medical treatments of the disorder.  This knowledge will then be written in a formal paper and presented to the class in a seminar."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "COMS-250", 
+    "title": "Contemporary Journalism", 
+    "pre_req": null, 
+    "dept": "COMS", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "This course studies the rapidly evolving state of journalistic practice.  Topics include the rise of new media, the disintegration of traditional editorial controls, the splintering of audiences, as well as personal journalism and state-influenced journalism.  As they study its modern forms, students create works of journalism."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 12, 
+    "name": "FCUL-139", 
+    "title": "Special Topic: Asian Culture Through\u00fdCooking", 
+    "pre_req": null, 
+    "dept": "FCUL", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "As a crucial component of people's everyday life, Asian cuisine is probably the best way to explore Asian culture.  This course will help students to develop an appreciation of Asian culture using their heads, hands, and taste buds.  It will introduce food-related topics through lectures, readings, video materials, and cooking various Asian dishes.  Topics will include: how Asian cuisine is closely related to available natural resources; how foreign ingredients traveled to Asian countries; what foods Asian people eat on festive occasions or for various medical benefits; why food consumption in many Asian countries is different from the West."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "HIST-239", 
+    "title": "Special Topic: Arctic Exploration and\u00fdExploitation", 
+    "pre_req": null, 
+    "dept": "HIST", 
+    "credit_hrs": 4, 
+    "gen_eds": "HIST,HB,INTCL", 
+    "desc": "Between 1500 and today, the Arctic region has undergone immense climatic, economic, political, and social changes. During this period, the Arctic became an area of intense focus among nation states, international organizations, scientists, and economic enterprises. This course will examine the major shifts in Arctic history, including early indigenous settlement and periods of European exploration and exploitation. Of central focus will be the resultant formation of complex relationships between states, individuals, and ethnic groups. This will include discussions of resource management and extraction in the Arctic, including old and new debates over fishing rights and oil reserves. The course will cover the entwined histories of Arctic stakeholders such as Norway, Russia, Canada, Denmark, and the United States. It will examine interactions between these states at key periods in Arctic history, such as the height of European exploration, the two world wars, the Cold War, and today. Students will also study cultural interactions between indigenous communities and European settlers and nation states. While the course will focus on human actions and interactions in the Arctic region, students will also come to understand the role of the environment in this history and the interdependent relationship between human and environmental systems. "
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "POLS-340", 
+    "title": "Environmental Justice and Law", 
+    "pre_req": null, 
+    "dept": "POLS", 
+    "credit_hrs": 4, 
+    "gen_eds": "HBSSM", 
+    "desc": "Environmental justice addresses the distribution of environmental burdens and benefits across societies, as well as the ways that citizens have a role in influencing their environmental fates. In this course, we will use the frame of environmental justice to analyze critical issues in the realm of environmental law. The course will examine and analyze legal cases that involve environmental justice issues, as well as environmental conflicts that involve issues of inequality across race, gender, and socio-economic status. Further, we will explore the role of law and judicial processes as paths to address and ameliorate environmental injustice. Students will develop an understanding of the politics of environmental justice, as well as skills in legal analysis and policy analysis within an environmental justice frame. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 15, 
+    "name": "REL-485", 
+    "title": "Seminar: Religion, Science, and Mental\u00fdHealth", 
+    "pre_req": "Complete 3 courses in Religion", 
+    "dept": "REL", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "Does the human mind have a reality of its own or is it merely the side effect of physical processes in the brain?  How we answere this question has a profound influence on how we view the nature of mental and emotional disturbance and how we address it.  If the mind is reducible to brain function, then mental and emotional disturbances are best understood as only disruptions in brain biochemistry best treated by medication, as idea known as the Medical Model of Mental Illness.  But if mind is not reducible to brain, then mental and emotional disturbances might better be addressed through forms of psychodynamic psychotherapy or religion-based therapies that take the reality of mind (or soul) seriously.  In this seminar, we will critically examine how diverse religious and scientific approaches to mind authorize different approaches to mental illness along with an ethical analysis of those different approaches and treatment options."
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 35, 
+    "name": "HLTH-100", 
+    "title": "Lifetime Health and Wellness", 
+    "pre_req": null, 
+    "dept": "HLTH", 
+    "credit_hrs": 1, 
+    "gen_eds": "WEL", 
+    "desc": "This common course for all first-year students examines holistic dimensions of wellness and the knowledge, skills, and resources necessary for developing and maintaining health in a diverse world throughout college and across the lifespan.  An emphasis will be placed on individual health and wellness promoting behaviors within an ever changing social environment through weekly lectures, activities, and self-assessments."
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 15, 
+    "name": "PE-139", 
+    "title": "Special Topic: Leadership Action in an\u00fdEvolving World", 
+    "pre_req": null, 
+    "dept": "PE", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This course will examine leadership characteristics and models of notable business/organizations around the world. Students will have the opportunity to analyze transformational leadership related to individual stakeholders and influential change around the world. The course examines characteristics and models of becoming a leader of character. Group discussion will focus on Dave Anderson's book Becoming a Leader of Character. The students will examine skills and strategies to develop their leadership style and gain and understanding of true leadership. Course activities will include presentations from leadership experts, self-assessment of leadership abilities and will have a final project that focuses on a keynote presentation covering all of the concepts that connect theory to practical application. "
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 15, 
+    "name": "PE-139", 
+    "title": "Special Topic: Great Sports Leaders", 
+    "pre_req": null, 
+    "dept": "PE", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This course will examine the leadership styles and strategies of well known coaches at the professional and collegiate levels. The course is designed to enhance leadership skills for areas such as sport administration(scholastic and collegiate), coaching, sports management, community and youth sports, and recreation. After completion of the course students will be able to evaluate leadership theories from historical and contemporary perspectives. Students will identify ways leadership in sport organizations can positively impact individuals and community, including developing their own plan as a leader in a sport setting. The course will use two common texts based on leadership principles in sport for discussion, video presentations, article review, presentations of an individual research project and leadership theory. "
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "SCST-251", 
+    "title": "Topics in Nordic Film: Nordic\u00fdTelevision", 
+    "pre_req": "SCST 202.", 
+    "dept": "SCST", 
+    "credit_hrs": 4, 
+    "gen_eds": "HEPT", 
+    "desc": "The advent of online streaming services like Netflix and Hulu have made television an international platform where ideas, norms and values can be communicated across national boundaries.  In this course, students will examine and critically analyze television shows from 3 Nordic countries for their representations of national or international identities and how television provides a forum for commentary on contemporary social issues."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 25, 
+    "name": "FCUL-251", 
+    "title": "Topics in Nordic Film: Nordic\u00fdTelevision", 
+    "pre_req": null, 
+    "dept": "FCUL", 
+    "credit_hrs": 4, 
+    "gen_eds": "HEPT", 
+    "desc": "The advent of online streaming services like Netflix and Hulu have made television an international platform where ideas, norms and values can be communicated across national boundaries.  In this course, students will examine and critically analyze television shows from 3 Nordic countries for their representations of national or international identities and how television provides a forum for commentary on contemporary social issues."
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 19, 
+    "name": "BIO-185", 
+    "title": "Biology of Food", 
+    "pre_req": null, 
+    "dept": "BIO", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "Almost everything that we eat was once alive.  This course will explore the biology of food with three main perspectives: 1. Biochemistry: What is an omega-3 fatty acid really? 2. Microbiology: There are billions of whole organisms in my yogurt? 3. Genetics: What makes a honey crisp apple different than all the other apples and does that mean it is genetically engineered?  Format will include directed readings, lecture, discussion, and student presentations.  Students should come prepared to try many different foods for some experiential learning.  Previous science course work is not required."
+  }, 
+  {
+    "division": null, 
+    "capacity": 16, 
+    "name": "ENVS-239", 
+    "title": "Special Topic: A Systems Approach to\u00fdSustainability in Swaziland", 
+    "pre_req": null, 
+    "dept": "ENVS", 
+    "credit_hrs": 4, 
+    "gen_eds": "HB", 
+    "desc": "This course will examine a systems approach to sustainable development in northern Swaziland.  By partnering with Vusumnotfo, a local organization formed by eighteen chiefdoms, students will explore communities that have improved their own social, economic, and environmental conditions by focusing on the community structures that touch the lives and development of children, including schools where they learn, families where they grow, and the communities where they live.  During this course, students will learn about the history and culture of Swaziland people and experience how sustainability and systems thinking have been a catalyst for social change in the region.  Students will compare models of systems change in Swaziland to local organizations in the Northeast Iowa area with a similar focus on children and their families.  As part of the course structure, students will be paired with University of Swaziland students as they capture stories and collect data related to how communities have improved their lives through working together."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 14, 
+    "name": "IS-136", 
+    "title": "Exploring Malta and the Mediterranean", 
+    "pre_req": null, 
+    "dept": "IS", 
+    "credit_hrs": 2, 
+    "gen_eds": null, 
+    "desc": "This is a one semester course in which Malta students take three course trips to countries around the Mediterranean.  Trip sites may include Morocco, Italy, Greece, Turkey, Croatia, Spain or Jordan.  Course work will include research, reading, writing, presentations and discussions pertaining to each trip."
+  }, 
+  {
+    "division": null, 
+    "capacity": 25, 
+    "name": "ENVS-210", 
+    "title": "Climate Dynamics and Modeling", 
+    "pre_req": "MATH 140", 
+    "dept": "ENVS", 
+    "credit_hrs": 4, 
+    "gen_eds": "NWNL", 
+    "desc": "This course will explore the earth's climate in the context of earth systems such as the atmosphere, hydrosphere, cryosphere and biosphere. A primary focus will be to develop an understanding of the complex dynamical characteristics and feedback mechanisms between these components through the implementation of basic mathematical and statistical modeling methods incorporating salient physical, chemical and biological principles. An understanding of climate variability and sensitivity due to perturbations, either internal (e.g. el Nino and the southern oscillation (ENSO) and greenhouse gas (GHG) concentration) or external (e.g. solar input variability) will be explored. Long-term model projections of the earth's climate response to perturbations or trends (e.g. increasing GHG emissions or land-use practices), and the confidence therein, will be examined. "
+  }, 
+  {
     "division": "Mathematics, Science and Physical Education", 
     "capacity": 30, 
     "name": "PHYS-182L", 
@@ -26748,6 +27199,149 @@
     "pre_req": "PHYS-151 OR PHYS-181", 
     "dept": "PHYS", 
     "credit_hrs": 0, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": null, 
+    "capacity": 20, 
+    "name": "ENVS-225", 
+    "title": "Earth's Climate: Past, Present, and\u00fdFuture", 
+    "pre_req": null, 
+    "dept": "ENVS", 
+    "credit_hrs": 4, 
+    "gen_eds": "NWL", 
+    "desc": "What are natural and anthropogenic controls on the climate system, how has the Earth's climate varied in the past, and how will the climate system respond to anthropogenic influences? This course includes an introduction to the climate system, an exploration of the Earth's climate history, and a consideration of how the study of past climates informs our understanding of future climate change. Additional emphasis will be placed on the tools used by climate scientists to understand both past and future climate change. Labs include a combination of field exploration of the local geologic record, laboratory analyses, and computer-based data and modeling exercises. "
+  }, 
+  {
+    "division": null, 
+    "capacity": 20, 
+    "name": "ENVS-250", 
+    "title": "Sustainability, Systems and Solutions", 
+    "pre_req": "PHIL 140, POLS 258 and BIO 151 or ENVS 134", 
+    "dept": "ENVS", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": "This course will draw upon concepts in systems thinking to cultivate skills for sustainability and problem solving. Through applied case studies grounded in NE Iowa, students will analyze and practice the ways that communities can work to create more sustainable solutions and systems. Students will work in teams on key sustainability issues such as water, energy and climate, food systems, and social sustainability in order to hone skills in systems thinking, communication, research, data analysis and information literacy. This course serves as an integrative experience that will build common capacities and skills for students in upper level environmental studies coursework, such as the junior/senior seminar. This course is a prerequisite for ENVS 485. "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-115", 
+    "title": "Class Instruction: Piano, Voice, or\u00fdGuitar", 
+    "pre_req": null, 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For piano and voice majors and nonmajors with little or no background in those areas.  Beginning guitarists will study music notation, tablature, chording, and classical guitar literature.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-116", 
+    "title": "Class Instruction-Piano or Voice", 
+    "pre_req": "MUS 115", 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "Continuation of MUS 115.  For majors and non-majors who have had some piano or voice.  Emphasis is on developing good reading and practicing skills.  Additional fees will be assessed for this course.  "
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-117", 
+    "title": "Class Instruction-Piano", 
+    "pre_req": "MUS 116 or piano placement recommendation", 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For music majors only.  Emphasis is on developing the skills required on the piano proficiency test.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-130", 
+    "title": "Private Instruction", 
+    "pre_req": null, 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For all applied music students in their first year of study.  Non-majors and music majors in their secondary areas may repeat this course for credit in subsequent years.  Studio seminars may be required.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-230", 
+    "title": "Private Instruction", 
+    "pre_req": "Music major or Music minor with two semesters of MUS 130 (Private Instruction)", 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For music majors and minors in their second year of study.  Non-majors and music majors in their secondary areas may register for this course with consent of instructor.  Studio seminars may be required.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-300", 
+    "title": "Music Ensembles", 
+    "pre_req": null, 
+    "dept": "MUS", 
+    "credit_hrs": 0, 
+    "gen_eds": null, 
+    "desc": "Brass Choir, Cantorei, Cathedral Choir, Chamber Orchestra, Collegiate Chorale, Collegium Musicum, Concert Band, Jazz Orchestra, Jazz Band, Nordic Choir, Norsemen, Aurora, Philharmonia, Symphony Orchestra, Varsity Band, Wind and Percussion Ensemble."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-330", 
+    "title": "Private Instruction", 
+    "pre_req": "Music major or Music minor with two semesters of MUS 230 (Private Instruction).", 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For music majors in their third year of study.  Nonmajors and music majors in their secondary areas may register for this course with consent of instructor.  Studio seminars may be required.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "Humanities and Fine Arts", 
+    "capacity": 999, 
+    "name": "MUS-430", 
+    "title": "Private Instruction", 
+    "pre_req": null, 
+    "dept": "MUS", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": "For music majors in their fourth year of study.  Non-majors and music majors in their secondary areas may register for this course with consent of instructor.  Additional fees will be assessed for this course."
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "ARTH-395", 
+    "title": "Independent Study", 
+    "pre_req": null, 
+    "dept": "ARTH", 
+    "credit_hrs": 1, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "History and Social Sciences", 
+    "capacity": 999, 
+    "name": "MGT-139", 
+    "title": "Special Topic: Conflict Management and\u00fdResolution (Washington Consortium)", 
+    "pre_req": null, 
+    "dept": "MGT", 
+    "credit_hrs": 4, 
+    "gen_eds": null, 
+    "desc": null
+  }, 
+  {
+    "division": "Mathematics, Science and Physical Education", 
+    "capacity": 0, 
+    "name": "BIO-475", 
+    "title": "Med Tech Program", 
+    "pre_req": null, 
+    "dept": "BIO", 
+    "credit_hrs": 16, 
     "gen_eds": null, 
     "desc": null
   }, 
@@ -26932,7 +27526,7 @@
     "capacity": 15, 
     "name": "PHYS-411", 
     "title": "Quantum Mechanics", 
-    "pre_req": "PHYS 282.", 
+    "pre_req": "PHYS 282", 
     "dept": "PHYS", 
     "credit_hrs": 4, 
     "gen_eds": null, 
@@ -27244,7 +27838,7 @@
     "dept": "PE", 
     "credit_hrs": 2, 
     "gen_eds": null, 
-    "desc": "Designed to introduce students to the study of human movement. It will include the identification of planes of motion and the movements possible at the various joints. It will focus on the primary muscles that accomplish each movement and those which serve to assist and stabilize. It will also include the analysis of basic movement patterns such as walking, running, jumping, throwing, and striking. "
+    "desc": "Designed to introduce students to the study of human movement. It will include the identification of planes of motion and the movements possible at the various joints. It will focus on the primary muscles that accomplish each movement and those which serve to assist and stabilize. It will also include the analysis of basic movement patterns such as walking, running, jumping, throwing, and striking. (NWNL when combined with PE 261)"
   }, 
   {
     "division": "History and Social Sciences", 
@@ -27266,7 +27860,7 @@
     "dept": "PE", 
     "credit_hrs": 4, 
     "gen_eds": "NWL", 
-    "desc": "Designed to provide scientific background and laboratory experience essential for understanding the nervous, muscular, cardiovascular, and respiratory system responses and adaptation to physical stress. (NWNL when combined with PE 261)"
+    "desc": "Designed to provide scientific background and laboratory experience essential for understanding the nervous, muscular, cardiovascular, and respiratory system responses and adaptation to physical stress. "
   }, 
   {
     "division": "Mathematics, Science and Physical Education", 
@@ -27442,7 +28036,7 @@
     "dept": "MGT", 
     "credit_hrs": 4, 
     "gen_eds": null, 
-    "desc": "Emphasis on contemporary approaches to entrepreneurship, including the Lean Startup methodology and the Business Model Canvas. Entrepreneurship is presented as an iterative process, starting with opportunity recognition and continuing with steps necessary to allow for market validation and pivots. Students explore methodologies for starting and growing sustainable business models under conditions of extreme uncertainty, as well as methodologies for innovating existing business models. Students complete application assignments to reinforce concepts presented in the couxrse. Students also complete a personal startup plan for a business idea. The course includes guest speakers who share their entrepreneurial experiences, providing students with a deeper understanding and broader perspective of entrepreneurship."
+    "desc": "Emphasis on contemporary approaches to entrepreneurship, including the Lean Startup methodology and the Business Model Canvas. Entrepreneurship is presented as an iterative process, starting with opportunity recognition and continuing with steps necessary to allow for market validation and pivots. Students explore methodologies for starting and growing sustainable business models under conditions of extreme uncertainty, as well as methodologies for innovating existing business models. Students complete application assignments to reinforce concepts presented in the course. Students also complete a personal startup plan for a business idea. The course includes guest speakers who share their entrepreneurial experiences, providing students with a deeper understanding and broader perspective of entrepreneurship."
   }, 
   {
     "division": "History and Social Sciences", 
@@ -28230,7 +28824,7 @@
     "capacity": 999, 
     "name": "MUS-360", 
     "title": "Vocal Coaching", 
-    "pre_req": null, 
+    "pre_req": "Upper level (MUS 330) voice and consent of instructor", 
     "dept": "MUS", 
     "credit_hrs": 1, 
     "gen_eds": null, 
